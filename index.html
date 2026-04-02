@@ -3,932 +3,576 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patrick Mekongo — Technicien IT</title>
+  <title>Patrick Mekongo — Technicien IT | Réseaux, Systèmes & Développement</title>
+  <meta name="description" content="Portfolio de Patrick Mekongo, technicien IT en recherche de stage. Réseaux TCP/IP, VLAN, virtualisation VMware, Windows Server, Debian, PHP/MySQL.">
+  <meta property="og:title" content="Patrick Mekongo — Technicien IT">
+  <meta property="og:description" content="Technicien IT spécialisé en réseaux, systèmes et développement web. En recherche de stage.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black' font-weight='900' font-size='13' fill='%23c8a96d'>PM</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@300;400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
-    /* ===================== RESET ===================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --black:#0a0a0a; --white:#fff; --gold:#c8a96d; --gold-dim:rgba(200,169,109,0.15);
+      --surface:#111; --border:rgba(255,255,255,0.07); --muted:#555; --dim:#888; --light:#bbb;
+      --fd:'Barlow Condensed',sans-serif; --fb:'Barlow',sans-serif; --fm:'DM Mono',monospace;
+    }
+    html{font-size:16px;scroll-behavior:smooth}
+    body{background:var(--black);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.6;overflow-x:hidden;cursor:none}
+    ::selection{background:var(--gold);color:var(--black)}
+    img{display:block;width:100%;height:100%;object-fit:cover}
 
-    :root {
-      --black:    #0a0a0a;
-      --white:    #ffffff;
-      --dark:     #111111;
-      --surface:  #161616;
-      --border:   rgba(255,255,255,0.08);
-      --muted:    #555555;
-      --dim:      #999999;
-      --light:    #cccccc;
-      --f-display: 'Barlow Condensed', sans-serif;
-      --f-body:    'Barlow', sans-serif;
-      --f-mono:    'DM Mono', monospace;
-    }
+    /* CURSOR */
+    #cd{position:fixed;top:0;left:0;width:6px;height:6px;background:var(--white);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s}
+    #cr{position:fixed;top:0;left:0;width:34px;height:34px;border:1px solid rgba(255,255,255,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+    body.ch #cd{width:10px;height:10px}
+    body.ch #cr{width:54px;height:54px;border-color:rgba(200,169,109,.6)}
 
-    html { font-size: 16px; scroll-behavior: smooth; }
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:26px 56px;display:flex;align-items:center;justify-content:space-between;transition:transform .5s cubic-bezier(.77,0,.175,1),background .4s ease,padding .4s ease;mix-blend-mode:difference}
+    nav.scrolled{mix-blend-mode:normal;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);padding:18px 56px;border-bottom:1px solid var(--border)}
+    nav.hidden{transform:translateY(-110%)}
+    .nav-logo{font-family:var(--fd);font-weight:900;font-size:1.1rem;letter-spacing:.18em;color:var(--white);text-decoration:none}
+    nav.scrolled .nav-logo{color:var(--gold)}
+    .nav-links{list-style:none;display:flex;gap:40px}
+    .nav-links a{font-family:var(--fm);font-size:.62rem;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--white);text-decoration:none;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .35s ease}
+    .nav-links a:hover::after{width:100%}
+    nav.scrolled .nav-links a{color:var(--light)}
 
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: var(--f-body);
-      font-weight: 300;
-      line-height: 1.6;
-      overflow-x: hidden;
-      cursor: none;
-    }
+    /* HERO */
+    #hero{min-height:100vh;padding:0 56px 88px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+    .hero-ghost{position:absolute;top:50%;left:-2vw;transform:translateY(-52%);font-family:var(--fd);font-weight:900;font-size:clamp(180px,38vw,580px);line-height:1;color:rgba(255,255,255,.02);pointer-events:none;user-select:none;letter-spacing:-.04em;white-space:nowrap}
+    .hero-side{position:absolute;top:40px;right:56px;font-family:var(--fm);font-size:.58rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;writing-mode:vertical-rl}
+    .hero-eye{font-family:var(--fm);font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;opacity:0;animation:fadeUp .8s ease .1s forwards}
+    .hero-name{font-family:var(--fd);font-weight:900;font-size:clamp(64px,13.5vw,200px);line-height:.88;letter-spacing:-.025em;text-transform:uppercase;overflow:hidden}
+    .hl{display:block;transform:translateY(105%);animation:slideUp 1s cubic-bezier(.77,0,.175,1) forwards}
+    .hl:nth-child(1){animation-delay:.25s}
+    .hl:nth-child(2){animation-delay:.42s;margin-left:clamp(16px,4vw,96px);color:transparent;-webkit-text-stroke:1.5px var(--white)}
+    .hero-rule{margin:40px 0;height:1px;background:var(--border);transform-origin:left;transform:scaleX(0);animation:scaleX .9s cubic-bezier(.77,0,.175,1) .75s forwards}
+    .hero-bot{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;opacity:0;animation:fadeUp .8s ease 1s forwards}
+    .hero-tag{font-family:var(--fd);font-weight:700;font-size:clamp(13px,2.2vw,26px);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+    .hero-scroll{display:flex;align-items:center;gap:14px;font-family:var(--fm);font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex-shrink:0}
+    .s-track{width:52px;height:1px;background:var(--muted);position:relative;overflow:hidden}
+    .s-track::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gold);animation:runLine 2.2s ease-in-out 1.5s infinite}
 
-    ::selection { background: var(--white); color: var(--black); }
+    /* SECTION COMMONS */
+    .sec{position:relative;padding:140px 56px;border-top:1px solid var(--border)}
+    .sec-num{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(100px,20vw,300px);line-height:1;color:rgba(255,255,255,.03);letter-spacing:-.04em;pointer-events:none;user-select:none;right:0;top:60px}
+    .sec-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:14px;margin-bottom:20px}
+    .sec-label::after{content:'';display:block;width:48px;height:1px;background:var(--muted)}
+    .sec-title{font-family:var(--fd);font-weight:900;font-size:clamp(44px,7.5vw,96px);line-height:.93;letter-spacing:-.025em;text-transform:uppercase}
 
-    /* ===================== CURSOR ===================== */
-    #cur-dot {
-      position: fixed; top: 0; left: 0;
-      width: 6px; height: 6px;
-      background: var(--white);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.08s linear, width 0.25s ease, height 0.25s ease;
-      mix-blend-mode: difference;
-    }
-    #cur-ring {
-      position: fixed; top: 0; left: 0;
-      width: 36px; height: 36px;
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width 0.35s ease, height 0.35s ease, border-color 0.35s ease;
-    }
-    body.cursor-hover #cur-dot   { width: 10px; height: 10px; }
-    body.cursor-hover #cur-ring  { width: 56px; height: 56px; border-color: rgba(255,255,255,0.6); }
+    /* PRATIQUE */
+    #pratique{background:var(--surface)}
+    .pratique-list{margin-top:72px;display:flex;flex-direction:column}
+    .p-item{display:flex;align-items:baseline;justify-content:space-between;padding:28px 0;border-top:1px solid var(--border);gap:32px;transition:padding-left .4s cubic-bezier(.77,0,.175,1)}
+    .p-item:last-child{border-bottom:1px solid var(--border)}
+    .p-item:hover{padding-left:16px}
+    .p-item:hover .p-num{color:var(--gold)}
+    .p-item:hover .p-name{color:var(--white)}
+    .p-num{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;color:var(--muted);flex-shrink:0;transition:color .3s ease}
+    .p-name{font-family:var(--fd);font-weight:800;font-size:clamp(22px,3.5vw,44px);letter-spacing:.04em;text-transform:uppercase;color:var(--light);transition:color .3s ease;flex:1}
+    .p-detail{font-family:var(--fm);font-size:.62rem;letter-spacing:.1em;color:var(--muted);text-align:right;flex-shrink:0;max-width:340px}
 
-    /* ===================== NAV ===================== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 28px 56px;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: transform 0.5s cubic-bezier(0.77,0,0.175,1);
-      mix-blend-mode: difference;
-    }
-    nav.nav-hidden { transform: translateY(-110%); }
+    /* COMPETENCES */
+    .skills-grid{margin-top:72px;display:grid;grid-template-columns:1.8fr 1fr 1fr;border-top:1px solid var(--border)}
+    .sk-col{padding:52px 0;padding-right:48px;border-right:1px solid var(--border)}
+    .sk-col:last-child{border-right:none;padding-right:0}
+    .sk-col:not(:first-child){padding-left:48px}
+    .sk-head{font-family:var(--fd);font-weight:900;font-size:clamp(26px,3.2vw,42px);letter-spacing:.04em;text-transform:uppercase;margin-bottom:32px}
+    .sk-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .sk-list li{font-family:var(--fm);font-size:.7rem;font-weight:300;letter-spacing:.08em;color:var(--light);display:flex;align-items:center;gap:14px}
+    .sk-list li::before{content:'';display:block;width:18px;height:1px;background:var(--muted);flex-shrink:0}
 
-    .nav-logo {
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: 1.1rem;
-      letter-spacing: 0.18em;
-      color: var(--white);
-      text-decoration: none;
-    }
-    .nav-items {
-      list-style: none;
-      display: flex; gap: 44px;
-    }
-    .nav-items a {
-      font-family: var(--f-mono);
-      font-size: 0.65rem;
-      font-weight: 300;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--white);
-      text-decoration: none;
-      position: relative;
-    }
-    .nav-items a::after {
-      content: '';
-      position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 1px;
-      background: var(--white);
-      transition: width 0.4s ease;
-    }
-    .nav-items a:hover::after { width: 100%; }
+    /* PROJECTS */
+    .proj-wrap{margin-top:72px}
+    .proj{position:relative;padding:80px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;overflow:hidden;transition:background .3s ease}
+    .proj:first-child{border-top:1px solid var(--border)}
+    .proj::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width .4s cubic-bezier(.77,0,.175,1)}
+    .proj:hover::before{width:3px}
+    .proj:hover{background:rgba(200,169,109,.03)}
+    .proj:nth-child(even){direction:rtl}
+    .proj:nth-child(even)>*{direction:ltr}
+    .proj-ghost{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(80px,14vw,200px);color:rgba(255,255,255,.03);line-height:1;letter-spacing:-.04em;pointer-events:none;user-select:none;top:10px}
+    .proj:nth-child(odd) .proj-ghost{right:-16px}
+    .proj:nth-child(even) .proj-ghost{left:-16px}
+    .proj-left{position:relative;z-index:1}
+    .proj-num{font-family:var(--fm);font-size:.58rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;margin-bottom:20px}
+    .proj-title{font-family:var(--fd);font-weight:900;font-size:clamp(36px,5vw,68px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;transition:color .3s ease}
+    .proj:hover .proj-title{color:var(--gold)}
+    .proj-right{position:relative;z-index:1;padding-top:4px}
+    .proj-screen{width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--border);margin-bottom:28px;position:relative}
+    .proj-screen img{width:100%;height:100%;object-fit:cover;filter:brightness(.8) contrast(1.05);transition:filter .4s ease,transform .5s ease}
+    .proj:hover .proj-screen img{filter:brightness(.95) contrast(1.05);transform:scale(1.02)}
+    .proj-desc{font-size:.875rem;line-height:1.85;color:var(--dim);margin-bottom:28px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+    .tag{font-family:var(--fm);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--muted);color:var(--muted);transition:border-color .3s,color .3s}
+    .tag:hover,.proj:hover .tag{border-color:var(--gold);color:var(--gold)}
+    .proj-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+    .proj-link:hover,.proj:hover .proj-link{color:var(--gold);border-color:var(--gold)}
 
-    /* ===================== HERO ===================== */
-    #hero {
-      min-height: 100vh;
-      padding: 0 56px 88px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      position: relative; overflow: hidden;
-    }
+    /* VLAN SCHEMA */
+    #reseau-schema{background:var(--surface);padding:80px 56px}
+    .schema-title{font-family:var(--fd);font-weight:900;font-size:clamp(20px,2.5vw,28px);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:32px}
+    .vlan-svg{width:100%;max-width:860px;margin:0 auto;display:block}
 
-    .hero-ghost {
-      position: absolute;
-      top: 50%; left: -2vw;
-      transform: translateY(-52%);
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(180px, 38vw, 600px);
-      line-height: 1;
-      color: rgba(255,255,255,0.022);
-      pointer-events: none; user-select: none;
-      letter-spacing: -0.04em;
-      white-space: nowrap;
-    }
+    /* SUPERVISION */
+    #supervision{background:var(--surface)}
+    .sup-inner{margin-top:72px;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
+    .sup-title{font-family:var(--fd);font-weight:900;font-size:clamp(48px,7.5vw,96px);line-height:.9;letter-spacing:-.025em;text-transform:uppercase}
+    .sup-title em{font-style:italic;color:transparent;-webkit-text-stroke:1px var(--white)}
+    .sup-desc{font-size:.875rem;line-height:1.85;color:var(--dim);margin-bottom:40px}
+    .sup-rows{display:flex;flex-direction:column}
+    .sup-row{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-top:1px solid rgba(255,255,255,.06)}
+    .sup-row:last-child{border-bottom:1px solid rgba(255,255,255,.06)}
+    .sup-k{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+    .sup-v{font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;color:var(--light);text-align:right}
+    /* PRTG mockup */
+    .prtg-mock{border:1px solid var(--border);background:#0d0d0d;padding:0;overflow:hidden;border-radius:2px}
+    .prtg-bar{background:#161616;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+    .prtg-dot{width:8px;height:8px;border-radius:50%}
+    .prtg-title-bar{font-family:var(--fm);font-size:.58rem;color:var(--muted);letter-spacing:.1em}
+    .prtg-body{padding:20px}
+    .prtg-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+    .prtg-row:last-child{border-bottom:none}
+    .prtg-status{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .ok{background:#4ade80}
+    .warn{background:#c8a96d}
+    .prtg-sensor{font-family:var(--fm);font-size:.62rem;color:var(--light);flex:1;letter-spacing:.05em}
+    .prtg-val{font-family:var(--fm);font-size:.58rem;color:var(--muted)}
+    .prtg-bar-chart{height:4px;background:var(--border);flex:1;max-width:80px;border-radius:2px;overflow:hidden}
+    .prtg-bar-fill{height:100%;background:var(--gold);border-radius:2px}
 
-    .hero-top {
-      position: absolute; top: 40px; right: 56px;
-      font-family: var(--f-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--muted);
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-    }
+    /* CV DOWNLOAD */
+    #cv-dl{border-top:1px solid var(--border)}
+    .cv-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .cv-text h2{font-family:var(--fd);font-weight:900;font-size:clamp(40px,6vw,72px);line-height:.93;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:20px}
+    .cv-text p{font-size:.875rem;line-height:1.8;color:var(--dim)}
+    .cv-btn{display:inline-flex;align-items:center;gap:16px;font-family:var(--fd);font-weight:800;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1.5px solid var(--gold);padding:18px 40px;transition:background .3s,color .3s}
+    .cv-btn:hover{background:var(--gold);color:var(--black)}
+    .cv-btn svg{width:18px;height:18px;transition:transform .3s ease}
+    .cv-btn:hover svg{transform:translateY(3px)}
+    .cv-note{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:16px}
 
-    .hero-eyebrow {
-      font-family: var(--f-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 28px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.1s forwards;
-    }
+    /* ABOUT */
+    .about-inner{margin-top:72px;display:grid;grid-template-columns:1fr 1.4fr;gap:100px}
+    .about-attrs{display:flex;flex-direction:column}
+    .attr{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--border)}
+    .attr:first-child{border-top:1px solid var(--border)}
+    .attr-k{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+    .attr-v{font-family:var(--fd);font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;text-align:right}
+    .about-text{font-size:.9rem;line-height:1.95;color:var(--light)}
+    .about-text p+p{margin-top:20px}
 
-    .hero-name {
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(68px, 13.5vw, 210px);
-      line-height: 0.88;
-      letter-spacing: -0.025em;
-      text-transform: uppercase;
-      overflow: hidden;
-    }
+    /* CONTACT */
+    .c-head{font-family:var(--fd);font-weight:900;font-size:clamp(48px,9.5vw,140px);line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin-top:28px;margin-bottom:72px}
+    .c-head em{font-style:italic;color:transparent;-webkit-text-stroke:1.5px var(--white)}
+    .c-links{display:flex;flex-direction:column}
+    .c-link{display:flex;align-items:center;justify-content:space-between;padding:28px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--white);transition:padding-left .4s cubic-bezier(.77,0,.175,1)}
+    .c-link:first-child{border-top:1px solid var(--border)}
+    .c-link:hover{padding-left:20px}
+    .c-link:hover .c-name{color:var(--gold)}
+    .c-name{font-family:var(--fd);font-weight:800;font-size:clamp(20px,3.2vw,44px);letter-spacing:.06em;text-transform:uppercase;transition:color .3s ease}
+    .c-detail{font-family:var(--fm);font-size:.62rem;letter-spacing:.15em;color:var(--muted);transition:color .3s ease}
+    .c-link:hover .c-detail{color:var(--dim)}
 
-    .hero-line {
-      display: block;
-      transform: translateY(105%);
-      animation: slideUp 1s cubic-bezier(0.77,0,0.175,1) forwards;
-    }
-    .hero-line:nth-child(1) { animation-delay: 0.25s; }
-    .hero-line:nth-child(2) {
-      animation-delay: 0.42s;
-      margin-left: clamp(16px, 4vw, 96px);
-      color: transparent;
-      -webkit-text-stroke: 1.5px var(--white);
-    }
+    footer{padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+    footer span{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+    footer .f-gold{color:var(--gold)}
 
-    .hero-rule {
-      margin: 40px 0;
-      height: 1px;
-      background: var(--border);
-      transform-origin: left;
-      transform: scaleX(0);
-      animation: scaleX 0.9s cubic-bezier(0.77,0,0.175,1) 0.75s forwards;
-    }
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.4,0,.2,1)}
+    .reveal.in{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.45s}
 
-    .hero-bottom {
-      display: flex; align-items: flex-end; justify-content: space-between; gap: 32px;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 1s forwards;
-    }
+    /* KEYFRAMES */
+    @keyframes slideUp{to{transform:translateY(0)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes scaleX{to{transform:scaleX(1)}}
+    @keyframes runLine{0%{left:-100%}60%,100%{left:110%}}
 
-    .hero-tagline {
-      font-family: var(--f-display);
-      font-weight: 700;
-      font-size: clamp(13px, 2.2vw, 26px);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--dim);
-    }
-
-    .hero-scroll {
-      display: flex; align-items: center; gap: 14px;
-      font-family: var(--f-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--muted);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .scroll-track {
-      width: 52px; height: 1px;
-      background: var(--muted);
-      position: relative; overflow: hidden;
-    }
-    .scroll-track::after {
-      content: '';
-      position: absolute; top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: var(--white);
-      animation: runLine 2.2s ease-in-out 1.5s infinite;
-    }
-
-    /* ===================== SECTION COMMONS ===================== */
-    .sec {
-      position: relative;
-      padding: 160px 56px;
-      border-top: 1px solid var(--border);
-    }
-
-    .sec-label {
-      font-family: var(--f-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--muted);
-      display: flex; align-items: center; gap: 14px;
-      margin-bottom: 20px;
-    }
-    .sec-label::after {
-      content: ''; display: block;
-      width: 48px; height: 1px;
-      background: var(--muted);
-    }
-
-    .sec-title {
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(48px, 8vw, 100px);
-      line-height: 0.93;
-      letter-spacing: -0.025em;
-      text-transform: uppercase;
-    }
-
-    .sec-ghost {
-      position: absolute;
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(120px, 22vw, 320px);
-      line-height: 1;
-      color: rgba(255,255,255,0.03);
-      letter-spacing: -0.04em;
-      pointer-events: none; user-select: none;
-      right: 0; top: 80px;
-    }
-
-    /* ===================== SKILLS ===================== */
-    #competences .skills-wrap {
-      margin-top: 72px;
-      display: grid;
-      grid-template-columns: 1.8fr 1fr 1fr;
-      border-top: 1px solid var(--border);
-    }
-
-    .skill-col {
-      padding: 56px 0;
-      padding-right: 48px;
-      border-right: 1px solid var(--border);
-    }
-    .skill-col:last-child { border-right: none; padding-right: 0; }
-    .skill-col:not(:first-child) { padding-left: 48px; }
-
-    .skill-head {
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(28px, 3.5vw, 44px);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 36px;
-    }
-
-    .skill-items {
-      list-style: none;
-      display: flex; flex-direction: column; gap: 13px;
-    }
-    .skill-items li {
-      font-family: var(--f-mono);
-      font-size: 0.72rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--light);
-      display: flex; align-items: center; gap: 14px;
-    }
-    .skill-items li::before {
-      content: '';
-      display: block;
-      width: 20px; height: 1px;
-      background: var(--muted);
-      flex-shrink: 0;
-    }
-
-    /* ===================== PROJECTS ===================== */
-    #projets .projects-wrap {
-      margin-top: 72px;
-    }
-
-    .proj {
-      position: relative;
-      padding: 88px 0;
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-      overflow: hidden;
-    }
-    .proj:first-child { border-top: 1px solid var(--border); }
-
-    .proj-ghost {
-      position: absolute;
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(100px, 18vw, 260px);
-      line-height: 1;
-      color: rgba(255,255,255,0.028);
-      letter-spacing: -0.04em;
-      pointer-events: none; user-select: none;
-      top: 10px;
-    }
-    .proj:nth-child(odd)  .proj-ghost { right: -16px; }
-    .proj:nth-child(even) .proj-ghost { left:  -16px; }
-
-    .proj:nth-child(even) { direction: rtl; }
-    .proj:nth-child(even) > * { direction: ltr; }
-
-    .proj-left { position: relative; z-index: 1; }
-
-    .proj-num {
-      font-family: var(--f-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .proj-title {
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(38px, 5.5vw, 76px);
-      line-height: 0.92;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
-
-    .proj-right { position: relative; z-index: 1; padding-top: 4px; }
-
-    .proj-desc {
-      font-size: 0.875rem;
-      line-height: 1.85;
-      color: var(--dim);
-      margin-bottom: 32px;
-    }
-
-    .tags {
-      display: flex; flex-wrap: wrap; gap: 8px;
-    }
-    .tag {
-      font-family: var(--f-mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border: 1px solid var(--muted);
-      color: var(--dim);
-      transition: border-color 0.3s ease, color 0.3s ease;
-    }
-    .tag:hover { border-color: var(--white); color: var(--white); }
-
-    /* ===================== SUPERVISION ===================== */
-    #supervision {
-      background: var(--surface);
-    }
-
-    #supervision .sup-inner {
-      margin-top: 72px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 96px;
-      align-items: center;
-    }
-
-    .sup-title {
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(52px, 8vw, 104px);
-      line-height: 0.9;
-      letter-spacing: -0.025em;
-      text-transform: uppercase;
-    }
-    .sup-title em {
-      font-style: italic;
-      color: transparent;
-      -webkit-text-stroke: 1px var(--white);
-    }
-
-    .sup-right {}
-
-    .sup-desc {
-      font-size: 0.9rem;
-      line-height: 1.85;
-      color: var(--dim);
-      margin-bottom: 48px;
-    }
-
-    .sup-rows {
-      display: flex; flex-direction: column;
-    }
-    .sup-row {
-      display: flex; justify-content: space-between; align-items: baseline;
-      padding: 20px 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .sup-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .sup-key {
-      font-family: var(--f-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .sup-val {
-      font-family: var(--f-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: var(--light);
-      text-align: right;
-    }
-
-    /* ===================== ABOUT ===================== */
-    #about .about-inner {
-      margin-top: 72px;
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 120px;
-    }
-
-    .about-attrs { display: flex; flex-direction: column; }
-    .attr {
-      display: flex; justify-content: space-between; align-items: baseline;
-      padding: 22px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .attr:first-child { border-top: 1px solid var(--border); }
-    .attr-k {
-      font-family: var(--f-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .attr-v {
-      font-family: var(--f-display);
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-align: right;
-    }
-
-    .about-text {
-      font-size: 0.95rem;
-      line-height: 1.95;
-      color: var(--light);
-    }
-    .about-text p + p { margin-top: 22px; }
-
-    /* ===================== CONTACT ===================== */
-    #contact .contact-head {
-      font-family: var(--f-display);
-      font-weight: 900;
-      font-size: clamp(52px, 10vw, 148px);
-      line-height: 0.9;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      margin-top: 28px;
-      margin-bottom: 80px;
-    }
-    #contact .contact-head em {
-      font-style: italic;
-      font-weight: 900;
-      color: transparent;
-      -webkit-text-stroke: 1.5px var(--white);
-    }
-
-    .c-links { display: flex; flex-direction: column; }
-    .c-link {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 30px 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--white);
-      transition: padding-left 0.45s cubic-bezier(0.77,0,0.175,1);
-    }
-    .c-link:first-child { border-top: 1px solid var(--border); }
-    .c-link:hover { padding-left: 20px; }
-
-    .c-name {
-      font-family: var(--f-display);
-      font-weight: 800;
-      font-size: clamp(22px, 3.5vw, 44px);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .c-detail {
-      font-family: var(--f-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      transition: color 0.3s ease;
-    }
-    .c-link:hover .c-detail { color: var(--dim); }
-
-    /* ===================== FOOTER ===================== */
-    footer {
-      padding: 32px 56px;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    footer span {
-      font-family: var(--f-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* ===================== REVEAL ===================== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(36px);
-      transition: opacity 0.9s cubic-bezier(0.4,0,0.2,1),
-                  transform 0.9s cubic-bezier(0.4,0,0.2,1);
-    }
-    .reveal.in { opacity: 1; transform: translateY(0); }
-    .d1 { transition-delay: 0.1s; }
-    .d2 { transition-delay: 0.2s; }
-    .d3 { transition-delay: 0.3s; }
-    .d4 { transition-delay: 0.45s; }
-
-    /* ===================== KEYFRAMES ===================== */
-    @keyframes slideUp {
-      to { transform: translateY(0); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes scaleX {
-      to { transform: scaleX(1); }
-    }
-    @keyframes runLine {
-      0%       { left: -100%; }
-      60%, 100%{ left:  110%; }
-    }
-
-    /* ===================== RESPONSIVE ===================== */
-    @media (max-width: 960px) {
-      nav { padding: 22px 28px; }
-      .nav-items { display: none; }
-      .sec { padding: 100px 28px; }
-      #hero { padding: 0 28px 64px; }
-      footer { padding: 28px; }
-
-      #competences .skills-wrap {
-        grid-template-columns: 1fr;
-      }
-      .skill-col {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        padding: 44px 0;
-        padding-right: 0;
-      }
-      .skill-col:last-child { border-bottom: none; }
-      .skill-col:not(:first-child) { padding-left: 0; }
-
-      .proj {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-      .proj:nth-child(even) { direction: ltr; }
-
-      #supervision .sup-inner { grid-template-columns: 1fr; gap: 52px; }
-      #about .about-inner     { grid-template-columns: 1fr; gap: 56px; }
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      nav,footer{padding:20px 24px}
+      nav.scrolled{padding:14px 24px}
+      .nav-links{display:none}
+      .sec{padding:96px 24px}
+      #hero{padding:0 24px 64px}
+      #reseau-schema,#cv-dl{padding:64px 24px}
+      .skills-grid{grid-template-columns:1fr}
+      .sk-col{border-right:none;border-bottom:1px solid var(--border);padding:40px 0;padding-right:0}
+      .sk-col:last-child{border-bottom:none}
+      .sk-col:not(:first-child){padding-left:0}
+      .proj{grid-template-columns:1fr;gap:28px}
+      .proj:nth-child(even){direction:ltr}
+      .sup-inner,.about-inner,.cv-inner{grid-template-columns:1fr;gap:48px}
+      .p-detail{display:none}
     }
   </style>
 </head>
 <body>
 
-  <!-- CURSOR -->
-  <div id="cur-dot"></div>
-  <div id="cur-ring"></div>
+<div id="cd"></div>
+<div id="cr"></div>
 
-  <!-- NAV -->
-  <nav id="nav">
-    <a href="#hero" class="nav-logo">PM</a>
-    <ul class="nav-items">
-      <li><a href="#competences">Compétences</a></li>
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#supervision">Supervision</a></li>
-      <li><a href="#about">Profil</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">PM</a>
+  <ul class="nav-links">
+    <li><a href="#pratique">En Pratique</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#supervision">PRTG</a></li>
+    <li><a href="#cv-dl">CV</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- ═══════════════════ HERO ═══════════════════ -->
-  <section id="hero">
-    <div class="hero-ghost" aria-hidden="true">IT</div>
-    <div class="hero-top" aria-hidden="true">Technicien IT &nbsp;·&nbsp; 2026</div>
-
-    <div>
-      <p class="hero-eyebrow">Portfolio — Recherche de stage</p>
-
-      <h1 class="hero-name" aria-label="Patrick Mekongo">
-        <span class="hero-line">Patrick</span>
-        <span class="hero-line">Mekongo</span>
-      </h1>
-
-      <div class="hero-rule"></div>
-
-      <div class="hero-bottom">
-        <p class="hero-tagline">Technicien IT — En Recherche de Stage</p>
-        <div class="hero-scroll" aria-hidden="true">
-          <div class="scroll-track"></div>
-          Défiler
-        </div>
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <div class="hero-ghost" aria-hidden="true">IT</div>
+  <div class="hero-side" aria-hidden="true">Technicien IT &nbsp;·&nbsp; 2026</div>
+  <div>
+    <p class="hero-eye">Portfolio — Recherche de stage</p>
+    <h1 class="hero-name" aria-label="Patrick Mekongo">
+      <span class="hl">Patrick</span>
+      <span class="hl">Mekongo</span>
+    </h1>
+    <div class="hero-rule"></div>
+    <div class="hero-bot">
+      <p class="hero-tag">Technicien IT — En Recherche de Stage</p>
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="s-track"></div>Défiler
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════ 01 COMPÉTENCES ═══════════════════ -->
-  <section id="competences" class="sec">
-    <div class="sec-ghost" aria-hidden="true">01</div>
-
-    <div class="reveal">
-      <div class="sec-label">01 — Compétences</div>
-      <h2 class="sec-title">Stack<br>Technique</h2>
+<!-- ══════════ 01 EN PRATIQUE ══════════ -->
+<section id="pratique" class="sec">
+  <div class="sec-num" aria-hidden="true">01</div>
+  <div class="reveal">
+    <div class="sec-label">01 — Ce que je sais faire</div>
+    <h2 class="sec-title">En<br>Pratique</h2>
+  </div>
+  <div class="pratique-list">
+    <div class="p-item reveal d1">
+      <span class="p-num">01</span>
+      <span class="p-name">Switch Cisco</span>
+      <span class="p-detail">VLAN · Trunk 802.1q · STP · DHCP Relay · Config CLI</span>
     </div>
+    <div class="p-item reveal d2">
+      <span class="p-num">02</span>
+      <span class="p-name">Windows Server</span>
+      <span class="p-detail">Active Directory · DNS · DHCP · Rôles & Fonctionnalités</span>
+    </div>
+    <div class="p-item reveal d3">
+      <span class="p-num">03</span>
+      <span class="p-name">Virtualisation</span>
+      <span class="p-detail">VMware Workstation · VMs Windows & Linux · Clone · Snapshot</span>
+    </div>
+    <div class="p-item reveal d4">
+      <span class="p-num">04</span>
+      <span class="p-name">Diagnostic Réseau</span>
+      <span class="p-detail">Ping · Tracert · ARP · Nslookup · DHCP · Analyse de flux</span>
+    </div>
+  </div>
+</section>
 
-    <div class="skills-wrap">
-      <div class="skill-col reveal d1">
-        <h3 class="skill-head">Réseau</h3>
-        <ul class="skill-items">
-          <li>TCP / IP</li>
-          <li>Adressage IPv4</li>
-          <li>VLAN</li>
-          <li>Trunk 802.1q</li>
-          <li>DHCP</li>
-          <li>Cisco Packet Tracer</li>
-        </ul>
+<!-- ══════════ 02 COMPÉTENCES ══════════ -->
+<section id="competences" class="sec">
+  <div class="sec-num" aria-hidden="true">02</div>
+  <div class="reveal">
+    <div class="sec-label">02 — Compétences</div>
+    <h2 class="sec-title">Stack<br>Technique</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="sk-col reveal d1">
+      <h3 class="sk-head">Réseau</h3>
+      <ul class="sk-list">
+        <li>TCP / IP</li><li>Adressage IPv4</li><li>VLAN</li>
+        <li>Trunk 802.1q</li><li>DHCP</li><li>Cisco Packet Tracer</li>
+      </ul>
+    </div>
+    <div class="sk-col reveal d2">
+      <h3 class="sk-head">Systèmes</h3>
+      <ul class="sk-list">
+        <li>VMware Workstation</li><li>Windows 11</li>
+        <li>Windows Server</li><li>Debian 12</li><li>PowerShell</li>
+      </ul>
+    </div>
+    <div class="sk-col reveal d3">
+      <h3 class="sk-head">Dev & Outils</h3>
+      <ul class="sk-list">
+        <li>PHP</li><li>MySQL</li><li>HTML / CSS</li>
+        <li>PRTG Monitor</li><li>RGPD / CNIL</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 03 PROJETS ══════════ -->
+<section id="projets" class="sec">
+  <div class="sec-num" aria-hidden="true">03</div>
+  <div class="reveal">
+    <div class="sec-label">03 — Projets</div>
+    <h2 class="sec-title">Réalisations</h2>
+  </div>
+  <div class="proj-wrap">
+
+    <!-- PROJET 01 -->
+    <article class="proj reveal">
+      <span class="proj-ghost" aria-hidden="true">01</span>
+      <div class="proj-left">
+        <p class="proj-num">Projet 01 — Développement web</p>
+        <h3 class="proj-title">Générateur<br>de CV</h3>
       </div>
-
-      <div class="skill-col reveal d2">
-        <h3 class="skill-head">Systèmes</h3>
-        <ul class="skill-items">
-          <li>VMware Workstation</li>
-          <li>Windows 11</li>
-          <li>Windows Server</li>
-          <li>Debian 12</li>
-          <li>PowerShell</li>
-        </ul>
+      <div class="proj-right">
+        <figure class="proj-screen">
+          <img src="assets/img/cv-db.png" alt="Base de données générateur_cv dans phpMyAdmin" loading="lazy">
+        </figure>
+        <p class="proj-desc">Application web PHP + MySQL : formulaire de saisie, sauvegarde en base de données (table <em>candidats</em>), affichage dynamique du CV. Architecture CRUD avec requêtes préparées MySQLi.</p>
+        <div class="tags">
+          <span class="tag">PHP</span><span class="tag">MySQL</span>
+          <span class="tag">MySQLi</span><span class="tag">HTML</span><span class="tag">CSS</span>
+        </div>
+        <a href="https://github.com/patrickmekongo19-droid/portfolio" target="_blank" rel="noopener" class="proj-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          Voir le code
+        </a>
       </div>
+    </article>
 
-      <div class="skill-col reveal d3">
-        <h3 class="skill-head">Dev &amp; Outils</h3>
-        <ul class="skill-items">
-          <li>PHP</li>
-          <li>MySQL</li>
-          <li>HTML / CSS</li>
-          <li>PRTG Monitor</li>
-          <li>RGPD / CNIL</li>
-        </ul>
+    <!-- PROJET 02 -->
+    <article class="proj reveal">
+      <span class="proj-ghost" aria-hidden="true">02</span>
+      <div class="proj-left">
+        <p class="proj-num">Projet 02 — Virtualisation</p>
+        <h3 class="proj-title">Lab<br>Virtuel</h3>
       </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ 02 PROJETS ═══════════════════ -->
-  <section id="projets" class="sec">
-    <div class="sec-ghost" aria-hidden="true">02</div>
-
-    <div class="reveal">
-      <div class="sec-label">02 — Projets</div>
-      <h2 class="sec-title">Réalisations</h2>
-    </div>
-
-    <div class="projects-wrap">
-
-      <!-- PROJET 01 -->
-      <article class="proj reveal">
-        <span class="proj-ghost" aria-hidden="true">01</span>
-        <div class="proj-left">
-          <p class="proj-num">Projet 01 — Développement web</p>
-          <h3 class="proj-title">Générateur<br>de CV</h3>
+      <div class="proj-right">
+        <figure class="proj-screen">
+          <img src="assets/img/vmware-vms.png" alt="VMware Workstation avec Windows 11, Debian 12 et Windows Server" loading="lazy">
+        </figure>
+        <p class="proj-desc">Déploiement sous VMware Workstation : Windows 11 avec TPM & chiffrement, Debian 12 avec partitionnement ext4/swap, clonage de VMs et tests de connectivité réseau inter-VM via PowerShell.</p>
+        <div class="tags">
+          <span class="tag">VMware</span><span class="tag">Windows 11</span>
+          <span class="tag">Debian 12</span><span class="tag">PowerShell</span><span class="tag">TPM</span>
         </div>
-        <div class="proj-right">
-          <p class="proj-desc">
-            Application web PHP + MySQL permettant la saisie, la sauvegarde en base de données et l'affichage dynamique d'un CV généré à la volée. Architecture CRUD complète avec requêtes préparées MySQLi, formulaire multi-champs et interface de liste.
-          </p>
-          <div class="tags">
-            <span class="tag">PHP</span>
-            <span class="tag">MySQL</span>
-            <span class="tag">MySQLi</span>
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJET 02 -->
-      <article class="proj reveal">
-        <span class="proj-ghost" aria-hidden="true">02</span>
-        <div class="proj-left">
-          <p class="proj-num">Projet 02 — Virtualisation</p>
-          <h3 class="proj-title">Lab<br>Virtuel</h3>
-        </div>
-        <div class="proj-right">
-          <p class="proj-desc">
-            Déploiement complet d'un environnement virtualisé sous VMware Workstation. Installation de Windows 11 avec configuration TPM et chiffrement, installation de Debian 12 avec partitionnement ext4/swap, clonage de machines virtuelles et validation de la connectivité réseau inter-VM via PowerShell.
-          </p>
-          <div class="tags">
-            <span class="tag">VMware</span>
-            <span class="tag">Windows 11</span>
-            <span class="tag">Debian 12</span>
-            <span class="tag">PowerShell</span>
-            <span class="tag">TPM</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJET 03 -->
-      <article class="proj reveal">
-        <span class="proj-ghost" aria-hidden="true">03</span>
-        <div class="proj-left">
-          <p class="proj-num">Projet 03 — Réseaux</p>
-          <h3 class="proj-title">Infrastructure<br>Réseau</h3>
-        </div>
-        <div class="proj-right">
-          <p class="proj-desc">
-            Conception et configuration d'une infrastructure réseau sur Cisco Packet Tracer : segmentation par VLANs, liens trunk 802.1q inter-switchs, configuration du service DHCP sous Windows Server, plan d'adressage IPv4 complet et diagnostic de connectivité.
-          </p>
-          <div class="tags">
-            <span class="tag">Cisco PT</span>
-            <span class="tag">VLAN</span>
-            <span class="tag">Trunk 802.1q</span>
-            <span class="tag">DHCP</span>
-            <span class="tag">TCP/IP</span>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ═══════════════════ 03 SUPERVISION ═══════════════════ -->
-  <section id="supervision" class="sec">
-    <div class="sec-ghost" aria-hidden="true">03</div>
-
-    <div class="reveal">
-      <div class="sec-label">03 — Supervision réseau</div>
-    </div>
-
-    <div class="sup-inner">
-      <div class="reveal d1">
-        <h2 class="sup-title">PRTG<br><em>Network</em><br>Monitor</h2>
       </div>
-      <div class="reveal d2">
-        <p class="sup-desc">
-          Maîtrise de PRTG, outil de supervision réseau de référence en environnement professionnel. Capacité à surveiller l'infrastructure en temps réel, analyser les métriques de performance et détecter les anomalies avant qu'elles impactent la production.
-        </p>
+    </article>
+
+    <!-- PROJET 03 -->
+    <article class="proj reveal">
+      <span class="proj-ghost" aria-hidden="true">03</span>
+      <div class="proj-left">
+        <p class="proj-num">Projet 03 — Réseaux</p>
+        <h3 class="proj-title">Infrastructure<br>Réseau</h3>
+      </div>
+      <div class="proj-right">
+        <figure class="proj-screen">
+          <img src="assets/img/cisco-ping.png" alt="Test ping dans Cisco Packet Tracer" loading="lazy">
+        </figure>
+        <p class="proj-desc">Configuration sur Cisco Packet Tracer : segmentation VLAN, liens trunk 802.1q, DHCP Windows Server, plan d'adressage IPv4 et diagnostic de connectivité réseau.</p>
+        <div class="tags">
+          <span class="tag">Cisco PT</span><span class="tag">VLAN</span>
+          <span class="tag">Trunk 802.1q</span><span class="tag">DHCP</span><span class="tag">TCP/IP</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══════════ SCHÉMA VLAN ══════════ -->
+<div id="reseau-schema">
+  <p class="schema-title">Schéma — Infrastructure VLAN</p>
+  <svg class="vlan-svg" viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" aria-label="Schéma réseau VLAN">
+    <defs>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.25)"/>
+      </marker>
+      <marker id="arr-gold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#c8a96d"/>
+      </marker>
+    </defs>
+    <!-- INTERNET -->
+    <ellipse cx="430" cy="36" rx="60" ry="24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="430" y="40" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="DM Mono,monospace" font-size="11" letter-spacing="2">INTERNET</text>
+    <!-- Router -->
+    <rect x="380" y="88" width="100" height="40" rx="2" fill="none" stroke="#c8a96d" stroke-width="1.5"/>
+    <text x="430" y="113" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="10" letter-spacing="2">ROUTEUR</text>
+    <!-- line internet→router -->
+    <line x1="430" y1="60" x2="430" y2="88" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4 2"/>
+    <!-- Core switch -->
+    <rect x="355" y="168" width="150" height="40" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+    <text x="430" y="193" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Mono,monospace" font-size="10" letter-spacing="2">SWITCH CORE</text>
+    <!-- line router→switch TRUNK -->
+    <line x1="430" y1="128" x2="430" y2="168" stroke="#c8a96d" stroke-width="1.5"/>
+    <text x="442" y="152" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8" letter-spacing="1.5">TRUNK</text>
+    <!-- VLAN 10 -->
+    <rect x="80" y="268" width="140" height="56" rx="2" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+    <text x="150" y="289" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Mono,monospace" font-size="9" letter-spacing="1">VLAN 10</text>
+    <text x="150" y="304" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8">Administration</text>
+    <text x="150" y="316" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="8">192.168.10.x</text>
+    <!-- VLAN 20 -->
+    <rect x="355" y="268" width="150" height="56" rx="2" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+    <text x="430" y="289" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Mono,monospace" font-size="9" letter-spacing="1">VLAN 20</text>
+    <text x="430" y="304" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8">Utilisateurs</text>
+    <text x="430" y="316" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="8">192.168.20.x</text>
+    <!-- VLAN 30 -->
+    <rect x="640" y="268" width="140" height="56" rx="2" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+    <text x="710" y="289" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Mono,monospace" font-size="9" letter-spacing="1">VLAN 30</text>
+    <text x="710" y="304" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8">Serveurs</text>
+    <text x="710" y="316" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="8">192.168.30.x / DHCP</text>
+    <!-- lines switch→vlans -->
+    <line x1="400" y1="208" x2="200" y2="268" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 2"/>
+    <line x1="430" y1="208" x2="430" y2="268" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 2"/>
+    <line x1="460" y1="208" x2="660" y2="268" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 2"/>
+    <!-- 802.1q labels -->
+    <text x="285" y="246" fill="rgba(255,255,255,0.25)" font-family="DM Mono,monospace" font-size="7" letter-spacing="1">802.1q</text>
+    <text x="434" y="246" fill="rgba(255,255,255,0.25)" font-family="DM Mono,monospace" font-size="7" letter-spacing="1">802.1q</text>
+    <text x="548" y="246" fill="rgba(255,255,255,0.25)" font-family="DM Mono,monospace" font-size="7" letter-spacing="1">802.1q</text>
+  </svg>
+</div>
+
+<!-- ══════════ 04 SUPERVISION ══════════ -->
+<section id="supervision" class="sec">
+  <div class="sec-num" aria-hidden="true">04</div>
+  <div class="reveal">
+    <div class="sec-label">04 — Supervision réseau</div>
+  </div>
+  <div class="sup-inner">
+    <div class="reveal d1">
+      <h2 class="sup-title">PRTG<br><em>Network</em><br>Monitor</h2>
+    </div>
+    <div class="reveal d2">
+      <div class="prtg-mock" aria-label="Aperçu interface PRTG">
+        <div class="prtg-bar">
+          <div class="prtg-dot" style="background:#ff5f56"></div>
+          <div class="prtg-dot" style="background:#ffbd2e"></div>
+          <div class="prtg-dot" style="background:#27c93f"></div>
+          <span class="prtg-title-bar">PRTG — Network Overview</span>
+        </div>
+        <div class="prtg-body">
+          <div class="prtg-row"><div class="prtg-status ok"></div><span class="prtg-sensor">Switch Core — Port 1 (VLAN 10)</span><div class="prtg-bar-chart"><div class="prtg-bar-fill" style="width:82%"></div></div><span class="prtg-val">82%</span></div>
+          <div class="prtg-row"><div class="prtg-status ok"></div><span class="prtg-sensor">Windows Server — CPU Usage</span><div class="prtg-bar-chart"><div class="prtg-bar-fill" style="width:34%"></div></div><span class="prtg-val">34%</span></div>
+          <div class="prtg-row"><div class="prtg-status warn"></div><span class="prtg-sensor">DHCP Server — Active Leases</span><div class="prtg-bar-chart"><div class="prtg-bar-fill" style="width:71%"></div></div><span class="prtg-val">71%</span></div>
+          <div class="prtg-row"><div class="prtg-status ok"></div><span class="prtg-sensor">Debian 12 — Ping &amp; Uptime</span><div class="prtg-bar-chart"><div class="prtg-bar-fill" style="width:100%"></div></div><span class="prtg-val">100%</span></div>
+          <div class="prtg-row"><div class="prtg-status ok"></div><span class="prtg-sensor">Routeur — Bande passante WAN</span><div class="prtg-bar-chart"><div class="prtg-bar-fill" style="width:49%"></div></div><span class="prtg-val">49%</span></div>
+        </div>
+      </div>
+      <div style="margin-top:32px">
+        <p class="sup-desc">Maîtrise de PRTG pour la supervision d'infrastructures réseau : monitoring en temps réel, analyse des performances, détection d'anomalies et génération de rapports.</p>
         <div class="sup-rows">
-          <div class="sup-row">
-            <span class="sup-key">Outil</span>
-            <span class="sup-val">PRTG Network Monitor</span>
-          </div>
-          <div class="sup-row">
-            <span class="sup-key">Domaine</span>
-            <span class="sup-val">Supervision & Monitoring</span>
-          </div>
-          <div class="sup-row">
-            <span class="sup-key">Format</span>
-            <span class="sup-val">Présentation — 10 minutes</span>
-          </div>
-          <div class="sup-row">
-            <span class="sup-key">Contexte</span>
-            <span class="sup-val">Formation IT professionnelle</span>
-          </div>
+          <div class="sup-row"><span class="sup-k">Outil</span><span class="sup-v">PRTG Network Monitor</span></div>
+          <div class="sup-row"><span class="sup-k">Domaine</span><span class="sup-v">Supervision &amp; Monitoring</span></div>
+          <div class="sup-row"><span class="sup-k">Format</span><span class="sup-v">Présentation 10 min</span></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════ 04 PROFIL ═══════════════════ -->
-  <section id="about" class="sec">
-    <div class="sec-ghost" aria-hidden="true">04</div>
-
-    <div class="reveal">
-      <div class="sec-label">04 — Profil</div>
-      <h2 class="sec-title">À Propos</h2>
+<!-- ══════════ 05 TÉLÉCHARGER LE CV ══════════ -->
+<section id="cv-dl" class="sec">
+  <div class="sec-num" aria-hidden="true">05</div>
+  <div class="cv-inner">
+    <div class="cv-text reveal">
+      <div class="sec-label" style="margin-bottom:20px">05 — Curriculum Vitae</div>
+      <h2 class="sec-title">Télécharger<br>le CV</h2>
+      <p style="margin-top:20px;font-size:.875rem;line-height:1.8;color:var(--dim)">Formation, compétences techniques et parcours complet au format PDF.</p>
     </div>
-
-    <div class="about-inner">
-      <div class="about-attrs reveal d1">
-        <div class="attr">
-          <span class="attr-k">Formation</span>
-          <span class="attr-v">Informatique</span>
-        </div>
-        <div class="attr">
-          <span class="attr-k">Spécialité</span>
-          <span class="attr-v">Réseaux &amp; Systèmes</span>
-        </div>
-        <div class="attr">
-          <span class="attr-k">Conformité</span>
-          <span class="attr-v">Attestation CNIL</span>
-        </div>
-        <div class="attr">
-          <span class="attr-k">Langues</span>
-          <span class="attr-v">Français &nbsp;·&nbsp; Anglais</span>
-        </div>
-        <div class="attr">
-          <span class="attr-k">Statut</span>
-          <span class="attr-v">Recherche de stage</span>
-        </div>
-      </div>
-
-      <div class="about-text reveal d2">
-        <p>
-          Étudiant en informatique spécialisé en réseaux et systèmes. Ma formation m'a permis de développer des compétences concrètes en administration réseau, virtualisation d'environnements, et développement web.
-        </p>
-        <p>
-          Rigoureux et méthodique, j'aborde chaque projet avec une approche structurée : documentation, tests systématiques, validation à chaque étape. Sensibilisé aux enjeux de protection des données personnelles — titulaire d'une attestation CNIL.
-        </p>
-        <p>
-          À la recherche d'un stage pour mettre en pratique ces compétences au sein d'une équipe IT, contribuer à des projets concrets et continuer à progresser dans un environnement professionnel exigeant.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ 05 CONTACT ═══════════════════ -->
-  <section id="contact" class="sec">
-    <div class="sec-ghost" aria-hidden="true">05</div>
-
-    <div class="reveal">
-      <div class="sec-label">05 — Contact</div>
-    </div>
-
-    <h2 class="contact-head reveal d1">
-      Travaillons<br><em>ensemble</em>
-    </h2>
-
-    <div class="c-links">
-      <a href="mailto:patrickmekongo19@gmail.com" class="c-link reveal">
-        <span class="c-name">Email</span>
-        <span class="c-detail">patrickmekongo19@gmail.com &nbsp;→</span>
+    <div class="reveal d2" style="display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px">
+      <a href="assets/cv-patrick-mekongo.pdf" download class="cv-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Télécharger le CV
       </a>
-      <a href="https://github.com/patrickmekongo19-droid" target="_blank" rel="noopener noreferrer" class="c-link reveal d1">
-        <span class="c-name">GitHub</span>
-        <span class="c-detail">patrickmekongo19-droid &nbsp;→</span>
-      </a>
-      <a href="https://www.linkedin.com/in/patrick-koa-mekongo-767476353" target="_blank" rel="noopener noreferrer" class="c-link reveal d2">
-        <span class="c-name">LinkedIn</span>
-        <span class="c-detail">Patrick Mekongo &nbsp;→</span>
-      </a>
+      <p class="cv-note">PDF · Technicien IT</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <span>Patrick Mekongo &nbsp;·&nbsp; 2026</span>
-    <span>Technicien IT &nbsp;·&nbsp; Disponible pour un stage</span>
-  </footer>
+<!-- ══════════ 06 À PROPOS ══════════ -->
+<section id="about" class="sec">
+  <div class="sec-num" aria-hidden="true">06</div>
+  <div class="reveal">
+    <div class="sec-label">06 — Profil</div>
+    <h2 class="sec-title">À Propos</h2>
+  </div>
+  <div class="about-inner">
+    <div class="about-attrs reveal d1">
+      <div class="attr"><span class="attr-k">Formation</span><span class="attr-v">Informatique</span></div>
+      <div class="attr"><span class="attr-k">Spécialité</span><span class="attr-v">Réseaux &amp; Systèmes</span></div>
+      <div class="attr"><span class="attr-k">Conformité</span><span class="attr-v">Attestation CNIL</span></div>
+      <div class="attr"><span class="attr-k">Langues</span><span class="attr-v">Français &nbsp;·&nbsp; Anglais</span></div>
+      <div class="attr"><span class="attr-k">Statut</span><span class="attr-v" style="color:var(--gold)">Recherche de stage</span></div>
+    </div>
+    <div class="about-text reveal d2">
+      <p>Étudiant en informatique spécialisé en réseaux et systèmes. Ma formation m'a permis de développer des compétences concrètes en administration réseau, virtualisation et développement web.</p>
+      <p>Rigoureux et méthodique, j'aborde chaque projet avec une approche structurée : documentation, tests systématiques, validation à chaque étape. Sensibilisé aux enjeux RGPD — titulaire d'une attestation CNIL.</p>
+      <p>À la recherche d'un stage pour mettre en pratique ces compétences au sein d'une équipe IT, contribuer à des projets concrets et progresser dans un environnement professionnel exigeant.</p>
+    </div>
+  </div>
+</section>
 
-  <script>
-    /* ── CURSOR ── */
-    const dot  = document.getElementById('cur-dot');
-    const ring = document.getElementById('cur-ring');
-    let mx = -100, my = -100, rx = -100, ry = -100;
+<!-- ══════════ 07 CONTACT ══════════ -->
+<section id="contact" class="sec">
+  <div class="sec-num" aria-hidden="true">07</div>
+  <div class="reveal"><div class="sec-label">07 — Contact</div></div>
+  <h2 class="c-head reveal d1">Travaillons<br><em>ensemble</em></h2>
+  <div class="c-links">
+    <a href="mailto:patrickmekongo19@gmail.com" class="c-link reveal">
+      <span class="c-name">Email</span>
+      <span class="c-detail">patrickmekongo19@gmail.com &nbsp;→</span>
+    </a>
+    <a href="https://github.com/patrickmekongo19-droid" target="_blank" rel="noopener noreferrer" class="c-link reveal d1">
+      <span class="c-name">GitHub</span>
+      <span class="c-detail">patrickmekongo19-droid &nbsp;→</span>
+    </a>
+    <a href="https://www.linkedin.com/in/patrick-koa-mekongo-767476353" target="_blank" rel="noopener noreferrer" class="c-link reveal d2">
+      <span class="c-name">LinkedIn</span>
+      <span class="c-detail">Patrick Koa Mekongo &nbsp;→</span>
+    </a>
+  </div>
+</section>
 
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx + 'px';
-      dot.style.top  = my + 'px';
-    });
+<footer>
+  <span>Patrick Mekongo &nbsp;·&nbsp; <span class="f-gold">2026</span></span>
+  <span>Technicien IT &nbsp;·&nbsp; Disponible pour un stage</span>
+</footer>
 
-    (function raf() {
-      rx += (mx - rx) * 0.1;
-      ry += (my - ry) * 0.1;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(raf);
-    })();
+<script>
+  /* CURSOR */
+  const cd=document.getElementById('cd'),cr=document.getElementById('cr');
+  let mx=-100,my=-100,rx=-100,ry=-100;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px'});
+  (function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(raf)})();
+  document.querySelectorAll('a,button,.tag,.p-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
+  });
 
-    document.querySelectorAll('a, button, .tag').forEach(el => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-    });
+  /* NAV */
+  const nav=document.getElementById('nav');
+  let lastY=0,ticking=false;
+  window.addEventListener('scroll',()=>{
+    if(!ticking){requestAnimationFrame(()=>{
+      const y=window.scrollY;
+      nav.classList.toggle('nav-hidden',y>lastY&&y>120);
+      nav.classList.toggle('scrolled',y>60);
+      lastY=y;ticking=false;
+    });ticking=true;}
+  },{passive:true});
 
-    /* ── NAV HIDE / SHOW ── */
-    const nav = document.getElementById('nav');
-    let lastY = 0;
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      nav.classList.toggle('nav-hidden', y > lastY && y > 80);
-      lastY = y;
-    }, { passive: true });
-
-    /* ── SCROLL REVEAL ── */
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  </script>
+  /* REVEAL */
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
