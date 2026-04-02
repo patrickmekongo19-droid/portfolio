@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patrick Mekongo — Technicien IT | Réseaux, Systèmes & Développement</title>
-  <meta name="description" content="Portfolio de Patrick Mekongo, technicien IT en recherche de stage. Réseaux TCP/IP, VLAN, virtualisation VMware, Windows Server, Debian, PHP/MySQL.">
+  <title>Patrick Mekongo — Technicien IT | Réseaux, Systèmes &amp; Développement</title>
+  <meta name="description" content="Portfolio Patrick Mekongo, technicien IT en recherche de stage. Réseaux TCP/IP, VLAN, VMware, Windows Server, Debian, PHP/MySQL, PRTG, Nagios, Centreon, Zabbix.">
   <meta property="og:title" content="Patrick Mekongo — Technicien IT">
   <meta property="og:description" content="Technicien IT spécialisé en réseaux, systèmes et développement web. En recherche de stage.">
   <meta property="og:type" content="website">
@@ -36,7 +36,7 @@
     nav.hidden{transform:translateY(-110%)}
     .nav-logo{font-family:var(--fd);font-weight:900;font-size:1.1rem;letter-spacing:.18em;color:var(--white);text-decoration:none}
     nav.scrolled .nav-logo{color:var(--gold)}
-    .nav-links{list-style:none;display:flex;gap:40px}
+    .nav-links{list-style:none;display:flex;gap:36px}
     .nav-links a{font-family:var(--fm);font-size:.62rem;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--white);text-decoration:none;position:relative}
     .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .35s ease}
     .nav-links a:hover::after{width:100%}
@@ -77,15 +77,50 @@
     .p-name{font-family:var(--fd);font-weight:800;font-size:clamp(22px,3.5vw,44px);letter-spacing:.04em;text-transform:uppercase;color:var(--light);transition:color .3s ease;flex:1}
     .p-detail{font-family:var(--fm);font-size:.62rem;letter-spacing:.1em;color:var(--muted);text-align:right;flex-shrink:0;max-width:340px}
 
-    /* COMPETENCES */
-    .skills-grid{margin-top:72px;display:grid;grid-template-columns:1.8fr 1fr 1fr;border-top:1px solid var(--border)}
-    .sk-col{padding:52px 0;padding-right:48px;border-right:1px solid var(--border)}
-    .sk-col:last-child{border-right:none;padding-right:0}
-    .sk-col:not(:first-child){padding-left:48px}
-    .sk-head{font-family:var(--fd);font-weight:900;font-size:clamp(26px,3.2vw,42px);letter-spacing:.04em;text-transform:uppercase;margin-bottom:32px}
-    .sk-list{list-style:none;display:flex;flex-direction:column;gap:12px}
-    .sk-list li{font-family:var(--fm);font-size:.7rem;font-weight:300;letter-spacing:.08em;color:var(--light);display:flex;align-items:center;gap:14px}
-    .sk-list li::before{content:'';display:block;width:18px;height:1px;background:var(--muted);flex-shrink:0}
+    /* COMPETENCES — logo cards */
+    #competences{background:var(--black)}
+    .skills-groups{margin-top:72px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--border)}
+    .sk-group{padding:48px 32px;border-right:1px solid var(--border)}
+    .sk-group:last-child{border-right:none}
+    .sk-group-head{font-family:var(--fd);font-weight:900;font-size:clamp(18px,2vw,26px);letter-spacing:.08em;text-transform:uppercase;color:var(--light);margin-bottom:32px}
+    .sk-cards{display:flex;flex-wrap:wrap;gap:12px}
+    .sk-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;border:1px solid var(--border);min-width:76px;flex:1;transition:border-color .3s ease,background .3s ease}
+    .sk-card:hover{border-color:var(--gold);background:var(--gold-dim)}
+    .sk-card img{width:36px;height:36px;object-fit:contain;display:block}
+    .sk-card-badge{width:36px;height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.48rem;font-weight:400;letter-spacing:.05em;text-align:center;line-height:1.2;flex-shrink:0}
+    .sk-card-name{font-family:var(--fm);font-size:.54rem;letter-spacing:.1em;color:var(--light);text-align:center;line-height:1.3}
+
+    /* PARCOURS — timeline */
+    #parcours{background:var(--surface)}
+    .timeline{margin-top:72px;position:relative;padding-left:48px}
+    .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--gold),rgba(200,169,109,.1))}
+    .tl-item{position:relative;margin-bottom:56px}
+    .tl-item:last-child{margin-bottom:0}
+    .tl-dot{position:absolute;left:-52px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(200,169,109,.15)}
+    .tl-year{font-family:var(--fm);font-size:.6rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+    .tl-title{font-family:var(--fd);font-weight:800;font-size:clamp(22px,3vw,36px);letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:12px;line-height:1}
+    .tl-desc{font-size:.875rem;line-height:1.85;color:var(--dim);margin-bottom:16px;max-width:640px}
+    .tl-tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tl-tag{font-family:var(--fm);font-size:.54rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(200,169,109,.3);color:var(--gold)}
+    .tl-status{display:inline-block;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding:5px 14px;border:1px solid var(--gold);margin-bottom:16px}
+
+    /* EXPERIENCES */
+    #experiences{background:var(--surface)}
+    .exp-wrap{margin-top:72px}
+    .exp-item{padding:64px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;position:relative;overflow:hidden;transition:background .3s ease}
+    .exp-item:first-child{border-top:1px solid var(--border)}
+    .exp-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width .4s cubic-bezier(.77,0,.175,1)}
+    .exp-item:hover::before{width:3px}
+    .exp-item:hover{background:rgba(200,169,109,.03)}
+    .exp-left{position:relative;z-index:1}
+    .exp-period{font-family:var(--fm);font-size:.58rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;margin-bottom:16px}
+    .exp-title{font-family:var(--fd);font-weight:900;font-size:clamp(28px,3.5vw,52px);line-height:.94;letter-spacing:-.02em;text-transform:uppercase;transition:color .3s ease}
+    .exp-item:hover .exp-title{color:var(--gold)}
+    .exp-right{position:relative;z-index:1}
+    .exp-desc{font-size:.875rem;line-height:1.85;color:var(--dim);margin-bottom:24px}
+    .exp-list{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:8px}
+    .exp-list li{font-family:var(--fm);font-size:.68rem;letter-spacing:.06em;color:var(--light);display:flex;align-items:center;gap:12px}
+    .exp-list li::before{content:'';display:block;width:16px;height:1px;background:var(--gold);flex-shrink:0}
 
     /* PROJECTS */
     .proj-wrap{margin-top:72px}
@@ -104,9 +139,12 @@
     .proj-title{font-family:var(--fd);font-weight:900;font-size:clamp(36px,5vw,68px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;transition:color .3s ease}
     .proj:hover .proj-title{color:var(--gold)}
     .proj-right{position:relative;z-index:1;padding-top:4px}
-    .proj-screen{width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--border);margin-bottom:28px;position:relative}
+    .proj-screen{width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--border);margin-bottom:16px;position:relative}
     .proj-screen img{width:100%;height:100%;object-fit:cover;filter:brightness(.8) contrast(1.05);transition:filter .4s ease,transform .5s ease}
     .proj:hover .proj-screen img{filter:brightness(.95) contrast(1.05);transform:scale(1.02)}
+    .proj-gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
+    .proj-gallery .proj-screen{margin-bottom:0}
+    .proj-gallery-single{margin-bottom:28px}
     .proj-desc{font-size:.875rem;line-height:1.85;color:var(--dim);margin-bottom:28px}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
     .tag{font-family:var(--fm);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--muted);color:var(--muted);transition:border-color .3s,color .3s}
@@ -117,12 +155,13 @@
     /* VLAN SCHEMA */
     #reseau-schema{background:var(--surface);padding:80px 56px}
     .schema-title{font-family:var(--fd);font-weight:900;font-size:clamp(20px,2.5vw,28px);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:32px}
-    .vlan-svg{width:100%;max-width:860px;margin:0 auto;display:block}
+    .vlan-svg{width:100%;max-width:900px;margin:0 auto;display:block}
 
     /* SUPERVISION */
     #supervision{background:var(--surface)}
-    .sup-inner{margin-top:72px;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
-    .sup-title{font-family:var(--fd);font-weight:900;font-size:clamp(48px,7.5vw,96px);line-height:.9;letter-spacing:-.025em;text-transform:uppercase}
+    .sup-inner{margin-top:72px;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
+    .sup-left{}
+    .sup-title{font-family:var(--fd);font-weight:900;font-size:clamp(48px,7.5vw,96px);line-height:.9;letter-spacing:-.025em;text-transform:uppercase;margin-bottom:24px}
     .sup-title em{font-style:italic;color:transparent;-webkit-text-stroke:1px var(--white)}
     .sup-desc{font-size:.875rem;line-height:1.85;color:var(--dim);margin-bottom:40px}
     .sup-rows{display:flex;flex-direction:column}
@@ -130,7 +169,6 @@
     .sup-row:last-child{border-bottom:1px solid rgba(255,255,255,.06)}
     .sup-k{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
     .sup-v{font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;color:var(--light);text-align:right}
-    /* PRTG mockup */
     .prtg-mock{border:1px solid var(--border);background:#0d0d0d;padding:0;overflow:hidden;border-radius:2px}
     .prtg-bar{background:#161616;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
     .prtg-dot{width:8px;height:8px;border-radius:50%}
@@ -145,6 +183,12 @@
     .prtg-val{font-family:var(--fm);font-size:.58rem;color:var(--muted)}
     .prtg-bar-chart{height:4px;background:var(--border);flex:1;max-width:80px;border-radius:2px;overflow:hidden}
     .prtg-bar-fill{height:100%;background:var(--gold);border-radius:2px}
+    .sup-tools{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .sup-tool-card{padding:20px;border:1px solid var(--border);transition:border-color .3s,background .3s}
+    .sup-tool-card:hover{border-color:var(--gold);background:var(--gold-dim)}
+    .sup-tool-badge{display:inline-block;font-family:var(--fm);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:2px;color:#fff;margin-bottom:12px;font-weight:400}
+    .sup-tool-name{font-family:var(--fd);font-weight:800;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--white);margin-bottom:6px}
+    .sup-tool-desc{font-family:var(--fm);font-size:.6rem;letter-spacing:.06em;color:var(--dim);line-height:1.6}
 
     /* CV DOWNLOAD */
     #cv-dl{border-top:1px solid var(--border)}
@@ -194,6 +238,33 @@
     @keyframes scaleX{to{transform:scaleX(1)}}
     @keyframes runLine{0%{left:-100%}60%,100%{left:110%}}
 
+    /* CHATBOT */
+    #chat-btn{position:fixed;bottom:32px;right:32px;z-index:2000;width:52px;height:52px;background:var(--black);border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;transition:background .3s,transform .3s;box-shadow:0 4px 24px rgba(200,169,109,.18)}
+    #chat-btn:hover{background:var(--gold-dim);transform:scale(1.08)}
+    #chat-btn svg{width:20px;height:20px;color:var(--gold)}
+    #chat-panel{position:fixed;bottom:100px;right:32px;z-index:1999;width:340px;height:480px;background:var(--surface);border:1px solid var(--border);display:flex;flex-direction:column;transform:translateY(20px) scale(.97);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.77,0,.175,1),opacity .35s ease;box-shadow:0 16px 64px rgba(0,0,0,.6)}
+    #chat-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+    .chat-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+    .chat-head-name{font-family:var(--fd);font-weight:800;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white)}
+    .chat-close{background:none;border:none;cursor:none;color:var(--muted);font-size:1.2rem;line-height:1;transition:color .2s;font-family:var(--fm)}
+    .chat-close:hover{color:var(--gold)}
+    .chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+    .chat-msgs::-webkit-scrollbar{width:3px}
+    .chat-msgs::-webkit-scrollbar-track{background:transparent}
+    .chat-msgs::-webkit-scrollbar-thumb{background:var(--muted);border-radius:2px}
+    .chat-msg{max-width:88%;padding:10px 14px;font-family:var(--fm);font-size:.65rem;letter-spacing:.05em;line-height:1.65}
+    .chat-msg.bot{background:rgba(255,255,255,.05);color:var(--light);align-self:flex-start;border-left:2px solid var(--gold)}
+    .chat-msg.user{background:var(--gold-dim);color:var(--white);align-self:flex-end;border-right:2px solid var(--gold)}
+    .chat-quick{padding:10px 12px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0}
+    .chat-q{font-family:var(--fm);font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border:1px solid var(--border);color:var(--muted);background:none;cursor:none;transition:border-color .2s,color .2s}
+    .chat-q:hover{border-color:var(--gold);color:var(--gold)}
+    .chat-input-row{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0}
+    #chat-input{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--border);padding:10px 12px;font-family:var(--fm);font-size:.65rem;letter-spacing:.06em;color:var(--white);outline:none;transition:border-color .2s}
+    #chat-input:focus{border-color:rgba(200,169,109,.4)}
+    #chat-input::placeholder{color:var(--muted)}
+    #chat-send{background:none;border:1px solid var(--gold);padding:8px 14px;font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);cursor:none;transition:background .2s,color .2s;flex-shrink:0}
+    #chat-send:hover{background:var(--gold);color:var(--black)}
+
     /* RESPONSIVE */
     @media(max-width:960px){
       nav,footer{padding:20px 24px}
@@ -202,14 +273,24 @@
       .sec{padding:96px 24px}
       #hero{padding:0 24px 64px}
       #reseau-schema,#cv-dl{padding:64px 24px}
-      .skills-grid{grid-template-columns:1fr}
-      .sk-col{border-right:none;border-bottom:1px solid var(--border);padding:40px 0;padding-right:0}
-      .sk-col:last-child{border-bottom:none}
-      .sk-col:not(:first-child){padding-left:0}
+      .skills-groups{grid-template-columns:1fr 1fr}
+      .sk-group{border-right:none;border-bottom:1px solid var(--border);padding:36px 0}
+      .sk-group:nth-child(odd){border-right:1px solid var(--border);padding-right:24px}
       .proj{grid-template-columns:1fr;gap:28px}
       .proj:nth-child(even){direction:ltr}
-      .sup-inner,.about-inner,.cv-inner{grid-template-columns:1fr;gap:48px}
+      .proj-gallery{grid-template-columns:1fr}
+      .sup-inner{grid-template-columns:1fr;gap:48px}
+      .sup-tools{grid-template-columns:1fr}
+      .about-inner,.cv-inner{grid-template-columns:1fr;gap:48px}
+      .exp-item{grid-template-columns:1fr;gap:32px}
       .p-detail{display:none}
+      #chat-panel{width:calc(100vw - 48px);right:24px}
+    }
+    @media(max-width:600px){
+      .skills-groups{grid-template-columns:1fr}
+      .sk-group:nth-child(odd){border-right:none}
+      .timeline{padding-left:32px}
+      .tl-dot{left:-36px}
     }
   </style>
 </head>
@@ -224,8 +305,9 @@
   <ul class="nav-links">
     <li><a href="#pratique">En Pratique</a></li>
     <li><a href="#competences">Compétences</a></li>
+    <li><a href="#parcours">Parcours</a></li>
     <li><a href="#projets">Projets</a></li>
-    <li><a href="#supervision">PRTG</a></li>
+    <li><a href="#supervision">Supervision</a></li>
     <li><a href="#cv-dl">CV</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -238,12 +320,12 @@
   <div>
     <p class="hero-eye">Portfolio — Recherche de stage</p>
     <h1 class="hero-name" aria-label="Patrick Mekongo">
-      <span class="hl">Patrick</span>
-      <span class="hl">Mekongo</span>
+      <span class="hl">PATRICK</span>
+      <span class="hl">MEKONGO</span>
     </h1>
     <div class="hero-rule"></div>
     <div class="hero-bot">
-      <p class="hero-tag">Technicien IT — En Recherche de Stage</p>
+      <p class="hero-tag">TECHNICIEN IT — EN RECHERCHE DE STAGE</p>
       <div class="hero-scroll" aria-hidden="true">
         <div class="s-track"></div>Défiler
       </div>
@@ -262,22 +344,22 @@
     <div class="p-item reveal d1">
       <span class="p-num">01</span>
       <span class="p-name">Switch Cisco</span>
-      <span class="p-detail">VLAN · Trunk 802.1q · STP · DHCP Relay · Config CLI</span>
+      <span class="p-detail">VLAN · Trunk 802.1q · STP · DHCP Relay</span>
     </div>
     <div class="p-item reveal d2">
       <span class="p-num">02</span>
       <span class="p-name">Windows Server</span>
-      <span class="p-detail">Active Directory · DNS · DHCP · Rôles & Fonctionnalités</span>
+      <span class="p-detail">AD DS · DNS · DHCP · Rôles</span>
     </div>
     <div class="p-item reveal d3">
       <span class="p-num">03</span>
       <span class="p-name">Virtualisation</span>
-      <span class="p-detail">VMware Workstation · VMs Windows & Linux · Clone · Snapshot</span>
+      <span class="p-detail">VMware · Clone · Snapshot · VMs Windows/Linux</span>
     </div>
     <div class="p-item reveal d4">
       <span class="p-num">04</span>
       <span class="p-name">Diagnostic Réseau</span>
-      <span class="p-detail">Ping · Tracert · ARP · Nslookup · DHCP · Analyse de flux</span>
+      <span class="p-detail">Ping · Tracert · ARP · Nslookup · Wireshark</span>
     </div>
   </div>
 </section>
@@ -289,36 +371,222 @@
     <div class="sec-label">02 — Compétences</div>
     <h2 class="sec-title">Stack<br>Technique</h2>
   </div>
-  <div class="skills-grid">
-    <div class="sk-col reveal d1">
-      <h3 class="sk-head">Réseau</h3>
-      <ul class="sk-list">
-        <li>TCP / IP</li><li>Adressage IPv4</li><li>VLAN</li>
-        <li>Trunk 802.1q</li><li>DHCP</li><li>Cisco Packet Tracer</li>
-      </ul>
+  <div class="skills-groups">
+
+    <!-- RÉSEAU -->
+    <div class="sk-group reveal d1">
+      <h3 class="sk-group-head">Réseau</h3>
+      <div class="sk-cards">
+        <div class="sk-card">
+          <div class="sk-card-badge" style="background:#1BA0D7;color:#fff">PT</div>
+          <span class="sk-card-name">Cisco PT</span>
+        </div>
+        <div class="sk-card">
+          <div class="sk-card-badge" style="background:#fff;color:#222">TCP/IP</div>
+          <span class="sk-card-name">TCP/IP</span>
+        </div>
+        <div class="sk-card">
+          <div class="sk-card-badge" style="background:#fff;color:#222">VLAN</div>
+          <span class="sk-card-name">VLAN</span>
+        </div>
+        <div class="sk-card">
+          <div class="sk-card-badge" style="background:#fff;color:#222">DHCP</div>
+          <span class="sk-card-name">DHCP</span>
+        </div>
+        <div class="sk-card">
+          <div class="sk-card-badge" style="background:#fff;color:#222;font-size:.42rem">IPv4</div>
+          <span class="sk-card-name">Adressage IPv4</span>
+        </div>
+      </div>
     </div>
-    <div class="sk-col reveal d2">
-      <h3 class="sk-head">Systèmes</h3>
-      <ul class="sk-list">
-        <li>VMware Workstation</li><li>Windows 11</li>
-        <li>Windows Server</li><li>Debian 12</li><li>PowerShell</li>
-      </ul>
+
+    <!-- SYSTÈMES -->
+    <div class="sk-group reveal d2">
+      <h3 class="sk-group-head">Systèmes</h3>
+      <div class="sk-cards">
+        <div class="sk-card">
+          <div class="sk-card-badge" style="background:#607D8B;color:#fff">VM</div>
+          <span class="sk-card-name">VMware</span>
+        </div>
+        <div class="sk-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows Server" loading="lazy">
+          <span class="sk-card-name">Windows Server</span>
+        </div>
+        <div class="sk-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" alt="Debian" loading="lazy">
+          <span class="sk-card-name">Debian</span>
+        </div>
+        <div class="sk-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg" alt="PowerShell" loading="lazy">
+          <span class="sk-card-name">PowerShell</span>
+        </div>
+      </div>
     </div>
-    <div class="sk-col reveal d3">
-      <h3 class="sk-head">Dev & Outils</h3>
-      <ul class="sk-list">
-        <li>PHP</li><li>MySQL</li><li>HTML / CSS</li>
-        <li>PRTG Monitor</li><li>RGPD / CNIL</li>
-      </ul>
+
+    <!-- DÉVELOPPEMENT -->
+    <div class="sk-group reveal d3">
+      <h3 class="sk-group-head">Développement</h3>
+      <div class="sk-cards">
+        <div class="sk-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" loading="lazy">
+          <span class="sk-card-name">PHP</span>
+        </div>
+        <div class="sk-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy">
+          <span class="sk-card-name">MySQL</span>
+        </div>
+        <div class="sk-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy">
+          <span class="sk-card-name">HTML5</span>
+        </div>
+        <div class="sk-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy">
+          <span class="sk-card-name">CSS3</span>
+        </div>
+        <div class="sk-card">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy">
+          <span class="sk-card-name">VS Code</span>
+        </div>
+      </div>
     </div>
+
+    <!-- SUPERVISION -->
+    <div class="sk-group reveal d4">
+      <h3 class="sk-group-head">Supervision</h3>
+      <div class="sk-cards">
+        <div class="sk-card">
+          <div class="sk-card-badge" style="background:#FF6D00;color:#fff">PRTG</div>
+          <span class="sk-card-name">PRTG</span>
+        </div>
+        <div class="sk-card">
+          <div class="sk-card-badge" style="background:#2E3192;color:#fff">NGS</div>
+          <span class="sk-card-name">Nagios</span>
+        </div>
+        <div class="sk-card">
+          <div class="sk-card-badge" style="background:#FF5722;color:#fff">CTR</div>
+          <span class="sk-card-name">Centreon</span>
+        </div>
+        <div class="sk-card">
+          <div class="sk-card-badge" style="background:#CC0000;color:#fff">ZBX</div>
+          <span class="sk-card-name">Zabbix</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- ══════════ 03 PROJETS ══════════ -->
-<section id="projets" class="sec">
+<!-- ══════════ 03 PARCOURS ══════════ -->
+<section id="parcours" class="sec">
   <div class="sec-num" aria-hidden="true">03</div>
   <div class="reveal">
-    <div class="sec-label">03 — Projets</div>
+    <div class="sec-label">03 — Parcours</div>
+    <h2 class="sec-title">Parcours<br>&amp; Formation</h2>
+  </div>
+  <div class="timeline" style="margin-top:72px">
+
+    <div class="tl-item reveal d1">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2024 – 2025</p>
+      <h3 class="tl-title">Formation Informatique</h3>
+      <p class="tl-desc">Réseaux &amp; Systèmes, infrastructure IT, développement web. Bases solides en administration réseau et systèmes d'exploitation.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">TCP/IP</span>
+        <span class="tl-tag">VLAN</span>
+        <span class="tl-tag">VMware</span>
+        <span class="tl-tag">PHP</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal d2">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2025</p>
+      <h3 class="tl-title">Attestation CNIL</h3>
+      <p class="tl-desc">Certification sur la protection des données personnelles et conformité RGPD.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">RGPD</span>
+        <span class="tl-tag">CNIL</span>
+        <span class="tl-tag">Données personnelles</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal d3">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2025</p>
+      <h3 class="tl-title">TPs Professionnels</h3>
+      <p class="tl-desc">Cisco Packet Tracer, VMware Workstation, PHP/MySQL, PRTG, Nagios, Centreon, Zabbix — outils utilisés en entreprise.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">Cisco</span>
+        <span class="tl-tag">VMware</span>
+        <span class="tl-tag">PRTG</span>
+        <span class="tl-tag">Nagios</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal d4">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2025 – 2026</p>
+      <h3 class="tl-title">Mission IT</h3>
+      <p class="tl-desc">Prestation en environnement professionnel : configuration réseau, support utilisateur, virtualisation, documentation technique.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">Configuration</span>
+        <span class="tl-tag">Support</span>
+        <span class="tl-tag">Documentation</span>
+      </div>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <p class="tl-year">2026</p>
+      <h3 class="tl-title">Recherche de Stage</h3>
+      <p class="tl-status">Disponible — Stage IT</p>
+      <div class="tl-tags">
+        <span class="tl-tag">Stage</span>
+        <span class="tl-tag">Administration</span>
+        <span class="tl-tag">Support</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ 04 EXPÉRIENCES ══════════ -->
+<section id="experiences" class="sec">
+  <div class="sec-num" aria-hidden="true">04</div>
+  <div class="reveal">
+    <div class="sec-label">04 — Expériences</div>
+    <h2 class="sec-title">Expériences<br>Professionnelles</h2>
+  </div>
+  <div class="exp-wrap">
+    <article class="exp-item reveal">
+      <div class="exp-left">
+        <p class="exp-period">2025</p>
+        <h3 class="exp-title">Mission IT<br>Professionnelle</h3>
+      </div>
+      <div class="exp-right">
+        <p class="exp-desc">Configuration d'équipements réseau, support utilisateur, déploiement de postes, virtualisation d'environnements et documentation technique en contexte professionnel.</p>
+        <ul class="exp-list">
+          <li>Configuration switch</li>
+          <li>Virtualisation VMware</li>
+          <li>Support N1/N2</li>
+          <li>Documentation réseau</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Réseau</span>
+          <span class="tag">Support</span>
+          <span class="tag">VMware</span>
+          <span class="tag">Windows Server</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════ 05 PROJETS ══════════ -->
+<section id="projets" class="sec">
+  <div class="sec-num" aria-hidden="true">05</div>
+  <div class="reveal">
+    <div class="sec-label">05 — Projets</div>
     <h2 class="sec-title">Réalisations</h2>
   </div>
   <div class="proj-wrap">
@@ -331,13 +599,18 @@
         <h3 class="proj-title">Générateur<br>de CV</h3>
       </div>
       <div class="proj-right">
-        <figure class="proj-screen">
-          <img src="assets/img/cv-db.png" alt="Base de données générateur_cv dans phpMyAdmin" loading="lazy">
-        </figure>
-        <p class="proj-desc">Application web PHP + MySQL : formulaire de saisie, sauvegarde en base de données (table <em>candidats</em>), affichage dynamique du CV. Architecture CRUD avec requêtes préparées MySQLi.</p>
+        <div class="proj-gallery">
+          <figure class="proj-screen">
+            <img src="assets/img/cv-app-ui.png" alt="Formulaire Générateur de CV — interface noire" loading="lazy">
+          </figure>
+          <figure class="proj-screen">
+            <img src="assets/img/cv-db-data.png" alt="phpMyAdmin — données table candidats" loading="lazy">
+          </figure>
+        </div>
+        <p class="proj-desc">Application web PHP + MySQL : formulaire CURRICULUM noir élégant, sauvegarde sécurisée (MySQLi requêtes préparées), affichage dynamique du CV généré. Architecture CRUD complète.</p>
         <div class="tags">
           <span class="tag">PHP</span><span class="tag">MySQL</span>
-          <span class="tag">MySQLi</span><span class="tag">HTML</span><span class="tag">CSS</span>
+          <span class="tag">MySQLi</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">VS Code</span>
         </div>
         <a href="https://github.com/patrickmekongo19-droid/portfolio" target="_blank" rel="noopener" class="proj-link">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -350,14 +623,19 @@
     <article class="proj reveal">
       <span class="proj-ghost" aria-hidden="true">02</span>
       <div class="proj-left">
-        <p class="proj-num">Projet 02 — Virtualisation</p>
-        <h3 class="proj-title">Lab<br>Virtuel</h3>
+        <p class="proj-num">Projet 02 — Systèmes</p>
+        <h3 class="proj-title">Lab<br>Virtualisation</h3>
       </div>
       <div class="proj-right">
-        <figure class="proj-screen">
-          <img src="assets/img/vmware-vms.png" alt="VMware Workstation avec Windows 11, Debian 12 et Windows Server" loading="lazy">
-        </figure>
-        <p class="proj-desc">Déploiement sous VMware Workstation : Windows 11 avec TPM & chiffrement, Debian 12 avec partitionnement ext4/swap, clonage de VMs et tests de connectivité réseau inter-VM via PowerShell.</p>
+        <div class="proj-gallery">
+          <figure class="proj-screen">
+            <img src="assets/img/vmware-vms.png" alt="VMware Workstation — liste des VMs" loading="lazy">
+          </figure>
+          <figure class="proj-screen">
+            <img src="assets/img/debian-network-config.png" alt="Debian — configuration réseau statique" loading="lazy">
+          </figure>
+        </div>
+        <p class="proj-desc">Déploiement VMware Workstation : Windows 11 (TPM, chiffrement), Debian 12 (partitionnement ext4/swap), clonage VMs, configuration réseau statique (/etc/network/interfaces), tests inter-VM.</p>
         <div class="tags">
           <span class="tag">VMware</span><span class="tag">Windows 11</span>
           <span class="tag">Debian 12</span><span class="tag">PowerShell</span><span class="tag">TPM</span>
@@ -373,13 +651,60 @@
         <h3 class="proj-title">Infrastructure<br>Réseau</h3>
       </div>
       <div class="proj-right">
-        <figure class="proj-screen">
-          <img src="assets/img/cisco-ping.png" alt="Test ping dans Cisco Packet Tracer" loading="lazy">
-        </figure>
-        <p class="proj-desc">Configuration sur Cisco Packet Tracer : segmentation VLAN, liens trunk 802.1q, DHCP Windows Server, plan d'adressage IPv4 et diagnostic de connectivité réseau.</p>
+        <div class="proj-gallery-single">
+          <figure class="proj-screen">
+            <img src="assets/img/cisco-vlan-topo.png" alt="Topologie Cisco Packet Tracer — VLAN 10 et 20" loading="lazy">
+          </figure>
+        </div>
+        <p class="proj-desc">Conception et configuration Cisco Packet Tracer : VLAN 10 &amp; 20, liens trunk 802.1q, DHCP Windows Server, plan d'adressage IPv4. Simulation de trafic avec tests de connectivité.</p>
         <div class="tags">
           <span class="tag">Cisco PT</span><span class="tag">VLAN</span>
           <span class="tag">Trunk 802.1q</span><span class="tag">DHCP</span><span class="tag">TCP/IP</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJET 04 -->
+    <article class="proj reveal">
+      <span class="proj-ghost" aria-hidden="true">04</span>
+      <div class="proj-left">
+        <p class="proj-num">Projet 04 — Modélisation</p>
+        <h3 class="proj-title">Conception<br>BDD</h3>
+      </div>
+      <div class="proj-right">
+        <div class="proj-gallery">
+          <figure class="proj-screen">
+            <img src="assets/img/bdd-mcd-archeo.png" alt="MCD Merise — base archéologique" loading="lazy">
+          </figure>
+          <figure class="proj-screen">
+            <img src="assets/img/bdd-mcd-biblio.png" alt="MCD Merise — bibliothèque numérique" loading="lazy">
+          </figure>
+        </div>
+        <p class="proj-desc">Modélisation Merise (MCD/MPD) pour deux systèmes : base de fouilles archéologiques (entités : Chercheur, Équipe, Parcelle, Objet, Site) et système de bibliothèque numérique (Usager, Document, Livre, Réservation).</p>
+        <div class="tags">
+          <span class="tag">Merise</span><span class="tag">MCD</span>
+          <span class="tag">MPD</span><span class="tag">SQL</span><span class="tag">Conception</span><span class="tag">Modélisation</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROJET 05 -->
+    <article class="proj reveal">
+      <span class="proj-ghost" aria-hidden="true">05</span>
+      <div class="proj-left">
+        <p class="proj-num">Projet 05 — Mission IT</p>
+        <h3 class="proj-title">Mission<br>IT</h3>
+      </div>
+      <div class="proj-right">
+        <div class="proj-gallery-single">
+          <figure class="proj-screen">
+            <img src="assets/img/powershell-ping.png" alt="PowerShell — tests de connectivité" loading="lazy">
+          </figure>
+        </div>
+        <p class="proj-desc">Mission professionnelle IT : diagnostic réseau, configuration d'équipements, support utilisateur, déploiement postes, virtualisation d'environnements et rédaction de documentation technique.</p>
+        <div class="tags">
+          <span class="tag">Réseau</span><span class="tag">Support</span>
+          <span class="tag">Configuration</span><span class="tag">Documentation</span><span class="tag">PowerShell</span>
         </div>
       </div>
     </article>
@@ -390,7 +715,7 @@
 <!-- ══════════ SCHÉMA VLAN ══════════ -->
 <div id="reseau-schema">
   <p class="schema-title">Schéma — Infrastructure VLAN</p>
-  <svg class="vlan-svg" viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" aria-label="Schéma réseau VLAN">
+  <svg class="vlan-svg" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" aria-label="Schéma réseau VLAN avec Internet, Routeur, Switch Core et VLANs 10/20/30">
     <defs>
       <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
         <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.25)"/>
@@ -400,55 +725,88 @@
       </marker>
     </defs>
     <!-- INTERNET -->
-    <ellipse cx="430" cy="36" rx="60" ry="24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-    <text x="430" y="40" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="DM Mono,monospace" font-size="11" letter-spacing="2">INTERNET</text>
-    <!-- Router -->
-    <rect x="380" y="88" width="100" height="40" rx="2" fill="none" stroke="#c8a96d" stroke-width="1.5"/>
-    <text x="430" y="113" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="10" letter-spacing="2">ROUTEUR</text>
+    <ellipse cx="450" cy="38" rx="68" ry="26" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
+    <text x="450" y="42" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="DM Mono,monospace" font-size="11" letter-spacing="2">INTERNET</text>
     <!-- line internet→router -->
-    <line x1="430" y1="60" x2="430" y2="88" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4 2"/>
-    <!-- Core switch -->
-    <rect x="355" y="168" width="150" height="40" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-    <text x="430" y="193" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Mono,monospace" font-size="10" letter-spacing="2">SWITCH CORE</text>
-    <!-- line router→switch TRUNK -->
-    <line x1="430" y1="128" x2="430" y2="168" stroke="#c8a96d" stroke-width="1.5"/>
-    <text x="442" y="152" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8" letter-spacing="1.5">TRUNK</text>
-    <!-- VLAN 10 -->
-    <rect x="80" y="268" width="140" height="56" rx="2" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-    <text x="150" y="289" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Mono,monospace" font-size="9" letter-spacing="1">VLAN 10</text>
-    <text x="150" y="304" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8">Administration</text>
-    <text x="150" y="316" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="8">192.168.10.x</text>
-    <!-- VLAN 20 -->
-    <rect x="355" y="268" width="150" height="56" rx="2" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-    <text x="430" y="289" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Mono,monospace" font-size="9" letter-spacing="1">VLAN 20</text>
-    <text x="430" y="304" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8">Utilisateurs</text>
-    <text x="430" y="316" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="8">192.168.20.x</text>
-    <!-- VLAN 30 -->
-    <rect x="640" y="268" width="140" height="56" rx="2" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
-    <text x="710" y="289" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Mono,monospace" font-size="9" letter-spacing="1">VLAN 30</text>
-    <text x="710" y="304" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8">Serveurs</text>
-    <text x="710" y="316" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-family="DM Mono,monospace" font-size="8">192.168.30.x / DHCP</text>
+    <line x1="450" y1="64" x2="450" y2="96" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+    <!-- ROUTEUR -->
+    <rect x="390" y="96" width="120" height="44" rx="2" fill="none" stroke="#c8a96d" stroke-width="1.5"/>
+    <text x="450" y="123" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="10.5" letter-spacing="2">ROUTEUR</text>
+    <!-- line router→switch TRUNK 802.1q -->
+    <line x1="450" y1="140" x2="450" y2="176" stroke="#c8a96d" stroke-width="2" marker-end="url(#arr-gold)"/>
+    <rect x="458" y="149" width="64" height="18" rx="2" fill="#111"/>
+    <text x="490" y="161" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8" letter-spacing="1.5">802.1q TRUNK</text>
+    <!-- SWITCH CORE -->
+    <rect x="360" y="176" width="180" height="44" rx="2" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+    <text x="450" y="203" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Mono,monospace" font-size="10" letter-spacing="2">SWITCH CORE</text>
     <!-- lines switch→vlans -->
-    <line x1="400" y1="208" x2="200" y2="268" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 2"/>
-    <line x1="430" y1="208" x2="430" y2="268" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 2"/>
-    <line x1="460" y1="208" x2="660" y2="268" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="3 2"/>
-    <!-- 802.1q labels -->
-    <text x="285" y="246" fill="rgba(255,255,255,0.25)" font-family="DM Mono,monospace" font-size="7" letter-spacing="1">802.1q</text>
-    <text x="434" y="246" fill="rgba(255,255,255,0.25)" font-family="DM Mono,monospace" font-size="7" letter-spacing="1">802.1q</text>
-    <text x="548" y="246" fill="rgba(255,255,255,0.25)" font-family="DM Mono,monospace" font-size="7" letter-spacing="1">802.1q</text>
+    <line x1="415" y1="220" x2="195" y2="278" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+    <line x1="450" y1="220" x2="450" y2="278" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+    <line x1="485" y1="220" x2="706" y2="278" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+    <!-- 802.1q labels on branches -->
+    <text x="292" y="256" text-anchor="middle" fill="rgba(200,169,109,0.45)" font-family="DM Mono,monospace" font-size="7.5" letter-spacing="1">802.1q</text>
+    <text x="462" y="256" text-anchor="middle" fill="rgba(200,169,109,0.45)" font-family="DM Mono,monospace" font-size="7.5" letter-spacing="1">802.1q</text>
+    <text x="612" y="256" text-anchor="middle" fill="rgba(200,169,109,0.45)" font-family="DM Mono,monospace" font-size="7.5" letter-spacing="1">802.1q</text>
+    <!-- VLAN 10 -->
+    <rect x="90" y="278" width="210" height="64" rx="2" fill="rgba(200,169,109,0.04)" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+    <text x="195" y="299" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="DM Mono,monospace" font-size="9.5" letter-spacing="1.5">VLAN 10</text>
+    <text x="195" y="316" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8.5">Administration</text>
+    <text x="195" y="332" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Mono,monospace" font-size="8">192.168.10.x /24</text>
+    <!-- VLAN 20 -->
+    <rect x="345" y="278" width="210" height="64" rx="2" fill="rgba(200,169,109,0.04)" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+    <text x="450" y="299" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="DM Mono,monospace" font-size="9.5" letter-spacing="1.5">VLAN 20</text>
+    <text x="450" y="316" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8.5">Utilisateurs</text>
+    <text x="450" y="332" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Mono,monospace" font-size="8">192.168.20.x /24</text>
+    <!-- VLAN 30 -->
+    <rect x="602" y="278" width="210" height="64" rx="2" fill="rgba(200,169,109,0.04)" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+    <text x="707" y="299" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="DM Mono,monospace" font-size="9.5" letter-spacing="1.5">VLAN 30</text>
+    <text x="707" y="316" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8.5">Serveurs</text>
+    <text x="707" y="332" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Mono,monospace" font-size="8">192.168.30.x / DHCP</text>
   </svg>
 </div>
 
-<!-- ══════════ 04 SUPERVISION ══════════ -->
+<!-- ══════════ 06 SUPERVISION ══════════ -->
 <section id="supervision" class="sec">
-  <div class="sec-num" aria-hidden="true">04</div>
+  <div class="sec-num" aria-hidden="true">06</div>
   <div class="reveal">
-    <div class="sec-label">04 — Supervision réseau</div>
+    <div class="sec-label">06 — Supervision réseau</div>
+    <h2 class="sec-title">Monitoring<br>&amp; Supervision</h2>
   </div>
   <div class="sup-inner">
-    <div class="reveal d1">
+
+    <div class="sup-left reveal d1">
       <h2 class="sup-title">PRTG<br><em>Network</em><br>Monitor</h2>
+      <p class="sup-desc">Maîtrise de PRTG pour la supervision d'infrastructures réseau : monitoring en temps réel, analyse des performances, détection d'anomalies et génération de rapports.</p>
+      <div class="sup-rows">
+        <div class="sup-row"><span class="sup-k">Outil</span><span class="sup-v">PRTG Network Monitor</span></div>
+        <div class="sup-row"><span class="sup-k">Domaine</span><span class="sup-v">Supervision &amp; Monitoring</span></div>
+        <div class="sup-row"><span class="sup-k">Format</span><span class="sup-v">Présentation 10 min</span></div>
+      </div>
+      <!-- Supervision tool cards -->
+      <div class="sup-tools">
+        <div class="sup-tool-card">
+          <span class="sup-tool-badge" style="background:#FF6D00">PRTG</span>
+          <p class="sup-tool-name">PRTG</p>
+          <p class="sup-tool-desc">Supervision d'infrastructure, dashboards temps réel, alertes</p>
+        </div>
+        <div class="sup-tool-card">
+          <span class="sup-tool-badge" style="background:#2E3192">Nagios</span>
+          <p class="sup-tool-name">Nagios</p>
+          <p class="sup-tool-desc">Monitoring open-source, checks actifs/passifs, notifications</p>
+        </div>
+        <div class="sup-tool-card">
+          <span class="sup-tool-badge" style="background:#FF5722">Centreon</span>
+          <p class="sup-tool-name">Centreon</p>
+          <p class="sup-tool-desc">Interface web avancée, cartographie réseau, rapports</p>
+        </div>
+        <div class="sup-tool-card">
+          <span class="sup-tool-badge" style="background:#CC0000">Zabbix</span>
+          <p class="sup-tool-name">Zabbix</p>
+          <p class="sup-tool-desc">Collecte de métriques, triggers configurables, visualisations</p>
+        </div>
+      </div>
     </div>
+
     <div class="reveal d2">
       <div class="prtg-mock" aria-label="Aperçu interface PRTG">
         <div class="prtg-bar">
@@ -465,24 +823,17 @@
           <div class="prtg-row"><div class="prtg-status ok"></div><span class="prtg-sensor">Routeur — Bande passante WAN</span><div class="prtg-bar-chart"><div class="prtg-bar-fill" style="width:49%"></div></div><span class="prtg-val">49%</span></div>
         </div>
       </div>
-      <div style="margin-top:32px">
-        <p class="sup-desc">Maîtrise de PRTG pour la supervision d'infrastructures réseau : monitoring en temps réel, analyse des performances, détection d'anomalies et génération de rapports.</p>
-        <div class="sup-rows">
-          <div class="sup-row"><span class="sup-k">Outil</span><span class="sup-v">PRTG Network Monitor</span></div>
-          <div class="sup-row"><span class="sup-k">Domaine</span><span class="sup-v">Supervision &amp; Monitoring</span></div>
-          <div class="sup-row"><span class="sup-k">Format</span><span class="sup-v">Présentation 10 min</span></div>
-        </div>
-      </div>
     </div>
+
   </div>
 </section>
 
-<!-- ══════════ 05 TÉLÉCHARGER LE CV ══════════ -->
+<!-- ══════════ 07 TÉLÉCHARGER LE CV ══════════ -->
 <section id="cv-dl" class="sec">
-  <div class="sec-num" aria-hidden="true">05</div>
+  <div class="sec-num" aria-hidden="true">07</div>
   <div class="cv-inner">
     <div class="cv-text reveal">
-      <div class="sec-label" style="margin-bottom:20px">05 — Curriculum Vitae</div>
+      <div class="sec-label" style="margin-bottom:20px">07 — Curriculum Vitae</div>
       <h2 class="sec-title">Télécharger<br>le CV</h2>
       <p style="margin-top:20px;font-size:.875rem;line-height:1.8;color:var(--dim)">Formation, compétences techniques et parcours complet au format PDF.</p>
     </div>
@@ -496,11 +847,11 @@
   </div>
 </section>
 
-<!-- ══════════ 06 À PROPOS ══════════ -->
+<!-- ══════════ 08 À PROPOS ══════════ -->
 <section id="about" class="sec">
-  <div class="sec-num" aria-hidden="true">06</div>
+  <div class="sec-num" aria-hidden="true">08</div>
   <div class="reveal">
-    <div class="sec-label">06 — Profil</div>
+    <div class="sec-label">08 — Profil</div>
     <h2 class="sec-title">À Propos</h2>
   </div>
   <div class="about-inner">
@@ -519,10 +870,10 @@
   </div>
 </section>
 
-<!-- ══════════ 07 CONTACT ══════════ -->
+<!-- ══════════ 09 CONTACT ══════════ -->
 <section id="contact" class="sec">
-  <div class="sec-num" aria-hidden="true">07</div>
-  <div class="reveal"><div class="sec-label">07 — Contact</div></div>
+  <div class="sec-num" aria-hidden="true">09</div>
+  <div class="reveal"><div class="sec-label">09 — Contact</div></div>
   <h2 class="c-head reveal d1">Travaillons<br><em>ensemble</em></h2>
   <div class="c-links">
     <a href="mailto:patrickmekongo19@gmail.com" class="c-link reveal">
@@ -545,34 +896,119 @@
   <span>Technicien IT &nbsp;·&nbsp; Disponible pour un stage</span>
 </footer>
 
+<!-- ══════════ CHATBOT ══════════ -->
+<button id="chat-btn" aria-label="Ouvrir le chatbot assistant">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+  </svg>
+</button>
+
+<div id="chat-panel" role="dialog" aria-label="Assistant Patrick Mekongo" aria-modal="true">
+  <div class="chat-head">
+    <span class="chat-head-name">PM · Assistant</span>
+    <button class="chat-close" id="chat-close" aria-label="Fermer">✕</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs"></div>
+  <div class="chat-quick" id="chat-quick">
+    <button class="chat-q" data-q="compétences">Compétences</button>
+    <button class="chat-q" data-q="projets">Projets</button>
+    <button class="chat-q" data-q="stage">Stage</button>
+    <button class="chat-q" data-q="contact">Contact</button>
+    <button class="chat-q" data-q="cv">CV</button>
+    <button class="chat-q" data-q="parcours">Parcours</button>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Votre question..." autocomplete="off" maxlength="200">
+    <button id="chat-send">Envoyer</button>
+  </div>
+</div>
+
 <script>
-  /* CURSOR */
+  /* ── CURSOR ── */
   const cd=document.getElementById('cd'),cr=document.getElementById('cr');
   let mx=-100,my=-100,rx=-100,ry=-100;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px'});
   (function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(raf)})();
-  document.querySelectorAll('a,button,.tag,.p-item').forEach(el=>{
+  document.querySelectorAll('a,button,.tag,.p-item,.sk-card,.sup-tool-card,.tl-item').forEach(el=>{
     el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
     el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
   });
 
-  /* NAV */
+  /* ── NAV ── */
   const nav=document.getElementById('nav');
   let lastY=0,ticking=false;
   window.addEventListener('scroll',()=>{
     if(!ticking){requestAnimationFrame(()=>{
       const y=window.scrollY;
-      nav.classList.toggle('nav-hidden',y>lastY&&y>120);
+      nav.classList.toggle('hidden',y>lastY&&y>120);
       nav.classList.toggle('scrolled',y>60);
       lastY=y;ticking=false;
     });ticking=true;}
   },{passive:true});
 
-  /* REVEAL */
+  /* ── REVEAL ── */
   const obs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
-  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  },{threshold:0.07,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  /* ── CHATBOT ── */
+  const qa=[
+    {k:['compétence','skill','maîtrise','sais','technologie','outil'],r:'Réseaux (TCP/IP, VLAN, Cisco), Systèmes (VMware, Windows Server, Debian), Dev (PHP, MySQL, HTML/CSS), Supervision (PRTG, Nagios, Centreon, Zabbix). Attestation CNIL.'},
+    {k:['stage','emploi','cherche','disponible','poste','recrutement'],r:'Je recherche un stage IT : administration réseau, support technique ou helpdesk. Disponible dès maintenant.'},
+    {k:['projet','réalisation','cv générateur','vlan','virtualisation','bdd'],r:'5 projets : Générateur de CV (PHP/MySQL), Lab Virtualisation VMware, Infrastructure VLAN Cisco, Conception BDD (Merise), Mission IT.'},
+    {k:['contact','email','mail','joindre','linkedin','github'],r:'Email : patrickmekongo19@gmail.com · LinkedIn : Patrick Koa Mekongo · GitHub : patrickmekongo19-droid'},
+    {k:['cv','curriculum','télécharger','document'],r:'Mon CV est téléchargeable sur cette page, section "Télécharger le CV" (bouton doré).'},
+    {k:['parcours','formation','étude','diplôme'],r:'Formation IT (Réseaux & Systèmes). Attestation CNIL. TPs Cisco, VMware, PHP. Mission IT professionnelle. Supervision PRTG/Nagios/Centreon/Zabbix.'},
+    {k:['qui','who','présente','patrick','profil'],r:'Je suis Patrick Mekongo, technicien IT spécialisé réseaux & systèmes. En recherche de stage 2026.'},
+    {k:['nagios','centreon','zabbix','prtg','supervision','monitoring'],r:"En supervision réseau : PRTG, Nagios, Centreon et Zabbix — travaillés en formation. Monitoring d'infrastructure, alertes, dashboards."},
+    {k:['linux','debian','bash','terminal'],r:'Debian 12 installé et configuré sur VMware : partitionnement, réseau statique (/etc/network/interfaces), gestion paquets apt.'},
+    {k:['salut','bonjour','hello','hi','coucou','hey'],r:'Bonjour ! Je suis l\'assistant de Patrick Mekongo. Posez-moi une question sur ses compétences, projets, parcours ou contact !'},
+    {k:['merci','thanks','super','parfait'],r:'Avec plaisir ! N\'hésitez pas si vous avez d\'autres questions.'},
+  ];
+
+  const chatPanel=document.getElementById('chat-panel');
+  const chatMsgs=document.getElementById('chat-msgs');
+  const chatInput=document.getElementById('chat-input');
+  const chatBtn=document.getElementById('chat-btn');
+  const chatClose=document.getElementById('chat-close');
+
+  function addMsg(text,type){
+    const m=document.createElement('div');
+    m.className='chat-msg '+type;
+    m.textContent=text;
+    chatMsgs.appendChild(m);
+    chatMsgs.scrollTop=chatMsgs.scrollHeight;
+  }
+
+  function botReply(text){
+    const lower=text.toLowerCase();
+    for(const item of qa){
+      if(item.k.some(k=>lower.includes(k))){return item.r;}
+    }
+    return "Je ne suis pas sûr de comprendre. Essayez : Compétences, Projets, Stage, Contact, CV ou Parcours.";
+  }
+
+  function sendMsg(text){
+    const t=(text||chatInput.value).trim();
+    if(!t)return;
+    addMsg(t,'user');
+    chatInput.value='';
+    setTimeout(()=>addMsg(botReply(t),'bot'),320);
+  }
+
+  chatBtn.addEventListener('click',()=>{
+    chatPanel.classList.toggle('open');
+    if(chatPanel.classList.contains('open')&&!chatMsgs.children.length){
+      addMsg("Bonjour ! Je suis l'assistant de Patrick. Posez-moi une question sur ses compétences, projets ou disponibilité pour un stage !",'bot');
+    }
+  });
+  chatClose.addEventListener('click',()=>chatPanel.classList.remove('open'));
+  document.getElementById('chat-send').addEventListener('click',()=>sendMsg());
+  chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg()});
+  document.querySelectorAll('.chat-q').forEach(btn=>{
+    btn.addEventListener('click',()=>sendMsg(btn.dataset.q));
+  });
 </script>
 </body>
 </html>
