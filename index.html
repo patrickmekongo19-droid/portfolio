@@ -1437,5 +1437,314 @@ document.getElementById('chat-send').addEventListener('click',()=>sendMsg());
 chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
 document.querySelectorAll('.chat-q').forEach(btn=>btn.addEventListener('click',()=>sendMsg(btn.dataset.q)));
 </script>
+
+<!-- ========================================
+     INSPI CHATBOT FLOTTANT
+======================================== -->
+
+<style>
+#inspi-wrapper {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  font-family: sans-serif;
+}
+
+#inspi-chat-box {
+  display: none;
+  width: 300px;
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+}
+
+#inspi-chat-header {
+  background: #1a1a1a;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#inspi-chat-header span {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#inspi-close-btn {
+  color: #888;
+  cursor: pointer;
+  font-size: 18px;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+#inspi-messages {
+  padding: 14px;
+  height: 200px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inspi-msg {
+  background: #222;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 85%;
+  align-self: flex-start;
+}
+
+.inspi-msg.user {
+  background: #333;
+  align-self: flex-end;
+}
+
+#inspi-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid #222;
+}
+
+#inspi-input {
+  flex: 1;
+  background: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+}
+
+#inspi-send {
+  background: #fff;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#inspi-avatar {
+  cursor: pointer;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+}
+
+@keyframes inspi-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes inspi-blink{0%,85%,100%{transform:scaleY(1)}92%{transform:scaleY(0.08)}}
+@keyframes inspi-sign-idle{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(3deg)}}
+@keyframes inspi-spin{0%{transform:rotate(-4deg)}100%{transform:rotate(356deg)}}
+@keyframes inspi-wave{0%,100%{transform:rotate(-4deg)}20%{transform:rotate(-40deg)}40%{transform:rotate(5deg)}60%{transform:rotate(-35deg)}80%{transform:rotate(8deg)}}
+@keyframes inspi-throw{0%{transform:rotate(-4deg)translateY(0)}35%{transform:rotate(60deg)translateY(-40px)}70%{transform:rotate(240deg)translateY(-20px)}100%{transform:rotate(-4deg)translateY(0)}}
+@keyframes inspi-rarm-up{0%{transform:rotate(0deg)}30%{transform:rotate(-38deg)}55%{transform:rotate(-38deg)}80%{transform:rotate(-14deg)}100%{transform:rotate(0deg)}}
+@keyframes inspi-drink-up{0%{transform:rotate(8deg)translateY(0)translateX(0)}30%{transform:rotate(58deg)translateY(-22px)translateX(-14px)}55%{transform:rotate(58deg)translateY(-22px)translateX(-14px)}80%{transform:rotate(20deg)translateY(-8px)translateX(-5px)}100%{transform:rotate(8deg)translateY(0)translateX(0)}}
+@keyframes inspi-talk-in{0%{opacity:0;transform:scale(0.8)translateY(6px)}15%,78%{opacity:1;transform:scale(1)translateY(0)}100%{opacity:0}}
+@keyframes inspi-dot1{0%,60%,100%{opacity:0}20%,40%{opacity:1}}
+@keyframes inspi-dot2{0%,20%,80%,100%{opacity:0}40%,60%{opacity:1}}
+@keyframes inspi-dot3{0%,40%,100%{opacity:0}60%,80%{opacity:1}}
+</style>
+
+<div id="inspi-wrapper">
+
+  <div id="inspi-chat-box">
+    <div id="inspi-chat-header">
+      <span>Inspi — Assistant IT</span>
+      <button id="inspi-close-btn">&#x2715;</button>
+    </div>
+    <div id="inspi-messages">
+      <div class="inspi-msg">Bonjour ! Je suis Inspi, l'assistant IT de Patrick. Comment puis-je vous aider ?</div>
+    </div>
+    <div id="inspi-input-row">
+      <input id="inspi-input" type="text" placeholder="Posez votre question..." />
+      <button id="inspi-send">&#x27A4;</button>
+    </div>
+  </div>
+
+  <svg id="inspi-avatar" width="110" height="160" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+  <g id="inspi-all">
+
+    <g id="inspi-bubble" opacity="0">
+      <rect x="155" y="18" width="138" height="46" rx="12" fill="#111"/>
+      <polygon points="164,64 180,64 172,76" fill="#111"/>
+      <text id="inspi-btxt" x="224" y="46" text-anchor="middle" font-size="11.5" fill="#fff" font-family="sans-serif" font-weight="500">Bonjour !</text>
+    </g>
+
+    <g id="inspi-left-arm">
+      <line x1="84" y1="185" x2="46" y2="225" stroke="#111" stroke-width="6" stroke-linecap="round"/>
+      <line x1="46" y1="225" x2="22" y2="207" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+      <line x1="22" y1="207" x2="24" y2="126" stroke="#111" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="24" cy="110" r="38" fill="#fff" stroke="#111" stroke-width="4.5"/>
+      <text x="24" y="118" text-anchor="middle" font-size="21" fill="#111" font-family="sans-serif" font-weight="900" letter-spacing="2">IT</text>
+      <circle id="inspi-d1" cx="12" cy="132" r="3.5" fill="#111"/>
+      <circle id="inspi-d2" cx="24" cy="132" r="3.5" fill="#111"/>
+      <circle id="inspi-d3" cx="36" cy="132" r="3.5" fill="#111"/>
+    </g>
+
+    <g id="inspi-right-arm-grp" style="transform-origin:170px 185px">
+      <line x1="170" y1="185" x2="212" y2="222" stroke="#111" stroke-width="6" stroke-linecap="round"/>
+      <line x1="212" y1="222" x2="230" y2="205" stroke="#111" stroke-width="5" stroke-linecap="round"/>
+      <g id="inspi-drink-grp" style="transform-origin:230px 205px;transform:rotate(8deg)">
+        <rect x="220" y="170" width="28" height="40" rx="6" fill="#fff" stroke="#111" stroke-width="4"/>
+        <path d="M222 170 Q234 163 246 170" stroke="#111" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <line x1="240" y1="163" x2="255" y2="136" stroke="#111" stroke-width="3.5" stroke-linecap="round"/>
+        <ellipse cx="256" cy="133" rx="5" ry="5" fill="#fff" stroke="#111" stroke-width="2.5"/>
+        <line x1="222" y1="183" x2="247" y2="183" stroke="#111" stroke-width="1.5" opacity="0.3"/>
+        <line x1="222" y1="191" x2="247" y2="191" stroke="#111" stroke-width="1.5" opacity="0.3"/>
+        <line x1="222" y1="199" x2="247" y2="199" stroke="#111" stroke-width="1.5" opacity="0.3"/>
+      </g>
+    </g>
+
+    <polygon points="126,136 150,102 174,136" fill="#fff" stroke="#111" stroke-width="4.5" stroke-linejoin="round"/>
+    <rect x="84" y="136" width="132" height="88" rx="8" fill="#fff" stroke="#111" stroke-width="4.5"/>
+
+    <g id="inspi-eye-l" style="transform-origin:113px 161px">
+      <ellipse cx="113" cy="161" rx="9" ry="10" fill="#111"/>
+      <ellipse cx="116" cy="158" rx="3" ry="3" fill="#fff" opacity="0.5"/>
+    </g>
+    <g id="inspi-eye-r" style="transform-origin:187px 161px">
+      <ellipse cx="187" cy="161" rx="9" ry="10" fill="#111"/>
+      <ellipse cx="190" cy="158" rx="3" ry="3" fill="#fff" opacity="0.5"/>
+    </g>
+
+    <path id="inspi-mouth" d="M122 183 Q150 197 178 183" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round"/>
+
+    <line x1="106" y1="224" x2="106" y2="290" stroke="#111" stroke-width="6" stroke-linecap="round"/>
+    <line x1="194" y1="224" x2="194" y2="290" stroke="#111" stroke-width="6" stroke-linecap="round"/>
+
+    <path d="M106 290 Q100 310 90 318 Q78 326 76 338 Q74 350 86 352 Q98 354 104 342 Q108 330 106 316 Q104 302 106 290" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M194 290 Q200 310 210 318 Q222 326 224 338 Q226 350 214 352 Q202 354 196 342 Q192 330 194 316 Q196 302 194 290" fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  </g>
+  </svg>
+
+</div>
+
+<script>
+(function(){
+  const all=document.getElementById('inspi-all');
+  const leftArm=document.getElementById('inspi-left-arm');
+  const rarmGrp=document.getElementById('inspi-right-arm-grp');
+  const drinkGrp=document.getElementById('inspi-drink-grp');
+  const bubble=document.getElementById('inspi-bubble');
+  const btxt=document.getElementById('inspi-btxt');
+  const eyeL=document.getElementById('inspi-eye-l');
+  const eyeR=document.getElementById('inspi-eye-r');
+  const mouth=document.getElementById('inspi-mouth');
+  const chatBox=document.getElementById('inspi-chat-box');
+  const avatar=document.getElementById('inspi-avatar');
+  const closeBtn=document.getElementById('inspi-close-btn');
+  const input=document.getElementById('inspi-input');
+  const sendBtn=document.getElementById('inspi-send');
+  const messages=document.getElementById('inspi-messages');
+
+  const phrases=["Bonjour !","Dites-moi tout !","En quoi puis-je vous aider ?","Besoin de renseignements ?","Je suis là pour vous !","Une question IT ?","Bienvenue sur mon portfolio !","Ask me anything !","Cliquez, je réponds !","Support IT disponible !"];
+
+  const responses=[
+    "N'hésitez pas à contacter Patrick directement par email !",
+    "Patrick est disponible pour un stage dès maintenant.",
+    "Vous pouvez consulter ses projets dans la section Réalisations.",
+    "Patrick maîtrise les réseaux Cisco, Linux, et le développement web.",
+    "Pour toute question, utilisez le formulaire de contact ci-dessous !"
+  ];
+
+  let busy=false;
+
+  function resetAll(){
+    all.style.animation='inspi-float 3s ease-in-out infinite';
+    leftArm.style.animation='inspi-sign-idle 2.5s ease-in-out infinite';
+    leftArm.style.transformOrigin='84px 185px';
+    rarmGrp.style.animation='none';
+    rarmGrp.style.transform='rotate(0deg)';
+    drinkGrp.style.animation='none';
+    drinkGrp.style.transform='rotate(8deg)';
+    drinkGrp.style.transformOrigin='230px 205px';
+    eyeL.style.animation='inspi-blink 3.5s ease-in-out infinite';
+    eyeR.style.animation='inspi-blink 3.5s ease-in-out infinite 0.15s';
+    mouth.setAttribute('d','M122 183 Q150 197 178 183');
+    busy=false;
+  }
+
+  function doSip(){
+    if(busy)return; busy=true;
+    rarmGrp.style.animation='inspi-rarm-up 1.6s ease-in-out 2 forwards';
+    drinkGrp.style.animation='inspi-drink-up 1.6s ease-in-out 2 forwards';
+    let t=0;
+    const iv=setInterval(()=>{
+      t+=150;
+      if(t>380&&t<1500) mouth.setAttribute('d','M126 183 Q150 190 174 183');
+      else mouth.setAttribute('d','M122 183 Q150 197 178 183');
+      if(t>=3500){clearInterval(iv);resetAll();}
+    },150);
+  }
+
+  function doSpin(){if(busy)return;busy=true;leftArm.style.transformOrigin='84px 185px';leftArm.style.animation='inspi-spin 0.85s linear 1 forwards';setTimeout(resetAll,950);}
+  function doWave(){if(busy)return;busy=true;leftArm.style.transformOrigin='84px 185px';leftArm.style.animation='inspi-wave 0.5s ease-in-out 5';setTimeout(resetAll,2600);}
+  function doThrow(){if(busy)return;busy=true;leftArm.style.transformOrigin='84px 185px';leftArm.style.animation='inspi-throw 1.5s ease-in-out 1 forwards';setTimeout(resetAll,1600);}
+
+  function showBubble(){
+    const p=phrases[Math.floor(Math.random()*phrases.length)];
+    btxt.textContent=p;
+    bubble.style.animation='none';
+    bubble.style.opacity='0';
+    void bubble.offsetWidth;
+    bubble.style.animation='inspi-talk-in 3.4s ease-in-out forwards';
+    setTimeout(()=>{bubble.style.opacity='0';bubble.style.animation='none';},3400);
+  }
+
+  function addMsg(txt, isUser){
+    const d=document.createElement('div');
+    d.className='inspi-msg'+(isUser?' user':'');
+    d.textContent=txt;
+    messages.appendChild(d);
+    messages.scrollTop=messages.scrollHeight;
+  }
+
+  function handleSend(){
+    const val=input.value.trim();
+    if(!val)return;
+    addMsg(val,true);
+    input.value='';
+    setTimeout(()=>{
+      addMsg(responses[Math.floor(Math.random()*responses.length)],false);
+    },600);
+  }
+
+  const actions=[doSip,doSip,doSip,doSpin,doWave,doThrow];
+  resetAll();
+  document.getElementById('inspi-d1').style.animation='inspi-dot1 1.4s ease-in-out infinite';
+  document.getElementById('inspi-d2').style.animation='inspi-dot2 1.4s ease-in-out infinite';
+  document.getElementById('inspi-d3').style.animation='inspi-dot3 1.4s ease-in-out infinite';
+
+  setInterval(showBubble,5000);
+  setInterval(()=>{if(!busy&&chatBox.style.display==='none')actions[Math.floor(Math.random()*actions.length)]();},4000);
+
+  avatar.addEventListener('click',()=>{
+    chatBox.style.display=chatBox.style.display==='block'?'none':'block';
+    if(chatBox.style.display==='block'){showBubble();}
+    else{if(!busy)actions[Math.floor(Math.random()*actions.length)]();}
+  });
+
+  closeBtn.addEventListener('click',()=>{chatBox.style.display='none';});
+  sendBtn.addEventListener('click',handleSend);
+  input.addEventListener('keydown',(e)=>{if(e.key==='Enter')handleSend();});
+})();
+</script>
+
 </body>
 </html>
