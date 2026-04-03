@@ -15,8 +15,10 @@
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --black:#0a0a0a; --white:#fff; --gold:#c8a96d; --gold-dim:rgba(200,169,109,0.15);
-      --surface:#111; --border:rgba(255,255,255,0.07); --muted:#555; --dim:#888; --light:#bbb;
+      --black:#0a0a0a; --white:#fff; --gold:#c8a96d; --gold-dim:rgba(200,169,109,0.14);
+      --blue:#4f7ef7; --blue-dim:rgba(79,126,247,0.1); --blue-border:rgba(79,126,247,0.3);
+      --surface:#111; --navy:#0c0f1a; --border:rgba(255,255,255,0.07);
+      --muted:#666; --dim:#999; --light:#ccc;
       --fd:'Barlow Condensed',sans-serif; --fb:'Barlow',sans-serif; --fm:'DM Mono',monospace;
     }
     html{font-size:16px;scroll-behavior:smooth}
@@ -32,19 +34,20 @@
 
     /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:26px 56px;display:flex;align-items:center;justify-content:space-between;transition:transform .5s cubic-bezier(.77,0,.175,1),background .4s ease,padding .4s ease;mix-blend-mode:difference}
-    nav.scrolled{mix-blend-mode:normal;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);padding:18px 56px;border-bottom:1px solid var(--border)}
+    nav.scrolled{mix-blend-mode:normal;background:rgba(10,10,10,.95);backdrop-filter:blur(16px);padding:18px 56px;border-bottom:1px solid var(--border)}
     nav.hidden{transform:translateY(-110%)}
     .nav-logo{font-family:var(--fd);font-weight:900;font-size:1.1rem;letter-spacing:.18em;color:var(--white);text-decoration:none}
     nav.scrolled .nav-logo{color:var(--gold)}
-    .nav-links{list-style:none;display:flex;gap:36px}
-    .nav-links a{font-family:var(--fm);font-size:.62rem;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--white);text-decoration:none;position:relative}
+    .nav-links{list-style:none;display:flex;gap:28px}
+    .nav-links a{font-family:var(--fm);font-size:.58rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--white);text-decoration:none;position:relative}
     .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .35s ease}
     .nav-links a:hover::after{width:100%}
     nav.scrolled .nav-links a{color:var(--light)}
 
     /* HERO */
-    #hero{min-height:100vh;padding:0 56px 88px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
-    .hero-ghost{position:absolute;top:50%;left:-2vw;transform:translateY(-52%);font-family:var(--fd);font-weight:900;font-size:clamp(180px,38vw,580px);line-height:1;color:rgba(255,255,255,.02);pointer-events:none;user-select:none;letter-spacing:-.04em;white-space:nowrap}
+    #hero{min-height:100vh;padding:0 56px 88px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;background:var(--black)}
+    #hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 75% 25%,rgba(79,126,247,.07) 0%,transparent 65%),radial-gradient(ellipse 55% 45% at 15% 85%,rgba(200,169,109,.06) 0%,transparent 60%);pointer-events:none}
+    .hero-ghost{position:absolute;top:50%;left:-2vw;transform:translateY(-52%);font-family:var(--fd);font-weight:900;font-size:clamp(180px,38vw,580px);line-height:1;color:rgba(255,255,255,.022);pointer-events:none;user-select:none;letter-spacing:-.04em;white-space:nowrap}
     .hero-side{position:absolute;top:40px;right:56px;font-family:var(--fm);font-size:.58rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;writing-mode:vertical-rl}
     .hero-eye{font-family:var(--fm);font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;opacity:0;animation:fadeUp .8s ease .1s forwards}
     .hero-name{font-family:var(--fd);font-weight:900;font-size:clamp(64px,13.5vw,200px);line-height:.88;letter-spacing:-.025em;text-transform:uppercase;overflow:hidden}
@@ -53,14 +56,17 @@
     .hl:nth-child(2){animation-delay:.42s;margin-left:clamp(16px,4vw,96px);color:transparent;-webkit-text-stroke:1.5px var(--white)}
     .hero-rule{margin:40px 0;height:1px;background:var(--border);transform-origin:left;transform:scaleX(0);animation:scaleX .9s cubic-bezier(.77,0,.175,1) .75s forwards}
     .hero-bot{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;opacity:0;animation:fadeUp .8s ease 1s forwards}
+    .hero-left-block{display:flex;flex-direction:column;gap:14px}
     .hero-tag{font-family:var(--fd);font-weight:700;font-size:clamp(13px,2.2vw,26px);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+    .hero-avail{font-family:var(--fm);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);background:rgba(200,169,109,.07);border:1px solid rgba(200,169,109,.22);padding:7px 16px;display:inline-flex;align-items:center;gap:8px;width:fit-content}
+    .hero-avail::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0}
     .hero-scroll{display:flex;align-items:center;gap:14px;font-family:var(--fm);font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex-shrink:0}
     .s-track{width:52px;height:1px;background:var(--muted);position:relative;overflow:hidden}
     .s-track::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gold);animation:runLine 2.2s ease-in-out 1.5s infinite}
 
     /* SECTION COMMONS */
     .sec{position:relative;padding:140px 56px;border-top:1px solid var(--border)}
-    .sec-num{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(100px,20vw,300px);line-height:1;color:rgba(255,255,255,.03);letter-spacing:-.04em;pointer-events:none;user-select:none;right:0;top:60px}
+    .sec-num{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(100px,20vw,300px);line-height:1;color:rgba(255,255,255,.025);letter-spacing:-.04em;pointer-events:none;user-select:none;right:0;top:60px}
     .sec-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:14px;margin-bottom:20px}
     .sec-label::after{content:'';display:block;width:48px;height:1px;background:var(--muted)}
     .sec-title{font-family:var(--fd);font-weight:900;font-size:clamp(44px,7.5vw,96px);line-height:.93;letter-spacing:-.025em;text-transform:uppercase}
@@ -71,40 +77,41 @@
     .p-item{display:flex;align-items:baseline;justify-content:space-between;padding:28px 0;border-top:1px solid var(--border);gap:32px;transition:padding-left .4s cubic-bezier(.77,0,.175,1)}
     .p-item:last-child{border-bottom:1px solid var(--border)}
     .p-item:hover{padding-left:16px}
-    .p-item:hover .p-num{color:var(--gold)}
+    .p-item:hover .p-num{color:var(--blue)}
     .p-item:hover .p-name{color:var(--white)}
     .p-num{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;color:var(--muted);flex-shrink:0;transition:color .3s ease}
     .p-name{font-family:var(--fd);font-weight:800;font-size:clamp(22px,3.5vw,44px);letter-spacing:.04em;text-transform:uppercase;color:var(--light);transition:color .3s ease;flex:1}
-    .p-detail{font-family:var(--fm);font-size:.62rem;letter-spacing:.1em;color:var(--muted);text-align:right;flex-shrink:0;max-width:340px}
+    .p-detail{font-family:var(--fm);font-size:.64rem;letter-spacing:.1em;color:var(--muted);text-align:right;flex-shrink:0;max-width:340px}
 
-    /* COMPETENCES — logo cards */
+    /* COMPETENCES */
     #competences{background:var(--black)}
     .skills-groups{margin-top:72px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--border)}
     .sk-group{padding:48px 32px;border-right:1px solid var(--border)}
     .sk-group:last-child{border-right:none}
     .sk-group-head{font-family:var(--fd);font-weight:900;font-size:clamp(18px,2vw,26px);letter-spacing:.08em;text-transform:uppercase;color:var(--light);margin-bottom:32px}
     .sk-cards{display:flex;flex-wrap:wrap;gap:12px}
-    .sk-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;border:1px solid var(--border);min-width:76px;flex:1;transition:border-color .3s ease,background .3s ease}
-    .sk-card:hover{border-color:var(--gold);background:var(--gold-dim)}
+    .sk-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;border:1px solid var(--border);min-width:76px;flex:1;transition:border-color .3s,background .3s,transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s;will-change:transform}
+    .sk-card:hover{border-color:var(--gold);background:var(--gold-dim);transform:translateY(-6px) perspective(600px) rotateX(6deg);box-shadow:0 16px 40px rgba(0,0,0,.6),0 4px 8px rgba(200,169,109,.12)}
     .sk-card img{width:36px;height:36px;object-fit:contain;display:block}
     .sk-card-badge{width:36px;height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.48rem;font-weight:400;letter-spacing:.05em;text-align:center;line-height:1.2;flex-shrink:0}
     .sk-card-name{font-family:var(--fm);font-size:.54rem;letter-spacing:.1em;color:var(--light);text-align:center;line-height:1.3}
 
-    /* PARCOURS — timeline */
-    #parcours{background:var(--surface)}
+    /* PARCOURS */
+    #parcours{background:var(--navy)}
     .timeline{margin-top:72px;position:relative;padding-left:48px}
-    .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--gold),rgba(200,169,109,.1))}
+    .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--blue) 0%,var(--gold) 50%,rgba(200,169,109,.1) 100%)}
     .tl-item{position:relative;margin-bottom:56px}
     .tl-item:last-child{margin-bottom:0}
-    .tl-dot{position:absolute;left:-52px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(200,169,109,.15)}
-    .tl-year{font-family:var(--fm);font-size:.6rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+    .tl-dot{position:absolute;left:-52px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(200,169,109,.15),0 0 16px rgba(200,169,109,.25)}
+    .tl-year{font-family:var(--fm);font-size:.6rem;letter-spacing:.3em;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
     .tl-title{font-family:var(--fd);font-weight:800;font-size:clamp(22px,3vw,36px);letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:12px;line-height:1}
-    .tl-desc{font-size:.875rem;line-height:1.85;color:var(--dim);margin-bottom:16px;max-width:640px}
+    .tl-desc{font-size:.95rem;line-height:1.85;color:var(--dim);margin-bottom:16px;max-width:640px}
     .tl-tags{display:flex;flex-wrap:wrap;gap:8px}
     .tl-tag{font-family:var(--fm);font-size:.54rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(200,169,109,.3);color:var(--gold)}
-    .tl-status{display:inline-block;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding:5px 14px;border:1px solid var(--gold);margin-bottom:16px}
+    .tl-status{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding:6px 16px;border:1px solid var(--gold);margin-bottom:16px;animation:pulse-border 2.5s ease-in-out infinite}
+    .tl-status::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}
 
-    /* EXPERIENCES */
+    /* EXPERIENCES IT */
     #experiences{background:var(--surface)}
     .exp-wrap{margin-top:72px}
     .exp-item{padding:64px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;position:relative;overflow:hidden;transition:background .3s ease}
@@ -117,21 +124,41 @@
     .exp-title{font-family:var(--fd);font-weight:900;font-size:clamp(28px,3.5vw,52px);line-height:.94;letter-spacing:-.02em;text-transform:uppercase;transition:color .3s ease}
     .exp-item:hover .exp-title{color:var(--gold)}
     .exp-right{position:relative;z-index:1}
-    .exp-desc{font-size:.875rem;line-height:1.85;color:var(--dim);margin-bottom:24px}
+    .exp-desc{font-size:.95rem;line-height:1.85;color:var(--dim);margin-bottom:24px}
     .exp-list{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:8px}
-    .exp-list li{font-family:var(--fm);font-size:.68rem;letter-spacing:.06em;color:var(--light);display:flex;align-items:center;gap:12px}
+    .exp-list li{font-family:var(--fm);font-size:.7rem;letter-spacing:.06em;color:var(--light);display:flex;align-items:center;gap:12px}
     .exp-list li::before{content:'';display:block;width:16px;height:1px;background:var(--gold);flex-shrink:0}
 
+    /* AUTRES EXPÉRIENCES */
+    #autres-exp{background:var(--navy)}
+    .autre-grid{margin-top:72px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+    .autre-card{background:var(--navy);padding:52px 44px;position:relative;overflow:hidden;transition:background .3s ease}
+    .autre-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--blue);transition:width .4s cubic-bezier(.77,0,.175,1)}
+    .autre-card:hover::before{width:2px}
+    .autre-card:hover{background:rgba(79,126,247,.05)}
+    .autre-card-inner{position:relative;z-index:1}
+    .autre-period{font-family:var(--fm);font-size:.56rem;letter-spacing:.3em;color:var(--blue);text-transform:uppercase;margin-bottom:14px}
+    .autre-role{font-family:var(--fd);font-weight:800;font-size:clamp(20px,2.8vw,34px);letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:6px;line-height:1;transition:color .3s}
+    .autre-card:hover .autre-role{color:var(--blue)}
+    .autre-company{font-family:var(--fm);font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:22px}
+    .autre-desc{font-size:.93rem;line-height:1.85;color:var(--dim);margin-bottom:22px}
+    .autre-missions{list-style:none;margin-bottom:22px;display:flex;flex-direction:column;gap:7px}
+    .autre-missions li{font-family:var(--fm);font-size:.68rem;letter-spacing:.06em;color:var(--light);display:flex;align-items:center;gap:12px}
+    .autre-missions li::before{content:'';display:block;width:14px;height:1px;background:var(--blue);flex-shrink:0}
+    .autre-skills{display:flex;flex-wrap:wrap;gap:8px}
+    .autre-skill{font-family:var(--fm);font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(79,126,247,.3);color:var(--blue)}
+
     /* PROJECTS */
+    #projets{background:var(--black)}
     .proj-wrap{margin-top:72px}
     .proj{position:relative;padding:80px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;overflow:hidden;transition:background .3s ease}
     .proj:first-child{border-top:1px solid var(--border)}
     .proj::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width .4s cubic-bezier(.77,0,.175,1)}
     .proj:hover::before{width:3px}
-    .proj:hover{background:rgba(200,169,109,.03)}
+    .proj:hover{background:rgba(200,169,109,.025)}
     .proj:nth-child(even){direction:rtl}
     .proj:nth-child(even)>*{direction:ltr}
-    .proj-ghost{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(80px,14vw,200px);color:rgba(255,255,255,.03);line-height:1;letter-spacing:-.04em;pointer-events:none;user-select:none;top:10px}
+    .proj-ghost{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(80px,14vw,200px);color:rgba(255,255,255,.024);line-height:1;letter-spacing:-.04em;pointer-events:none;user-select:none;top:10px}
     .proj:nth-child(odd) .proj-ghost{right:-16px}
     .proj:nth-child(even) .proj-ghost{left:-16px}
     .proj-left{position:relative;z-index:1}
@@ -139,16 +166,23 @@
     .proj-title{font-family:var(--fd);font-weight:900;font-size:clamp(36px,5vw,68px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;transition:color .3s ease}
     .proj:hover .proj-title{color:var(--gold)}
     .proj-right{position:relative;z-index:1;padding-top:4px}
-    .proj-screen{width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--border);margin-bottom:16px;position:relative}
+
+    /* PROJ SCREEN — clickable */
+    .proj-screen{width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--border);margin-bottom:16px;position:relative;cursor:pointer;transition:border-color .35s,box-shadow .4s,transform .4s cubic-bezier(.4,0,.2,1)}
+    .proj-screen:hover{border-color:rgba(200,169,109,.35);box-shadow:0 12px 40px rgba(0,0,0,.7),0 0 0 1px rgba(200,169,109,.12),0 2px 4px rgba(0,0,0,.4);transform:perspective(900px) translateY(-4px) rotateX(3deg)}
     .proj-screen img{width:100%;height:100%;object-fit:cover;filter:brightness(.8) contrast(1.05);transition:filter .4s ease,transform .5s ease}
-    .proj:hover .proj-screen img{filter:brightness(.95) contrast(1.05);transform:scale(1.02)}
+    .proj:hover .proj-screen img{filter:brightness(.95) contrast(1.05);transform:scale(1.03)}
+    .proj-screen-zoom{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;padding:10px 12px;opacity:0;transition:opacity .3s;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 50%)}
+    .proj-screen:hover .proj-screen-zoom{opacity:1}
+    .proj-screen-zoom span{font-family:var(--fm);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);background:rgba(0,0,0,.5);padding:4px 10px;border:1px solid rgba(255,255,255,.15)}
+
     .proj-gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
     .proj-gallery .proj-screen{margin-bottom:0}
     .proj-gallery-single{margin-bottom:28px}
-    .proj-video{width:100%;aspect-ratio:16/9;border:1px solid var(--border);margin-bottom:28px;overflow:hidden;position:relative}
+    .proj-video{width:100%;aspect-ratio:16/9;border:1px solid var(--border);margin-bottom:28px;overflow:hidden;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.5)}
     .proj-video iframe{width:100%;height:100%;border:none;display:block}
     .proj-video-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-    .proj-desc{font-size:.875rem;line-height:1.85;color:var(--dim);margin-bottom:28px}
+    .proj-desc{font-size:.95rem;line-height:1.85;color:var(--dim);margin-bottom:28px}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
     .tag{font-family:var(--fm);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--muted);color:var(--muted);transition:border-color .3s,color .3s}
     .tag:hover,.proj:hover .tag{border-color:var(--gold);color:var(--gold)}
@@ -156,23 +190,22 @@
     .proj-link:hover,.proj:hover .proj-link{color:var(--gold);border-color:var(--gold)}
 
     /* VLAN SCHEMA */
-    #reseau-schema{background:var(--surface);padding:80px 56px}
+    #reseau-schema{background:var(--navy);padding:80px 56px}
     .schema-title{font-family:var(--fd);font-weight:900;font-size:clamp(20px,2.5vw,28px);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:32px}
     .vlan-svg{width:100%;max-width:900px;margin:0 auto;display:block}
 
     /* SUPERVISION */
     #supervision{background:var(--surface)}
     .sup-inner{margin-top:72px;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
-    .sup-left{}
     .sup-title{font-family:var(--fd);font-weight:900;font-size:clamp(48px,7.5vw,96px);line-height:.9;letter-spacing:-.025em;text-transform:uppercase;margin-bottom:24px}
     .sup-title em{font-style:italic;color:transparent;-webkit-text-stroke:1px var(--white)}
-    .sup-desc{font-size:.875rem;line-height:1.85;color:var(--dim);margin-bottom:40px}
+    .sup-desc{font-size:.95rem;line-height:1.85;color:var(--dim);margin-bottom:40px}
     .sup-rows{display:flex;flex-direction:column}
     .sup-row{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0;border-top:1px solid rgba(255,255,255,.06)}
     .sup-row:last-child{border-bottom:1px solid rgba(255,255,255,.06)}
     .sup-k{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
     .sup-v{font-family:var(--fm);font-size:.68rem;letter-spacing:.08em;color:var(--light);text-align:right}
-    .prtg-mock{border:1px solid var(--border);background:#0d0d0d;padding:0;overflow:hidden;border-radius:2px}
+    .prtg-mock{border:1px solid var(--border);background:#0d0d0d;overflow:hidden;border-radius:2px;box-shadow:0 16px 48px rgba(0,0,0,.7),0 4px 12px rgba(0,0,0,.4)}
     .prtg-bar{background:#161616;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
     .prtg-dot{width:8px;height:8px;border-radius:50%}
     .prtg-title-bar{font-family:var(--fm);font-size:.58rem;color:var(--muted);letter-spacing:.1em}
@@ -180,41 +213,44 @@
     .prtg-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
     .prtg-row:last-child{border-bottom:none}
     .prtg-status{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-    .ok{background:#4ade80}
-    .warn{background:#c8a96d}
-    .prtg-sensor{font-family:var(--fm);font-size:.62rem;color:var(--light);flex:1;letter-spacing:.05em}
+    .ok{background:#4ade80} .warn{background:#c8a96d}
+    .prtg-sensor{font-family:var(--fm);font-size:.64rem;color:var(--light);flex:1;letter-spacing:.05em}
     .prtg-val{font-family:var(--fm);font-size:.58rem;color:var(--muted)}
     .prtg-bar-chart{height:4px;background:var(--border);flex:1;max-width:80px;border-radius:2px;overflow:hidden}
     .prtg-bar-fill{height:100%;background:var(--gold);border-radius:2px}
     .sup-tools{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .sup-tool-card{padding:20px;border:1px solid var(--border);transition:border-color .3s,background .3s}
-    .sup-tool-card:hover{border-color:var(--gold);background:var(--gold-dim)}
+    .sup-tool-card{padding:20px;border:1px solid var(--border);transition:border-color .3s,background .3s,transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s}
+    .sup-tool-card:hover{border-color:var(--blue);background:var(--blue-dim);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.5),0 0 0 1px var(--blue-border)}
     .sup-tool-badge{display:inline-block;font-family:var(--fm);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:2px;color:#fff;margin-bottom:12px;font-weight:400}
     .sup-tool-name{font-family:var(--fd);font-weight:800;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--white);margin-bottom:6px}
-    .sup-tool-desc{font-family:var(--fm);font-size:.6rem;letter-spacing:.06em;color:var(--dim);line-height:1.6}
+    .sup-tool-desc{font-family:var(--fm);font-size:.62rem;letter-spacing:.06em;color:var(--dim);line-height:1.6}
 
     /* CV DOWNLOAD */
-    #cv-dl{border-top:1px solid var(--border)}
+    #cv-dl{border-top:1px solid var(--border);background:var(--navy)}
     .cv-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
     .cv-text h2{font-family:var(--fd);font-weight:900;font-size:clamp(40px,6vw,72px);line-height:.93;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:20px}
-    .cv-text p{font-size:.875rem;line-height:1.8;color:var(--dim)}
-    .cv-btn{display:inline-flex;align-items:center;gap:16px;font-family:var(--fd);font-weight:800;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1.5px solid var(--gold);padding:18px 40px;transition:background .3s,color .3s}
-    .cv-btn:hover{background:var(--gold);color:var(--black)}
+    .cv-text p{font-size:.95rem;line-height:1.8;color:var(--dim)}
+    .cv-btn{display:inline-flex;align-items:center;gap:16px;font-family:var(--fd);font-weight:800;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1.5px solid var(--gold);padding:18px 40px;transition:background .3s,color .3s,box-shadow .3s}
+    .cv-btn:hover{background:var(--gold);color:var(--black);box-shadow:0 8px 32px rgba(200,169,109,.3)}
     .cv-btn svg{width:18px;height:18px;transition:transform .3s ease}
     .cv-btn:hover svg{transform:translateY(3px)}
     .cv-note{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:16px}
 
     /* ABOUT */
+    #about{background:var(--surface)}
     .about-inner{margin-top:72px;display:grid;grid-template-columns:1fr 1.4fr;gap:100px}
     .about-attrs{display:flex;flex-direction:column}
     .attr{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--border)}
     .attr:first-child{border-top:1px solid var(--border)}
     .attr-k{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
     .attr-v{font-family:var(--fd);font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;text-align:right}
-    .about-text{font-size:.9rem;line-height:1.95;color:var(--light)}
-    .about-text p+p{margin-top:20px}
+    .about-text{font-size:.97rem;line-height:1.95;color:var(--light)}
+    .about-text p+p{margin-top:22px}
+    .about-text strong{color:var(--white);font-weight:500}
+    .about-highlight{font-family:var(--fd);font-weight:900;font-size:clamp(20px,2.8vw,32px);letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:24px;line-height:1;border-left:2px solid var(--gold);padding-left:20px}
 
     /* CONTACT */
+    #contact{background:var(--black)}
     .c-head{font-family:var(--fd);font-weight:900;font-size:clamp(48px,9.5vw,140px);line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin-top:28px;margin-bottom:72px}
     .c-head em{font-style:italic;color:transparent;-webkit-text-stroke:1.5px var(--white)}
     .c-links{display:flex;flex-direction:column}
@@ -223,10 +259,10 @@
     .c-link:hover{padding-left:20px}
     .c-link:hover .c-name{color:var(--gold)}
     .c-name{font-family:var(--fd);font-weight:800;font-size:clamp(20px,3.2vw,44px);letter-spacing:.06em;text-transform:uppercase;transition:color .3s ease}
-    .c-detail{font-family:var(--fm);font-size:.62rem;letter-spacing:.15em;color:var(--muted);transition:color .3s ease}
+    .c-detail{font-family:var(--fm);font-size:.64rem;letter-spacing:.15em;color:var(--muted);transition:color .3s ease}
     .c-link:hover .c-detail{color:var(--dim)}
 
-    footer{padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+    footer{padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--black)}
     footer span{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
     footer .f-gold{color:var(--gold)}
 
@@ -240,26 +276,48 @@
     @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     @keyframes scaleX{to{transform:scaleX(1)}}
     @keyframes runLine{0%{left:-100%}60%,100%{left:110%}}
+    @keyframes pulse-border{0%,100%{border-color:var(--gold)}50%{border-color:rgba(200,169,109,.45);box-shadow:0 0 0 4px rgba(200,169,109,.08)}}
+    @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+    @keyframes float-inspi{0%,100%{transform:translateY(0) rotate(-3deg) scale(1)}50%{transform:translateY(-7px) rotate(3deg) scale(1.04)}}
+    @keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}}
+
+    /* LIGHTBOX */
+    #lightbox{position:fixed;inset:0;background:rgba(5,5,8,.97);z-index:9500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease;backdrop-filter:blur(6px)}
+    #lightbox.open{opacity:1;pointer-events:all}
+    #lb-img{max-width:88vw;max-height:84vh;width:auto;height:auto;object-fit:contain;display:block;border:1px solid rgba(255,255,255,.08);box-shadow:0 48px 120px rgba(0,0,0,.9);transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .3s ease}
+    #lb-img.loading{opacity:0;transform:scale(.96)}
+    .lb-close{position:absolute;top:24px;right:32px;font-family:var(--fm);font-size:1rem;color:rgba(255,255,255,.4);background:none;border:1px solid rgba(255,255,255,.1);padding:8px 14px;cursor:none;transition:color .2s,border-color .2s;letter-spacing:.1em;z-index:1;line-height:1}
+    .lb-close:hover{color:var(--white);border-color:rgba(255,255,255,.3)}
+    .lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--fm);font-size:1.2rem;color:rgba(255,255,255,.3);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:none;transition:color .25s,background .25s,transform .25s;padding:18px 16px;line-height:1;z-index:1;letter-spacing:.05em}
+    .lb-prev{left:20px}
+    .lb-next{right:20px}
+    .lb-prev:hover,.lb-next:hover{color:var(--gold);background:rgba(200,169,109,.08);border-color:rgba(200,169,109,.25);transform:translateY(-50%) scale(1.1)}
+    .lb-caption{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);text-align:center;white-space:nowrap}
 
     /* CHATBOT */
-    #chat-btn{position:fixed;bottom:32px;right:32px;z-index:2000;width:52px;height:52px;background:var(--black);border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;transition:background .3s,transform .3s;box-shadow:0 4px 24px rgba(200,169,109,.18)}
-    #chat-btn:hover{background:var(--gold-dim);transform:scale(1.08)}
-    #chat-btn svg{width:20px;height:20px;color:var(--gold)}
-    #chat-panel{position:fixed;bottom:100px;right:32px;z-index:1999;width:340px;height:480px;background:var(--surface);border:1px solid var(--border);display:flex;flex-direction:column;transform:translateY(20px) scale(.97);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.77,0,.175,1),opacity .35s ease;box-shadow:0 16px 64px rgba(0,0,0,.6)}
+    #chat-btn{position:fixed;bottom:32px;right:32px;z-index:2000;width:64px;height:64px;background:var(--black);border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;transition:background .3s,transform .3s,box-shadow .3s;box-shadow:0 4px 24px rgba(200,169,109,.2),0 0 0 0 rgba(200,169,109,.1)}
+    #chat-btn:hover{background:var(--gold-dim);transform:scale(1.1);box-shadow:0 8px 40px rgba(200,169,109,.35)}
+    #chat-avatar-btn{width:48px;height:48px;border-radius:50%;overflow:hidden;animation:float-inspi 3.2s ease-in-out infinite}
+    #chat-avatar-btn img{width:100%;height:100%;object-fit:cover;filter:invert(1)}
+    #chat-panel{position:fixed;bottom:112px;right:32px;z-index:1999;width:364px;max-height:520px;background:var(--surface);border:1px solid var(--border);display:flex;flex-direction:column;transform:translateY(24px) scale(.96);opacity:0;pointer-events:none;transition:transform .38s cubic-bezier(.77,0,.175,1),opacity .38s ease;box-shadow:0 24px 80px rgba(0,0,0,.75),0 0 0 1px rgba(200,169,109,.06)}
     #chat-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
-    .chat-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-    .chat-head-name{font-family:var(--fd);font-weight:800;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white)}
-    .chat-close{background:none;border:none;cursor:none;color:var(--muted);font-size:1.2rem;line-height:1;transition:color .2s;font-family:var(--fm)}
-    .chat-close:hover{color:var(--gold)}
-    .chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+    .chat-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;flex-shrink:0}
+    .chat-head-avatar{width:38px;height:38px;border-radius:50%;overflow:hidden;border:1.5px solid var(--gold);flex-shrink:0;animation:bob 2.8s ease-in-out infinite}
+    .chat-head-avatar img{width:100%;height:100%;object-fit:cover;filter:invert(1)}
+    .chat-head-info{flex:1;min-width:0}
+    .chat-head-name{font-family:var(--fd);font-weight:800;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white);display:block;line-height:1;margin-bottom:3px}
+    .chat-head-sub{font-family:var(--fm);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+    .chat-close{background:none;border:none;cursor:none;color:var(--muted);font-size:1.1rem;line-height:1;transition:color .2s;font-family:var(--fm);flex-shrink:0;padding:4px}
+    .chat-close:hover{color:var(--white)}
+    .chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;min-height:0}
     .chat-msgs::-webkit-scrollbar{width:3px}
     .chat-msgs::-webkit-scrollbar-track{background:transparent}
     .chat-msgs::-webkit-scrollbar-thumb{background:var(--muted);border-radius:2px}
-    .chat-msg{max-width:88%;padding:10px 14px;font-family:var(--fm);font-size:.65rem;letter-spacing:.05em;line-height:1.65}
+    .chat-msg{max-width:88%;padding:10px 14px;font-family:var(--fm);font-size:.66rem;letter-spacing:.04em;line-height:1.7}
     .chat-msg.bot{background:rgba(255,255,255,.05);color:var(--light);align-self:flex-start;border-left:2px solid var(--gold)}
     .chat-msg.user{background:var(--gold-dim);color:var(--white);align-self:flex-end;border-right:2px solid var(--gold)}
     .chat-quick{padding:10px 12px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0}
-    .chat-q{font-family:var(--fm);font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border:1px solid var(--border);color:var(--muted);background:none;cursor:none;transition:border-color .2s,color .2s}
+    .chat-q{font-family:var(--fm);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border:1px solid var(--border);color:var(--muted);background:none;cursor:none;transition:border-color .2s,color .2s}
     .chat-q:hover{border-color:var(--gold);color:var(--gold)}
     .chat-input-row{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0}
     #chat-input{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--border);padding:10px 12px;font-family:var(--fm);font-size:.65rem;letter-spacing:.06em;color:var(--white);outline:none;transition:border-color .2s}
@@ -286,6 +344,7 @@
       .sup-tools{grid-template-columns:1fr}
       .about-inner,.cv-inner{grid-template-columns:1fr;gap:48px}
       .exp-item{grid-template-columns:1fr;gap:32px}
+      .autre-grid{grid-template-columns:1fr}
       .p-detail{display:none}
       #chat-panel{width:calc(100vw - 48px);right:24px}
     }
@@ -294,6 +353,7 @@
       .sk-group:nth-child(odd){border-right:none}
       .timeline{padding-left:32px}
       .tl-dot{left:-36px}
+      .hero-bot{flex-direction:column;align-items:flex-start;gap:20px}
     }
   </style>
 </head>
@@ -302,14 +362,24 @@
 <div id="cd"></div>
 <div id="cr"></div>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse d'image">
+  <button class="lb-close" id="lb-close" aria-label="Fermer">ESC</button>
+  <button class="lb-prev" id="lb-prev" aria-label="Précédent">&#8592;</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-next" id="lb-next" aria-label="Suivant">&#8594;</button>
+  <p class="lb-caption" id="lb-caption"></p>
+</div>
+
 <!-- NAV -->
 <nav id="nav">
   <a href="#hero" class="nav-logo">PM</a>
   <ul class="nav-links">
-    <li><a href="#pratique">En Pratique</a></li>
-    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#pratique">Pratique</a></li>
+    <li><a href="#competences">Stack</a></li>
     <li><a href="#parcours">Parcours</a></li>
     <li><a href="#projets">Projets</a></li>
+    <li><a href="#autres-exp">Expériences</a></li>
     <li><a href="#supervision">Supervision</a></li>
     <li><a href="#cv-dl">CV</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -328,7 +398,10 @@
     </h1>
     <div class="hero-rule"></div>
     <div class="hero-bot">
-      <p class="hero-tag">TECHNICIEN IT — EN RECHERCHE DE STAGE</p>
+      <div class="hero-left-block">
+        <p class="hero-tag">TECHNICIEN IT — EN RECHERCHE DE STAGE</p>
+        <span class="hero-avail">Disponible &nbsp;·&nbsp; 29 juin — 30 juillet 2026</span>
+      </div>
       <div class="hero-scroll" aria-hidden="true">
         <div class="s-track"></div>Défiler
       </div>
@@ -375,107 +448,44 @@
     <h2 class="sec-title">Stack<br>Technique</h2>
   </div>
   <div class="skills-groups">
-
-    <!-- RÉSEAU -->
     <div class="sk-group reveal d1">
       <h3 class="sk-group-head">Réseau</h3>
       <div class="sk-cards">
-        <div class="sk-card">
-          <div class="sk-card-badge" style="background:#1BA0D7;color:#fff">PT</div>
-          <span class="sk-card-name">Cisco PT</span>
-        </div>
-        <div class="sk-card">
-          <div class="sk-card-badge" style="background:#fff;color:#222">TCP/IP</div>
-          <span class="sk-card-name">TCP/IP</span>
-        </div>
-        <div class="sk-card">
-          <div class="sk-card-badge" style="background:#fff;color:#222">VLAN</div>
-          <span class="sk-card-name">VLAN</span>
-        </div>
-        <div class="sk-card">
-          <div class="sk-card-badge" style="background:#fff;color:#222">DHCP</div>
-          <span class="sk-card-name">DHCP</span>
-        </div>
-        <div class="sk-card">
-          <div class="sk-card-badge" style="background:#fff;color:#222;font-size:.42rem">IPv4</div>
-          <span class="sk-card-name">Adressage IPv4</span>
-        </div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#1BA0D7;color:#fff">PT</div><span class="sk-card-name">Cisco PT</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a1a;color:#fff;border:1px solid #444">TCP/IP</div><span class="sk-card-name">TCP/IP</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#2563eb;color:#fff">VLAN</div><span class="sk-card-name">VLAN</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#0f766e;color:#fff">DHCP</div><span class="sk-card-name">DHCP</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a1a;color:#aaa;border:1px solid #444;font-size:.42rem">IPv4</div><span class="sk-card-name">Adressage IPv4</span></div>
       </div>
     </div>
-
-    <!-- SYSTÈMES -->
     <div class="sk-group reveal d2">
       <h3 class="sk-group-head">Systèmes</h3>
       <div class="sk-cards">
-        <div class="sk-card">
-          <div class="sk-card-badge" style="background:#607D8B;color:#fff">VM</div>
-          <span class="sk-card-name">VMware</span>
-        </div>
-        <div class="sk-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows Server" loading="lazy">
-          <span class="sk-card-name">Windows Server</span>
-        </div>
-        <div class="sk-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" alt="Debian" loading="lazy">
-          <span class="sk-card-name">Debian</span>
-        </div>
-        <div class="sk-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg" alt="PowerShell" loading="lazy">
-          <span class="sk-card-name">PowerShell</span>
-        </div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#607D8B;color:#fff">VM</div><span class="sk-card-name">VMware</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows Server" loading="lazy"><span class="sk-card-name">Win Server</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" alt="Debian" loading="lazy"><span class="sk-card-name">Debian</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg" alt="PowerShell" loading="lazy"><span class="sk-card-name">PowerShell</span></div>
       </div>
     </div>
-
-    <!-- DÉVELOPPEMENT -->
     <div class="sk-group reveal d3">
       <h3 class="sk-group-head">Développement</h3>
       <div class="sk-cards">
-        <div class="sk-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" loading="lazy">
-          <span class="sk-card-name">PHP</span>
-        </div>
-        <div class="sk-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy">
-          <span class="sk-card-name">MySQL</span>
-        </div>
-        <div class="sk-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy">
-          <span class="sk-card-name">HTML5</span>
-        </div>
-        <div class="sk-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy">
-          <span class="sk-card-name">CSS3</span>
-        </div>
-        <div class="sk-card">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy">
-          <span class="sk-card-name">VS Code</span>
-        </div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" loading="lazy"><span class="sk-card-name">PHP</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy"><span class="sk-card-name">MySQL</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy"><span class="sk-card-name">HTML5</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy"><span class="sk-card-name">CSS3</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy"><span class="sk-card-name">VS Code</span></div>
       </div>
     </div>
-
-    <!-- SUPERVISION -->
     <div class="sk-group reveal d4">
       <h3 class="sk-group-head">Supervision</h3>
       <div class="sk-cards">
-        <div class="sk-card">
-          <div class="sk-card-badge" style="background:#FF6D00;color:#fff">PRTG</div>
-          <span class="sk-card-name">PRTG</span>
-        </div>
-        <div class="sk-card">
-          <div class="sk-card-badge" style="background:#2E3192;color:#fff">NGS</div>
-          <span class="sk-card-name">Nagios</span>
-        </div>
-        <div class="sk-card">
-          <div class="sk-card-badge" style="background:#FF5722;color:#fff">CTR</div>
-          <span class="sk-card-name">Centreon</span>
-        </div>
-        <div class="sk-card">
-          <div class="sk-card-badge" style="background:#CC0000;color:#fff">ZBX</div>
-          <span class="sk-card-name">Zabbix</span>
-        </div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#FF6D00;color:#fff">PRTG</div><span class="sk-card-name">PRTG</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#2E3192;color:#fff">NGS</div><span class="sk-card-name">Nagios</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#e05c2b;color:#fff">CTR</div><span class="sk-card-name">Centreon</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#CC0000;color:#fff">ZBX</div><span class="sk-card-name">Zabbix</span></div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -487,77 +497,63 @@
     <h2 class="sec-title">Parcours<br>&amp; Formation</h2>
   </div>
   <div class="timeline" style="margin-top:72px">
-
     <div class="tl-item reveal d1">
       <div class="tl-dot"></div>
       <p class="tl-year">2024 – 2025</p>
       <h3 class="tl-title">Formation Informatique</h3>
       <p class="tl-desc">Réseaux &amp; Systèmes, infrastructure IT, développement web. Bases solides en administration réseau et systèmes d'exploitation.</p>
       <div class="tl-tags">
-        <span class="tl-tag">TCP/IP</span>
-        <span class="tl-tag">VLAN</span>
-        <span class="tl-tag">VMware</span>
-        <span class="tl-tag">PHP</span>
+        <span class="tl-tag">TCP/IP</span><span class="tl-tag">VLAN</span>
+        <span class="tl-tag">VMware</span><span class="tl-tag">PHP</span>
       </div>
     </div>
-
     <div class="tl-item reveal d2">
       <div class="tl-dot"></div>
       <p class="tl-year">2025</p>
       <h3 class="tl-title">Attestation CNIL</h3>
       <p class="tl-desc">Certification sur la protection des données personnelles et conformité RGPD.</p>
       <div class="tl-tags">
-        <span class="tl-tag">RGPD</span>
-        <span class="tl-tag">CNIL</span>
-        <span class="tl-tag">Données personnelles</span>
+        <span class="tl-tag">RGPD</span><span class="tl-tag">CNIL</span><span class="tl-tag">Données personnelles</span>
       </div>
     </div>
-
     <div class="tl-item reveal d3">
       <div class="tl-dot"></div>
       <p class="tl-year">2025</p>
       <h3 class="tl-title">TPs Professionnels</h3>
       <p class="tl-desc">Cisco Packet Tracer, VMware Workstation, PHP/MySQL, PRTG, Nagios, Centreon, Zabbix — outils utilisés en entreprise.</p>
       <div class="tl-tags">
-        <span class="tl-tag">Cisco</span>
-        <span class="tl-tag">VMware</span>
-        <span class="tl-tag">PRTG</span>
-        <span class="tl-tag">Nagios</span>
+        <span class="tl-tag">Cisco</span><span class="tl-tag">VMware</span>
+        <span class="tl-tag">PRTG</span><span class="tl-tag">Nagios</span>
       </div>
     </div>
-
     <div class="tl-item reveal d4">
       <div class="tl-dot"></div>
       <p class="tl-year">2025 – 2026</p>
       <h3 class="tl-title">Mission IT</h3>
       <p class="tl-desc">Prestation en environnement professionnel : configuration réseau, support utilisateur, virtualisation, documentation technique.</p>
       <div class="tl-tags">
-        <span class="tl-tag">Configuration</span>
-        <span class="tl-tag">Support</span>
-        <span class="tl-tag">Documentation</span>
+        <span class="tl-tag">Configuration</span><span class="tl-tag">Support</span><span class="tl-tag">Documentation</span>
       </div>
     </div>
-
     <div class="tl-item reveal">
       <div class="tl-dot"></div>
       <p class="tl-year">2026</p>
       <h3 class="tl-title">Recherche de Stage</h3>
-      <p class="tl-status">Disponible — Stage IT</p>
+      <div class="tl-status">Disponible · 29 juin — 30 juillet 2026</div>
       <div class="tl-tags">
-        <span class="tl-tag">Stage</span>
-        <span class="tl-tag">Administration</span>
-        <span class="tl-tag">Support</span>
+        <span class="tl-tag">Administration réseau</span>
+        <span class="tl-tag">Support IT</span>
+        <span class="tl-tag">Helpdesk</span>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════ 04 EXPÉRIENCES ══════════ -->
+<!-- ══════════ 04 EXPÉRIENCES IT ══════════ -->
 <section id="experiences" class="sec">
   <div class="sec-num" aria-hidden="true">04</div>
   <div class="reveal">
-    <div class="sec-label">04 — Expériences</div>
+    <div class="sec-label">04 — Mission IT</div>
     <h2 class="sec-title">Expériences<br>Professionnelles</h2>
   </div>
   <div class="exp-wrap">
@@ -569,16 +565,14 @@
       <div class="exp-right">
         <p class="exp-desc">Configuration d'équipements réseau, support utilisateur, déploiement de postes, virtualisation d'environnements et documentation technique en contexte professionnel.</p>
         <ul class="exp-list">
-          <li>Configuration switch</li>
-          <li>Virtualisation VMware</li>
-          <li>Support N1/N2</li>
-          <li>Documentation réseau</li>
+          <li>Configuration switch &amp; équipements réseau</li>
+          <li>Virtualisation VMware (déploiement, snapshot)</li>
+          <li>Support utilisateur N1 / N2</li>
+          <li>Rédaction documentation réseau</li>
         </ul>
         <div class="tags">
-          <span class="tag">Réseau</span>
-          <span class="tag">Support</span>
-          <span class="tag">VMware</span>
-          <span class="tag">Windows Server</span>
+          <span class="tag">Réseau</span><span class="tag">Support</span>
+          <span class="tag">VMware</span><span class="tag">Windows Server</span>
         </div>
       </div>
     </article>
@@ -603,21 +597,23 @@
       </div>
       <div class="proj-right">
         <div class="proj-gallery">
-          <figure class="proj-screen">
-            <img src="assets/img/cv-app-ui.png" alt="Formulaire Générateur de CV — interface noire" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/cv-app-ui.png" data-caption="Interface du formulaire générateur de CV">
+            <img src="assets/img/cv-app-ui.png" alt="Formulaire Générateur de CV" loading="lazy">
+            <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
-          <figure class="proj-screen">
+          <figure class="proj-screen" data-src="assets/img/cv-db-data.png" data-caption="Base de données phpMyAdmin — table candidats">
             <img src="assets/img/cv-db-data.png" alt="phpMyAdmin — données table candidats" loading="lazy">
+            <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
         <p class="proj-video-label">Démonstration — test en conditions réelles</p>
         <div class="proj-video">
           <iframe src="https://drive.google.com/file/d/1CW2z7RcgiaGgIkQFgG551du34uY814J0/preview" allow="autoplay" allowfullscreen loading="lazy"></iframe>
         </div>
-        <p class="proj-desc">Application web PHP + MySQL : formulaire CURRICULUM noir élégant, sauvegarde sécurisée (MySQLi requêtes préparées), affichage dynamique du CV généré. Architecture CRUD complète.</p>
+        <p class="proj-desc">Application web PHP + MySQL : formulaire élégant, sauvegarde sécurisée (MySQLi requêtes préparées), affichage dynamique du CV généré. Architecture CRUD complète.</p>
         <div class="tags">
           <span class="tag">PHP</span><span class="tag">MySQL</span>
-          <span class="tag">MySQLi</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">VS Code</span>
+          <span class="tag">MySQLi</span><span class="tag">HTML</span><span class="tag">CSS</span>
         </div>
         <a href="https://github.com/patrickmekongo19-droid/portfolio" target="_blank" rel="noopener" class="proj-link">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -635,11 +631,13 @@
       </div>
       <div class="proj-right">
         <div class="proj-gallery">
-          <figure class="proj-screen">
-            <img src="assets/img/vmware-vms.png" alt="VMware Workstation — liste des VMs" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/vmware-vms.png" data-caption="VMware Workstation — liste des machines virtuelles">
+            <img src="assets/img/vmware-vms.png" alt="VMware — liste des VMs" loading="lazy">
+            <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
-          <figure class="proj-screen">
-            <img src="assets/img/debian-network-config.png" alt="Debian — configuration réseau statique" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/debian-network-config.png" data-caption="Debian 12 — configuration réseau statique">
+            <img src="assets/img/debian-network-config.png" alt="Debian — configuration réseau" loading="lazy">
+            <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
         <p class="proj-desc">Déploiement VMware Workstation : Windows 11 (TPM, chiffrement), Debian 12 (partitionnement ext4/swap), clonage VMs, configuration réseau statique (/etc/network/interfaces), tests inter-VM.</p>
@@ -659,8 +657,9 @@
       </div>
       <div class="proj-right">
         <div class="proj-gallery-single">
-          <figure class="proj-screen">
-            <img src="assets/img/cisco-vlan-topo.png" alt="Topologie Cisco Packet Tracer — VLAN 10 et 20" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/cisco-vlan-topo.png" data-caption="Cisco Packet Tracer — topologie VLAN 10 et 20">
+            <img src="assets/img/cisco-vlan-topo.png" alt="Topologie Cisco PT — VLAN 10 et 20" loading="lazy">
+            <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
         <p class="proj-desc">Conception et configuration Cisco Packet Tracer : VLAN 10 &amp; 20, liens trunk 802.1q, DHCP Windows Server, plan d'adressage IPv4. Simulation de trafic avec tests de connectivité.</p>
@@ -680,17 +679,19 @@
       </div>
       <div class="proj-right">
         <div class="proj-gallery">
-          <figure class="proj-screen">
+          <figure class="proj-screen" data-src="assets/img/bdd-mcd-archeo.png" data-caption="MCD Merise — base de données archéologique">
             <img src="assets/img/bdd-mcd-archeo.png" alt="MCD Merise — base archéologique" loading="lazy">
+            <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
-          <figure class="proj-screen">
-            <img src="assets/img/bdd-mcd-biblio.png" alt="MCD Merise — bibliothèque numérique" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/bdd-mcd-biblio.png" data-caption="MCD Merise — système bibliothèque numérique">
+            <img src="assets/img/bdd-mcd-biblio.png" alt="MCD Merise — bibliothèque" loading="lazy">
+            <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
-        <p class="proj-desc">Modélisation Merise (MCD/MPD) pour deux systèmes : base de fouilles archéologiques (entités : Chercheur, Équipe, Parcelle, Objet, Site) et système de bibliothèque numérique (Usager, Document, Livre, Réservation).</p>
+        <p class="proj-desc">Modélisation Merise (MCD/MPD) pour deux systèmes : base de fouilles archéologiques (Chercheur, Équipe, Parcelle, Objet, Site) et bibliothèque numérique (Usager, Document, Réservation).</p>
         <div class="tags">
           <span class="tag">Merise</span><span class="tag">MCD</span>
-          <span class="tag">MPD</span><span class="tag">SQL</span><span class="tag">Conception</span><span class="tag">Modélisation</span>
+          <span class="tag">MPD</span><span class="tag">SQL</span><span class="tag">Modélisation</span>
         </div>
       </div>
     </article>
@@ -703,12 +704,17 @@
         <h3 class="proj-title">Mission<br>IT</h3>
       </div>
       <div class="proj-right">
-        <div class="proj-gallery-single">
-          <figure class="proj-screen">
+        <div class="proj-gallery">
+          <figure class="proj-screen" data-src="assets/img/powershell-ping.png" data-caption="PowerShell — tests de connectivité réseau">
             <img src="assets/img/powershell-ping.png" alt="PowerShell — tests de connectivité" loading="lazy">
+            <div class="proj-screen-zoom"><span>Agrandir</span></div>
+          </figure>
+          <figure class="proj-screen" data-src="assets/img/cisco-ping.png" data-caption="Cisco Packet Tracer — diagnostic de connectivité">
+            <img src="assets/img/cisco-ping.png" alt="Cisco PT — ping diagnostic" loading="lazy">
+            <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
-        <p class="proj-desc">Mission professionnelle IT : diagnostic réseau, configuration d'équipements, support utilisateur, déploiement postes, virtualisation d'environnements et rédaction de documentation technique.</p>
+        <p class="proj-desc">Mission professionnelle IT : diagnostic réseau, configuration d'équipements, support utilisateur, déploiement postes, virtualisation et rédaction de documentation technique.</p>
         <div class="tags">
           <span class="tag">Réseau</span><span class="tag">Support</span>
           <span class="tag">Configuration</span><span class="tag">Documentation</span><span class="tag">PowerShell</span>
@@ -722,65 +728,103 @@
 <!-- ══════════ SCHÉMA VLAN ══════════ -->
 <div id="reseau-schema">
   <p class="schema-title">Schéma — Infrastructure VLAN</p>
-  <svg class="vlan-svg" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" aria-label="Schéma réseau VLAN avec Internet, Routeur, Switch Core et VLANs 10/20/30">
+  <svg class="vlan-svg" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" aria-label="Schéma réseau VLAN">
     <defs>
-      <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.25)"/>
-      </marker>
-      <marker id="arr-gold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-        <path d="M0,0 L0,6 L8,3 z" fill="#c8a96d"/>
-      </marker>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="rgba(255,255,255,0.25)"/></marker>
+      <marker id="arr-gold" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#c8a96d"/></marker>
+      <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#4f7ef7"/></marker>
     </defs>
-    <!-- INTERNET -->
     <ellipse cx="450" cy="38" rx="68" ry="26" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
     <text x="450" y="42" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="DM Mono,monospace" font-size="11" letter-spacing="2">INTERNET</text>
-    <!-- line internet→router -->
     <line x1="450" y1="64" x2="450" y2="96" stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
-    <!-- ROUTEUR -->
     <rect x="390" y="96" width="120" height="44" rx="2" fill="none" stroke="#c8a96d" stroke-width="1.5"/>
     <text x="450" y="123" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="10.5" letter-spacing="2">ROUTEUR</text>
-    <!-- line router→switch TRUNK 802.1q -->
     <line x1="450" y1="140" x2="450" y2="176" stroke="#c8a96d" stroke-width="2" marker-end="url(#arr-gold)"/>
-    <rect x="458" y="149" width="64" height="18" rx="2" fill="#111"/>
+    <rect x="458" y="149" width="64" height="18" rx="2" fill="#0c0f1a"/>
     <text x="490" y="161" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8" letter-spacing="1.5">802.1q TRUNK</text>
-    <!-- SWITCH CORE -->
     <rect x="360" y="176" width="180" height="44" rx="2" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
     <text x="450" y="203" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Mono,monospace" font-size="10" letter-spacing="2">SWITCH CORE</text>
-    <!-- lines switch→vlans -->
-    <line x1="415" y1="220" x2="195" y2="278" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr)"/>
-    <line x1="450" y1="220" x2="450" y2="278" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr)"/>
-    <line x1="485" y1="220" x2="706" y2="278" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr)"/>
-    <!-- 802.1q labels on branches -->
+    <line x1="415" y1="220" x2="195" y2="278" stroke="rgba(79,126,247,0.4)" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr-blue)"/>
+    <line x1="450" y1="220" x2="450" y2="278" stroke="rgba(200,169,109,0.4)" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr-gold)"/>
+    <line x1="485" y1="220" x2="706" y2="278" stroke="rgba(79,126,247,0.4)" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr-blue)"/>
     <text x="292" y="256" text-anchor="middle" fill="rgba(200,169,109,0.45)" font-family="DM Mono,monospace" font-size="7.5" letter-spacing="1">802.1q</text>
     <text x="462" y="256" text-anchor="middle" fill="rgba(200,169,109,0.45)" font-family="DM Mono,monospace" font-size="7.5" letter-spacing="1">802.1q</text>
     <text x="612" y="256" text-anchor="middle" fill="rgba(200,169,109,0.45)" font-family="DM Mono,monospace" font-size="7.5" letter-spacing="1">802.1q</text>
-    <!-- VLAN 10 -->
-    <rect x="90" y="278" width="210" height="64" rx="2" fill="rgba(200,169,109,0.04)" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+    <rect x="90" y="278" width="210" height="64" rx="2" fill="rgba(79,126,247,0.06)" stroke="rgba(79,126,247,0.4)" stroke-width="1.2"/>
     <text x="195" y="299" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="DM Mono,monospace" font-size="9.5" letter-spacing="1.5">VLAN 10</text>
-    <text x="195" y="316" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8.5">Administration</text>
+    <text x="195" y="316" text-anchor="middle" fill="#4f7ef7" font-family="DM Mono,monospace" font-size="8.5">Administration</text>
     <text x="195" y="332" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Mono,monospace" font-size="8">192.168.10.x /24</text>
-    <!-- VLAN 20 -->
-    <rect x="345" y="278" width="210" height="64" rx="2" fill="rgba(200,169,109,0.04)" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+    <rect x="345" y="278" width="210" height="64" rx="2" fill="rgba(200,169,109,0.05)" stroke="rgba(200,169,109,0.4)" stroke-width="1.2"/>
     <text x="450" y="299" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="DM Mono,monospace" font-size="9.5" letter-spacing="1.5">VLAN 20</text>
     <text x="450" y="316" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8.5">Utilisateurs</text>
     <text x="450" y="332" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Mono,monospace" font-size="8">192.168.20.x /24</text>
-    <!-- VLAN 30 -->
-    <rect x="602" y="278" width="210" height="64" rx="2" fill="rgba(200,169,109,0.04)" stroke="rgba(255,255,255,0.28)" stroke-width="1.2"/>
+    <rect x="602" y="278" width="210" height="64" rx="2" fill="rgba(79,126,247,0.06)" stroke="rgba(79,126,247,0.4)" stroke-width="1.2"/>
     <text x="707" y="299" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-family="DM Mono,monospace" font-size="9.5" letter-spacing="1.5">VLAN 30</text>
-    <text x="707" y="316" text-anchor="middle" fill="#c8a96d" font-family="DM Mono,monospace" font-size="8.5">Serveurs</text>
+    <text x="707" y="316" text-anchor="middle" fill="#4f7ef7" font-family="DM Mono,monospace" font-size="8.5">Serveurs</text>
     <text x="707" y="332" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Mono,monospace" font-size="8">192.168.30.x / DHCP</text>
   </svg>
 </div>
 
-<!-- ══════════ 06 SUPERVISION ══════════ -->
-<section id="supervision" class="sec">
+<!-- ══════════ 06 AUTRES EXPÉRIENCES ══════════ -->
+<section id="autres-exp" class="sec">
   <div class="sec-num" aria-hidden="true">06</div>
   <div class="reveal">
-    <div class="sec-label">06 — Supervision réseau</div>
+    <div class="sec-label">06 — Hors IT</div>
+    <h2 class="sec-title">Autres<br>Expériences</h2>
+  </div>
+  <div class="autre-grid">
+
+    <div class="autre-card reveal d1">
+      <div class="autre-card-inner">
+        <p class="autre-period">2023 – 2024</p>
+        <h3 class="autre-role">Agent de Service</h3>
+        <p class="autre-company">Restauration rapide</p>
+        <p class="autre-desc">Travail en équipe en environnement à cadence soutenue. Gestion simultanée de plusieurs tâches, respect strict des procédures et des délais.</p>
+        <ul class="autre-missions">
+          <li>Accueil et service clientèle</li>
+          <li>Respect des normes d'hygiène et sécurité</li>
+          <li>Travail en équipe sous pression</li>
+          <li>Ouverture / fermeture du poste</li>
+        </ul>
+        <div class="autre-skills">
+          <span class="autre-skill">Travail en équipe</span>
+          <span class="autre-skill">Rigueur</span>
+          <span class="autre-skill">Gestion du stress</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="autre-card reveal d2">
+      <div class="autre-card-inner">
+        <p class="autre-period">2022 – 2023</p>
+        <h3 class="autre-role">Agent Logistique</h3>
+        <p class="autre-company">Distribution &amp; Commerce</p>
+        <p class="autre-desc">Gestion de flux de marchandises, suivi des stocks et préparation de commandes. Sens de l'organisation et fiabilité développés dans un contexte professionnel exigeant.</p>
+        <ul class="autre-missions">
+          <li>Préparation et suivi de commandes</li>
+          <li>Inventaire et gestion des stocks</li>
+          <li>Utilisation de terminaux de saisie</li>
+          <li>Respect des délais de traitement</li>
+        </ul>
+        <div class="autre-skills">
+          <span class="autre-skill">Organisation</span>
+          <span class="autre-skill">Fiabilité</span>
+          <span class="autre-skill">Autonomie</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ 07 SUPERVISION ══════════ -->
+<section id="supervision" class="sec">
+  <div class="sec-num" aria-hidden="true">07</div>
+  <div class="reveal">
+    <div class="sec-label">07 — Supervision réseau</div>
     <h2 class="sec-title">Monitoring<br>&amp; Supervision</h2>
   </div>
   <div class="sup-inner">
-
     <div class="sup-left reveal d1">
       <h2 class="sup-title">PRTG<br><em>Network</em><br>Monitor</h2>
       <p class="sup-desc">Maîtrise de PRTG pour la supervision d'infrastructures réseau : monitoring en temps réel, analyse des performances, détection d'anomalies et génération de rapports.</p>
@@ -789,7 +833,6 @@
         <div class="sup-row"><span class="sup-k">Domaine</span><span class="sup-v">Supervision &amp; Monitoring</span></div>
         <div class="sup-row"><span class="sup-k">Format</span><span class="sup-v">Présentation 10 min</span></div>
       </div>
-      <!-- Supervision tool cards -->
       <div class="sup-tools">
         <div class="sup-tool-card">
           <span class="sup-tool-badge" style="background:#FF6D00">PRTG</span>
@@ -802,7 +845,7 @@
           <p class="sup-tool-desc">Monitoring open-source, checks actifs/passifs, notifications</p>
         </div>
         <div class="sup-tool-card">
-          <span class="sup-tool-badge" style="background:#FF5722">Centreon</span>
+          <span class="sup-tool-badge" style="background:#e05c2b">Centreon</span>
           <p class="sup-tool-name">Centreon</p>
           <p class="sup-tool-desc">Interface web avancée, cartographie réseau, rapports</p>
         </div>
@@ -813,7 +856,6 @@
         </div>
       </div>
     </div>
-
     <div class="reveal d2">
       <div class="prtg-mock" aria-label="Aperçu interface PRTG">
         <div class="prtg-bar">
@@ -831,34 +873,33 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════ 07 TÉLÉCHARGER LE CV ══════════ -->
+<!-- ══════════ 08 TÉLÉCHARGER LE CV ══════════ -->
 <section id="cv-dl" class="sec">
-  <div class="sec-num" aria-hidden="true">07</div>
+  <div class="sec-num" aria-hidden="true">08</div>
   <div class="cv-inner">
     <div class="cv-text reveal">
-      <div class="sec-label" style="margin-bottom:20px">07 — Curriculum Vitae</div>
+      <div class="sec-label" style="margin-bottom:20px">08 — Curriculum Vitae</div>
       <h2 class="sec-title">Télécharger<br>le CV</h2>
-      <p style="margin-top:20px;font-size:.875rem;line-height:1.8;color:var(--dim)">Formation, compétences techniques et parcours complet au format PDF.</p>
+      <p style="margin-top:20px;font-size:.95rem;line-height:1.8;color:var(--dim)">Formation, compétences techniques et parcours complet au format PDF.</p>
     </div>
     <div class="reveal d2" style="display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px">
       <a href="assets/cv-patrick-mekongo.pdf" download class="cv-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Télécharger le CV
       </a>
-      <p class="cv-note">PDF · Technicien IT</p>
+      <p class="cv-note">PDF · Technicien IT · 2026</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════ 08 À PROPOS ══════════ -->
+<!-- ══════════ 09 À PROPOS ══════════ -->
 <section id="about" class="sec">
-  <div class="sec-num" aria-hidden="true">08</div>
+  <div class="sec-num" aria-hidden="true">09</div>
   <div class="reveal">
-    <div class="sec-label">08 — Profil</div>
+    <div class="sec-label">09 — Profil</div>
     <h2 class="sec-title">À Propos</h2>
   </div>
   <div class="about-inner">
@@ -867,20 +908,22 @@
       <div class="attr"><span class="attr-k">Spécialité</span><span class="attr-v">Réseaux &amp; Systèmes</span></div>
       <div class="attr"><span class="attr-k">Conformité</span><span class="attr-v">Attestation CNIL</span></div>
       <div class="attr"><span class="attr-k">Langues</span><span class="attr-v">Français &nbsp;·&nbsp; Anglais</span></div>
+      <div class="attr"><span class="attr-k">Disponibilité</span><span class="attr-v" style="color:var(--gold)">29 juin — 30 juillet</span></div>
       <div class="attr"><span class="attr-k">Statut</span><span class="attr-v" style="color:var(--gold)">Recherche de stage</span></div>
     </div>
     <div class="about-text reveal d2">
-      <p>Étudiant en informatique spécialisé en réseaux et systèmes. Ma formation m'a permis de développer des compétences concrètes en administration réseau, virtualisation et développement web.</p>
-      <p>Rigoureux et méthodique, j'aborde chaque projet avec une approche structurée : documentation, tests systématiques, validation à chaque étape. Sensibilisé aux enjeux RGPD — titulaire d'une attestation CNIL.</p>
-      <p>À la recherche d'un stage pour mettre en pratique ces compétences au sein d'une équipe IT, contribuer à des projets concrets et progresser dans un environnement professionnel exigeant.</p>
+      <p class="about-highlight">Technicien IT en devenir.<br>Expérience réelle. Prêt maintenant.</p>
+      <p>J'ai commencé à travailler tôt — restauration, logistique, commerce. Ces environnements m'ont appris l'exigence, la fiabilité sous pression et le sens des responsabilités. Des qualités que j'apporte aujourd'hui dans l'IT.</p>
+      <p>Ma reconversion en informatique n'est pas un hasard : <strong>réseaux, systèmes, développement</strong> — je maîtrise la stack complète d'un technicien. Cisco, VMware, Windows Server, Debian, PHP/MySQL, PRTG. Du câblage au code.</p>
+      <p>Je cherche un stage pour <strong>confirmer en entreprise ce que j'ai construit en formation</strong>. Pas pour observer — pour contribuer, dépanner, documenter, et progresser avec une équipe IT.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════ 09 CONTACT ══════════ -->
+<!-- ══════════ 10 CONTACT ══════════ -->
 <section id="contact" class="sec">
-  <div class="sec-num" aria-hidden="true">09</div>
-  <div class="reveal"><div class="sec-label">09 — Contact</div></div>
+  <div class="sec-num" aria-hidden="true">10</div>
+  <div class="reveal"><div class="sec-label">10 — Contact</div></div>
   <h2 class="c-head reveal d1">Travaillons<br><em>ensemble</em></h2>
   <div class="c-links">
     <a href="mailto:patrickmekongo19@gmail.com" class="c-link reveal">
@@ -900,19 +943,25 @@
 
 <footer>
   <span>Patrick Mekongo &nbsp;·&nbsp; <span class="f-gold">2026</span></span>
-  <span>Technicien IT &nbsp;·&nbsp; Disponible pour un stage</span>
+  <span>Technicien IT &nbsp;·&nbsp; Disponible 29 juin — 30 juillet</span>
 </footer>
 
 <!-- ══════════ CHATBOT ══════════ -->
 <button id="chat-btn" aria-label="Ouvrir le chatbot assistant">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-  </svg>
+  <div id="chat-avatar-btn">
+    <img src="assets/img/inspi.jpg" alt="Assistant PM">
+  </div>
 </button>
 
 <div id="chat-panel" role="dialog" aria-label="Assistant Patrick Mekongo" aria-modal="true">
   <div class="chat-head">
-    <span class="chat-head-name">PM · Assistant</span>
+    <div class="chat-head-avatar">
+      <img src="assets/img/inspi.jpg" alt="PM Bot">
+    </div>
+    <div class="chat-head-info">
+      <span class="chat-head-name">PM · Assistant</span>
+      <span class="chat-head-sub">Posez votre question</span>
+    </div>
     <button class="chat-close" id="chat-close" aria-label="Fermer">✕</button>
   </div>
   <div class="chat-msgs" id="chat-msgs"></div>
@@ -936,7 +985,7 @@
   let mx=-100,my=-100,rx=-100,ry=-100;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px'});
   (function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(raf)})();
-  document.querySelectorAll('a,button,.tag,.p-item,.sk-card,.sup-tool-card,.tl-item').forEach(el=>{
+  document.querySelectorAll('a,button,.tag,.p-item,.sk-card,.sup-tool-card,.tl-item,.autre-card,.proj-screen,.c-link').forEach(el=>{
     el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
     el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
   });
@@ -959,19 +1008,73 @@
   },{threshold:0.07,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
+  /* ── LIGHTBOX ── */
+  const lb=document.getElementById('lightbox');
+  const lbImg=document.getElementById('lb-img');
+  const lbCap=document.getElementById('lb-caption');
+  let lbImages=[],lbIdx=0;
+
+  // Collect all proj-screen images
+  function buildLightboxIndex(){
+    lbImages=[];
+    document.querySelectorAll('.proj-screen[data-src]').forEach(fig=>{
+      lbImages.push({src:fig.dataset.src,caption:fig.dataset.caption||''});
+    });
+  }
+  buildLightboxIndex();
+
+  function openLightbox(src,caption){
+    lbIdx=lbImages.findIndex(i=>i.src===src);
+    if(lbIdx<0)lbIdx=0;
+    showLbImage(lbIdx);
+    lb.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+
+  function showLbImage(idx){
+    const item=lbImages[idx];
+    if(!item)return;
+    lbImg.classList.add('loading');
+    lbCap.textContent=`${idx+1} / ${lbImages.length}${item.caption?' — '+item.caption:''}`;
+    const tmp=new Image();
+    tmp.onload=()=>{lbImg.src=item.src;setTimeout(()=>lbImg.classList.remove('loading'),50);};
+    tmp.src=item.src;
+  }
+
+  function closeLightbox(){
+    lb.classList.remove('open');
+    document.body.style.overflow='';
+    setTimeout(()=>{lbImg.src='';},400);
+  }
+
+  document.querySelectorAll('.proj-screen[data-src]').forEach(fig=>{
+    fig.addEventListener('click',()=>openLightbox(fig.dataset.src,fig.dataset.caption));
+  });
+  document.getElementById('lb-close').addEventListener('click',closeLightbox);
+  lb.addEventListener('click',e=>{if(e.target===lb)closeLightbox();});
+  document.getElementById('lb-prev').addEventListener('click',e=>{e.stopPropagation();lbIdx=(lbIdx-1+lbImages.length)%lbImages.length;showLbImage(lbIdx);});
+  document.getElementById('lb-next').addEventListener('click',e=>{e.stopPropagation();lbIdx=(lbIdx+1)%lbImages.length;showLbImage(lbIdx);});
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')closeLightbox();
+    if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+lbImages.length)%lbImages.length;showLbImage(lbIdx);}
+    if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%lbImages.length;showLbImage(lbIdx);}
+  });
+
   /* ── CHATBOT ── */
   const qa=[
-    {k:['compétence','skill','maîtrise','sais','technologie','outil'],r:'Réseaux (TCP/IP, VLAN, Cisco), Systèmes (VMware, Windows Server, Debian), Dev (PHP, MySQL, HTML/CSS), Supervision (PRTG, Nagios, Centreon, Zabbix). Attestation CNIL.'},
-    {k:['stage','emploi','cherche','disponible','poste','recrutement'],r:'Je recherche un stage IT : administration réseau, support technique ou helpdesk. Disponible dès maintenant.'},
-    {k:['projet','réalisation','cv générateur','vlan','virtualisation','bdd'],r:'5 projets : Générateur de CV (PHP/MySQL), Lab Virtualisation VMware, Infrastructure VLAN Cisco, Conception BDD (Merise), Mission IT.'},
+    {k:['compétence','skill','maîtrise','sais','technologie','outil'],r:'Réseaux (TCP/IP, VLAN, Cisco), Systèmes (VMware, Windows Server, Debian), Développement (PHP, MySQL, HTML/CSS), Supervision (PRTG, Nagios, Centreon, Zabbix). Attestation CNIL.'},
+    {k:['stage','emploi','cherche','disponible','poste','recrutement','embauche'],r:'Disponible pour un stage du 29 juin au 30 juillet 2026. Administration réseau, support technique, helpdesk. Contactez-moi via email ou LinkedIn.'},
+    {k:['projet','réalisation','cv générateur','vlan','virtualisation','bdd','développement'],r:'5 projets : Générateur de CV (PHP/MySQL), Lab Virtualisation VMware, Infrastructure VLAN Cisco, Conception BDD (Merise), Mission IT professionnelle.'},
     {k:['contact','email','mail','joindre','linkedin','github'],r:'Email : patrickmekongo19@gmail.com · LinkedIn : Patrick Koa Mekongo · GitHub : patrickmekongo19-droid'},
-    {k:['cv','curriculum','télécharger','document'],r:'Mon CV est téléchargeable sur cette page, section "Télécharger le CV" (bouton doré).'},
-    {k:['parcours','formation','étude','diplôme'],r:'Formation IT (Réseaux & Systèmes). Attestation CNIL. TPs Cisco, VMware, PHP. Mission IT professionnelle. Supervision PRTG/Nagios/Centreon/Zabbix.'},
-    {k:['qui','who','présente','patrick','profil'],r:'Je suis Patrick Mekongo, technicien IT spécialisé réseaux & systèmes. En recherche de stage 2026.'},
-    {k:['nagios','centreon','zabbix','prtg','supervision','monitoring'],r:"En supervision réseau : PRTG, Nagios, Centreon et Zabbix — travaillés en formation. Monitoring d'infrastructure, alertes, dashboards."},
+    {k:['cv','curriculum','télécharger','document'],r:'Mon CV est téléchargeable sur cette page, section "Télécharger le CV" — bouton doré.'},
+    {k:['parcours','formation','étude','diplôme','école'],r:'Formation IT (Réseaux & Systèmes). Attestation CNIL. TPs Cisco, VMware, PHP. Mission IT professionnelle. Supervision PRTG/Nagios/Centreon/Zabbix.'},
+    {k:['qui','who','présente','patrick','profil','à propos'],r:"Je suis Patrick Mekongo, technicien IT spécialisé réseaux & systèmes. Expérience réelle, profil complet, disponible pour un stage en 2026."},
+    {k:['nagios','centreon','zabbix','prtg','supervision','monitoring'],r:"Supervision réseau : PRTG, Nagios, Centreon et Zabbix. Monitoring d'infrastructure, alertes, dashboards — travaillés en formation et présentés en conditions réelles."},
     {k:['linux','debian','bash','terminal'],r:'Debian 12 installé et configuré sur VMware : partitionnement, réseau statique (/etc/network/interfaces), gestion paquets apt.'},
-    {k:['salut','bonjour','hello','hi','coucou','hey'],r:'Bonjour ! Je suis l\'assistant de Patrick Mekongo. Posez-moi une question sur ses compétences, projets, parcours ou contact !'},
-    {k:['merci','thanks','super','parfait'],r:'Avec plaisir ! N\'hésitez pas si vous avez d\'autres questions.'},
+    {k:['expérience','travail','emploi précédent','hors it','restaurant','logistique'],r:"Avant l'IT : restauration rapide et logistique. Ces expériences m'ont formé à la rigueur, au travail en équipe et à la fiabilité sous pression — des atouts directs en IT."},
+    {k:['salut','bonjour','hello','hi','coucou','hey'],r:"Bonjour ! Je suis l'assistant de Patrick Mekongo. Posez-moi une question sur ses compétences, projets, disponibilité ou contact !"},
+    {k:['merci','thanks','super','parfait','cool'],r:"Avec plaisir ! N'hésitez pas si vous avez d'autres questions."},
   ];
 
   const chatPanel=document.getElementById('chat-panel');
@@ -991,7 +1094,7 @@
   function botReply(text){
     const lower=text.toLowerCase();
     for(const item of qa){
-      if(item.k.some(k=>lower.includes(k))){return item.r;}
+      if(item.k.some(k=>lower.includes(k)))return item.r;
     }
     return "Je ne suis pas sûr de comprendre. Essayez : Compétences, Projets, Stage, Contact, CV ou Parcours.";
   }
@@ -1001,18 +1104,18 @@
     if(!t)return;
     addMsg(t,'user');
     chatInput.value='';
-    setTimeout(()=>addMsg(botReply(t),'bot'),320);
+    setTimeout(()=>addMsg(botReply(t),'bot'),340);
   }
 
   chatBtn.addEventListener('click',()=>{
     chatPanel.classList.toggle('open');
     if(chatPanel.classList.contains('open')&&!chatMsgs.children.length){
-      addMsg("Bonjour ! Je suis l'assistant de Patrick. Posez-moi une question sur ses compétences, projets ou disponibilité pour un stage !",'bot');
+      setTimeout(()=>addMsg("Bonjour ! Je suis l'assistant de Patrick. Posez-moi une question sur ses compétences, projets ou disponibilité pour un stage !",'bot'),200);
     }
   });
   chatClose.addEventListener('click',()=>chatPanel.classList.remove('open'));
   document.getElementById('chat-send').addEventListener('click',()=>sendMsg());
-  chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg()});
+  chatInput.addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
   document.querySelectorAll('.chat-q').forEach(btn=>{
     btn.addEventListener('click',()=>sendMsg(btn.dataset.q));
   });
