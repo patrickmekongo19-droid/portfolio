@@ -2506,7 +2506,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     }
   }
 
-  applyToggle(localStorage.getItem('inspi-hidden')==='1');
+  applyToggle(localStorage.getItem('inspi-hidden')!=='0');
 
   toggleBtn.addEventListener('click',()=>{
     const hidden=localStorage.getItem('inspi-hidden')==='1';
