@@ -14,6 +14,7 @@
   <meta name="twitter:title" content="Patrick Mekongo — Technicien IT">
   <meta name="twitter:description" content="Réseaux, Systèmes & Développement. En recherche de stage IT.">
   <meta name="twitter:image" content="https://patrickmekongo19-droid.github.io/portfolio/assets/img/inspi.jpg">
+  <meta name="theme-color" content="#0a0a0a">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black' font-weight='900' font-size='13' fill='%23c8a96d'>PM</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,11 +26,11 @@
       --blue:#4f7ef7;--blue-dim:rgba(79,126,247,.1);--blue-b:rgba(79,126,247,.28);
       --green:#34d399;--green-dim:rgba(52,211,153,.1);
       --surface:#111;--navy:#0c0f1a;--border:rgba(255,255,255,.07);
-      --muted:#666;--dim:#999;--light:#ccc;
+      --muted:#888;--dim:#aaa;--light:#d4d4d4;
       --fd:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif;--fm:'DM Mono',monospace;
     }
     html{font-size:16px;scroll-behavior:smooth}
-    body{background:var(--black);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.6;overflow-x:hidden;cursor:none}
+    body{background:var(--black);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.6;overflow-x:hidden}
     ::selection{background:var(--gold);color:var(--black)}
     img{display:block;width:100%;height:100%;object-fit:cover}
 
@@ -40,7 +41,7 @@
     body.ch #cr{width:54px;height:54px;border-color:rgba(200,169,109,.6)}
 
     /* SCROLL TO TOP */
-    #back-top{position:fixed;bottom:36px;left:36px;z-index:2000;width:46px;height:46px;background:rgba(15,15,15,.95);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:none;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s,border-color .3s;transform:translateY(12px);backdrop-filter:blur(8px)}
+    #back-top{position:fixed;bottom:36px;left:36px;z-index:2000;width:46px;height:46px;background:rgba(15,15,15,.95);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s,border-color .3s;transform:translateY(12px);backdrop-filter:blur(8px)}
     #back-top.show{opacity:1;pointer-events:all;transform:translateY(0)}
     #back-top:hover{border-color:var(--gold);background:var(--gold-dim)}
     #back-top svg{width:16px;height:16px;color:var(--muted);transition:color .3s,transform .3s}
@@ -53,7 +54,7 @@
     .nav-logo{font-family:var(--fd);font-weight:900;font-size:1.1rem;letter-spacing:.18em;color:var(--white);text-decoration:none;transition:color .3s}
     nav.scrolled .nav-logo{color:var(--gold)}
     .nav-links{list-style:none;display:flex;gap:24px;flex-wrap:wrap}
-    .nav-links a{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--white);text-decoration:none;position:relative}
+    .nav-links a{font-family:var(--fm);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--white);text-decoration:none;position:relative}
     .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .35s}
     .nav-links a:hover::after{width:100%}
     nav.scrolled .nav-links a{color:var(--light)}
@@ -114,13 +115,13 @@
     .sk-group:last-child{border-right:none}
     .sk-group-head{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-weight:900;font-size:clamp(18px,2vw,26px);letter-spacing:.08em;text-transform:uppercase;color:var(--light);margin-bottom:8px}
     .sk-group-head svg{width:16px;height:16px;flex-shrink:0}
-    .sk-group-desc{font-family:var(--fm);font-size:.56rem;letter-spacing:.06em;color:var(--muted);line-height:1.5;margin-bottom:28px}
+    .sk-group-desc{font-family:var(--fm);font-size:.72rem;letter-spacing:.06em;color:var(--muted);line-height:1.5;margin-bottom:28px}
     .sk-cards{display:flex;flex-wrap:wrap;gap:10px}
     .sk-card{display:flex;flex-direction:column;align-items:center;gap:7px;padding:14px 10px;border:1px solid var(--border);min-width:72px;flex:1;transition:border-color .3s,background .3s,transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s;will-change:transform}
     .sk-card:hover{border-color:var(--gold);background:var(--gold-dim);transform:translateY(-6px) perspective(600px) rotateX(6deg);box-shadow:0 16px 40px rgba(0,0,0,.65),0 4px 8px rgba(200,169,109,.1)}
     .sk-card img{width:32px;height:32px;object-fit:contain;display:block}
-    .sk-card-badge{width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.44rem;font-weight:400;letter-spacing:.05em;text-align:center;line-height:1.2;flex-shrink:0}
-    .sk-card-name{font-family:var(--fm);font-size:.52rem;letter-spacing:.1em;color:var(--light);text-align:center;line-height:1.3}
+    .sk-card-badge{width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.7rem;font-weight:400;letter-spacing:.05em;text-align:center;line-height:1.2;flex-shrink:0}
+    .sk-card-name{font-family:var(--fm);font-size:.72rem;letter-spacing:.1em;color:var(--light);text-align:center;line-height:1.3}
 
     /* PARCOURS */
     #parcours{background:var(--navy)}
@@ -133,7 +134,7 @@
     .tl-title{font-family:var(--fd);font-weight:800;font-size:clamp(22px,3vw,36px);letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:10px;line-height:1}
     .tl-desc{font-size:.95rem;line-height:1.85;color:var(--dim);margin-bottom:14px;max-width:640px}
     .tl-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:0}
-    .tl-tag{font-family:var(--fm);font-size:.54rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(200,169,109,.3);color:var(--gold)}
+    .tl-tag{font-family:var(--fm);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(200,169,109,.3);color:var(--gold)}
     .tl-objectif{font-family:var(--fm);font-size:.66rem;letter-spacing:.1em;color:var(--gold);background:rgba(200,169,109,.07);border-left:2px solid var(--gold);padding:10px 16px;margin-top:12px;line-height:1.6}
     .tl-status{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding:6px 16px;border:1px solid var(--gold);margin-bottom:16px;animation:pulse-border 2.5s ease-in-out infinite}
     .tl-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}
@@ -180,7 +181,7 @@
     .proj:hover .proj-screen img{filter:brightness(.95) contrast(1.05);transform:scale(1.03)}
     .proj-screen-zoom{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;padding:10px 12px;opacity:0;transition:opacity .3s;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 50%)}
     .proj-screen:hover .proj-screen-zoom{opacity:1}
-    .proj-screen-zoom span{font-family:var(--fm);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8);background:rgba(0,0,0,.5);padding:4px 10px;border:1px solid rgba(255,255,255,.15)}
+    .proj-screen-zoom span{font-family:var(--fm);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8);background:rgba(0,0,0,.5);padding:4px 10px;border:1px solid rgba(255,255,255,.15)}
     .proj-gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
     .proj-gallery .proj-screen{margin-bottom:0}
     .proj-gallery-single{margin-bottom:28px}
@@ -189,7 +190,7 @@
     .proj-video-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
     .proj-desc{font-size:.95rem;line-height:1.85;color:var(--dim);margin-bottom:28px}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
-    .tag{font-family:var(--fm);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--muted);color:var(--muted);transition:border-color .3s,color .3s}
+    .tag{font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--muted);color:var(--muted);transition:border-color .3s,color .3s}
     .tag:hover,.proj:hover .tag{border-color:var(--gold);color:var(--gold)}
     .proj-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
     .proj-link:hover,.proj:hover .proj-link{color:var(--gold);border-color:var(--gold)}
@@ -198,7 +199,7 @@
     #portfolio-artistique{background:var(--surface)}
     .art-intro{margin-top:18px;font-size:.95rem;line-height:1.8;color:var(--dim);max-width:760px}
     .art-controls{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
-    .art-btn{border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--light);padding:9px 14px;font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;cursor:none;transition:border-color .25s,color .25s,transform .3s}
+    .art-btn{border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--light);padding:9px 14px;font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:border-color .25s,color .25s,transform .3s}
     .art-btn:hover,.art-btn.is-active{border-color:rgba(200,169,109,.45);color:var(--gold);transform:translateY(-2px)}
     .art-grid{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;perspective:1100px}
     .heic-head{margin-top:36px;padding-top:24px;border-top:1px solid var(--border)}
@@ -206,10 +207,10 @@
     .heic-sub{margin-top:10px;font-size:.88rem;color:var(--muted);line-height:1.7}
     .heic-grid{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;perspective:1100px}
     .heic-actions{margin-top:16px;display:flex;justify-content:center}
-    .heic-load{border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--light);padding:10px 18px;font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;cursor:none;transition:border-color .25s,color .25s,transform .3s}
+    .heic-load{border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--light);padding:10px 18px;font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:border-color .25s,color .25s,transform .3s}
     .heic-load:hover{border-color:rgba(200,169,109,.45);color:var(--gold);transform:translateY(-2px)}
     .heic-load[disabled]{opacity:.35;pointer-events:none}
-    .art-card{position:relative;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/3;background:#0f1118;cursor:none;transform-style:preserve-3d;transition:transform .22s ease,box-shadow .22s ease,opacity .25s;opacity:0;transform:translateY(24px) scale(.97)}
+    .art-card{position:relative;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/3;background:#0f1118;cursor:pointer;transform-style:preserve-3d;transition:transform .22s ease,box-shadow .22s ease,opacity .25s;opacity:0;transform:translateY(24px) scale(.97)}
     .art-card.in{animation:artIn .7s cubic-bezier(.2,.8,.2,1) forwards}
     .art-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 45%);pointer-events:none}
     .art-card::before{content:'';position:absolute;inset:-130%;z-index:2;pointer-events:none;background:linear-gradient(112deg,transparent 20%,rgba(255,255,255,.17) 48%,transparent 70%);transform:translateX(-100%) rotate(8deg)}
@@ -220,16 +221,16 @@
     .art-meta{position:absolute;left:10px;right:10px;bottom:10px;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:8px}
     .art-title{position:absolute;left:10px;top:10px;z-index:1;font-family:var(--fd);font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#fff}
     .art-context{position:absolute;left:10px;right:10px;top:34px;z-index:1;font-family:var(--fb);font-size:.68rem;line-height:1.35;color:rgba(255,255,255,.86);max-width:85%}
-    .art-tag,.art-score{font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;border:1px solid rgba(255,255,255,.16)}
+    .art-tag,.art-score{font-family:var(--fm);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;border:1px solid rgba(255,255,255,.16)}
     .art-tag{color:#f6e8c9;border-color:rgba(200,169,109,.36);background:rgba(200,169,109,.1)}
     .art-score{color:#dce3ff;border-color:rgba(79,126,247,.45);background:rgba(79,126,247,.12)}
     #art-lightbox{position:fixed;inset:0;background:rgba(5,5,8,.94);z-index:9550;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;backdrop-filter:blur(5px)}
     #art-lightbox.open{opacity:1;pointer-events:all}
     #art-lb-img,#art-lb-video{max-width:92vw;max-height:86vh;width:auto;height:auto;object-fit:contain;display:block;border:1px solid rgba(255,255,255,.14);box-shadow:0 42px 120px rgba(0,0,0,.88)}
     #art-lb-video{display:none;background:#000}
-    #art-lb-close{position:absolute;top:22px;right:30px;font-family:var(--fm);font-size:1rem;color:rgba(255,255,255,.45);background:none;border:1px solid rgba(255,255,255,.14);padding:8px 14px;cursor:none;letter-spacing:.12em}
+    #art-lb-close{position:absolute;top:22px;right:30px;font-family:var(--fm);font-size:1rem;color:rgba(255,255,255,.45);background:none;border:1px solid rgba(255,255,255,.14);padding:8px 14px;cursor:pointer;letter-spacing:.12em}
     #art-lb-close:hover{color:var(--white);border-color:rgba(255,255,255,.32)}
-    #art-lb-caption{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--light);background:rgba(0,0,0,.45);padding:7px 12px;border:1px solid rgba(255,255,255,.12)}
+    #art-lb-caption{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-family:var(--fm);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--light);background:rgba(0,0,0,.45);padding:7px 12px;border:1px solid rgba(255,255,255,.12)}
 
     /* VLAN */
     #reseau-schema{background:var(--navy);padding:80px 56px}
@@ -244,7 +245,7 @@
     .autre-card:hover::before{width:2px}
     .autre-card:hover{background:rgba(79,126,247,.04)}
     .autre-inner{position:relative;z-index:1}
-    .autre-period{font-family:var(--fm);font-size:.56rem;letter-spacing:.3em;color:var(--blue);text-transform:uppercase;margin-bottom:14px}
+    .autre-period{font-family:var(--fm);font-size:.72rem;letter-spacing:.3em;color:var(--blue);text-transform:uppercase;margin-bottom:14px}
     .autre-role{font-family:var(--fd);font-weight:800;font-size:clamp(22px,3vw,38px);letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:4px;line-height:1;transition:color .3s}
     .autre-card:hover .autre-role{color:var(--blue)}
     .autre-company{font-family:var(--fm);font-size:.64rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:8px}
@@ -254,7 +255,7 @@
     .autre-missions li{font-family:var(--fm);font-size:.68rem;letter-spacing:.06em;color:var(--light);display:flex;align-items:center;gap:12px}
     .autre-missions li::before{content:'';display:block;width:14px;height:1px;background:var(--blue);flex-shrink:0}
     .autre-skills{display:flex;flex-wrap:wrap;gap:8px}
-    .autre-skill{font-family:var(--fm);font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--blue-b);color:var(--blue)}
+    .autre-skill{font-family:var(--fm);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--blue-b);color:var(--blue)}
 
     /* CE QUE JE CHERCHE */
     #cherche{background:var(--navy)}
@@ -275,7 +276,7 @@
     .cherche-badges{display:flex;flex-direction:column;gap:12px}
     .cherche-badge{padding:20px 28px;border:1px solid var(--border);transition:border-color .3s,background .3s,transform .35s}
     .cherche-badge:hover{border-color:rgba(200,169,109,.3);background:var(--gold-dim);transform:translateX(8px)}
-    .cherche-badge-label{font-family:var(--fm);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .cherche-badge-label{font-family:var(--fm);font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
     .cherche-badge-val{font-family:var(--fd);font-weight:800;font-size:clamp(18px,2.5vw,30px);letter-spacing:.04em;text-transform:uppercase;color:var(--white)}
     .cherche-badge-sub{font-family:var(--fm);font-size:.58rem;letter-spacing:.06em;color:var(--dim);margin-top:4px}
 
@@ -306,7 +307,7 @@
     .sup-tools{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .sup-tool-card{padding:20px;border:1px solid var(--border);transition:border-color .3s,background .3s,transform .35s,box-shadow .35s}
     .sup-tool-card:hover{border-color:var(--blue);background:var(--blue-dim);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.5)}
-    .sup-tool-badge{display:inline-block;font-family:var(--fm);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:2px;color:#fff;margin-bottom:12px}
+    .sup-tool-badge{display:inline-block;font-family:var(--fm);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:2px;color:#fff;margin-bottom:12px}
     .sup-tool-name{font-family:var(--fd);font-weight:800;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--white);margin-bottom:6px}
     .sup-tool-desc{font-family:var(--fm);font-size:.62rem;letter-spacing:.06em;color:var(--dim);line-height:1.6}
 
@@ -330,10 +331,10 @@
     .cv-preview:hover{transform:perspective(800px) rotateY(-6deg) rotateX(3deg) translateY(-8px);box-shadow:20px 32px 80px rgba(0,0,0,.8),0 4px 12px rgba(0,0,0,.4)}
     .cv-prev-head{background:var(--black);padding:14px 12px;margin:-20px -20px 16px;border-bottom:1px solid var(--border)}
     .cv-prev-name{font-family:var(--fd);font-weight:900;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white)}
-    .cv-prev-title{font-family:var(--fm);font-size:.46rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-top:3px}
+    .cv-prev-title{font-family:var(--fm);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-top:3px}
     .cv-prev-line{height:1px;background:var(--border);margin:8px 0}
-    .cv-prev-section{font-family:var(--fm);font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
-    .cv-prev-text{font-family:var(--fm);font-size:.42rem;letter-spacing:.04em;color:var(--muted);line-height:1.6}
+    .cv-prev-section{font-family:var(--fm);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+    .cv-prev-text{font-family:var(--fm);font-size:.7rem;letter-spacing:.04em;color:var(--muted);line-height:1.6}
     .cv-prev-bar{height:3px;background:var(--border);border-radius:2px;margin:4px 0;overflow:hidden}
     .cv-prev-bar-fill{height:100%;background:var(--gold);border-radius:2px}
 
@@ -368,7 +369,7 @@
     .c-name{font-family:var(--fd);font-weight:800;font-size:clamp(18px,2.8vw,36px);letter-spacing:.06em;text-transform:uppercase;transition:color .3s}
     .c-detail{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;color:var(--muted);transition:color .3s}
     .c-link:hover .c-detail{color:var(--dim)}
-    .copy-email-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--border);padding:10px 18px;cursor:none;transition:border-color .3s,color .3s,background .3s}
+    .copy-email-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);background:none;border:1px solid var(--border);padding:10px 18px;cursor:pointer;transition:border-color .3s,color .3s,background .3s}
     .copy-email-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
     .copy-email-btn svg{width:12px;height:12px}
     .copy-email-btn.copied{border-color:var(--green);color:var(--green);background:var(--green-dim)}
@@ -376,12 +377,12 @@
     .contact-form{display:flex;flex-direction:column;gap:16px}
     .contact-form-title{font-family:var(--fd);font-weight:800;font-size:clamp(22px,3vw,36px);letter-spacing:.06em;text-transform:uppercase;color:var(--white);margin-bottom:8px}
     .cf-field{display:flex;flex-direction:column;gap:6px}
-    .cf-label{font-family:var(--fm);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
+    .cf-label{font-family:var(--fm);font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
     .cf-input,.cf-textarea{background:rgba(255,255,255,.03);border:1px solid var(--border);padding:12px 16px;font-family:var(--fm);font-size:.72rem;letter-spacing:.04em;color:var(--white);outline:none;transition:border-color .25s,background .25s;width:100%}
     .cf-input:focus,.cf-textarea:focus{border-color:rgba(200,169,109,.45);background:rgba(200,169,109,.03)}
     .cf-input::placeholder,.cf-textarea::placeholder{color:var(--muted)}
     .cf-textarea{height:120px;resize:vertical}
-    .cf-submit{display:inline-flex;align-items:center;justify-content:center;gap:12px;font-family:var(--fd);font-weight:800;font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:none;border:1.5px solid var(--gold);padding:15px 36px;cursor:none;transition:background .3s,color .3s,box-shadow .3s;width:100%}
+    .cf-submit{display:inline-flex;align-items:center;justify-content:center;gap:12px;font-family:var(--fd);font-weight:800;font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:none;border:1.5px solid var(--gold);padding:15px 36px;cursor:pointer;transition:background .3s,color .3s,box-shadow .3s;width:100%}
     .cf-submit:hover{background:var(--gold);color:var(--black);box-shadow:0 8px 32px rgba(200,169,109,.25)}
     .cf-submit svg{width:15px;height:15px}
     .cf-feedback{font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);display:none;text-align:center;padding:8px 0}
@@ -411,16 +412,46 @@
     #lightbox.open{opacity:1;pointer-events:all}
     #lb-img{max-width:88vw;max-height:84vh;width:auto;height:auto;object-fit:contain;display:block;border:1px solid rgba(255,255,255,.08);box-shadow:0 48px 120px rgba(0,0,0,.9);transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .3s}
     #lb-img.loading{opacity:0;transform:scale(.96)}
-    .lb-close{position:absolute;top:24px;right:32px;font-family:var(--fm);font-size:1rem;color:rgba(255,255,255,.4);background:none;border:1px solid rgba(255,255,255,.1);padding:8px 14px;cursor:none;transition:color .2s,border-color .2s;letter-spacing:.1em;z-index:1;line-height:1}
+    .lb-close{position:absolute;top:24px;right:32px;font-family:var(--fm);font-size:1rem;color:rgba(255,255,255,.4);background:none;border:1px solid rgba(255,255,255,.1);padding:8px 14px;cursor:pointer;transition:color .2s,border-color .2s;letter-spacing:.1em;z-index:1;line-height:1}
     .lb-close:hover{color:var(--white);border-color:rgba(255,255,255,.3)}
-    .lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--fm);font-size:1.2rem;color:rgba(255,255,255,.3);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:none;transition:color .25s,background .25s,transform .25s;padding:18px 16px;line-height:1;z-index:1}
+    .lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--fm);font-size:1.2rem;color:rgba(255,255,255,.3);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:color .25s,background .25s,transform .25s;padding:18px 16px;line-height:1;z-index:1}
     .lb-prev{left:20px}.lb-next{right:20px}
     .lb-prev:hover,.lb-next:hover{color:var(--gold);background:rgba(200,169,109,.08);border-color:rgba(200,169,109,.25);transform:translateY(-50%) scale(1.1)}
-    .lb-caption{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+    .lb-caption{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 
+
+    /* SKIP TO CONTENT */
+    .skip-link{position:absolute;top:-100%;left:16px;z-index:10000;padding:12px 24px;background:var(--gold);color:var(--black);font-family:var(--fd);font-weight:800;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:top .3s}
+    .skip-link:focus{top:16px}
+
+    /* FOCUS STYLES */
+    :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,.sk-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+    /* MOBILE HAMBURGER */
+    .nav-burger{display:none;background:none;border:none;padding:8px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center;min-width:44px;min-height:44px}
+    .nav-burger span{display:block;width:22px;height:2px;background:var(--white);transition:transform .3s,opacity .3s}
+    .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nav-burger.open span:nth-child(2){opacity:0}
+    .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-mobile{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,10,.98);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(12px)}
+    .nav-mobile.open{opacity:1;pointer-events:all}
+    .nav-mobile a{font-family:var(--fd);font-weight:800;font-size:clamp(24px,5vw,36px);letter-spacing:.12em;text-transform:uppercase;color:var(--white);text-decoration:none;transition:color .2s}
+    .nav-mobile a:hover{color:var(--gold)}
+
+    /* REDUCED MOTION */
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}
+      .reveal{opacity:1;transform:none}
+      .hl{transform:none}
+      .hero-rule{transform:scaleX(1)}
+      .hero-eye,.hero-bot{opacity:1}
+      #cd,#cr{display:none}
+    }
 
     /* RESPONSIVE */
     @media(max-width:960px){
+      .nav-burger{display:flex}
       nav,footer{padding:20px 24px}
       nav.scrolled{padding:14px 24px}
       .nav-links{display:none}
@@ -453,19 +484,61 @@
       .hero-bot{flex-direction:column;align-items:flex-start;gap:20px}
       .art-grid,.heic-grid{grid-template-columns:1fr}
     }
+
+    /* PROGRESS BAR */
+    #scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:10000;width:0;pointer-events:none}
+
+    /* TERMINAL */
+    #term-ov{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+    #term-ov.open{display:flex}
+    #term-win{width:min(720px,94vw);background:#0d1117;border:1px solid rgba(48,209,88,.5);border-radius:8px;overflow:hidden;font-family:var(--fm);box-shadow:0 0 60px rgba(48,209,88,.1)}
+    #term-head{display:flex;align-items:center;gap:10px;padding:10px 16px;background:#161b22;border-bottom:1px solid #21262d}
+    .t-dots{display:flex;gap:6px}.t-dot{width:12px;height:12px;border-radius:50%}
+    .t-dot.r{background:#ff5f56}.t-dot.y{background:#ffbd2e}.t-dot.g{background:#27c93f}
+    #term-ttl{flex:1;text-align:center;color:#6e7681;font-size:.62rem;letter-spacing:.15em}
+    #term-x{background:none;border:none;color:#6e7681;font-size:1.2rem;cursor:pointer;padding:0 4px;line-height:1;transition:color .2s}
+    #term-x:hover{color:#fff}
+    #term-body{padding:16px;min-height:320px;max-height:480px;overflow-y:auto}
+    #term-out{display:flex;flex-direction:column;gap:1px}
+    .tl{font-size:.76rem;line-height:1.65;white-space:pre;word-break:break-all;color:#30d158}
+    .tl.c{color:#6e7681}.tl.e{color:#f85149}
+    #term-row{display:flex;align-items:center;margin-top:10px}
+    .t-pr{color:#30d158;font-size:.76rem;white-space:nowrap;flex-shrink:0}
+    #term-in{background:none;border:none;outline:none;color:#30d158;font-family:var(--fm);font-size:.76rem;flex:1;caret-color:#30d158}
+    #term-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.35);pointer-events:none;white-space:nowrap}
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Patrick Mekongo",
+    "jobTitle": "Technicien IT — Réseaux, Systèmes & Développement Web",
+    "url": "https://patrickmekongo19-droid.github.io/portfolio/",
+    "email": "patrickmekongo19@gmail.com",
+    "alumniOf": {"@type": "EducationalOrganization", "name": "Ingetis Paris"},
+    "knowsAbout": ["Réseaux informatiques","VLAN","TCP/IP","DHCP","DNS","PRTG","Nagios","Centreon","Zabbix","VMware","Windows Server","Debian","PHP","MySQL","HTML","CSS","JavaScript","Next.js","React","TypeScript","Supabase","Stripe","Python","Claude AI"],
+    "sameAs": [
+      "https://www.linkedin.com/in/patrick-koa-mekongo-767476353",
+      "https://github.com/patrickmekongo19-droid"
+    ]
+  }
+  </script>
 </head>
 <body>
+
+<div id="scroll-progress" aria-hidden="true"></div>
+<div id="term-hint">Ctrl+T — Terminal</div>
+<a href="#pratique" class="skip-link">Aller au contenu principal</a>
 
 <div id="cd"></div>
 <div id="cr"></div>
 
 <!-- LIGHTBOX -->
 <div id="lightbox" role="dialog" aria-modal="true">
-  <button class="lb-close" id="lb-close">ESC</button>
-  <button class="lb-prev" id="lb-prev">&#8592;</button>
-  <img id="lb-img" src="" alt="">
-  <button class="lb-next" id="lb-next">&#8594;</button>
+  <button class="lb-close" id="lb-close" aria-label="Fermer la galerie">ESC</button>
+  <button class="lb-prev" id="lb-prev" aria-label="Image precedente">&#8592;</button>
+  <img id="lb-img" src="" alt="Image agrandie">
+  <button class="lb-next" id="lb-next" aria-label="Image suivante">&#8594;</button>
   <p class="lb-caption" id="lb-caption"></p>
 </div>
 
@@ -475,7 +548,7 @@
 </button>
 
 <!-- NAV -->
-<nav id="nav">
+<nav id="nav" role="navigation" aria-label="Navigation principale">
   <a href="#hero" class="nav-logo">PM</a>
   <ul class="nav-links">
     <li><a href="#pratique">Pratique</a></li>
@@ -483,15 +556,31 @@
     <li><a href="#parcours">Parcours</a></li>
     <li><a href="#projets">Projets</a></li>
     <li><a href="#portfolio-artistique">Artistique</a></li>
-    <li><a href="#autres-exp">Expériences</a></li>
     <li><a href="#cherche">Recherche</a></li>
     <li><a href="#supervision">Supervision</a></li>
     <li><a href="#cv-dl">CV</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Menu mobile">
+  <a href="#pratique">Pratique</a>
+  <a href="#competences">Stack</a>
+  <a href="#parcours">Parcours</a>
+  <a href="#projets">Projets</a>
+  <a href="#portfolio-artistique">Artistique</a>
+  <a href="#cherche">Recherche</a>
+  <a href="#supervision">Supervision</a>
+  <a href="#cv-dl">CV</a>
+  <a href="#contact">Contact</a>
+</div>
+
 <!-- ══════════ HERO ══════════ -->
+<main>
 <section id="hero">
   <div class="hero-ghost" id="hero-ghost" aria-hidden="true">IT</div>
   <div class="hero-side" aria-hidden="true">Technicien IT &nbsp;·&nbsp; 2026</div>
@@ -587,7 +676,7 @@
         <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a1a;color:#fff;border:1px solid #333">TCP/IP</div><span class="sk-card-name">TCP/IP</span></div>
         <div class="sk-card"><div class="sk-card-badge" style="background:#2563eb;color:#fff">VLAN</div><span class="sk-card-name">VLAN</span></div>
         <div class="sk-card"><div class="sk-card-badge" style="background:#0f766e;color:#fff">DHCP</div><span class="sk-card-name">DHCP</span></div>
-        <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a1a;color:#aaa;border:1px solid #333;font-size:.42rem">IPv4</div><span class="sk-card-name">IPv4</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a1a;color:#aaa;border:1px solid #333;font-size:.7rem">IPv4</div><span class="sk-card-name">IPv4</span></div>
       </div>
     </div>
     <div class="sk-group reveal d2">
@@ -789,7 +878,7 @@
         <div class="proj-video">
           <iframe src="https://drive.google.com/file/d/1CW2z7RcgiaGgIkQFgG551du34uY814J0/preview" allow="autoplay" allowfullscreen loading="lazy"></iframe>
         </div>
-        <p class="proj-desc">Application web PHP + MySQL : formulaire élégant, sauvegarde sécurisée (MySQLi requêtes préparées), affichage dynamique du CV généré. Architecture CRUD complète.</p>
+        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Créer un CV propre nécessite Word ou un outil payant, sans maîtrise des données saisies. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Application web PHP + MySQL avec formulaire en ligne, requêtes préparées anti-injection SQL, affichage dynamique du CV généré et architecture CRUD complète en auto-hébergement AMPPS. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> CV généré en 3 minutes. Données protégées par prepared statements. Architecture exportable et documentée.</p>
         <div class="tags">
           <span class="tag">PHP</span><span class="tag">MySQL</span>
           <span class="tag">MySQLi</span><span class="tag">HTML</span><span class="tag">CSS</span>
@@ -807,7 +896,7 @@
         <h3 class="proj-title">CViste —<br>Générateur IA</h3>
       </div>
       <div class="proj-right">
-        <p class="proj-desc">Application SaaS complète de génération de CV avec IA. Interface moderne, templates premium, export PDF/DOCX, import PDF, génération multilingue FR/EN/ES. Features IA : Paste &amp; Match, réécriture sectorielle, lettre de motivation via Claude AI (Anthropic).</p>
+        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Créer un CV professionnel prend du temps ; les outils existants sont génériques ou coûteux sans personnalisation réelle. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> SaaS complet avec IA — 15 templates × 30 couleurs × 23 polices, export PDF/DOCX, import PDF, génération multilingue FR/EN/ES, réécriture sectorielle et lettre de motivation via Claude AI. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> Architecture multi-tenant Supabase, authentification Clerk, monétisation Stripe intégrée. Phases 1–4 complétées.</p>
         <div class="tags">
           <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span>
           <span class="tag">Supabase</span><span class="tag">Clerk</span><span class="tag">Stripe</span>
@@ -833,7 +922,7 @@
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
-        <p class="proj-desc">Déploiement VMware Workstation : Windows 11 (TPM, chiffrement), Debian 12 (partitionnement ext4/swap), clonage VMs, configuration réseau statique, tests inter-VM PowerShell.</p>
+        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Tester des environnements réseau hétérogènes sans infrastructure physique disponible. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> VMware Workstation — Windows 11 (TPM, BitLocker), Debian 12 (partitionnement ext4/swap), clonage snapshots, réseau statique configuré, tests inter-VM PowerShell. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> 3 VMs opérationnelles en réseau isolé. Connectivité inter-VM vérifiée. Documentation technique complète.</p>
         <div class="tags">
           <span class="tag">VMware</span><span class="tag">Windows 11</span>
           <span class="tag">Debian 12</span><span class="tag">PowerShell</span><span class="tag">TPM</span>
@@ -853,7 +942,7 @@
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
-        <p class="proj-desc">Conception Cisco Packet Tracer : VLAN 10 &amp; 20, trunks 802.1q, DHCP Windows Server, plan d'adressage IPv4. Simulation et tests de connectivité complète.</p>
+        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Segmenter un réseau d'entreprise pour isoler les départements et sécuriser les flux inter-VLAN. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Cisco Packet Tracer — VLAN 10 &amp; 20, trunks 802.1q, serveur DHCP Windows Server, plan d'adressage IPv4 complet, tests de connectivité end-to-end. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> Architecture segmentée et documentée. Simulation validée, prête à déployer sur équipements physiques Cisco.</p>
         <div class="tags">
           <span class="tag">Cisco PT</span><span class="tag">VLAN</span>
           <span class="tag">Trunk 802.1q</span><span class="tag">DHCP</span><span class="tag">TCP/IP</span>
@@ -877,7 +966,7 @@
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
-        <p class="proj-desc">Modélisation Merise (MCD/MPD) : base de fouilles archéologiques (Chercheur, Équipe, Site, Objet) et bibliothèque numérique (Usager, Document, Réservation).</p>
+        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Modéliser des bases de données complexes pour deux domaines métiers distincts sans erreur de normalisation. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Méthode Merise (MCD → MPD) — base de fouilles archéologiques (Chercheur, Équipe, Site, Objet) et bibliothèque numérique (Usager, Document, Réservation, Exemplaire). <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> 2 bases normalisées 3NF, MCD et MPD complets, prêtes à l'implémentation SQL.</p>
         <div class="tags">
           <span class="tag">Merise</span><span class="tag">MCD</span>
           <span class="tag">MPD</span><span class="tag">SQL</span><span class="tag">Modélisation</span>
@@ -901,7 +990,7 @@
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
-        <p class="proj-desc">Mission professionnelle : diagnostic réseau, configuration équipements, support utilisateur, déploiement postes, virtualisation et documentation technique.</p>
+        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Assurer le support IT et maintenir une infrastructure réseau opérationnelle dans un environnement professionnel réel. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Diagnostic réseau, configuration switches &amp; équipements, déploiement de postes Windows, virtualisation VMware, support utilisateur N1/N2, rédaction documentation technique. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> Infrastructure maintenue sans interruption. Postes déployés et configurés. Documentation transmise à l'équipe.</p>
         <div class="tags">
           <span class="tag">Réseau</span><span class="tag">Support</span>
           <span class="tag">Configuration</span><span class="tag">PowerShell</span><span class="tag">Documentation</span>
@@ -996,88 +1085,6 @@
     <text x="707" y="332" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-family="DM Mono,monospace" font-size="8">192.168.30.x / DHCP</text>
   </svg>
 </div>
-
-<!-- ══════════ 06 AUTRES EXPÉRIENCES ══════════ -->
-<section id="autres-exp" class="sec">
-  <div class="sec-num" aria-hidden="true">06</div>
-  <div class="reveal">
-    <div class="sec-label">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-      06 — Hors IT
-    </div>
-    <h2 class="sec-title">Autres<br>Expériences</h2>
-    <p style="margin-top:16px;font-size:.95rem;line-height:1.8;color:var(--dim);max-width:640px">Ces expériences ne sont pas de l'IT — mais elles ont forgé mon caractère professionnel. Rigueur, fiabilité et travail en équipe : des qualités directement transférables sur un poste de technicien.</p>
-  </div>
-  <div class="autre-grid">
-
-    <div class="autre-card reveal d1">
-      <div class="autre-inner">
-        <p class="autre-period">Mai 2025 – Juin 2025</p>
-        <h3 class="autre-role">Éco Animateur</h3>
-        <p class="autre-company">Smitom-Lombric — Village du Lombric</p>
-        <p class="autre-desc">Employé en recyclerie au service des communautés. Mission centrée sur la gestion des dons et la sensibilisation des usagers aux comportements éco-durables.</p>
-        <ul class="autre-missions">
-          <li>Gestion des dons : tri, pesée, saisie et suivi dans la base de données</li>
-          <li>Réassorts et tâches logistiques en boutique</li>
-          <li>Gestion de la caisse et accueil des clients</li>
-          <li>Sensibilisation à l'adoption de comportements éco-durables</li>
-        </ul>
-        <div class="autre-skills">
-          <span class="autre-skill">Saisie BDD</span>
-          <span class="autre-skill">Logistique</span>
-          <span class="autre-skill">Accueil client</span>
-          <span class="autre-skill">Sensibilisation</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="autre-card reveal d2">
-      <div class="autre-inner">
-        <p class="autre-period">Octobre 2023 – Mars 2025</p>
-        <h3 class="autre-role">Opérateur Logistique</h3>
-        <p class="autre-company">Picnic — Moissy-Cramayel <span style="font-family:var(--fm);font-size:.52rem;letter-spacing:.15em;color:var(--green);background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);padding:2px 8px;margin-left:6px">CDI</span></p>
-        <p class="autre-desc">Opérateur logistique en CDI au sein de l'entrepôt Picnic (supermarché en ligne). Environnement cadencé, outils informatisés, gestion des stocks et encadrement de nouveaux collaborateurs.</p>
-        <ul class="autre-missions">
-          <li>Préparation des produits selon les procédures internes</li>
-          <li>Chargement, déchargement et tenue des stocks via systèmes informatisés</li>
-          <li>Inventaires réguliers pour limiter les erreurs de stock</li>
-          <li>Formation et accompagnement de nouveaux collaborateurs</li>
-          <li>Maintien de l'ordre et de la sécurité de l'entrepôt</li>
-        </ul>
-        <div class="autre-skills">
-          <span class="autre-skill">Gestion des stocks</span>
-          <span class="autre-skill">Outils informatisés</span>
-          <span class="autre-skill">Formation</span>
-          <span class="autre-skill">Rigueur</span>
-          <span class="autre-skill">CDI</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="autre-card reveal d3">
-      <div class="autre-inner">
-        <p class="autre-period">Novembre 2020 – Juin 2021</p>
-        <h3 class="autre-role">Réalisateur / Monteur</h3>
-        <p class="autre-company">Atelier de Création Filmique et Documentaire</p>
-        <p class="autre-desc">Expérience dans la création de documentaires et la réalisation de courts métrages, de l'écriture au montage. Bases solides en gestion de projet technique et utilisation d'outils professionnels.</p>
-        <ul class="autre-missions">
-          <li>Création de documentaires et courts métrages (écriture → montage)</li>
-          <li>Utilisation de matériel audiovisuel professionnel (caméras, micros, éclairages)</li>
-          <li>Montage vidéo et traitement audio : Adobe Premiere Pro, Audacity</li>
-          <li>Maîtrise des formats numériques et gestion de projet technique</li>
-          <li>Organisation et résolution de problèmes techniques</li>
-        </ul>
-        <div class="autre-skills">
-          <span class="autre-skill">Adobe Premiere Pro</span>
-          <span class="autre-skill">Audacity</span>
-          <span class="autre-skill">Gestion de projet</span>
-          <span class="autre-skill">Technique audiovisuel</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <!-- ══════════ 07 CE QUE JE CHERCHE ══════════ -->
 <section id="cherche" class="sec">
@@ -1253,7 +1260,7 @@
         <p class="cv-prev-section">Contact</p>
         <p class="cv-prev-text">patrickmekongo19@gmail.com</p>
         <p class="cv-prev-text" style="color:var(--muted)">LinkedIn · GitHub</p>
-        <div style="margin-top:12px;text-align:center;font-family:var(--fm);font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.5)">Cliquer pour ouvrir</div>
+        <div style="margin-top:12px;text-align:center;font-family:var(--fm);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.5)">Cliquer pour ouvrir</div>
       </div>
     </div>
   </div>
@@ -1349,6 +1356,7 @@
     </div>
   </div>
 </section>
+</main>
 
 <footer>
   <span>Patrick Mekongo &nbsp;·&nbsp; <span class="f-gold">2026</span></span>
@@ -1357,6 +1365,22 @@
 
 
 <script>
+/* ── MOBILE NAV ── */
+const burger=document.getElementById('nav-burger'),mobileNav=document.getElementById('nav-mobile');
+burger.addEventListener('click',()=>{
+  const open=mobileNav.classList.toggle('open');
+  burger.classList.toggle('open');
+  burger.setAttribute('aria-expanded',open);
+  burger.setAttribute('aria-label',open?'Fermer le menu':'Ouvrir le menu');
+  document.body.style.overflow=open?'hidden':'';
+});
+mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  mobileNav.classList.remove('open');burger.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+  burger.setAttribute('aria-label','Ouvrir le menu');
+  document.body.style.overflow='';
+}));
+
 /* ── CURSOR ── */
 const cd=document.getElementById('cd'),cr=document.getElementById('cr');
 let mx=-100,my=-100,rx=-100,ry=-100;
@@ -1857,14 +1881,14 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   <div id="inspi-chat-box">
     <div id="inspi-chat-header">
       <span>Inspi — Assistant IT</span>
-      <button id="inspi-close-btn">&#x2715;</button>
+      <button id="inspi-close-btn" aria-label="Fermer le chat">&#x2715;</button>
     </div>
     <div id="inspi-messages">
       <div class="inspi-msg">Bonjour ! Je suis Inspi, l'assistant IT de Patrick. Comment puis-je vous aider ?</div>
     </div>
     <div id="inspi-input-row">
-      <input id="inspi-input" type="text" placeholder="Posez votre question..." />
-      <button id="inspi-send">&#x27A4;</button>
+      <input id="inspi-input" type="text" placeholder="Posez votre question..." aria-label="Votre question" />
+      <button id="inspi-send" aria-label="Envoyer le message">&#x27A4;</button>
     </div>
   </div>
 
@@ -2036,7 +2060,103 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   sendBtn.addEventListener('click',handleSend);
   input.addEventListener('keydown',(e)=>{if(e.key==='Enter')handleSend();});
 })();
+
+/* ── PROGRESS BAR ── */
+(function(){
+  var bar=document.getElementById('scroll-progress');
+  if(!bar)return;
+  function upd(){
+    var s=document.documentElement.scrollTop||document.body.scrollTop;
+    var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+    bar.style.width=(h>0?Math.min(100,Math.round(s/h*100)):0)+'%';
+  }
+  window.addEventListener('scroll',upd,{passive:true});
+})();
+
+/* ── TERMINAL EASTER EGG ── */
+(function(){
+  var ov=document.getElementById('term-ov'),
+      out=document.getElementById('term-out'),
+      inp=document.getElementById('term-in'),
+      xBtn=document.getElementById('term-x'),
+      hint=document.getElementById('term-hint');
+  var PR='patrick@portfolio:~$ ';
+  var CMDS={
+    help:'Commandes disponibles :\n  neofetch          — profil système stylé\n  whoami            — présentation\n  skills            — stack technique complète\n  contact           — coordonnées\n  sudo hire patrick — message fun\n  clear             — effacer le terminal\n  exit              — fermer',
+    whoami:'Patrick Mekongo\nTechnicien IT — Réseaux, Systèmes & Développement Web\nBTS SIO SISR — Ingetis Paris (2024-2026)\nCertification CNIL — Data Protection\nDisponible en stage : 29 juin – 30 juillet 2026',
+    neofetch:'\n        ██████╗ ███╗   ███╗\n        ██╔══██╗████╗ ████║      patrick@portfolio\n        ██████╔╝██╔████╔██║      ─────────────────────────────────\n        ██╔═══╝ ██║╚██╔╝██║      Formation  : BTS SIO SISR @ Ingetis Paris\n        ██║     ██║ ╚═╝ ██║      OS         : Windows 11 / Debian 12 (VM)\n        ╚═╝     ╚═╝     ╚═╝      Shell      : bash · Git Bash\n                                 Stack      : Next.js · TypeScript · PHP · SQL\n                                 Tools      : PRTG · Nagios · Centreon · Zabbix\n                                 Certif     : CNIL Data Protection\n                                 Stage      : 29 juin – 30 juillet 2026\n                                 Email      : patrickmekongo19@gmail.com',
+    skills:'Stack technique :\n\n  Réseaux   TCP/IP · VLAN · Trunk 802.1q · DHCP · DNS\n  Systèmes  Windows Server · Debian · VMware · Active Directory\n  Supervis  PRTG · Nagios · Centreon · Zabbix\n  Dev       Next.js · React · TypeScript · PHP · MySQL · HTML · CSS\n  SaaS      Supabase · Stripe · Clerk · Claude AI (Anthropic)\n  Langages  JavaScript · TypeScript · Python · SQL\n  Outils    Git · GitHub · VS Code · Cisco Packet Tracer',
+    contact:'Coordonnées :\n\n  Email     patrickmekongo19@gmail.com\n  LinkedIn  linkedin.com/in/patrick-koa-mekongo-767476353\n  GitHub    github.com/patrickmekongo19-droid\n  Portfolio patrickmekongo19-droid.github.io/portfolio/',
+    'sudo hire patrick':'[sudo] password for recruteur : ••••••••\nauthenticating...\n\n✓  Permission accordée.\n\n██╗  ██╗██╗██████╗ ███████╗██████╗ \n██║  ██║██║██╔══██╗██╔════╝██╔══██╗\n███████║██║██████╔╝█████╗  ██║  ██║\n██╔══██║██║██╔══██╗██╔══╝  ██║  ██║\n██║  ██║██║██║  ██║███████╗██████╔╝\n\n→  patrickmekongo19@gmail.com'
+  };
+  function addLine(txt,cls){
+    var d=document.createElement('div');
+    d.className='tl'+(cls?' '+cls:'');
+    d.textContent=txt;
+    out.appendChild(d);
+    out.parentElement.scrollTop=out.parentElement.scrollHeight;
+  }
+  function run(raw){
+    var cmd=raw.trim().toLowerCase();
+    addLine(PR+raw,'c');
+    if(!cmd)return;
+    if(cmd==='clear'){out.innerHTML='';return;}
+    if(cmd==='exit'){closeT();return;}
+    var res=CMDS[cmd];
+    if(res){res.split('\n').forEach(function(l){addLine(l);});}
+    else{addLine("bash: "+raw+": commande introuvable — tapez 'help'",'e');}
+  }
+  function openT(){
+    ov.classList.add('open');
+    ov.setAttribute('aria-hidden','false');
+    if(hint)hint.style.display='none';
+    out.innerHTML='';
+    addLine('Bienvenue sur le terminal de Patrick Mekongo.');
+    addLine("Tapez 'help' pour voir les commandes disponibles.");
+    addLine('');
+    setTimeout(function(){inp.focus();},60);
+  }
+  function closeT(){
+    ov.classList.remove('open');
+    ov.setAttribute('aria-hidden','true');
+    if(hint)hint.style.display='';
+  }
+  document.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey)&&e.key==='t'){
+      e.preventDefault();
+      ov.classList.contains('open')?closeT():openT();
+    }
+    if(e.key==='Escape'&&ov.classList.contains('open'))closeT();
+  });
+  xBtn.addEventListener('click',closeT);
+  ov.addEventListener('click',function(e){if(e.target===ov)closeT();});
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){var v=inp.value;inp.value='';run(v);}
+  });
+})();
 </script>
+
+<!-- TERMINAL -->
+<div id="term-ov" aria-hidden="true">
+  <div id="term-win" role="dialog" aria-label="Terminal interactif">
+    <div id="term-head">
+      <div class="t-dots">
+        <span class="t-dot r"></span>
+        <span class="t-dot y"></span>
+        <span class="t-dot g"></span>
+      </div>
+      <span id="term-ttl">patrick@portfolio — bash</span>
+      <button id="term-x" aria-label="Fermer le terminal">×</button>
+    </div>
+    <div id="term-body">
+      <div id="term-out"></div>
+      <div id="term-row">
+        <span class="t-pr">patrick@portfolio:~$ </span>
+        <input id="term-in" type="text" autocomplete="off" spellcheck="false" aria-label="Commande terminal">
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
