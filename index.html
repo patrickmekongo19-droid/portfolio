@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patrick Mekongo — Technicien IT | Réseaux, Systèmes &amp; Développement</title>
+  <title>Patrick Mekongo — Technicien IT | Réseaux, Systèmes &amp; Développement Web</title>
   <meta name="description" content="Portfolio Patrick Mekongo, technicien IT en recherche de stage. Réseaux TCP/IP, VLAN, VMware, Windows Server, Debian, PHP/MySQL, PRTG, Nagios, Centreon, Zabbix.">
   <meta property="og:title" content="Patrick Mekongo — Technicien IT">
   <meta property="og:description" content="Technicien IT spécialisé en réseaux, systèmes et développement web. En recherche de stage.">
@@ -194,6 +194,43 @@
     .proj-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
     .proj-link:hover,.proj:hover .proj-link{color:var(--gold);border-color:var(--gold)}
 
+    /* PORTFOLIO ARTISTIQUE */
+    #portfolio-artistique{background:var(--surface)}
+    .art-intro{margin-top:18px;font-size:.95rem;line-height:1.8;color:var(--dim);max-width:760px}
+    .art-controls{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+    .art-btn{border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--light);padding:9px 14px;font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;cursor:none;transition:border-color .25s,color .25s,transform .3s}
+    .art-btn:hover,.art-btn.is-active{border-color:rgba(200,169,109,.45);color:var(--gold);transform:translateY(-2px)}
+    .art-grid{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;perspective:1100px}
+    .heic-head{margin-top:36px;padding-top:24px;border-top:1px solid var(--border)}
+    .heic-title{font-family:var(--fd);font-weight:800;font-size:clamp(24px,3.2vw,40px);letter-spacing:.05em;text-transform:uppercase;color:var(--light)}
+    .heic-sub{margin-top:10px;font-size:.88rem;color:var(--muted);line-height:1.7}
+    .heic-grid{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;perspective:1100px}
+    .heic-actions{margin-top:16px;display:flex;justify-content:center}
+    .heic-load{border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--light);padding:10px 18px;font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;cursor:none;transition:border-color .25s,color .25s,transform .3s}
+    .heic-load:hover{border-color:rgba(200,169,109,.45);color:var(--gold);transform:translateY(-2px)}
+    .heic-load[disabled]{opacity:.35;pointer-events:none}
+    .art-card{position:relative;overflow:hidden;border:1px solid var(--border);aspect-ratio:4/3;background:#0f1118;cursor:none;transform-style:preserve-3d;transition:transform .22s ease,box-shadow .22s ease,opacity .25s;opacity:0;transform:translateY(24px) scale(.97)}
+    .art-card.in{animation:artIn .7s cubic-bezier(.2,.8,.2,1) forwards}
+    .art-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 45%);pointer-events:none}
+    .art-card::before{content:'';position:absolute;inset:-130%;z-index:2;pointer-events:none;background:linear-gradient(112deg,transparent 20%,rgba(255,255,255,.17) 48%,transparent 70%);transform:translateX(-100%) rotate(8deg)}
+    .art-card.in::before{animation:artShine 1.3s ease .18s 1 both}
+    .art-card img,.art-card video{width:100%;height:100%;object-fit:cover;filter:brightness(.82) contrast(1.06);transition:transform .35s,filter .35s}
+    .art-card:hover img,.art-card:hover video{transform:scale(1.04);filter:brightness(.97) contrast(1.04)}
+    .art-card.hide{opacity:0;pointer-events:none;transform:scale(.94)}
+    .art-meta{position:absolute;left:10px;right:10px;bottom:10px;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .art-title{position:absolute;left:10px;top:10px;z-index:1;font-family:var(--fd);font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#fff}
+    .art-context{position:absolute;left:10px;right:10px;top:34px;z-index:1;font-family:var(--fb);font-size:.68rem;line-height:1.35;color:rgba(255,255,255,.86);max-width:85%}
+    .art-tag,.art-score{font-family:var(--fm);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;border:1px solid rgba(255,255,255,.16)}
+    .art-tag{color:#f6e8c9;border-color:rgba(200,169,109,.36);background:rgba(200,169,109,.1)}
+    .art-score{color:#dce3ff;border-color:rgba(79,126,247,.45);background:rgba(79,126,247,.12)}
+    #art-lightbox{position:fixed;inset:0;background:rgba(5,5,8,.94);z-index:9550;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;backdrop-filter:blur(5px)}
+    #art-lightbox.open{opacity:1;pointer-events:all}
+    #art-lb-img,#art-lb-video{max-width:92vw;max-height:86vh;width:auto;height:auto;object-fit:contain;display:block;border:1px solid rgba(255,255,255,.14);box-shadow:0 42px 120px rgba(0,0,0,.88)}
+    #art-lb-video{display:none;background:#000}
+    #art-lb-close{position:absolute;top:22px;right:30px;font-family:var(--fm);font-size:1rem;color:rgba(255,255,255,.45);background:none;border:1px solid rgba(255,255,255,.14);padding:8px 14px;cursor:none;letter-spacing:.12em}
+    #art-lb-close:hover{color:var(--white);border-color:rgba(255,255,255,.32)}
+    #art-lb-caption{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--light);background:rgba(0,0,0,.45);padding:7px 12px;border:1px solid rgba(255,255,255,.12)}
+
     /* VLAN */
     #reseau-schema{background:var(--navy);padding:80px 56px}
     .schema-title{font-family:var(--fd);font-weight:900;font-size:clamp(20px,2.5vw,28px);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:32px}
@@ -366,6 +403,8 @@
     @keyframes pulse-border{0%,100%{border-color:var(--gold)}50%{border-color:rgba(200,169,109,.45);box-shadow:0 0 0 4px rgba(200,169,109,.08)}}
     @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
     @keyframes bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-5px) rotate(1deg)}}
+    @keyframes artIn{0%{opacity:0;transform:translateY(26px) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes artShine{0%{transform:translateX(-120%) rotate(8deg)}100%{transform:translateX(140%) rotate(8deg)}}
 
     /* LIGHTBOX */
     #lightbox{position:fixed;inset:0;background:rgba(5,5,8,.97);z-index:9500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s;backdrop-filter:blur(6px)}
@@ -394,6 +433,7 @@
       .proj{grid-template-columns:1fr;gap:28px}
       .proj:nth-child(even){direction:ltr}
       .proj-gallery{grid-template-columns:1fr}
+      .art-grid,.heic-grid{grid-template-columns:1fr 1fr}
       .sup-inner{grid-template-columns:1fr;gap:48px}
       .sup-tools{grid-template-columns:1fr}
       .about-inner,.cv-inner{grid-template-columns:1fr;gap:48px}
@@ -411,6 +451,7 @@
       .timeline{padding-left:32px}
       .tl-dot{left:-36px}
       .hero-bot{flex-direction:column;align-items:flex-start;gap:20px}
+      .art-grid,.heic-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -441,6 +482,7 @@
     <li><a href="#competences">Stack</a></li>
     <li><a href="#parcours">Parcours</a></li>
     <li><a href="#projets">Projets</a></li>
+    <li><a href="#portfolio-artistique">Artistique</a></li>
     <li><a href="#autres-exp">Expériences</a></li>
     <li><a href="#cherche">Recherche</a></li>
     <li><a href="#supervision">Supervision</a></li>
@@ -566,14 +608,21 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         Développement
       </h3>
-      <p class="sk-group-desc">Web back-end, bases de données &amp; versioning</p>
+      <p class="sk-group-desc">Full stack web, SaaS &amp; bases de données</p>
       <div class="sk-cards">
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" loading="lazy" style="filter:invert(1)"><span class="sk-card-name">Next.js</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" loading="lazy"><span class="sk-card-name">React</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" loading="lazy"><span class="sk-card-name">TypeScript</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="Supabase" loading="lazy"><span class="sk-card-name">Supabase</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" loading="lazy"><span class="sk-card-name">Python</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" loading="lazy"><span class="sk-card-name">PHP</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy"><span class="sk-card-name">MySQL</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy"><span class="sk-card-name">HTML5</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy"><span class="sk-card-name">CSS3</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" loading="lazy"><span class="sk-card-name">Git</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" loading="lazy" style="filter:invert(1)"><span class="sk-card-name">GitHub</span></div>
+        <div class="sk-card"><svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:#c8a96d"><path d="M11.39 0a.74.74 0 00-.53.22L.22 10.86A.74.74 0 000 11.39v1.22c0 .2.08.38.22.52l10.64 10.64c.14.14.33.22.53.22h1.22c.2 0 .38-.08.52-.22l10.65-10.64c.14-.14.22-.32.22-.52v-1.22a.74.74 0 00-.22-.53L13.13.22A.74.74 0 0012.61 0h-1.22zm.61 4.65l6.7 6.7v.4l-6.7 6.7h-.4l-6.7-6.7v-.4l6.7-6.7h.4z"/></svg><span class="sk-card-name">Stripe</span></div>
+        <div class="sk-card"><svg viewBox="0 0 24 24" fill="currentColor" style="width:32px;height:32px;color:#d4a843"><path d="M12.007 0c-.297 0-.594.124-.804.367L.367 11.203A1.14 1.14 0 000 12.007v.003a1.14 1.14 0 00.367.8L11.203 23.64c.21.243.507.36.804.36.297 0 .594-.117.804-.36l10.836-10.83A1.14 1.14 0 0024 12.01v-.003a1.14 1.14 0 00-.367-.804L12.797.367A1.117 1.117 0 0012.007 0zm-.006 2.574l9.426 9.433-9.426 9.42-9.42-9.42 9.42-9.433z"/></svg><span class="sk-card-name">Claude API</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy"><span class="sk-card-name">VS Code</span></div>
       </div>
     </div>
@@ -754,7 +803,23 @@
     <article class="proj reveal">
       <span class="proj-ghost" aria-hidden="true">02</span>
       <div class="proj-left">
-        <p class="proj-num">Projet 02 — Systèmes</p>
+        <p class="proj-num">Projet 02 — SaaS / Full Stack</p>
+        <h3 class="proj-title">CViste —<br>Générateur IA</h3>
+      </div>
+      <div class="proj-right">
+        <p class="proj-desc">Application SaaS complète de génération de CV avec IA. Interface moderne, templates premium, export PDF/DOCX, import PDF, génération multilingue FR/EN/ES. Features IA : Paste &amp; Match, réécriture sectorielle, lettre de motivation via Claude AI (Anthropic).</p>
+        <div class="tags">
+          <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span>
+          <span class="tag">Supabase</span><span class="tag">Clerk</span><span class="tag">Stripe</span>
+          <span class="tag">Claude AI</span>
+        </div>
+        <p style="font-family:var(--fm);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:20px;">En développement — Phases 1–4 complétées</p>
+      </div>
+    </article>
+    <article class="proj reveal">
+      <span class="proj-ghost" aria-hidden="true">03</span>
+      <div class="proj-left">
+        <p class="proj-num">Projet 03 — Systèmes</p>
         <h3 class="proj-title">Lab<br>Virtualisation</h3>
       </div>
       <div class="proj-right">
@@ -776,9 +841,9 @@
       </div>
     </article>
     <article class="proj reveal">
-      <span class="proj-ghost" aria-hidden="true">03</span>
+      <span class="proj-ghost" aria-hidden="true">04</span>
       <div class="proj-left">
-        <p class="proj-num">Projet 03 — Réseaux</p>
+        <p class="proj-num">Projet 04 — Réseaux</p>
         <h3 class="proj-title">Infrastructure<br>Réseau</h3>
       </div>
       <div class="proj-right">
@@ -796,9 +861,9 @@
       </div>
     </article>
     <article class="proj reveal">
-      <span class="proj-ghost" aria-hidden="true">04</span>
+      <span class="proj-ghost" aria-hidden="true">05</span>
       <div class="proj-left">
-        <p class="proj-num">Projet 04 — Modélisation</p>
+        <p class="proj-num">Projet 05 — Modélisation</p>
         <h3 class="proj-title">Conception<br>BDD</h3>
       </div>
       <div class="proj-right">
@@ -820,9 +885,9 @@
       </div>
     </article>
     <article class="proj reveal">
-      <span class="proj-ghost" aria-hidden="true">05</span>
+      <span class="proj-ghost" aria-hidden="true">06</span>
       <div class="proj-left">
-        <p class="proj-num">Projet 05 — Mission IT</p>
+        <p class="proj-num">Projet 06 — Mission IT</p>
         <h3 class="proj-title">Mission<br>IT</h3>
       </div>
       <div class="proj-right">
@@ -849,6 +914,48 @@
     </article>
   </div>
 </section>
+
+<!-- ══════════ 05B PORTFOLIO ARTISTIQUE ══════════ -->
+<section id="portfolio-artistique" class="sec">
+  <div class="sec-num" aria-hidden="true">05B</div>
+  <div class="reveal">
+    <div class="sec-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h18"/><path d="M6 7l2-3h8l2 3"/><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/></svg>
+      05B — Portfolio Artistique
+    </div>
+    <h2 class="sec-title">Direction<br>Visuelle</h2>
+    <p class="art-intro">Selection des photos les plus pertinentes du dossier: formats web compatibles, bonne resolution, poids image exploitable et cadrage adapte. Rendu final avec interactions 3D, filtres et lightbox immersive.</p>
+  </div>
+
+  <div class="art-controls reveal d1" aria-label="Filtres portfolio artistique">
+    <button class="art-btn is-active" data-art-filter="all">Tout</button>
+    <button class="art-btn" data-art-filter="portrait">Portrait</button>
+    <button class="art-btn" data-art-filter="urban">Urban</button>
+    <button class="art-btn" data-art-filter="mood">Mood</button>
+    <button class="art-btn" data-art-filter="video">Videos</button>
+    <button class="art-btn" data-curator="essential">Essentiel</button>
+    <button class="art-btn is-active" data-curator="editorial">Editorial</button>
+    <button class="art-btn" data-curator="complete">Complet</button>
+  </div>
+
+  <div class="art-grid reveal d2" id="art-grid"></div>
+
+  <div class="heic-head reveal d3">
+    <h3 class="heic-title">Collection HEIC convertie</h3>
+    <p class="heic-sub">Selection issue de la conversion HEIC vers JPG. Chargement progressif pour conserver une navigation rapide.</p>
+    <div class="heic-grid" id="heic-grid"></div>
+    <div class="heic-actions">
+      <button class="heic-load" id="heic-load-more">Charger plus</button>
+    </div>
+  </div>
+</section>
+
+<div id="art-lightbox" role="dialog" aria-modal="true" aria-label="Image artistique agrandie">
+  <button id="art-lb-close">ESC</button>
+  <img id="art-lb-img" src="" alt="">
+  <video id="art-lb-video" controls playsinline preload="metadata"></video>
+  <p id="art-lb-caption"></p>
+</div>
 
 <!-- VLAN SCHEMA -->
 <div id="reseau-schema">
@@ -1255,7 +1362,7 @@ const cd=document.getElementById('cd'),cr=document.getElementById('cr');
 let mx=-100,my=-100,rx=-100,ry=-100;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px'});
 (function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(raf)})();
-document.querySelectorAll('a,button,.tag,.p-item,.sk-card,.sup-tool-card,.tl-item,.autre-card,.proj-screen,.c-link,.cherche-item,.cherche-badge,.cv-preview').forEach(el=>{
+document.querySelectorAll('a,button,.tag,.p-item,.sk-card,.sup-tool-card,.tl-item,.autre-card,.proj-screen,.art-card,.c-link,.cherche-item,.cherche-badge,.cv-preview').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
 });
@@ -1344,6 +1451,282 @@ document.getElementById('contact-form').addEventListener('submit',function(e){
   fb.style.display='block';
   setTimeout(()=>{fb.style.display='none';},5000);
 });
+
+/* ── PORTFOLIO ARTISTIQUE ── */
+const artCollection=[{"file":"BA35A8A8-A5D7-4E6D-AC61-F2D98011C5CF.JPG","title":"Elegance Verticale","category":"portrait","type":"photo"},{"file":"1658748295888.jpg","title":"Pulse Night 01","category":"mood","type":"photo"},{"file":"1658748295897.jpg","title":"Pulse Night 02","category":"mood","type":"photo"},{"file":"1658748295781.jpg","title":"Pulse Night 03","category":"mood","type":"photo"},{"file":"1658748295866.jpg","title":"Pulse Night 04","category":"mood","type":"photo"},{"file":"1658748295772.jpg","title":"Pulse Night 05","category":"mood","type":"photo"},{"file":"1658748295877.jpg","title":"Pulse Night 06","category":"mood","type":"photo"},{"file":"1658748295926.jpg","title":"Pulse Night 07","category":"mood","type":"photo"},{"file":"1658748295662.jpg","title":"Pulse Night 08","category":"mood","type":"photo"},{"file":"1658748295724.jpg","title":"Pulse Night 09","category":"mood","type":"photo"},{"file":"1658748295855.jpg","title":"Pulse Night 10","category":"mood","type":"photo"},{"file":"1658748295733.jpg","title":"Pulse Night 11","category":"mood","type":"photo"},{"file":"1658748295683.jpg","title":"Pulse Night 12","category":"mood","type":"photo"},{"file":"1658748295672.jpg","title":"Pulse Night 13","category":"mood","type":"photo"},{"file":"1658748295714.jpg","title":"Pulse Night 14","category":"mood","type":"photo"},{"file":"1658748295743.jpg","title":"Pulse Night 15","category":"mood","type":"photo"},{"file":"IMG_0062.jpeg","title":"Urban Glow 01","category":"urban","type":"photo"},{"file":"1658748295705.jpg","title":"Pulse Night 16","category":"mood","type":"photo"},{"file":"1658748296203.JPG","title":"Urban Glow 02","category":"urban","type":"photo"},{"file":"1658748822835.jpg","title":"Atmosphere 01","category":"mood","type":"photo"},{"file":"1658748822716.jpg","title":"Atmosphere 02","category":"mood","type":"photo"},{"file":"1658748296132.jpg","title":"Urban Glow 03","category":"urban","type":"photo"},{"file":"1658748822917.jpg","title":"Atmosphere 03","category":"mood","type":"photo"},{"file":"IMG_0021.jpeg","title":"Urban Frame 01","category":"urban","type":"photo"},{"file":"IMG_0022.jpeg","title":"Urban Frame 02","category":"urban","type":"photo"},{"file":"IMG_0019.jpeg","title":"Urban Frame 03","category":"urban","type":"photo"},{"file":"IMG_0017.jpeg","title":"Urban Frame 04","category":"urban","type":"photo"},{"file":"IMG_0026.jpeg","title":"Urban Frame 05","category":"urban","type":"photo"},{"file":"IMG_0018.jpeg","title":"Urban Frame 06","category":"urban","type":"photo"},{"file":"IMG_0044.jpeg","title":"Urban Frame 07","category":"urban","type":"photo"},{"file":"IMG_0020.jpeg","title":"Urban Frame 08","category":"urban","type":"photo"},{"file":"IMG_0024.jpeg","title":"Urban Frame 09","category":"urban","type":"photo"},{"file":"IMG_0012.jpeg","title":"Urban Frame 10","category":"urban","type":"photo"},{"file":"IMG_0025.jpeg","title":"Urban Frame 11","category":"urban","type":"photo"},{"file":"IMG_0023.jpeg","title":"Urban Frame 12","category":"urban","type":"photo"},{"file":"IMG_0011.jpeg","title":"Urban Frame 13","category":"urban","type":"photo"},{"file":"IMG_0010.jpeg","title":"Urban Frame 14","category":"urban","type":"photo"},{"file":"IMG_0028.jpeg","title":"Urban Frame 15","category":"urban","type":"photo"},{"file":"IMG_0031.jpeg","title":"Urban Frame 16","category":"urban","type":"photo"},{"file":"0B49EDC7-5512-4A1A-B0CE-29D8BA9EC149.JPG","title":"Portrait Echo","category":"portrait","type":"photo"},{"file":"IMG_0029.jpeg","title":"Urban Frame 17","category":"urban","type":"photo"},{"file":"IMG_0006.jpeg","title":"Urban Frame 18","category":"urban","type":"photo"},{"file":"IMG_0009.jpeg","title":"Urban Frame 19","category":"urban","type":"photo"},{"file":"IMG_0008.jpeg","title":"Urban Frame 20","category":"urban","type":"photo"},{"file":"IMG_0007.jpeg","title":"Urban Frame 21","category":"urban","type":"photo"},{"file":"IMG_0004.jpeg","title":"Urban Frame 22","category":"urban","type":"photo"},{"file":"IMG_0005.jpeg","title":"Urban Frame 23","category":"urban","type":"photo"},{"file":"IMG_0030.jpeg","title":"Urban Frame 24","category":"urban","type":"photo"},{"file":"assets/video/cv-generator-demo.mp4","title":"Demo CV Generator","category":"video","type":"video"}];
+
+const artGrid=document.getElementById('art-grid');
+const artLightbox=document.getElementById('art-lightbox');
+const artLbImg=document.getElementById('art-lb-img');
+const artLbVideo=document.getElementById('art-lb-video');
+const artLbCaption=document.getElementById('art-lb-caption');
+const heicGrid=document.getElementById('heic-grid');
+const heicLoadMoreBtn=document.getElementById('heic-load-more');
+const heicConverted=[
+  "heic-test-convert.jpg","IMG_0417.jpg","IMG_0418.jpg","IMG_0421.jpg","IMG_0422.jpg","IMG_0423.jpg","IMG_0424.jpg","IMG_0425.jpg","IMG_0426.jpg","IMG_0429.jpg","IMG_0430.jpg","IMG_0432.jpg","IMG_0433.jpg","IMG_0434.jpg","IMG_0435.jpg","IMG_0436.jpg","IMG_0437.jpg","IMG_0442.jpg","IMG_0444.jpg","IMG_0445.jpg","IMG_0467.jpg","IMG_0468.jpg","IMG_0469.jpg","IMG_0471.jpg","IMG_0472.jpg","IMG_0476.jpg","IMG_0565.jpg","IMG_1540.jpg","IMG_1542.jpg","IMG_1543.jpg","IMG_1544.jpg","IMG_1545.jpg","IMG_1546.jpg","IMG_1547.jpg","IMG_1548.jpg","IMG_1549.jpg","IMG_1550.jpg","IMG_1551.jpg","IMG_1552.jpg","IMG_1553.jpg","IMG_1554.jpg","IMG_1555.jpg","IMG_1556.jpg","IMG_1557.jpg","IMG_1558.jpg","IMG_1559.jpg","IMG_1560.jpg","IMG_1561.jpg","IMG_1562.jpg","IMG_1563.jpg","IMG_1564.jpg","IMG_1565.jpg","IMG_1566.jpg","IMG_1567.jpg","IMG_1568.jpg","IMG_1569.jpg","IMG_1570.jpg","IMG_1571.jpg","IMG_1572.jpg","IMG_1573.jpg","IMG_1574.jpg","IMG_1575.jpg","IMG_1576.jpg","IMG_1577.jpg","IMG_1578.jpg","IMG_1579.jpg","IMG_1580.jpg","IMG_1581.jpg","IMG_1596.jpg","IMG_1599.jpg","IMG_1603.jpg","IMG_1609.jpg","IMG_1611.jpg","IMG_1612.jpg","IMG_1613.jpg","IMG_1614.jpg","IMG_1615.jpg","IMG_1616.jpg","IMG_1617.jpg","IMG_1618.jpg","IMG_1619.jpg","IMG_1621.jpg","IMG_1622.jpg","IMG_1623.jpg","IMG_3061.jpg","IMG_3115.jpg","IMG_3116.jpg","IMG_3117.jpg","IMG_3119.jpg","IMG_3186.jpg"
+];
+const artFilterOrder=['all','portrait','urban','mood','video'];
+let artFilterIndex=0;
+let artRotateTimer=null;
+let artRotationPausedUntil=0;
+let heicRenderedCount=0;
+let currentArtFilter='all';
+let curatorMode='editorial';
+const CURATOR_LIMITS={essential:12,editorial:24,complete:42};
+function getHeicBatchSize(){
+  if(curatorMode==='essential') return 12;
+  if(curatorMode==='complete') return 36;
+  return 24;
+}
+
+function normalizeMediaBase(file){
+  const clean=file.split('/').pop() || file;
+  return clean.replace(/\.[^.]+$/,'').toLowerCase();
+}
+function extractSequenceNumber(value){
+  const m=(value||'').match(/(\d{3,})/);
+  return m ? Number(m[1]) : Number.MAX_SAFE_INTEGER;
+}
+function burstDedupBySequence(items,getKey,getSeq,gap=1){
+  const ordered=[...items].sort((a,b)=>getSeq(a)-getSeq(b));
+  const kept=[];
+  let lastSeqByKey=new Map();
+  ordered.forEach(item=>{
+    const key=getKey(item);
+    const seq=getSeq(item);
+    const prev=lastSeqByKey.get(key);
+    if(prev===undefined || Math.abs(seq-prev)>gap){
+      kept.push(item);
+      lastSeqByKey.set(key,seq);
+    }
+  });
+  return kept;
+}
+function contextForCategory(category){
+  if(category==='portrait') return 'Expression, presence et direction du regard.';
+  if(category==='urban') return 'Lignes architecturales, rythme visuel et profondeur.';
+  if(category==='video') return 'Sequence dynamique pour ressentir le projet.';
+  return 'Ambiance, texture de lumiere et narration visuelle.';
+}
+function qualityScore(item){
+  let s=0;
+  if(item.type==='video') s+=95;
+  if(item.category==='portrait') s+=35;
+  if(item.category==='urban') s+=28;
+  if(item.title.includes('Glow')||item.title.includes('Pulse')||item.title.includes('Echo')) s+=16;
+  if(/^\d{10,}$/.test(item.title.replaceAll(' ',''))) s-=8;
+  return s;
+}
+const uniqueArtCollection=Array.from(
+  artCollection.reduce((map,item)=>{
+    const key=normalizeMediaBase(item.file);
+    const enriched={...item,context:item.context||contextForCategory(item.category)};
+    const prev=map.get(key);
+    if(!prev||qualityScore(enriched)>qualityScore(prev)) map.set(key,enriched);
+    return map;
+  },new Map()).values()
+);
+const bestArtCollection=burstDedupBySequence(
+  uniqueArtCollection,
+  item=>item.category + ':' + normalizeMediaBase(item.file).replace(/\d+/g,''),
+  item=>extractSequenceNumber(item.file),
+  2
+).sort((a,b)=>qualityScore(b)-qualityScore(a)).slice(0,42);
+const uniqueHeicConvertedRaw=Array.from(
+  heicConverted
+    .filter(name=>name.toLowerCase()!=='heic-test-convert.jpg')
+    .reduce((map,name)=>{ map.set(normalizeMediaBase(name),name); return map; },new Map())
+    .values()
+);
+const uniqueHeicConverted=burstDedupBySequence(
+  uniqueHeicConvertedRaw,
+  name=>name.replace(/\d+/g,''),
+  name=>extractSequenceNumber(name),
+  1
+).sort((a,b)=>extractSequenceNumber(a)-extractSequenceNumber(b));
+
+const artFilterButtons=Array.from(document.querySelectorAll('.art-btn[data-art-filter]'));
+const curatorButtons=Array.from(document.querySelectorAll('.art-btn[data-curator]'));
+
+function getCuratedArtItems(){
+  const limit=Math.min(CURATOR_LIMITS[curatorMode]||24,bestArtCollection.length);
+  return bestArtCollection.slice(0,limit);
+}
+function renderArtGrid(){
+  if(!artGrid) return;
+  artGrid.innerHTML='';
+  getCuratedArtItems().forEach((item,idx)=>{
+    const card=document.createElement('article');
+    card.className='art-card';
+    card.dataset.category=item.category;
+    card.dataset.file=item.file;
+    card.dataset.type=item.type;
+    card.dataset.context=item.context + ' Angle privilegie: ' + (item.category==='portrait'?'3/4 et regard net.':item.category==='urban'?'fuyante et profondeur.':'lumiere laterale et contraste.');
+    card.dataset.title=item.title;
+    if(item.type==='video'){
+      card.innerHTML='<video src="'+encodeURI(item.file)+'" muted playsinline preload="metadata"></video><span class="art-title">'+item.title+'</span><span class="art-context">'+item.context+'</span><div class="art-meta"><span class="art-tag">video</span><span class="art-score">clip</span></div>';
+    }else{
+      card.innerHTML='<img src="'+encodeURI(item.file)+'" alt="'+item.title+'" loading="lazy"><span class="art-title">'+item.title+'</span><span class="art-context">'+item.context+'</span><div class="art-meta"><span class="art-tag">'+item.category+'</span><span class="art-score">photo</span></div>';
+    }
+    artGrid.appendChild(card);
+    setTimeout(()=>card.classList.add('in'),70*idx);
+  });
+}
+function applyArtFilter(filter){
+  currentArtFilter=filter;
+  artFilterButtons.forEach(b=>b.classList.toggle('is-active',b.dataset.artFilter===filter));
+  document.querySelectorAll('.art-card').forEach(card=>{
+    const show=filter==='all'||card.dataset.category===filter;
+    card.classList.toggle('hide',!show);
+  });
+}
+function rerenderHeicByMode(){
+  if(!heicGrid) return;
+  heicGrid.innerHTML='';
+  heicRenderedCount=0;
+  renderHeicBatch();
+}
+
+if(artGrid){
+  renderArtGrid();
+  applyArtFilter(currentArtFilter);
+
+  function pauseArtRotation(ms=14000){
+    artRotationPausedUntil=Date.now()+ms;
+  }
+  artFilterButtons.forEach((btn,index)=>{
+    btn.addEventListener('click',()=>{
+      artFilterIndex=index;
+      applyArtFilter(btn.dataset.artFilter);
+      pauseArtRotation();
+    });
+  });
+  curatorButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      curatorMode=btn.dataset.curator;
+      curatorButtons.forEach(b=>b.classList.toggle('is-active',b===btn));
+      renderArtGrid();
+      applyArtFilter(currentArtFilter);
+      rerenderHeicByMode();
+      pauseArtRotation(12000);
+    });
+  });
+
+  artGrid.addEventListener('click',e=>{
+    const card=e.target.closest('.art-card');
+    if(!card)return;
+    if(card.dataset.type==='video'){
+      artLbImg.style.display='none';
+      artLbVideo.style.display='block';
+      artLbVideo.src=encodeURI(card.dataset.file);
+      artLbVideo.currentTime=0;
+      artLbVideo.play().catch(()=>{});
+      artLbCaption.textContent=(card.dataset.title||'Video')+' — '+(card.dataset.context||'');
+    }else{
+      artLbVideo.pause();
+      artLbVideo.style.display='none';
+      artLbVideo.src='';
+      artLbImg.style.display='block';
+      artLbImg.src=encodeURI(card.dataset.file);
+      artLbImg.alt='Apercu '+card.querySelector('.art-title').textContent;
+      artLbCaption.textContent=(card.dataset.title||'Photo')+' — '+(card.dataset.context||'');
+    }
+    artLightbox.classList.add('open');
+    document.body.style.overflow='hidden';
+    pauseArtRotation(20000);
+  });
+
+  artGrid.addEventListener('mousemove',e=>{
+    const card=e.target.closest('.art-card');
+    if(!card)return;
+    const b=card.getBoundingClientRect();
+    const x=e.clientX-b.left,y=e.clientY-b.top;
+    const rx=((y/b.height)-.5)*-12;
+    const ry=((x/b.width)-.5)*12;
+    card.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';
+    card.style.boxShadow='0 22px 44px rgba(0,0,0,.52)';
+  });
+  artGrid.addEventListener('mouseleave',()=>{
+    document.querySelectorAll('.art-card').forEach(card=>{card.style.transform='';card.style.boxShadow='';});
+  });
+  artGrid.addEventListener('mouseenter',()=>pauseArtRotation(10000));
+
+  artRotateTimer=setInterval(()=>{
+    if(Date.now()<artRotationPausedUntil)return;
+    artFilterIndex=(artFilterIndex+1)%artFilterOrder.length;
+    applyArtFilter(artFilterOrder[artFilterIndex]);
+  },5500);
+}
+
+function openArtLightboxForCard(card){
+  if(card.dataset.type==='video'){
+    artLbImg.style.display='none';
+    artLbVideo.style.display='block';
+    artLbVideo.src=encodeURI(card.dataset.file);
+    artLbVideo.currentTime=0;
+    artLbVideo.play().catch(()=>{});
+    artLbCaption.textContent=(card.dataset.title||'Video')+' — '+(card.dataset.context||'');
+  }else{
+    artLbVideo.pause();
+    artLbVideo.style.display='none';
+    artLbVideo.src='';
+    artLbImg.style.display='block';
+    artLbImg.src=encodeURI(card.dataset.file);
+    artLbImg.alt='Apercu '+(card.querySelector('.art-title')?.textContent||'media');
+    artLbCaption.textContent=(card.dataset.title||'Photo')+' — '+(card.dataset.context||'');
+  }
+  artLightbox.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function renderHeicBatch(){
+  if(!heicGrid)return;
+  const next=uniqueHeicConverted.slice(heicRenderedCount,heicRenderedCount+getHeicBatchSize());
+  next.forEach((name,idx)=>{
+    const card=document.createElement('article');
+    card.className='art-card in';
+    card.dataset.category='portrait';
+    card.dataset.type='photo';
+    card.dataset.file='assets/img/heic-converted/'+name;
+    card.dataset.title=name.replace('.jpg','').replaceAll('_',' ');
+    const seq=extractSequenceNumber(name);
+    card.dataset.context='Image convertie HEIC, triee chronologiquement (EXIF/fallback sequence '+(Number.isFinite(seq)?seq:'N/A')+'), selectionnee pour son cadrage et sa lisibilite.';
+    card.innerHTML='<img src="'+encodeURI(card.dataset.file)+'" alt="Collection convertie '+(heicRenderedCount+idx+1)+'" loading="lazy"><span class="art-title">'+card.dataset.title+'</span><span class="art-context">'+card.dataset.context+'</span><div class="art-meta"><span class="art-tag">heic</span><span class="art-score">converti</span></div>';
+    heicGrid.appendChild(card);
+  });
+  heicRenderedCount+=next.length;
+  if(heicLoadMoreBtn){
+    const done=heicRenderedCount>=uniqueHeicConverted.length;
+    heicLoadMoreBtn.disabled=done;
+    heicLoadMoreBtn.textContent=done?'Collection complete':'Charger plus';
+  }
+}
+
+if(heicGrid){
+  renderHeicBatch();
+  if(heicLoadMoreBtn){
+    heicLoadMoreBtn.addEventListener('click',renderHeicBatch);
+  }
+  heicGrid.addEventListener('click',e=>{
+    const card=e.target.closest('.art-card');
+    if(!card)return;
+    openArtLightboxForCard(card);
+  });
+}
+
+function closeArtLb(){
+  artLightbox.classList.remove('open');
+  artLbImg.src='';
+  artLbImg.style.display='block';
+  artLbVideo.pause();
+  artLbVideo.src='';
+  artLbVideo.style.display='none';
+  artLbCaption.textContent='';
+  document.body.style.overflow='';
+}
+document.getElementById('art-lb-close').addEventListener('click',closeArtLb);
+artLightbox.addEventListener('click',e=>{if(e.target===artLightbox)closeArtLb();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classList.contains('open'))closeArtLb();});
 
 </script>
 
