@@ -488,6 +488,66 @@
     /* PROGRESS BAR */
     #scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:10000;width:0;pointer-events:none}
 
+    /* ── LOADER ── */
+    #pm-loader{position:fixed;inset:0;background:var(--black);z-index:99998;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .7s ease,visibility .7s}
+    #pm-loader.done{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-logo{font-family:var(--fd);font-weight:900;font-size:2.4rem;letter-spacing:.3em;color:var(--gold);opacity:0;animation:fadeUp .6s ease .2s forwards}
+    .loader-line{width:80px;height:1px;background:var(--border);position:relative;overflow:hidden;opacity:0;animation:fadeUp .4s ease .4s forwards}
+    .loader-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gold);animation:runLine 1s ease .5s forwards}
+
+    /* ── HERO PARTICLES ── */
+    #hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+    .hp{position:absolute;border-radius:50%;pointer-events:none;will-change:transform,opacity}
+    @keyframes hpFloat{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:.25}100%{transform:translateY(-110vh);opacity:0}}
+
+    /* ── TAG SHIMMER ── */
+    .tag{position:relative;overflow:hidden}
+    .tag::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(200,169,109,.2),transparent);transform:translateX(-200%);animation:tagShimmer 3s ease infinite}
+    @keyframes tagShimmer{0%{transform:translateX(-200%)}100%{transform:translateX(200%)}}
+
+    /* ── PROJECT CARD HOVER GLOW ── */
+    .proj{transition:background .4s,box-shadow .4s}
+    .proj:hover{background:rgba(200,169,109,.018);box-shadow:inset 0 0 0 1px rgba(200,169,109,.1)}
+
+    /* ── ACTIVE NAV LINK ── */
+    .nav-links a.nav-active::after{width:100%!important;background:var(--gold)}
+
+    /* ── RIPPLE ── */
+    .rpl{position:relative;overflow:hidden}
+    .rpl-ripple{position:absolute;border-radius:50%;background:rgba(200,169,109,.22);transform:scale(0);animation:rplGrow .55s linear;pointer-events:none;z-index:0}
+    @keyframes rplGrow{to{transform:scale(5);opacity:0}}
+
+    /* ── SPLIT TEXT LETTERS ── */
+    .slt{display:inline-block;opacity:0;transform:translateY(55%);will-change:transform,opacity}
+    .slt.in{animation:sltIn .65s cubic-bezier(.4,0,.2,1) forwards}
+    @keyframes sltIn{to{opacity:1;transform:translateY(0)}}
+
+    /* ── SKILL ICON POLISH ── */
+    .sk-card{position:relative}
+    .sk-card::before{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);background:#1c1c1c;border:1px solid var(--border);color:var(--dim);font-family:var(--fm);font-size:.56rem;letter-spacing:.1em;padding:5px 10px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;border-radius:2px;z-index:10}
+    .sk-card[data-tip]:hover::before{opacity:1;transform:translateX(-50%) translateY(0)}
+    .sk-card img,.sk-card svg{transition:transform .35s cubic-bezier(.4,0,.2,1)}
+    .sk-card:hover img,.sk-card:hover svg{transform:rotate(-8deg) scale(1.12)}
+
+    /* ── PROJ-LINK ARROW SLIDE ── */
+    .proj-link svg{transition:transform .3s cubic-bezier(.4,0,.2,1)}
+    .proj-link:hover svg{transform:translateX(5px)}
+
+    /* ── CONTACT BUTTON PULSE RING ── */
+    .cf-submit::after{content:'';position:absolute;inset:-3px;border:1px solid rgba(200,169,109,.35);pointer-events:none;animation:cfPulse 2.5s ease-in-out infinite}
+    @keyframes cfPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.04);opacity:0}}
+
+    /* ── TERMINAL CARET BLINK ── */
+    #term-in{caret-color:var(--gold,#c8a96d)}
+    @keyframes termBlink{0%,100%{caret-color:#30d158}50%{caret-color:transparent}}
+
+    /* ── MAGNETIC BTN ── */
+    .mag-btn{transition:transform .25s cubic-bezier(.4,0,.2,1)}
+
+    /* ── GRADIENT KEYWORD ── */
+    .grad-kw{background:linear-gradient(90deg,#c8a96d,#fff,#4f7ef7,#c8a96d);background-size:280%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradKw 5s linear infinite}
+    @keyframes gradKw{0%{background-position:0%}100%{background-position:280%}}
+
     /* TERMINAL */
     #term-ov{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
     #term-ov.open{display:flex}
@@ -526,6 +586,10 @@
 </head>
 <body>
 
+<div id="pm-loader" aria-hidden="true" role="status">
+  <span class="loader-logo">PM</span>
+  <div class="loader-line"></div>
+</div>
 <div id="scroll-progress" aria-hidden="true"></div>
 <div id="term-hint">Ctrl+T — Terminal</div>
 <a href="#pratique" class="skip-link">Aller au contenu principal</a>
@@ -582,6 +646,7 @@
 <!-- ══════════ HERO ══════════ -->
 <main>
 <section id="hero">
+  <div id="hero-particles" aria-hidden="true"></div>
   <div class="hero-ghost" id="hero-ghost" aria-hidden="true">IT</div>
   <div class="hero-side" aria-hidden="true">Technicien IT &nbsp;·&nbsp; 2026</div>
   <div>
@@ -2094,6 +2159,143 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   closeBtn.addEventListener('click',()=>{chatBox.style.display='none';});
   sendBtn.addEventListener('click',handleSend);
   input.addEventListener('keydown',(e)=>{if(e.key==='Enter')handleSend();});
+})();
+
+/* ── ANIMATIONS SUITE ── */
+(function(){
+  'use strict';
+
+  // LOADER
+  var loader=document.getElementById('pm-loader');
+  if(loader){
+    window.addEventListener('load',function(){
+      setTimeout(function(){loader.classList.add('done');},420);
+    });
+    // failsafe
+    setTimeout(function(){if(loader)loader.classList.add('done');},3000);
+  }
+
+  // HERO PARTICLES
+  (function(){
+    var c=document.getElementById('hero-particles');
+    if(!c||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    var n=window.innerWidth<600?12:22;
+    for(var i=0;i<n;i++){
+      var p=document.createElement('div');
+      p.className='hp';
+      var sz=Math.random()*2.5+1;
+      var x=Math.random()*100;
+      var delay=Math.random()*10;
+      var dur=Math.random()*7+9;
+      var alpha=Math.random()*.25+.08;
+      var col=Math.random()>.55
+        ?'rgba(200,169,109,'+alpha+')'
+        :'rgba(79,126,247,'+alpha*.7+')';
+      p.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+x+'%;bottom:-8px;background:'+col+';animation:hpFloat '+dur+'s linear '+delay+'s infinite';
+      c.appendChild(p);
+    }
+  })();
+
+  // ACTIVE NAV LINK
+  (function(){
+    var links=Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+    var pairs=links.reduce(function(acc,a){
+      var el=document.getElementById(a.getAttribute('href').slice(1));
+      if(el)acc.push({el:el,a:a});
+      return acc;
+    },[]);
+    function upd(){
+      var sy=window.scrollY+window.innerHeight*.3;
+      var cur=null;
+      pairs.forEach(function(p){if(p.el.offsetTop<=sy)cur=p;});
+      links.forEach(function(a){a.classList.remove('nav-active');});
+      if(cur)cur.a.classList.add('nav-active');
+    }
+    window.addEventListener('scroll',upd,{passive:true});
+    upd();
+  })();
+
+  // RIPPLE on CTAs
+  (function(){
+    function doRipple(e){
+      var btn=e.currentTarget;
+      var r=btn.getBoundingClientRect();
+      var sz=Math.max(r.width,r.height);
+      var x=e.clientX-r.left-sz/2;
+      var y=e.clientY-r.top-sz/2;
+      var rpl=document.createElement('span');
+      rpl.className='rpl-ripple';
+      rpl.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+x+'px;top:'+y+'px';
+      btn.appendChild(rpl);
+      setTimeout(function(){rpl.remove();},580);
+    }
+    document.querySelectorAll('.cf-submit,.copy-email-btn').forEach(function(el){
+      el.classList.add('rpl');
+      el.addEventListener('click',doRipple);
+    });
+  })();
+
+  // SPLIT TEXT on .sec-title (scroll-triggered)
+  (function(){
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting)return;
+        var title=entry.target.querySelector('.sec-title');
+        if(!title||title.dataset.split)return;
+        title.dataset.split='1';
+        var parts=title.innerHTML.split('<br>');
+        title.innerHTML=parts.map(function(part,pi){
+          var tmp=document.createElement('span');
+          tmp.innerHTML=part;
+          var txt=tmp.textContent||'';
+          return txt.split('').map(function(ch,ci){
+            var d=((pi*txt.length)+ci)*.04;
+            return '<span class="slt" style="animation-delay:'+d+'s">'+(ch===' '?'&nbsp;':ch)+'</span>';
+          }).join('');
+        }).join('<br>');
+        obs.unobserve(entry.target);
+      });
+    },{threshold:.25});
+    document.querySelectorAll('.sec').forEach(function(s){obs.observe(s);});
+  })();
+
+  // SKILL TOOLTIPS
+  (function(){
+    var tips={
+      'Next.js':'Framework React full-stack','React':'UI components',
+      'TypeScript':'JavaScript typé','Supabase':'Backend as a Service',
+      'Python':'Scripting & automatisation','PHP':'Backend web',
+      'MySQL':'Base de données SQL','HTML5':'Structure web',
+      'CSS3':'Style & mise en page','Git':'Versioning',
+      'GitHub':'Hébergement de code','Stripe':'Paiement SaaS',
+      'Claude API':'IA Anthropic','VS Code':'Éditeur de code'
+    };
+    document.querySelectorAll('.sk-card').forEach(function(card){
+      var name=card.querySelector('.sk-card-name');
+      if(name&&tips[name.textContent])card.setAttribute('data-tip',tips[name.textContent]);
+    });
+  })();
+
+  // MAGNETIC CURSOR on key CTAs
+  (function(){
+    var els=document.querySelectorAll('.cf-submit,.hero-avail,#back-top');
+    els.forEach(function(el){
+      el.classList.add('mag-btn');
+      el.addEventListener('mousemove',function(e){
+        var r=el.getBoundingClientRect();
+        var dx=(e.clientX-(r.left+r.width/2))*.15;
+        var dy=(e.clientY-(r.top+r.height/2))*.15;
+        el.style.transform='translate('+dx+'px,'+dy+'px)';
+      });
+      el.addEventListener('mouseleave',function(){el.style.transform='';});
+    });
+  })();
+
+  // REDUCED MOTION cleanup
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    document.querySelectorAll('.hp').forEach(function(el){el.style.display='none';});
+  }
 })();
 
 /* ── PROGRESS BAR ── */
