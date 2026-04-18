@@ -1867,99 +1867,316 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 12px;
-  font-family: sans-serif;
+  gap: 14px;
+  font-family: 'Barlow', sans-serif;
 }
 
 #inspi-chat-box {
   display: none;
-  width: 300px;
-  background: #111;
-  border-radius: 16px;
+  width: 320px;
+  background: rgba(10,10,10,0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  border: 1px solid rgba(200,169,109,0.2);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+#inspi-chat-box.visible {
+  display: block;
+  animation: inspi-chat-in 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes inspi-chat-in {
+  from { opacity:0; transform: translateY(14px) scale(0.95); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
 }
 
 #inspi-chat-header {
-  background: #1a1a1a;
-  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(200,169,109,0.15) 0%, rgba(200,169,109,0.05) 100%);
+  border-bottom: 1px solid rgba(200,169,109,0.12);
+  padding: 13px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-#inspi-chat-header span {
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
+#inspi-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#inspi-header-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c8a96d 0%, #9a7440 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  color: #0a0a0a;
+  font-size: 11px;
+  font-weight: 900;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 1px;
+}
+
+#inspi-online-badge {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 10px;
+  height: 10px;
+  background: #34d399;
+  border-radius: 50%;
+  border: 2px solid #0a0a0a;
+  animation: inspi-pulse-green 2s ease-in-out infinite;
+}
+
+@keyframes inspi-pulse-green {
+  0%,100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
+  50% { box-shadow: 0 0 0 4px rgba(52,211,153,0); }
+}
+
+#inspi-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#inspi-header-name {
+  color: #c8a96d;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+}
+
+#inspi-header-status {
+  color: #34d399;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
 }
 
 #inspi-close-btn {
-  color: #888;
+  color: rgba(255,255,255,0.35);
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
   background: none;
   border: none;
   line-height: 1;
+  padding: 5px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  margin-left: auto;
+}
+
+#inspi-close-btn:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.07);
 }
 
 #inspi-messages {
   padding: 14px;
-  height: 200px;
+  height: 220px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(200,169,109,0.2) transparent;
+}
+
+#inspi-messages::-webkit-scrollbar { width: 4px; }
+#inspi-messages::-webkit-scrollbar-track { background: transparent; }
+#inspi-messages::-webkit-scrollbar-thumb { background: rgba(200,169,109,0.2); border-radius: 4px; }
+
+.inspi-msg-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-self: flex-start;
+  max-width: 88%;
+}
+
+.inspi-msg-wrap.user {
+  align-self: flex-end;
 }
 
 .inspi-msg {
-  background: #222;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 10px;
-  font-size: 13px;
-  line-height: 1.5;
-  max-width: 85%;
-  align-self: flex-start;
+  background: rgba(255,255,255,0.05);
+  border-left: 2px solid rgba(200,169,109,0.45);
+  color: #ddd;
+  padding: 9px 12px;
+  border-radius: 0 12px 12px 12px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  font-family: 'Barlow', sans-serif;
 }
 
-.inspi-msg.user {
-  background: #333;
-  align-self: flex-end;
+.inspi-msg-wrap.user .inspi-msg {
+  background: rgba(200,169,109,0.12);
+  border-left: none;
+  border-right: 2px solid rgba(200,169,109,0.5);
+  color: #e8d5b0;
+  border-radius: 12px 0 12px 12px;
+}
+
+.inspi-msg-time {
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  padding: 0 3px;
+  font-family: 'DM Mono', monospace;
+}
+
+.inspi-msg-wrap.user .inspi-msg-time {
+  text-align: right;
+}
+
+#inspi-typing {
+  display: none;
+  gap: 5px;
+  align-items: center;
+  padding: 8px 14px;
+  margin: 0 14px 8px;
+  background: rgba(255,255,255,0.04);
+  border-left: 2px solid rgba(200,169,109,0.3);
+  border-radius: 0 10px 10px 10px;
+  width: fit-content;
+}
+
+#inspi-typing span {
+  width: 5px;
+  height: 5px;
+  background: rgba(200,169,109,0.6);
+  border-radius: 50%;
+  animation: inspi-typing-dot 1.2s ease-in-out infinite;
+}
+
+#inspi-typing span:nth-child(2) { animation-delay: 0.2s; }
+#inspi-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes inspi-typing-dot {
+  0%,60%,100% { transform: translateY(0); opacity: 0.35; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+#inspi-chips {
+  display: flex;
+  gap: 6px;
+  padding: 4px 14px 10px;
+  flex-wrap: wrap;
+}
+
+.inspi-chip {
+  background: rgba(200,169,109,0.07);
+  border: 1px solid rgba(200,169,109,0.18);
+  color: rgba(200,169,109,0.8);
+  font-size: 10.5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.inspi-chip:hover {
+  background: rgba(200,169,109,0.16);
+  border-color: rgba(200,169,109,0.4);
+  color: #c8a96d;
 }
 
 #inspi-input-row {
   display: flex;
   gap: 8px;
-  padding: 10px 14px;
-  border-top: 1px solid #222;
+  padding: 10px 14px 14px;
+  border-top: 1px solid rgba(200,169,109,0.08);
 }
 
 #inspi-input {
   flex: 1;
-  background: #222;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 8px 12px;
   color: #fff;
-  font-size: 13px;
+  font-size: 12.5px;
   outline: none;
+  font-family: 'Barlow', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#inspi-input::placeholder { color: rgba(255,255,255,0.22); }
+
+#inspi-input:focus {
+  border-color: rgba(200,169,109,0.45);
+  box-shadow: 0 0 0 3px rgba(200,169,109,0.07);
 }
 
 #inspi-send {
-  background: #fff;
-  color: #111;
+  background: linear-gradient(135deg, #c8a96d, #9a7440);
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 13px;
-  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 13px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+#inspi-send:hover { opacity: 0.82; }
+#inspi-send:active { transform: scale(0.93); }
+
+#inspi-avatar-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
 }
 
 #inspi-avatar {
   cursor: pointer;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25));
+  filter: drop-shadow(0 4px 14px rgba(200,169,109,0.2)) drop-shadow(0 0 6px rgba(200,169,109,0.08));
+  transition: filter 0.3s;
+}
+
+#inspi-avatar:hover {
+  filter: drop-shadow(0 4px 20px rgba(200,169,109,0.38)) drop-shadow(0 0 10px rgba(200,169,109,0.18));
+}
+
+#inspi-notif {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 17px;
+  height: 17px;
+  background: #4f7ef7;
+  border-radius: 50%;
+  font-size: 9px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border: 2px solid #0a0a0a;
+  font-family: 'DM Mono', monospace;
+  animation: inspi-notif-pop 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes inspi-notif-pop {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
 }
 
 @keyframes inspi-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
@@ -1980,18 +2197,42 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
 
   <div id="inspi-chat-box">
     <div id="inspi-chat-header">
-      <span>Inspi — Assistant IT</span>
+      <div id="inspi-header-left">
+        <div id="inspi-header-avatar">
+          IT
+          <div id="inspi-online-badge"></div>
+        </div>
+        <div id="inspi-header-info">
+          <div id="inspi-header-name">Inspi</div>
+          <div id="inspi-header-status">En ligne</div>
+        </div>
+      </div>
       <button id="inspi-close-btn" aria-label="Fermer le chat">&#x2715;</button>
     </div>
     <div id="inspi-messages">
-      <div class="inspi-msg">Bonjour ! Je suis Inspi, l'assistant IT de Patrick. Comment puis-je vous aider ?</div>
+      <div class="inspi-msg-wrap">
+        <div class="inspi-msg">Bonjour ! Je suis Inspi, l'assistant IT de Patrick. Tapez /help pour voir mes commandes.</div>
+        <div class="inspi-msg-time">maintenant</div>
+      </div>
+    </div>
+    <div id="inspi-typing">
+      <span></span><span></span><span></span>
+    </div>
+    <div id="inspi-chips">
+      <button class="inspi-chip">/skills</button>
+      <button class="inspi-chip">/projets</button>
+      <button class="inspi-chip">/stage</button>
+      <button class="inspi-chip">/contact</button>
     </div>
     <div id="inspi-input-row">
       <input id="inspi-input" type="text" placeholder="Posez votre question..." aria-label="Votre question" />
-      <button id="inspi-send" aria-label="Envoyer le message">&#x27A4;</button>
+      <button id="inspi-send" aria-label="Envoyer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
     </div>
   </div>
 
+  <div id="inspi-avatar-wrap">
   <svg id="inspi-avatar" width="110" height="160" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
   <g id="inspi-all">
 
@@ -2048,6 +2289,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
 
   </g>
   </svg>
+  </div>
 
 </div>
 
@@ -2064,22 +2306,38 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   const mouth=document.getElementById('inspi-mouth');
   const chatBox=document.getElementById('inspi-chat-box');
   const avatar=document.getElementById('inspi-avatar');
+  const avatarWrap=document.getElementById('inspi-avatar-wrap');
   const closeBtn=document.getElementById('inspi-close-btn');
   const input=document.getElementById('inspi-input');
   const sendBtn=document.getElementById('inspi-send');
   const messages=document.getElementById('inspi-messages');
+  const typing=document.getElementById('inspi-typing');
 
   const phrases=["Bonjour !","Dites-moi tout !","En quoi puis-je vous aider ?","Besoin de renseignements ?","Je suis là pour vous !","Une question IT ?","Bienvenue sur mon portfolio !","Ask me anything !","Cliquez, je réponds !","Support IT disponible !"];
 
-  const responses=[
-    "N'hésitez pas à contacter Patrick directement par email !",
-    "Patrick est disponible pour un stage dès maintenant.",
-    "Vous pouvez consulter ses projets dans la section Réalisations.",
-    "Patrick maîtrise les réseaux Cisco, Linux, et le développement web.",
-    "Pour toute question, utilisez le formulaire de contact ci-dessous !"
-  ];
-
   let busy=false;
+
+  function getTime(){
+    const d=new Date();
+    return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
+  }
+
+  function getResponse(val){
+    const v=val.toLowerCase().trim();
+    if(v==='sudo hire patrick')return'Accès root accordé. Patrick Mekongo rejoint votre équipe le 29 juin 2026. Bienvenue dans le futur.';
+    if(v==='/help')return'Commandes disponibles :\n/skills — Stack technique\n/projets — Réalisations\n/stage — Infos stage\n/contact — Me contacter\n/cv — Télécharger le CV';
+    if(v==='/skills'||/skill|compétence|stack|technolog/.test(v))return'Stack de Patrick : Cisco IOS · Linux Debian/Ubuntu · Windows Server · PRTG · Nagios · Python · JS/TS · React · Next.js · Supabase · PHP/MySQL. Voir la section Stack.';
+    if(v==='/projets'||/projet|réalisation/.test(v))return'5 projets : CViste (SaaS IA), Générateur de CV (PHP/MySQL), Supervision réseau, Dashboard monitoring. Voir la section Projets.';
+    if(v==='/stage'||/stage|disponible|alternance|embauche|recru/.test(v))return'Stage disponible du 29 juin au 30 juillet 2026. Formation BTS SIO SISR (Ingetis Paris). Contactez Patrick via le formulaire en bas de page.';
+    if(v==='/contact'||/contact|email|mail|joindre/.test(v))return'patrickmekongo19@gmail.com — LinkedIn : linkedin.com/in/patrick-koa-mekongo-767476353 — Formulaire de contact en bas de page.';
+    if(v==='/cv'||/\bcv\b|curriculum|télécharger/.test(v))return'Téléchargez le CV de Patrick dans la section CV (section 09) ou directement via : assets/cv-patrick-mekongo.pdf';
+    if(/cisco|réseau|vlan|switch|routage|ospf|nat/.test(v))return'Patrick maîtrise Cisco IOS : VLAN, routage statique/OSPF, ACL, NAT, VPN IPsec. Supervision PRTG/Nagios/Centreon/Zabbix.';
+    if(/linux|debian|ubuntu|serveur|bash/.test(v))return'Administration Linux Debian/Ubuntu : DHCP, DNS, SSH, scripting bash, gestion de paquets, sécurisation serveur.';
+    if(/saas|cviste|intelligence artificielle|claude api/.test(v))return'CViste : SaaS en développement — génération de CV par IA (Claude API), analyse ATS, export PDF. Stack : Next.js · TypeScript · Supabase · Stripe.';
+    if(/bts|ingetis|formation|école|étud/.test(v))return'Patrick est en BTS SIO SISR 1ère année à Ingetis Paris. Bac L mention Bien (2024). Bilingue français/anglais.';
+    if(/bonjour|salut|hello|hi/.test(v))return"Bonjour ! Je suis Inspi, l'assistant IT de Patrick. Tapez /help pour voir mes commandes.";
+    return'Je ne suis pas sûr de comprendre. Essayez /help pour mes commandes, ou contactez Patrick : patrickmekongo19@gmail.com';
+  }
 
   function resetAll(){
     all.style.animation='inspi-float 3s ease-in-out infinite';
@@ -2097,13 +2355,13 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   }
 
   function doSip(){
-    if(busy)return; busy=true;
+    if(busy)return;busy=true;
     rarmGrp.style.animation='inspi-rarm-up 1.6s ease-in-out 2 forwards';
     drinkGrp.style.animation='inspi-drink-up 1.6s ease-in-out 2 forwards';
     let t=0;
     const iv=setInterval(()=>{
       t+=150;
-      if(t>380&&t<1500) mouth.setAttribute('d','M126 183 Q150 190 174 183');
+      if(t>380&&t<1500)mouth.setAttribute('d','M126 183 Q150 190 174 183');
       else mouth.setAttribute('d','M122 183 Q150 197 178 183');
       if(t>=3500){clearInterval(iv);resetAll();}
     },150);
@@ -2123,22 +2381,34 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     setTimeout(()=>{bubble.style.opacity='0';bubble.style.animation='none';},3400);
   }
 
-  function addMsg(txt, isUser){
+  function addMsg(txt,isUser){
+    const wrap=document.createElement('div');
+    wrap.className='inspi-msg-wrap'+(isUser?' user':'');
     const d=document.createElement('div');
-    d.className='inspi-msg'+(isUser?' user':'');
+    d.className='inspi-msg';
     d.textContent=txt;
-    messages.appendChild(d);
+    const t=document.createElement('div');
+    t.className='inspi-msg-time';
+    t.textContent=getTime();
+    wrap.appendChild(d);
+    wrap.appendChild(t);
+    messages.appendChild(wrap);
     messages.scrollTop=messages.scrollHeight;
   }
 
-  function handleSend(){
-    const val=input.value.trim();
+  function showTyping(){typing.style.display='flex';messages.scrollTop=messages.scrollHeight;}
+  function hideTyping(){typing.style.display='none';}
+
+  function handleSend(val){
+    val=val||input.value.trim();
     if(!val)return;
     addMsg(val,true);
     input.value='';
+    showTyping();
     setTimeout(()=>{
-      addMsg(responses[Math.floor(Math.random()*responses.length)],false);
-    },600);
+      hideTyping();
+      addMsg(getResponse(val),false);
+    },700+Math.random()*400);
   }
 
   const actions=[doSip,doSip,doSip,doSpin,doWave,doThrow];
@@ -2147,17 +2417,36 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   document.getElementById('inspi-d2').style.animation='inspi-dot2 1.4s ease-in-out infinite';
   document.getElementById('inspi-d3').style.animation='inspi-dot3 1.4s ease-in-out infinite';
 
-  setInterval(showBubble,5000);
-  setInterval(()=>{if(!busy&&chatBox.style.display==='none')actions[Math.floor(Math.random()*actions.length)]();},4000);
-
-  avatar.addEventListener('click',()=>{
-    chatBox.style.display=chatBox.style.display==='block'?'none':'block';
-    if(chatBox.style.display==='block'){showBubble();}
-    else{if(!busy)actions[Math.floor(Math.random()*actions.length)]();}
+  document.querySelectorAll('.inspi-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>handleSend(chip.textContent));
   });
 
-  closeBtn.addEventListener('click',()=>{chatBox.style.display='none';});
-  sendBtn.addEventListener('click',handleSend);
+  setTimeout(()=>{
+    if(!chatBox.classList.contains('visible')&&!document.getElementById('inspi-notif')){
+      const n=document.createElement('div');
+      n.id='inspi-notif';
+      n.textContent='1';
+      avatarWrap.appendChild(n);
+    }
+  },6000);
+
+  setInterval(showBubble,5000);
+  setInterval(()=>{if(!busy&&!chatBox.classList.contains('visible'))actions[Math.floor(Math.random()*actions.length)]();},4000);
+
+  avatar.addEventListener('click',()=>{
+    const notif=document.getElementById('inspi-notif');
+    if(notif)notif.remove();
+    if(chatBox.classList.contains('visible')){
+      chatBox.classList.remove('visible');
+      if(!busy)actions[Math.floor(Math.random()*actions.length)]();
+    }else{
+      chatBox.classList.add('visible');
+      showBubble();
+    }
+  });
+
+  closeBtn.addEventListener('click',()=>chatBox.classList.remove('visible'));
+  sendBtn.addEventListener('click',()=>handleSend());
   input.addEventListener('keydown',(e)=>{if(e.key==='Enter')handleSend();});
 })();
 
