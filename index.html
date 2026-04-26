@@ -15,9 +15,15 @@
   <meta name="twitter:description" content="Réseaux, Systèmes & Développement. En recherche de stage IT.">
   <meta name="twitter:image" content="https://patrickmekongo19-droid.github.io/portfolio/assets/img/inspi.jpg">
   <meta name="theme-color" content="#0a0a0a">
+  <meta name="author" content="Patrick Mekongo">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Portfolio Patrick Mekongo">
+  <link rel="canonical" href="https://patrickmekongo19-droid.github.io/portfolio/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black' font-weight='900' font-size='13' fill='%23c8a96d'>PM</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="assets/img/inspi.jpg" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@300;400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -41,7 +47,7 @@
     body.ch #cr{width:54px;height:54px;border-color:rgba(200,169,109,.6)}
 
     /* SCROLL TO TOP */
-    #back-top{position:fixed;bottom:36px;left:36px;z-index:2000;width:46px;height:46px;background:rgba(15,15,15,.95);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s,border-color .3s;transform:translateY(12px);backdrop-filter:blur(8px)}
+    #back-top{position:fixed;bottom:92px;left:28px;z-index:2000;width:46px;height:46px;background:rgba(15,15,15,.95);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s,border-color .3s;transform:translateY(12px);backdrop-filter:blur(8px)}
     #back-top.show{opacity:1;pointer-events:all;transform:translateY(0)}
     #back-top:hover{border-color:var(--gold);background:var(--gold-dim)}
     #back-top svg{width:16px;height:16px;color:var(--muted);transition:color .3s,transform .3s}
@@ -387,9 +393,15 @@
     .cf-submit svg{width:15px;height:15px}
     .cf-feedback{font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);display:none;text-align:center;padding:8px 0}
 
-    footer{padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--black)}
+    footer{padding:28px 56px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--black);flex-wrap:wrap;gap:12px}
     footer span{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
     footer .f-gold{color:var(--gold)}
+    .footer-links{display:flex;gap:20px;align-items:center}
+    .footer-links a{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
+    .footer-links a:hover{color:var(--gold)}
+
+    /* FOCUS RING — WCAG 2.1 AA */
+    :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:1px}
 
     /* REVEAL */
     .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.4,0,.2,1)}
@@ -474,7 +486,7 @@
       .p-detail{display:none}
 
       .cv-preview-wrap{margin-top:32px}
-      #back-top{bottom:28px;left:28px;width:40px;height:40px}
+      #back-top{bottom:76px;left:20px;width:40px;height:40px}
     }
     @media(max-width:600px){
       .skills-groups{grid-template-columns:1fr}
@@ -568,20 +580,41 @@
     #term-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.35);pointer-events:none;white-space:nowrap}
   </style>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Patrick Mekongo",
-    "jobTitle": "Technicien IT — Réseaux, Systèmes & Développement Web",
-    "url": "https://patrickmekongo19-droid.github.io/portfolio/",
-    "email": "patrickmekongo19@gmail.com",
-    "alumniOf": {"@type": "EducationalOrganization", "name": "Ingetis Paris"},
-    "knowsAbout": ["Réseaux informatiques","VLAN","TCP/IP","DHCP","DNS","PRTG","Nagios","Centreon","Zabbix","VMware","Windows Server","Debian","PHP","MySQL","HTML","CSS","JavaScript","Next.js","React","TypeScript","Supabase","Stripe","Python","Claude AI"],
-    "sameAs": [
-      "https://www.linkedin.com/in/patrick-koa-mekongo-767476353",
-      "https://github.com/patrickmekongo19-droid"
-    ]
-  }
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Patrick Mekongo",
+      "jobTitle": "Technicien IT — Réseaux, Systèmes & Développement Web",
+      "url": "https://patrickmekongo19-droid.github.io/portfolio/",
+      "email": "patrickmekongo19@gmail.com",
+      "alumniOf": {"@type": "EducationalOrganization", "name": "Ingetis Paris"},
+      "knowsAbout": ["Réseaux informatiques","VLAN","TCP/IP","DHCP","DNS","PRTG","Nagios","Centreon","Zabbix","VMware","Windows Server","Debian","PHP","MySQL","HTML","CSS","JavaScript","Next.js","React","TypeScript","Supabase","Stripe","Python","Claude AI"],
+      "sameAs": [
+        "https://www.linkedin.com/in/patrick-koa-mekongo-767476353",
+        "https://github.com/patrickmekongo19-droid",
+        "https://patrickmekongo19-droid.github.io/portfolio/"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Portfolio Patrick Mekongo",
+      "url": "https://patrickmekongo19-droid.github.io/portfolio/",
+      "description": "Portfolio de Patrick Mekongo, technicien IT BTS SIO SISR — Réseaux, Systèmes & Développement Web"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "name": "Patrick Mekongo — Technicien IT",
+      "url": "https://patrickmekongo19-droid.github.io/portfolio/",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Patrick Mekongo",
+        "jobTitle": "Technicien IT"
+      }
+    }
+  ]
   </script>
 </head>
 <body>
@@ -1460,7 +1493,12 @@
 
 <footer>
   <span>Patrick Mekongo &nbsp;·&nbsp; <span class="f-gold">2026</span></span>
-  <span>Technicien IT &nbsp;·&nbsp; Disponible 29 juin — 30 juillet</span>
+  <div class="footer-links">
+    <a href="https://github.com/patrickmekongo19-droid" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/patrick-koa-mekongo-767476353" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:patrickmekongo19@gmail.com">Email</a>
+  </div>
+  <span>Disponible 29 juin — 30 juillet &nbsp;·&nbsp; BTS SIO SISR</span>
 </footer>
 
 
@@ -1518,7 +1556,41 @@ window.addEventListener('scroll',()=>{
 },{passive:true});
 
 /* ── REVEAL ── */
-const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+/* ── TEXT SCRAMBLE (hero name) ── */
+(function(){
+  const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  function scramble(el){
+    const final=el.textContent;
+    let iter=0;
+    const iv=setInterval(()=>{
+      el.textContent=final.split('').map((c,i)=>i<iter?c:chars[Math.floor(Math.random()*26)]).join('');
+      if(iter>=final.length){clearInterval(iv);el.textContent=final;}
+      iter+=0.35;
+    },28);
+  }
+  const hls=document.querySelectorAll('.hl');
+  if(hls.length){
+    setTimeout(()=>scramble(hls[0]),1350);
+    setTimeout(()=>scramble(hls[1]),1550);
+  }
+})();
+
+const obs=new IntersectionObserver(e=>{
+  const grouped={};
+  e.forEach(x=>{
+    if(!x.isIntersecting)return;
+    const sec=x.target.closest('section,div.sec')||document.body;
+    const key=sec.id||sec.className.split(' ')[0]||'root';
+    if(!grouped[key])grouped[key]=[];
+    grouped[key].push(x.target);
+  });
+  Object.values(grouped).forEach(els=>{
+    els.forEach((el,i)=>{
+      el.style.transitionDelay=`${i*0.07}s`;
+      el.classList.add('in');
+    });
+  });
+},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 /* ── LIGHTBOX ── */
