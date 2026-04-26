@@ -9,11 +9,11 @@
   <meta property="og:description" content="Technicien IT spécialisé en réseaux, systèmes et développement web. En recherche de stage.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://patrickmekongo19-droid.github.io/portfolio/">
-  <meta property="og:image" content="https://patrickmekongo19-droid.github.io/portfolio/assets/img/inspi.jpg">
+  <meta property="og:image" content="https://patrickmekongo19-droid.github.io/portfolio/assets/img/inspi.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Patrick Mekongo — Technicien IT">
   <meta name="twitter:description" content="Réseaux, Systèmes & Développement. En recherche de stage IT.">
-  <meta name="twitter:image" content="https://patrickmekongo19-droid.github.io/portfolio/assets/img/inspi.jpg">
+  <meta name="twitter:image" content="https://patrickmekongo19-droid.github.io/portfolio/assets/img/inspi.webp">
   <meta name="theme-color" content="#0a0a0a">
   <meta name="author" content="Patrick Mekongo">
   <meta name="robots" content="index, follow">
@@ -23,7 +23,6 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black' font-weight='900' font-size='13' fill='%23c8a96d'>PM</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/img/inspi.jpg" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@300;400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -40,20 +39,20 @@
     ::selection{background:var(--gold);color:var(--black)}
     img{display:block;width:100%;height:100%;object-fit:cover}
 
-    /* CURSOR */
+    
     #cd{position:fixed;top:0;left:0;width:6px;height:6px;background:var(--white);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s}
     #cr{position:fixed;top:0;left:0;width:34px;height:34px;border:1px solid rgba(255,255,255,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
     body.ch #cd{width:10px;height:10px}
     body.ch #cr{width:54px;height:54px;border-color:rgba(200,169,109,.6)}
 
-    /* SCROLL TO TOP */
+    
     #back-top{position:fixed;bottom:92px;left:28px;z-index:2000;width:46px;height:46px;background:rgba(15,15,15,.95);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s,border-color .3s;transform:translateY(12px);backdrop-filter:blur(8px)}
     #back-top.show{opacity:1;pointer-events:all;transform:translateY(0)}
     #back-top:hover{border-color:var(--gold);background:var(--gold-dim)}
     #back-top svg{width:16px;height:16px;color:var(--muted);transition:color .3s,transform .3s}
     #back-top:hover svg{color:var(--gold);transform:translateY(-2px)}
 
-    /* NAV */
+    
     nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;transition:transform .5s cubic-bezier(.77,0,.175,1),background .4s,padding .4s;mix-blend-mode:difference}
     nav.scrolled{mix-blend-mode:normal;background:rgba(10,10,10,.96);backdrop-filter:blur(18px);padding:16px 56px;border-bottom:1px solid var(--border)}
     nav.hidden{transform:translateY(-110%)}
@@ -65,7 +64,7 @@
     .nav-links a:hover::after{width:100%}
     nav.scrolled .nav-links a{color:var(--light)}
 
-    /* HERO */
+    
     #hero{min-height:100vh;padding:0 56px 96px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;background:var(--black)}
     #hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 75% 25%,rgba(79,126,247,.07) 0%,transparent 65%),radial-gradient(ellipse 55% 45% at 15% 85%,rgba(200,169,109,.06) 0%,transparent 60%);pointer-events:none}
     .hero-ghost{position:absolute;top:50%;left:-2vw;font-family:var(--fd);font-weight:900;font-size:clamp(180px,38vw,580px);line-height:1;color:rgba(255,255,255,.022);pointer-events:none;user-select:none;letter-spacing:-.04em;white-space:nowrap;will-change:transform}
@@ -86,10 +85,10 @@
     .s-track{width:52px;height:1px;background:var(--muted);position:relative;overflow:hidden}
     .s-track::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gold);animation:runLine 2.2s ease-in-out 1.5s infinite}
 
-    /* SECTION DIVIDER */
+    
     .sec-divider{height:1px;background:linear-gradient(to right,transparent,var(--border) 20%,var(--border) 80%,transparent);margin:0}
 
-    /* SECTION COMMONS */
+    
     .sec{position:relative;padding:140px 56px;border-top:1px solid var(--border)}
     .sec-num{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(100px,20vw,300px);line-height:1;color:rgba(255,255,255,.023);letter-spacing:-.04em;pointer-events:none;user-select:none;right:0;top:60px;will-change:transform}
     .sec-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:14px;margin-bottom:20px}
@@ -97,7 +96,7 @@
     .sec-label::after{content:'';display:block;width:48px;height:1px;background:var(--muted)}
     .sec-title{font-family:var(--fd);font-weight:900;font-size:clamp(44px,7.5vw,96px);line-height:.93;letter-spacing:-.025em;text-transform:uppercase}
 
-    /* EN PRATIQUE */
+    
     #pratique{background:var(--surface)}
     .pratique-list{margin-top:80px;display:flex;flex-direction:column}
     .p-item{display:flex;align-items:flex-start;justify-content:space-between;padding:36px 0;border-top:1px solid var(--border);gap:32px;transition:padding-left .4s cubic-bezier(.77,0,.175,1)}
@@ -114,7 +113,7 @@
     .p-item:hover .p-meta{color:rgba(200,169,109,.75);border-color:rgba(200,169,109,.5)}
     .p-detail{font-family:var(--fm);font-size:.62rem;letter-spacing:.1em;color:var(--muted);text-align:right;flex-shrink:0;max-width:300px;padding-top:6px}
 
-    /* STACK TECHNIQUE */
+    
     #competences{background:var(--black)}
     .skills-groups{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--border)}
     .sk-group{padding:48px 32px;border-right:1px solid var(--border)}
@@ -129,7 +128,7 @@
     .sk-card-badge{width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.7rem;font-weight:400;letter-spacing:.05em;text-align:center;line-height:1.2;flex-shrink:0}
     .sk-card-name{font-family:var(--fm);font-size:.72rem;letter-spacing:.1em;color:var(--light);text-align:center;line-height:1.3}
 
-    /* PARCOURS */
+    
     #parcours{background:var(--navy)}
     .timeline{margin-top:80px;position:relative;padding-left:48px}
     .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--blue) 0%,var(--gold) 60%,rgba(200,169,109,.1) 100%)}
@@ -145,7 +144,7 @@
     .tl-status{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding:6px 16px;border:1px solid var(--gold);margin-bottom:16px;animation:pulse-border 2.5s ease-in-out infinite}
     .tl-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse-dot 2s ease-in-out infinite}
 
-    /* EXPERIENCES IT */
+    
     #experiences{background:var(--surface)}
     .exp-wrap{margin-top:80px}
     .exp-item{padding:64px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;position:relative;overflow:hidden;transition:background .3s}
@@ -163,7 +162,7 @@
     .exp-list li{font-family:var(--fm);font-size:.7rem;letter-spacing:.06em;color:var(--light);display:flex;align-items:center;gap:12px}
     .exp-list li::before{content:'';display:block;width:16px;height:1px;background:var(--gold);flex-shrink:0}
 
-    /* PROJETS */
+    
     #projets{background:var(--black)}
     .proj-wrap{margin-top:80px}
     .proj{position:relative;padding:88px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;overflow:hidden;transition:background .3s}
@@ -201,7 +200,7 @@
     .proj-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
     .proj-link:hover,.proj:hover .proj-link{color:var(--gold);border-color:var(--gold)}
 
-    /* PORTFOLIO ARTISTIQUE */
+    
     #portfolio-artistique{background:var(--surface)}
     .art-intro{margin-top:18px;font-size:.95rem;line-height:1.8;color:var(--dim);max-width:760px}
     .art-controls{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
@@ -238,12 +237,12 @@
     #art-lb-close:hover{color:var(--white);border-color:rgba(255,255,255,.32)}
     #art-lb-caption{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-family:var(--fm);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--light);background:rgba(0,0,0,.45);padding:7px 12px;border:1px solid rgba(255,255,255,.12)}
 
-    /* VLAN */
+    
     #reseau-schema{background:var(--navy);padding:80px 56px}
     .schema-title{font-family:var(--fd);font-weight:900;font-size:clamp(20px,2.5vw,28px);letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:32px}
     .vlan-svg{width:100%;max-width:900px;margin:0 auto;display:block}
 
-    /* AUTRES EXPÉRIENCES */
+    
     #autres-exp{background:var(--surface)}
     .autre-grid{margin-top:80px;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border)}
     .autre-card{background:var(--surface);padding:56px 48px;position:relative;overflow:hidden;transition:background .3s}
@@ -263,7 +262,7 @@
     .autre-skills{display:flex;flex-wrap:wrap;gap:8px}
     .autre-skill{font-family:var(--fm);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--blue-b);color:var(--blue)}
 
-    /* CE QUE JE CHERCHE */
+    
     #cherche{background:var(--navy)}
     .cherche-inner{margin-top:80px;display:grid;grid-template-columns:1fr 1.2fr;gap:96px;align-items:start}
     .cherche-headline{font-family:var(--fd);font-weight:900;font-size:clamp(32px,5vw,64px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;color:var(--white);margin-bottom:24px}
@@ -286,7 +285,7 @@
     .cherche-badge-val{font-family:var(--fd);font-weight:800;font-size:clamp(18px,2.5vw,30px);letter-spacing:.04em;text-transform:uppercase;color:var(--white)}
     .cherche-badge-sub{font-family:var(--fm);font-size:.58rem;letter-spacing:.06em;color:var(--dim);margin-top:4px}
 
-    /* SUPERVISION */
+    
     #supervision{background:var(--black)}
     .sup-inner{margin-top:80px;display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
     .sup-title{font-family:var(--fd);font-weight:900;font-size:clamp(48px,7.5vw,96px);line-height:.9;letter-spacing:-.025em;text-transform:uppercase;margin-bottom:24px}
@@ -317,7 +316,7 @@
     .sup-tool-name{font-family:var(--fd);font-weight:800;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--white);margin-bottom:6px}
     .sup-tool-desc{font-family:var(--fm);font-size:.62rem;letter-spacing:.06em;color:var(--dim);line-height:1.6}
 
-    /* CV DOWNLOAD */
+    
     #cv-dl{border-top:1px solid var(--border);background:var(--surface)}
     .cv-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
     .cv-text h2{font-family:var(--fd);font-weight:900;font-size:clamp(40px,6vw,72px);line-height:.93;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:20px}
@@ -331,7 +330,7 @@
     .cv-btn-outline:hover{border-color:var(--light);color:var(--white)}
     .cv-btn-outline svg{width:14px;height:14px}
     .cv-note{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-    /* CV PREVIEW */
+    
     .cv-preview-wrap{display:flex;justify-content:center}
     .cv-preview{width:220px;background:#0f0f0f;border:1px solid var(--border);padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.7),0 4px 12px rgba(0,0,0,.4);transition:transform .4s cubic-bezier(.4,0,.2,1),box-shadow .4s;cursor:pointer;transform-style:preserve-3d}
     .cv-preview:hover{transform:perspective(800px) rotateY(-6deg) rotateX(3deg) translateY(-8px);box-shadow:20px 32px 80px rgba(0,0,0,.8),0 4px 12px rgba(0,0,0,.4)}
@@ -344,7 +343,7 @@
     .cv-prev-bar{height:3px;background:var(--border);border-radius:2px;margin:4px 0;overflow:hidden}
     .cv-prev-bar-fill{height:100%;background:var(--gold);border-radius:2px}
 
-    /* ABOUT */
+    
     #about{background:var(--navy)}
     .about-inner{margin-top:80px;display:grid;grid-template-columns:1fr 1.4fr;gap:100px}
     .about-attrs{display:flex;flex-direction:column}
@@ -357,7 +356,7 @@
     .about-text strong{color:var(--white);font-weight:500}
     .about-highlight{font-family:var(--fd);font-weight:900;font-size:clamp(20px,2.8vw,32px);letter-spacing:.04em;text-transform:uppercase;color:var(--white);margin-bottom:24px;line-height:1;border-left:2px solid var(--gold);padding-left:20px}
 
-    /* CONTACT */
+    
     #contact{background:var(--black)}
     .c-head{font-family:var(--fd);font-weight:900;font-size:clamp(48px,9.5vw,140px);line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin-top:28px;margin-bottom:72px}
     .c-head em{font-style:italic;color:transparent;-webkit-text-stroke:1.5px var(--white)}
@@ -379,7 +378,7 @@
     .copy-email-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
     .copy-email-btn svg{width:12px;height:12px}
     .copy-email-btn.copied{border-color:var(--green);color:var(--green);background:var(--green-dim)}
-    /* CONTACT FORM */
+    
     .contact-form{display:flex;flex-direction:column;gap:16px}
     .contact-form-title{font-family:var(--fd);font-weight:800;font-size:clamp(22px,3vw,36px);letter-spacing:.06em;text-transform:uppercase;color:var(--white);margin-bottom:8px}
     .cf-field{display:flex;flex-direction:column;gap:6px}
@@ -400,15 +399,15 @@
     .footer-links a{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s}
     .footer-links a:hover{color:var(--gold)}
 
-    /* FOCUS RING — WCAG 2.1 AA */
+    
     :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:1px}
 
-    /* REVEAL */
+    
     .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.4,0,.2,1)}
     .reveal.in{opacity:1;transform:translateY(0)}
     .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.45s}
 
-    /* KEYFRAMES */
+    
     @keyframes slideUp{to{transform:translateY(0)}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     @keyframes scaleX{to{transform:scaleX(1)}}
@@ -419,7 +418,7 @@
     @keyframes artIn{0%{opacity:0;transform:translateY(26px) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
     @keyframes artShine{0%{transform:translateX(-120%) rotate(8deg)}100%{transform:translateX(140%) rotate(8deg)}}
 
-    /* LIGHTBOX */
+    
     #lightbox{position:fixed;inset:0;background:rgba(5,5,8,.97);z-index:9500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s;backdrop-filter:blur(6px)}
     #lightbox.open{opacity:1;pointer-events:all}
     #lb-img{max-width:88vw;max-height:84vh;width:auto;height:auto;object-fit:contain;display:block;border:1px solid rgba(255,255,255,.08);box-shadow:0 48px 120px rgba(0,0,0,.9);transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .3s}
@@ -431,16 +430,15 @@
     .lb-prev:hover,.lb-next:hover{color:var(--gold);background:rgba(200,169,109,.08);border-color:rgba(200,169,109,.25);transform:translateY(-50%) scale(1.1)}
     .lb-caption{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 
-
-    /* SKIP TO CONTENT */
+    
     .skip-link{position:absolute;top:-100%;left:16px;z-index:10000;padding:12px 24px;background:var(--gold);color:var(--black);font-family:var(--fd);font-weight:800;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:top .3s}
     .skip-link:focus{top:16px}
 
-    /* FOCUS STYLES */
+    
     :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
     a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,.sk-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-    /* MOBILE HAMBURGER */
+    
     .nav-burger{display:none;background:none;border:none;padding:8px;cursor:pointer;flex-direction:column;gap:5px;align-items:center;justify-content:center;min-width:44px;min-height:44px}
     .nav-burger span{display:block;width:22px;height:2px;background:var(--white);transition:transform .3s,opacity .3s}
     .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -451,7 +449,7 @@
     .nav-mobile a{font-family:var(--fd);font-weight:800;font-size:clamp(24px,5vw,36px);letter-spacing:.12em;text-transform:uppercase;color:var(--white);text-decoration:none;transition:color .2s}
     .nav-mobile a:hover{color:var(--gold)}
 
-    /* REDUCED MOTION */
+    
     @media(prefers-reduced-motion:reduce){
       *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}
       .reveal{opacity:1;transform:none}
@@ -461,7 +459,7 @@
       #cd,#cr{display:none}
     }
 
-    /* RESPONSIVE */
+    
     @media(max-width:960px){
       .nav-burger{display:flex}
       nav,footer{padding:20px 24px}
@@ -497,70 +495,70 @@
       .art-grid,.heic-grid{grid-template-columns:1fr}
     }
 
-    /* PROGRESS BAR */
+    
     #scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:10000;width:0;pointer-events:none}
 
-    /* ── LOADER ── */
+    
     #pm-loader{position:fixed;inset:0;background:var(--black);z-index:99998;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .7s ease,visibility .7s}
     #pm-loader.done{opacity:0;visibility:hidden;pointer-events:none}
     .loader-logo{font-family:var(--fd);font-weight:900;font-size:2.4rem;letter-spacing:.3em;color:var(--gold);opacity:0;animation:fadeUp .6s ease .2s forwards}
     .loader-line{width:80px;height:1px;background:var(--border);position:relative;overflow:hidden;opacity:0;animation:fadeUp .4s ease .4s forwards}
     .loader-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gold);animation:runLine 1s ease .5s forwards}
 
-    /* ── HERO PARTICLES ── */
+    
     #hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
     .hp{position:absolute;border-radius:50%;pointer-events:none;will-change:transform,opacity}
     @keyframes hpFloat{0%{transform:translateY(0);opacity:0}15%{opacity:1}85%{opacity:.25}100%{transform:translateY(-110vh);opacity:0}}
 
-    /* ── TAG SHIMMER ── */
+    
     .tag{position:relative;overflow:hidden}
     .tag::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(200,169,109,.2),transparent);transform:translateX(-200%);animation:tagShimmer 3s ease infinite}
     @keyframes tagShimmer{0%{transform:translateX(-200%)}100%{transform:translateX(200%)}}
 
-    /* ── PROJECT CARD HOVER GLOW ── */
+    
     .proj{transition:background .4s,box-shadow .4s}
     .proj:hover{background:rgba(200,169,109,.018);box-shadow:inset 0 0 0 1px rgba(200,169,109,.1)}
 
-    /* ── ACTIVE NAV LINK ── */
+    
     .nav-links a.nav-active::after{width:100%!important;background:var(--gold)}
 
-    /* ── RIPPLE ── */
+    
     .rpl{position:relative;overflow:hidden}
     .rpl-ripple{position:absolute;border-radius:50%;background:rgba(200,169,109,.22);transform:scale(0);animation:rplGrow .55s linear;pointer-events:none;z-index:0}
     @keyframes rplGrow{to{transform:scale(5);opacity:0}}
 
-    /* ── SPLIT TEXT LETTERS ── */
+    
     .slt{display:inline-block;opacity:0;transform:translateY(55%);will-change:transform,opacity}
     .slt.in{animation:sltIn .65s cubic-bezier(.4,0,.2,1) forwards}
     @keyframes sltIn{to{opacity:1;transform:translateY(0)}}
 
-    /* ── SKILL ICON POLISH ── */
+    
     .sk-card{position:relative}
     .sk-card::before{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);background:#1c1c1c;border:1px solid var(--border);color:var(--dim);font-family:var(--fm);font-size:.56rem;letter-spacing:.1em;padding:5px 10px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;border-radius:2px;z-index:10}
     .sk-card[data-tip]:hover::before{opacity:1;transform:translateX(-50%) translateY(0)}
     .sk-card img,.sk-card svg{transition:transform .35s cubic-bezier(.4,0,.2,1)}
     .sk-card:hover img,.sk-card:hover svg{transform:rotate(-8deg) scale(1.12)}
 
-    /* ── PROJ-LINK ARROW SLIDE ── */
+    
     .proj-link svg{transition:transform .3s cubic-bezier(.4,0,.2,1)}
     .proj-link:hover svg{transform:translateX(5px)}
 
-    /* ── CONTACT BUTTON PULSE RING ── */
+    
     .cf-submit::after{content:'';position:absolute;inset:-3px;border:1px solid rgba(200,169,109,.35);pointer-events:none;animation:cfPulse 2.5s ease-in-out infinite}
     @keyframes cfPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.04);opacity:0}}
 
-    /* ── TERMINAL CARET BLINK ── */
+    
     #term-in{caret-color:var(--gold,#c8a96d)}
     @keyframes termBlink{0%,100%{caret-color:#30d158}50%{caret-color:transparent}}
 
-    /* ── MAGNETIC BTN ── */
+    
     .mag-btn{transition:transform .25s cubic-bezier(.4,0,.2,1)}
 
-    /* ── GRADIENT KEYWORD ── */
+    
     .grad-kw{background:linear-gradient(90deg,#c8a96d,#fff,#4f7ef7,#c8a96d);background-size:280%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradKw 5s linear infinite}
     @keyframes gradKw{0%{background-position:0%}100%{background-position:280%}}
 
-    /* TERMINAL */
+    
     #term-ov{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
     #term-ov.open{display:flex}
     #term-win{width:min(720px,94vw);background:#0d1117;border:1px solid rgba(48,209,88,.5);border-radius:8px;overflow:hidden;font-family:var(--fm);box-shadow:0 0 60px rgba(48,209,88,.1)}
@@ -963,12 +961,12 @@
       </div>
       <div class="proj-right">
         <div class="proj-gallery">
-          <figure class="proj-screen" data-src="assets/img/cv-app-ui.png" data-caption="Interface formulaire générateur de CV">
-            <img src="assets/img/cv-app-ui.png" alt="Formulaire Générateur de CV" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/cv-app-ui.webp" data-caption="Interface formulaire générateur de CV">
+            <img src="assets/img/cv-app-ui.webp" alt="Formulaire Générateur de CV" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
-          <figure class="proj-screen" data-src="assets/img/cv-db-data.png" data-caption="Base de données phpMyAdmin — table candidats">
-            <img src="assets/img/cv-db-data.png" alt="phpMyAdmin — table candidats" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/cv-db-data.webp" data-caption="Base de données phpMyAdmin — table candidats">
+            <img src="assets/img/cv-db-data.webp" alt="phpMyAdmin — table candidats" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
@@ -995,12 +993,12 @@
       </div>
       <div class="proj-right">
         <div class="proj-gallery">
-          <figure class="proj-screen" data-src="assets/img/cviste-home.png" data-caption="CViste — Page d'accueil : Votre CV, professionnel en minutes">
-            <img src="assets/img/cviste-home.png" alt="CViste — Landing page" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/cviste-home.webp" data-caption="CViste — Page d'accueil : Votre CV, professionnel en minutes">
+            <img src="assets/img/cviste-home.webp" alt="CViste — Landing page" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
-          <figure class="proj-screen" data-src="assets/img/cviste-editor.png" data-caption="CViste — Éditeur IA : analyse ATS, score de correspondance, lettre de motivation">
-            <img src="assets/img/cviste-editor.png" alt="CViste — Éditeur avec analyse IA" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/cviste-editor.webp" data-caption="CViste — Éditeur IA : analyse ATS, score de correspondance, lettre de motivation">
+            <img src="assets/img/cviste-editor.webp" alt="CViste — Éditeur avec analyse IA" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
@@ -1027,12 +1025,12 @@
       </div>
       <div class="proj-right">
         <div class="proj-gallery">
-          <figure class="proj-screen" data-src="assets/img/vmware-vms.png" data-caption="VMware Workstation — liste des machines virtuelles">
-            <img src="assets/img/vmware-vms.png" alt="VMware — liste des VMs" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/vmware-vms.webp" data-caption="VMware Workstation — liste des machines virtuelles">
+            <img src="assets/img/vmware-vms.webp" alt="VMware — liste des VMs" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
-          <figure class="proj-screen" data-src="assets/img/debian-network-config.png" data-caption="Debian 12 — configuration réseau statique">
-            <img src="assets/img/debian-network-config.png" alt="Debian — configuration réseau" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/debian-network-config.webp" data-caption="Debian 12 — configuration réseau statique">
+            <img src="assets/img/debian-network-config.webp" alt="Debian — configuration réseau" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
@@ -1051,8 +1049,8 @@
       </div>
       <div class="proj-right">
         <div class="proj-gallery-single">
-          <figure class="proj-screen" data-src="assets/img/cisco-vlan-topo.png" data-caption="Cisco Packet Tracer — topologie VLAN 10 et 20">
-            <img src="assets/img/cisco-vlan-topo.png" alt="Cisco PT — VLAN 10 et 20" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/cisco-vlan-topo.webp" data-caption="Cisco Packet Tracer — topologie VLAN 10 et 20">
+            <img src="assets/img/cisco-vlan-topo.webp" alt="Cisco PT — VLAN 10 et 20" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
@@ -1071,12 +1069,12 @@
       </div>
       <div class="proj-right">
         <div class="proj-gallery">
-          <figure class="proj-screen" data-src="assets/img/bdd-mcd-archeo.png" data-caption="MCD Merise — base archéologique">
-            <img src="assets/img/bdd-mcd-archeo.png" alt="MCD — base archéologique" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/bdd-mcd-archeo.webp" data-caption="MCD Merise — base archéologique">
+            <img src="assets/img/bdd-mcd-archeo.webp" alt="MCD — base archéologique" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
-          <figure class="proj-screen" data-src="assets/img/bdd-mcd-biblio.png" data-caption="MCD Merise — bibliothèque numérique">
-            <img src="assets/img/bdd-mcd-biblio.png" alt="MCD — bibliothèque" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/bdd-mcd-biblio.webp" data-caption="MCD Merise — bibliothèque numérique">
+            <img src="assets/img/bdd-mcd-biblio.webp" alt="MCD — bibliothèque" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
@@ -1095,12 +1093,12 @@
       </div>
       <div class="proj-right">
         <div class="proj-gallery">
-          <figure class="proj-screen" data-src="assets/img/powershell-ping.png" data-caption="PowerShell — tests de connectivité réseau">
-            <img src="assets/img/powershell-ping.png" alt="PowerShell — ping tests" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/powershell-ping.webp" data-caption="PowerShell — tests de connectivité réseau">
+            <img src="assets/img/powershell-ping.webp" alt="PowerShell — ping tests" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
-          <figure class="proj-screen" data-src="assets/img/cisco-ping.png" data-caption="Cisco PT — diagnostic de connectivité">
-            <img src="assets/img/cisco-ping.png" alt="Cisco PT — ping" loading="lazy">
+          <figure class="proj-screen" data-src="assets/img/cisco-ping.webp" data-caption="Cisco PT — diagnostic de connectivité">
+            <img src="assets/img/cisco-ping.webp" alt="Cisco PT — ping" loading="lazy">
             <div class="proj-screen-zoom"><span>Agrandir</span></div>
           </figure>
         </div>
@@ -1503,7 +1501,7 @@
 
 
 <script>
-/* ── MOBILE NAV ── */
+
 const burger=document.getElementById('nav-burger'),mobileNav=document.getElementById('nav-mobile');
 burger.addEventListener('click',()=>{
   const open=mobileNav.classList.toggle('open');
@@ -1519,7 +1517,6 @@ mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   document.body.style.overflow='';
 }));
 
-/* ── CURSOR ── */
 const cd=document.getElementById('cd'),cr=document.getElementById('cr');
 let mx=-100,my=-100,rx=-100,ry=-100;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.left=mx+'px';cd.style.top=my+'px'});
@@ -1529,7 +1526,6 @@ document.querySelectorAll('a,button,.tag,.p-item,.sk-card,.sup-tool-card,.tl-ite
   el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
 });
 
-/* ── NAV + BACK TOP ── */
 const nav=document.getElementById('nav'),btop=document.getElementById('back-top');
 let lastY=0,ticking=false;
 window.addEventListener('scroll',()=>{
@@ -1543,7 +1539,6 @@ window.addEventListener('scroll',()=>{
 },{passive:true});
 btop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-/* ── PARALLAX ── */
 const heroGhost=document.getElementById('hero-ghost');
 window.addEventListener('scroll',()=>{
   const y=window.scrollY;
@@ -1555,8 +1550,6 @@ window.addEventListener('scroll',()=>{
   });
 },{passive:true});
 
-/* ── REVEAL ── */
-/* ── TEXT SCRAMBLE (hero name) ── */
 (function(){
   const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   function scramble(el){
@@ -1593,7 +1586,6 @@ const obs=new IntersectionObserver(e=>{
 },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-/* ── LIGHTBOX ── */
 const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img'),lbCap=document.getElementById('lb-caption');
 let lbImages=[],lbIdx=0;
 document.querySelectorAll('.proj-screen[data-src]').forEach(f=>lbImages.push({src:f.dataset.src,caption:f.dataset.caption||''}));
@@ -1621,7 +1613,6 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%lbImages.length;showLb(lbIdx);}
 });
 
-/* ── COPY EMAIL ── */
 document.getElementById('copy-email').addEventListener('click',function(){
   navigator.clipboard.writeText('patrickmekongo19@gmail.com').then(()=>{
     this.classList.add('copied');
@@ -1633,7 +1624,6 @@ document.getElementById('copy-email').addEventListener('click',function(){
   }).catch(()=>{window.prompt('Copiez cet email :','patrickmekongo19@gmail.com');});
 });
 
-/* ── CONTACT FORM ── */
 document.getElementById('contact-form').addEventListener('submit',function(e){
   e.preventDefault();
   const name=document.getElementById('cf-name').value.trim();
@@ -1648,7 +1638,6 @@ document.getElementById('contact-form').addEventListener('submit',function(e){
   setTimeout(()=>{fb.style.display='none';},5000);
 });
 
-/* ── PORTFOLIO ARTISTIQUE ── */
 const artCollection=[{"file":"BA35A8A8-A5D7-4E6D-AC61-F2D98011C5CF.JPG","title":"Elegance Verticale","category":"portrait","type":"photo"},{"file":"1658748295888.jpg","title":"Pulse Night 01","category":"mood","type":"photo"},{"file":"1658748295897.jpg","title":"Pulse Night 02","category":"mood","type":"photo"},{"file":"1658748295781.jpg","title":"Pulse Night 03","category":"mood","type":"photo"},{"file":"1658748295866.jpg","title":"Pulse Night 04","category":"mood","type":"photo"},{"file":"1658748295772.jpg","title":"Pulse Night 05","category":"mood","type":"photo"},{"file":"1658748295877.jpg","title":"Pulse Night 06","category":"mood","type":"photo"},{"file":"1658748295926.jpg","title":"Pulse Night 07","category":"mood","type":"photo"},{"file":"1658748295662.jpg","title":"Pulse Night 08","category":"mood","type":"photo"},{"file":"1658748295724.jpg","title":"Pulse Night 09","category":"mood","type":"photo"},{"file":"1658748295855.jpg","title":"Pulse Night 10","category":"mood","type":"photo"},{"file":"1658748295733.jpg","title":"Pulse Night 11","category":"mood","type":"photo"},{"file":"1658748295683.jpg","title":"Pulse Night 12","category":"mood","type":"photo"},{"file":"1658748295672.jpg","title":"Pulse Night 13","category":"mood","type":"photo"},{"file":"1658748295714.jpg","title":"Pulse Night 14","category":"mood","type":"photo"},{"file":"1658748295743.jpg","title":"Pulse Night 15","category":"mood","type":"photo"},{"file":"IMG_0062.jpeg","title":"Urban Glow 01","category":"urban","type":"photo"},{"file":"1658748295705.jpg","title":"Pulse Night 16","category":"mood","type":"photo"},{"file":"1658748296203.JPG","title":"Urban Glow 02","category":"urban","type":"photo"},{"file":"1658748822835.jpg","title":"Atmosphere 01","category":"mood","type":"photo"},{"file":"1658748822716.jpg","title":"Atmosphere 02","category":"mood","type":"photo"},{"file":"1658748296132.jpg","title":"Urban Glow 03","category":"urban","type":"photo"},{"file":"1658748822917.jpg","title":"Atmosphere 03","category":"mood","type":"photo"},{"file":"IMG_0021.jpeg","title":"Urban Frame 01","category":"urban","type":"photo"},{"file":"IMG_0022.jpeg","title":"Urban Frame 02","category":"urban","type":"photo"},{"file":"IMG_0019.jpeg","title":"Urban Frame 03","category":"urban","type":"photo"},{"file":"IMG_0017.jpeg","title":"Urban Frame 04","category":"urban","type":"photo"},{"file":"IMG_0026.jpeg","title":"Urban Frame 05","category":"urban","type":"photo"},{"file":"IMG_0018.jpeg","title":"Urban Frame 06","category":"urban","type":"photo"},{"file":"IMG_0044.jpeg","title":"Urban Frame 07","category":"urban","type":"photo"},{"file":"IMG_0020.jpeg","title":"Urban Frame 08","category":"urban","type":"photo"},{"file":"IMG_0024.jpeg","title":"Urban Frame 09","category":"urban","type":"photo"},{"file":"IMG_0012.jpeg","title":"Urban Frame 10","category":"urban","type":"photo"},{"file":"IMG_0025.jpeg","title":"Urban Frame 11","category":"urban","type":"photo"},{"file":"IMG_0023.jpeg","title":"Urban Frame 12","category":"urban","type":"photo"},{"file":"IMG_0011.jpeg","title":"Urban Frame 13","category":"urban","type":"photo"},{"file":"IMG_0010.jpeg","title":"Urban Frame 14","category":"urban","type":"photo"},{"file":"IMG_0028.jpeg","title":"Urban Frame 15","category":"urban","type":"photo"},{"file":"IMG_0031.jpeg","title":"Urban Frame 16","category":"urban","type":"photo"},{"file":"0B49EDC7-5512-4A1A-B0CE-29D8BA9EC149.JPG","title":"Portrait Echo","category":"portrait","type":"photo"},{"file":"IMG_0029.jpeg","title":"Urban Frame 17","category":"urban","type":"photo"},{"file":"IMG_0006.jpeg","title":"Urban Frame 18","category":"urban","type":"photo"},{"file":"IMG_0009.jpeg","title":"Urban Frame 19","category":"urban","type":"photo"},{"file":"IMG_0008.jpeg","title":"Urban Frame 20","category":"urban","type":"photo"},{"file":"IMG_0007.jpeg","title":"Urban Frame 21","category":"urban","type":"photo"},{"file":"IMG_0004.jpeg","title":"Urban Frame 22","category":"urban","type":"photo"},{"file":"IMG_0005.jpeg","title":"Urban Frame 23","category":"urban","type":"photo"},{"file":"IMG_0030.jpeg","title":"Urban Frame 24","category":"urban","type":"photo"},{"file":"assets/video/cv-generator-demo.mp4","title":"Demo CV Generator","category":"video","type":"video"}];
 
 const artGrid=document.getElementById('art-grid');
@@ -2555,7 +2544,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   sendBtn.addEventListener('click',()=>handleSend());
   input.addEventListener('keydown',(e)=>{if(e.key==='Enter')handleSend();});
 
-  // Toggle show/hide
+  
   const toggleBtn=document.getElementById('inspi-toggle-btn');
   const eyeIcon=document.getElementById('inspi-eye-icon');
   const toggleLabel=document.getElementById('inspi-toggle-label');
@@ -2587,21 +2576,20 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   });
 })();
 
-/* ── ANIMATIONS SUITE ── */
 (function(){
   'use strict';
 
-  // LOADER
+  
   var loader=document.getElementById('pm-loader');
   if(loader){
     window.addEventListener('load',function(){
       setTimeout(function(){loader.classList.add('done');},420);
     });
-    // failsafe
+    
     setTimeout(function(){if(loader)loader.classList.add('done');},3000);
   }
 
-  // HERO PARTICLES
+  
   (function(){
     var c=document.getElementById('hero-particles');
     if(!c||window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
@@ -2622,7 +2610,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     }
   })();
 
-  // ACTIVE NAV LINK
+  
   (function(){
     var links=Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
     var pairs=links.reduce(function(acc,a){
@@ -2641,7 +2629,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     upd();
   })();
 
-  // RIPPLE on CTAs
+  
   (function(){
     function doRipple(e){
       var btn=e.currentTarget;
@@ -2661,7 +2649,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     });
   })();
 
-  // SPLIT TEXT on .sec-title (scroll-triggered)
+  
   (function(){
     if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
     var obs=new IntersectionObserver(function(entries){
@@ -2686,7 +2674,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     document.querySelectorAll('.sec').forEach(function(s){obs.observe(s);});
   })();
 
-  // SKILL TOOLTIPS
+  
   (function(){
     var tips={
       'Next.js':'Framework React full-stack','React':'UI components',
@@ -2703,7 +2691,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     });
   })();
 
-  // MAGNETIC CURSOR on key CTAs
+  
   (function(){
     var els=document.querySelectorAll('.cf-submit,.hero-avail,#back-top');
     els.forEach(function(el){
@@ -2718,13 +2706,12 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     });
   })();
 
-  // REDUCED MOTION cleanup
+  
   if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
     document.querySelectorAll('.hp').forEach(function(el){el.style.display='none';});
   }
 })();
 
-/* ── PROGRESS BAR ── */
 (function(){
   var bar=document.getElementById('scroll-progress');
   if(!bar)return;
@@ -2736,7 +2723,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   window.addEventListener('scroll',upd,{passive:true});
 })();
 
-/* ── TERMINAL EASTER EGG ── */
 (function(){
   var ov=document.getElementById('term-ov'),
       out=document.getElementById('term-out'),
