@@ -612,6 +612,54 @@
 
     #term-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.35);pointer-events:none;white-space:nowrap}
 
+    /* ── PROJECT CARDS GRID ── */
+    .proj-wrap{margin-top:80px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
+    .proj-card{background:var(--black);position:relative;cursor:pointer;overflow:hidden;transition:background .3s}
+    .proj-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width .4s cubic-bezier(.77,0,.175,1);z-index:2}
+    .proj-card:hover::before,.proj-card:focus-within::before{width:3px}
+    .proj-card:hover,.proj-card:focus-within{background:rgba(200,169,109,.025)}
+    .proj-card:hover .proj-title{color:var(--gold)}
+    .proj-card:hover .proj-card-thumb img{transform:scale(1.05);filter:brightness(.95)}
+    .proj-card-inner{padding:28px;display:flex;flex-direction:column;gap:16px;height:100%}
+    .proj-card-num{font-family:var(--fm);font-size:.55rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase}
+    .proj-card-thumb{aspect-ratio:16/9;overflow:hidden;border:1px solid var(--border);margin-bottom:4px}
+    .proj-card-thumb img{width:100%;height:100%;object-fit:cover;filter:brightness(.82);transition:transform .5s,filter .4s}
+    .proj-card-ghost{font-family:var(--fd);font-weight:900;font-size:clamp(48px,5vw,72px);color:rgba(255,255,255,.03);line-height:1;letter-spacing:-.04em;pointer-events:none;user-select:none;margin-bottom:-8px}
+    .proj-card-bottom{margin-top:auto;display:flex;flex-direction:column;gap:12px}
+    .proj-open-btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);background:none;border:1px solid rgba(200,169,109,.3);padding:9px 16px;cursor:pointer;transition:background .3s,border-color .3s,transform .3s;width:fit-content}
+    .proj-open-btn:hover{background:var(--gold-dim);border-color:var(--gold);transform:translateX(3px)}
+    .proj-open-btn svg{width:11px;height:11px;flex-shrink:0;transition:transform .3s}
+    .proj-open-btn:hover svg{transform:translate(3px,-3px)}
+    @media(max-width:960px){.proj-wrap{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.proj-wrap{grid-template-columns:1fr}.proj-card-inner{padding:20px}}
+
+    /* ── PROJECT MODAL ── */
+    #proj-modal{position:fixed;inset:0;background:rgba(5,5,8,.96);z-index:9400;display:flex;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;overflow-y:auto;backdrop-filter:blur(8px);padding:60px 24px 60px}
+    #proj-modal.open{opacity:1;pointer-events:all}
+    .pm-wrap{width:100%;max-width:940px;background:var(--surface);border:1px solid var(--border);position:relative;margin:auto;padding:52px 56px}
+    .pm-close{position:sticky;top:16px;float:right;z-index:10;font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;background:rgba(10,10,10,.95);border:1px solid var(--border);color:var(--muted);padding:7px 14px;cursor:pointer;transition:border-color .3s,color .3s}
+    .pm-close:hover{border-color:var(--gold);color:var(--gold)}
+    .pm-header{margin-bottom:36px;padding-top:4px;clear:right}
+    .pm-header .proj-num{font-family:var(--fm);font-size:.58rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;margin-bottom:12px}
+    .pm-header .proj-title{font-family:var(--fd);font-weight:900;font-size:clamp(32px,5vw,64px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;color:var(--white)}
+    .pm-body{display:flex;flex-direction:column;gap:24px}
+    .pm-body .proj-gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .pm-body .proj-gallery-single{}
+    .pm-body .proj-screen{width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--border);position:relative;cursor:pointer;transition:border-color .35s,box-shadow .4s}
+    .pm-body .proj-screen:hover{border-color:rgba(200,169,109,.35);box-shadow:0 8px 32px rgba(0,0,0,.6)}
+    .pm-body .proj-screen img{width:100%;height:100%;object-fit:cover;filter:brightness(.85);transition:filter .35s,transform .4s}
+    .pm-body .proj-screen:hover img{filter:brightness(.97);transform:scale(1.02)}
+    .pm-body .proj-screen-zoom{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;padding:10px 12px;opacity:0;transition:opacity .3s;background:linear-gradient(to top,rgba(0,0,0,.5),transparent 50%)}
+    .pm-body .proj-screen:hover .proj-screen-zoom{opacity:1}
+    .pm-body .proj-screen-zoom span{font-family:var(--fm);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8);background:rgba(0,0,0,.5);padding:4px 10px;border:1px solid rgba(255,255,255,.15)}
+    .pm-body .proj-video{width:100%;aspect-ratio:16/9;border:1px solid var(--border);overflow:hidden}
+    .pm-body .proj-video video{width:100%;height:100%;display:block;background:#000}
+    .pm-body .proj-video-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+    .pm-body .proj-desc{font-size:.95rem;line-height:1.85;color:var(--dim)}
+    .pm-body .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .pm-body .proj-links{display:flex;flex-wrap:wrap;gap:16px;align-items:center;padding-top:8px;border-top:1px solid var(--border)}
+    @media(max-width:700px){.pm-wrap{padding:28px 20px 36px}.pm-body .proj-gallery{grid-template-columns:1fr}}
+
     /* ── GRAIN TEXTURE ── */
     body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");background-size:180px 180px}
 
@@ -680,6 +728,14 @@
 
 <!-- NAV DOTS -->
 <nav id="nav-dots" aria-label="Navigation par sections"></nav>
+
+<!-- PROJECT MODAL -->
+<div id="proj-modal" role="dialog" aria-modal="true" aria-label="Détails du projet">
+  <div class="pm-wrap">
+    <button class="pm-close" id="pm-close-btn" aria-label="Fermer le projet">ESC ×</button>
+    <div id="pm-content"></div>
+  </div>
+</div>
 
 <!-- LIGHTBOX -->
 <div id="lightbox" role="dialog" aria-modal="true">
@@ -912,171 +968,229 @@
     <h2 class="sec-title">Réalisations</h2>
   </div>
   <div class="proj-wrap">
-    <article class="proj reveal">
-      <span class="proj-ghost" aria-hidden="true">01</span>
-      <div class="proj-left">
-        <p class="proj-num">Projet 01 — Développement web</p>
-        <h3 class="proj-title">Générateur<br>de CV</h3>
+    <article class="proj-card reveal" tabindex="0">
+      <div class="proj-card-inner">
+        <span class="proj-card-ghost" aria-hidden="true">01</span>
+        <p class="proj-card-num">Projet 01 — Développement web</p>
+        <div class="proj-card-thumb">
+          <img src="assets/img/cv-app-ui.webp" alt="Générateur de CV" loading="lazy" width="1907" height="977" decoding="async">
+        </div>
+        <div class="proj-card-meta">
+          <h3 class="proj-title">Générateur de CV</h3>
+        </div>
+        <div class="proj-card-bottom">
+          <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">MySQLi</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
+          <button class="proj-open-btn" aria-label="Voir le projet Générateur de CV"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
+        </div>
       </div>
-      <div class="proj-right">
-        <div class="proj-gallery">
-          <figure class="proj-screen" data-src="assets/img/cv-app-ui.webp" data-caption="Interface formulaire générateur de CV">
-            <img src="assets/img/cv-app-ui.webp" alt="Formulaire Générateur de CV" loading="lazy" width="1907" height="977">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
-          <figure class="proj-screen" data-src="assets/img/cv-db-data.webp" data-caption="Base de données phpMyAdmin — table candidats">
-            <img src="assets/img/cv-db-data.webp" alt="phpMyAdmin — table candidats" loading="lazy" width="1913" height="1020">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
+      <template class="proj-modal-tpl">
+        <div class="pm-header">
+          <p class="proj-num">Projet 01 — Développement web</p>
+          <h2 class="proj-title">Générateur de CV</h2>
         </div>
-        <p class="proj-video-label">Démonstration — test en conditions réelles</p>
-        <div class="proj-video">
-          <video controls muted preload="metadata" playsinline style="width:100%;height:100%;display:block;background:#000">
-            <source src="assets/video/cv-generator-demo-web.mp4" type="video/mp4">
-          </video>
+        <div class="pm-body">
+          <div class="proj-gallery">
+            <figure class="proj-screen" data-src="assets/img/cv-app-ui.webp" data-caption="Interface formulaire générateur de CV">
+              <img src="assets/img/cv-app-ui.webp" alt="Formulaire Générateur de CV" loading="lazy" width="1907" height="977" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+            <figure class="proj-screen" data-src="assets/img/cv-db-data.webp" data-caption="Base de données phpMyAdmin — table candidats">
+              <img src="assets/img/cv-db-data.webp" alt="phpMyAdmin — table candidats" loading="lazy" width="1913" height="1020" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+          </div>
+          <p class="proj-video-label">Démonstration — test en conditions réelles</p>
+          <div class="proj-video">
+            <video controls muted preload="metadata" playsinline style="width:100%;height:100%;display:block;background:#000">
+              <source src="assets/video/cv-generator-demo-web.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Créer un CV propre nécessite Word ou un outil payant, sans maîtrise des données saisies. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Application web PHP + MySQL avec formulaire en ligne, requêtes préparées anti-injection SQL, affichage dynamique du CV généré et architecture CRUD complète en auto-hébergement AMPPS. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> CV généré en 3 minutes. Données protégées par prepared statements. Architecture exportable et documentée.</p>
+          <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">MySQLi</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
+          <a href="https://github.com/patrickmekongo19-droid/cv-generator" target="_blank" rel="noopener" class="proj-link"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Voir le code sur GitHub</a>
         </div>
-        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Créer un CV propre nécessite Word ou un outil payant, sans maîtrise des données saisies. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Application web PHP + MySQL avec formulaire en ligne, requêtes préparées anti-injection SQL, affichage dynamique du CV généré et architecture CRUD complète en auto-hébergement AMPPS. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> CV généré en 3 minutes. Données protégées par prepared statements. Architecture exportable et documentée.</p>
-        <div class="tags">
-          <span class="tag">PHP</span><span class="tag">MySQL</span>
-          <span class="tag">MySQLi</span><span class="tag">HTML</span><span class="tag">CSS</span>
-        </div>
-        <a href="https://github.com/patrickmekongo19-droid/cv-generator" target="_blank" rel="noopener" class="proj-link">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          Voir le code sur GitHub
-        </a>
-      </div>
+      </template>
     </article>
-    <article class="proj reveal">
-      <span class="proj-ghost" aria-hidden="true">02</span>
-      <div class="proj-left">
-        <p class="proj-num">Projet 02 — SaaS / Full Stack</p>
-        <h3 class="proj-title">CViste —<br>Générateur IA</h3>
-      </div>
-      <div class="proj-right">
-        <div class="proj-gallery">
-          <figure class="proj-screen" data-src="assets/img/cviste-home.webp" data-caption="CViste — Page d'accueil : Votre CV, professionnel en minutes">
-            <img src="assets/img/cviste-home.webp" alt="CViste — Landing page" loading="lazy" width="1038" height="702">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
-          <figure class="proj-screen" data-src="assets/img/cviste-editor.webp" data-caption="CViste — Éditeur IA : analyse ATS, score de correspondance, lettre de motivation">
-            <img src="assets/img/cviste-editor.webp" alt="CViste — Éditeur avec analyse IA" loading="lazy" width="1919" height="1079">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
+    <article class="proj-card reveal" tabindex="0">
+      <div class="proj-card-inner">
+        <span class="proj-card-ghost" aria-hidden="true">02</span>
+        <p class="proj-card-num">Projet 02 — SaaS / Full Stack</p>
+        <div class="proj-card-thumb">
+          <img src="assets/img/cviste-home.webp" alt="CViste — Landing page" loading="lazy" width="1038" height="702" decoding="async">
         </div>
-        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Créer un CV professionnel prend du temps ; les outils existants sont génériques ou coûteux sans personnalisation réelle. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> SaaS complet avec IA — 15 templates × 30 couleurs × 23 polices, export PDF/DOCX, import PDF, génération multilingue FR/EN/ES, réécriture sectorielle et lettre de motivation via Claude AI. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> Architecture multi-tenant Supabase, authentification Clerk, monétisation Stripe intégrée. Phases 1–4 complétées.</p>
-        <div class="tags">
-          <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span>
-          <span class="tag">Supabase</span><span class="tag">Clerk</span><span class="tag">Stripe</span>
-          <span class="tag">Claude AI</span>
+        <div class="proj-card-meta">
+          <h3 class="proj-title">CViste — Générateur IA</h3>
         </div>
-        <div style="display:flex;align-items:center;gap:16px;margin-top:24px;flex-wrap:wrap">
-          <a href="https://cviste.fr" target="_blank" rel="noopener" class="proj-link" style="opacity:.5;cursor:default;pointer-events:none" aria-disabled="true">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-            cviste.fr — Bientôt disponible
-          </a>
-          <a href="https://github.com/patrickmekongo19-droid" target="_blank" rel="noopener" class="proj-link" style="opacity:.5;cursor:default;pointer-events:none" aria-disabled="true">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            Repo privé — en développement
-          </a>
-          <span style="font-family:var(--fm);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)">En développement — Phases 1–4 complétées</span>
+        <div class="proj-card-bottom">
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Claude AI</span></div>
+          <button class="proj-open-btn" aria-label="Voir le projet CViste — Générateur IA"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
         </div>
       </div>
+      <template class="proj-modal-tpl">
+        <div class="pm-header">
+          <p class="proj-num">Projet 02 — SaaS / Full Stack</p>
+          <h2 class="proj-title">CViste — Générateur IA</h2>
+        </div>
+        <div class="pm-body">
+          <div class="proj-gallery">
+            <figure class="proj-screen" data-src="assets/img/cviste-home.webp" data-caption="CViste — Page d&apos;accueil">
+              <img src="assets/img/cviste-home.webp" alt="CViste — Landing page" loading="lazy" width="1038" height="702" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+            <figure class="proj-screen" data-src="assets/img/cviste-editor.webp" data-caption="CViste — Éditeur IA">
+              <img src="assets/img/cviste-editor.webp" alt="CViste — Éditeur avec analyse IA" loading="lazy" width="1919" height="1079" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+          </div>
+          <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Créer un CV professionnel prend du temps ; les outils existants sont génériques ou coûteux sans personnalisation réelle. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> SaaS complet avec IA — 15 templates × 30 couleurs × 23 polices, export PDF/DOCX, import PDF, génération multilingue FR/EN/ES, réécriture sectorielle et lettre de motivation via Claude AI. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> Architecture multi-tenant Supabase, authentification Clerk, monétisation Stripe intégrée. Phases 1–4 complétées.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Clerk</span><span class="tag">Stripe</span><span class="tag">Claude AI</span></div>
+          <div style="display:flex;align-items:center;gap:16px;margin-top:20px;flex-wrap:wrap">
+            <a href="https://cviste.fr" target="_blank" rel="noopener" class="proj-link" style="opacity:.5;pointer-events:none" aria-disabled="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg> cviste.fr — Bientôt disponible</a>
+            <span style="font-family:var(--fm);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)">En développement — Phases 1–4</span>
+          </div>
+        </div>
+      </template>
     </article>
-    <article class="proj reveal">
-      <span class="proj-ghost" aria-hidden="true">03</span>
-      <div class="proj-left">
-        <p class="proj-num">Projet 03 — Systèmes</p>
-        <h3 class="proj-title">Lab<br>Virtualisation</h3>
-      </div>
-      <div class="proj-right">
-        <div class="proj-gallery">
-          <figure class="proj-screen" data-src="assets/img/vmware-vms.webp" data-caption="VMware Workstation — liste des machines virtuelles">
-            <img src="assets/img/vmware-vms.webp" alt="VMware — liste des VMs" loading="lazy" width="768" height="434">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
-          <figure class="proj-screen" data-src="assets/img/debian-network-config.webp" data-caption="Debian 12 — configuration réseau statique">
-            <img src="assets/img/debian-network-config.webp" alt="Debian — configuration réseau" loading="lazy" width="751" height="579">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
+    <article class="proj-card reveal" tabindex="0">
+      <div class="proj-card-inner">
+        <span class="proj-card-ghost" aria-hidden="true">03</span>
+        <p class="proj-card-num">Projet 03 — Systèmes</p>
+        <div class="proj-card-thumb">
+          <img src="assets/img/vmware-vms.webp" alt="VMware — liste des VMs" loading="lazy" width="768" height="434" decoding="async">
         </div>
-        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Tester des environnements réseau hétérogènes sans infrastructure physique disponible. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> VMware Workstation — Windows 11 (TPM, BitLocker), Debian 12 (partitionnement ext4/swap), clonage snapshots, réseau statique configuré, tests inter-VM PowerShell. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> 3 VMs opérationnelles en réseau isolé. Connectivité inter-VM vérifiée. Documentation technique complète.</p>
-        <div class="tags">
-          <span class="tag">VMware</span><span class="tag">Windows 11</span>
-          <span class="tag">Debian 12</span><span class="tag">PowerShell</span><span class="tag">TPM</span>
+        <div class="proj-card-meta">
+          <h3 class="proj-title">Lab Virtualisation</h3>
+        </div>
+        <div class="proj-card-bottom">
+          <div class="tags"><span class="tag">VMware</span><span class="tag">Windows 11</span><span class="tag">Debian 12</span><span class="tag">PowerShell</span></div>
+          <button class="proj-open-btn" aria-label="Voir le projet Lab Virtualisation"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
         </div>
       </div>
+      <template class="proj-modal-tpl">
+        <div class="pm-header">
+          <p class="proj-num">Projet 03 — Systèmes</p>
+          <h2 class="proj-title">Lab Virtualisation</h2>
+        </div>
+        <div class="pm-body">
+          <div class="proj-gallery">
+            <figure class="proj-screen" data-src="assets/img/vmware-vms.webp" data-caption="VMware Workstation — liste des machines virtuelles">
+              <img src="assets/img/vmware-vms.webp" alt="VMware — liste des VMs" loading="lazy" width="768" height="434" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+            <figure class="proj-screen" data-src="assets/img/debian-network-config.webp" data-caption="Debian 12 — configuration réseau statique">
+              <img src="assets/img/debian-network-config.webp" alt="Debian — configuration réseau" loading="lazy" width="751" height="579" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+          </div>
+          <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Tester des environnements réseau hétérogènes sans infrastructure physique disponible. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> VMware Workstation — Windows 11 (TPM, BitLocker), Debian 12 (partitionnement ext4/swap), clonage snapshots, réseau statique configuré, tests inter-VM PowerShell. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> 3 VMs opérationnelles en réseau isolé. Connectivité inter-VM vérifiée. Documentation technique complète.</p>
+          <div class="tags"><span class="tag">VMware</span><span class="tag">Windows 11</span><span class="tag">Debian 12</span><span class="tag">PowerShell</span><span class="tag">TPM</span></div>
+        </div>
+      </template>
     </article>
-    <article class="proj reveal">
-      <span class="proj-ghost" aria-hidden="true">04</span>
-      <div class="proj-left">
-        <p class="proj-num">Projet 04 — Réseaux</p>
-        <h3 class="proj-title">Infrastructure<br>Réseau</h3>
-      </div>
-      <div class="proj-right">
-        <div class="proj-gallery-single">
-          <figure class="proj-screen" data-src="assets/img/cisco-vlan-topo.webp" data-caption="Cisco Packet Tracer — topologie VLAN 10 et 20">
-            <img src="assets/img/cisco-vlan-topo.webp" alt="Cisco PT — VLAN 10 et 20" loading="lazy" width="1919" height="1079">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
+    <article class="proj-card reveal" tabindex="0">
+      <div class="proj-card-inner">
+        <span class="proj-card-ghost" aria-hidden="true">04</span>
+        <p class="proj-card-num">Projet 04 — Réseaux</p>
+        <div class="proj-card-thumb">
+          <img src="assets/img/cisco-vlan-topo.webp" alt="Cisco PT — VLAN" loading="lazy" width="1919" height="1079" decoding="async">
         </div>
-        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Segmenter un réseau d'entreprise pour isoler les départements et sécuriser les flux inter-VLAN. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Cisco Packet Tracer — VLAN 10 &amp; 20, trunks 802.1q, serveur DHCP Windows Server, plan d'adressage IPv4 complet, tests de connectivité end-to-end. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> Architecture segmentée et documentée. Simulation validée, prête à déployer sur équipements physiques Cisco.</p>
-        <div class="tags">
-          <span class="tag">Cisco PT</span><span class="tag">VLAN</span>
-          <span class="tag">Trunk 802.1q</span><span class="tag">DHCP</span><span class="tag">TCP/IP</span>
+        <div class="proj-card-meta">
+          <h3 class="proj-title">Infrastructure Réseau</h3>
+        </div>
+        <div class="proj-card-bottom">
+          <div class="tags"><span class="tag">Cisco PT</span><span class="tag">VLAN</span><span class="tag">DHCP</span><span class="tag">TCP/IP</span></div>
+          <button class="proj-open-btn" aria-label="Voir le projet Infrastructure Réseau"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
         </div>
       </div>
+      <template class="proj-modal-tpl">
+        <div class="pm-header">
+          <p class="proj-num">Projet 04 — Réseaux</p>
+          <h2 class="proj-title">Infrastructure Réseau</h2>
+        </div>
+        <div class="pm-body">
+          <div class="proj-gallery">
+            <figure class="proj-screen" data-src="assets/img/cisco-vlan-topo.webp" data-caption="Cisco Packet Tracer — topologie VLAN 10 et 20">
+              <img src="assets/img/cisco-vlan-topo.webp" alt="Cisco PT — VLAN 10 et 20" loading="lazy" width="1919" height="1079" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+          </div>
+          <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Segmenter un réseau d&apos;entreprise pour isoler les départements et sécuriser les flux inter-VLAN. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Cisco Packet Tracer — VLAN 10 &amp; 20, trunks 802.1q, serveur DHCP Windows Server, plan d&apos;adressage IPv4 complet, tests de connectivité end-to-end. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> Architecture segmentée et documentée. Simulation validée, prête à déployer sur équipements physiques Cisco.</p>
+          <div class="tags"><span class="tag">Cisco PT</span><span class="tag">VLAN</span><span class="tag">Trunk 802.1q</span><span class="tag">DHCP</span><span class="tag">TCP/IP</span></div>
+        </div>
+      </template>
     </article>
-    <article class="proj reveal">
-      <span class="proj-ghost" aria-hidden="true">05</span>
-      <div class="proj-left">
-        <p class="proj-num">Projet 05 — Modélisation</p>
-        <h3 class="proj-title">Conception<br>BDD</h3>
-      </div>
-      <div class="proj-right">
-        <div class="proj-gallery">
-          <figure class="proj-screen" data-src="assets/img/bdd-mcd-archeo.webp" data-caption="MCD Merise — base archéologique">
-            <img src="assets/img/bdd-mcd-archeo.webp" alt="MCD — base archéologique" loading="lazy" width="1099" height="749">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
-          <figure class="proj-screen" data-src="assets/img/bdd-mcd-biblio.webp" data-caption="MCD Merise — bibliothèque numérique">
-            <img src="assets/img/bdd-mcd-biblio.webp" alt="MCD — bibliothèque" loading="lazy" width="1181" height="705">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
+    <article class="proj-card reveal" tabindex="0">
+      <div class="proj-card-inner">
+        <span class="proj-card-ghost" aria-hidden="true">05</span>
+        <p class="proj-card-num">Projet 05 — Modélisation</p>
+        <div class="proj-card-thumb">
+          <img src="assets/img/bdd-mcd-archeo.webp" alt="MCD — base archéologique" loading="lazy" width="1099" height="749" decoding="async">
         </div>
-        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Modéliser des bases de données complexes pour deux domaines métiers distincts sans erreur de normalisation. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Méthode Merise (MCD → MPD) — base de fouilles archéologiques (Chercheur, Équipe, Site, Objet) et bibliothèque numérique (Usager, Document, Réservation, Exemplaire). <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> 2 bases normalisées 3NF, MCD et MPD complets, prêtes à l'implémentation SQL.</p>
-        <div class="tags">
-          <span class="tag">Merise</span><span class="tag">MCD</span>
-          <span class="tag">MPD</span><span class="tag">SQL</span><span class="tag">Modélisation</span>
+        <div class="proj-card-meta">
+          <h3 class="proj-title">Conception BDD</h3>
+        </div>
+        <div class="proj-card-bottom">
+          <div class="tags"><span class="tag">Merise</span><span class="tag">MCD</span><span class="tag">MPD</span><span class="tag">SQL</span></div>
+          <button class="proj-open-btn" aria-label="Voir le projet Conception BDD"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
         </div>
       </div>
+      <template class="proj-modal-tpl">
+        <div class="pm-header">
+          <p class="proj-num">Projet 05 — Modélisation</p>
+          <h2 class="proj-title">Conception BDD</h2>
+        </div>
+        <div class="pm-body">
+          <div class="proj-gallery">
+            <figure class="proj-screen" data-src="assets/img/bdd-mcd-archeo.webp" data-caption="MCD Merise — base archéologique">
+              <img src="assets/img/bdd-mcd-archeo.webp" alt="MCD — base archéologique" loading="lazy" width="1099" height="749" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+            <figure class="proj-screen" data-src="assets/img/bdd-mcd-biblio.webp" data-caption="MCD Merise — bibliothèque numérique">
+              <img src="assets/img/bdd-mcd-biblio.webp" alt="MCD — bibliothèque" loading="lazy" width="1181" height="705" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+          </div>
+          <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Modéliser des bases de données complexes pour deux domaines métiers distincts sans erreur de normalisation. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Méthode Merise (MCD → MPD) — base de fouilles archéologiques (Chercheur, Équipe, Site, Objet) et bibliothèque numérique (Usager, Document, Réservation, Exemplaire). <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> 2 bases normalisées 3NF, MCD et MPD complets, prêtes à l&apos;implémentation SQL.</p>
+          <div class="tags"><span class="tag">Merise</span><span class="tag">MCD</span><span class="tag">MPD</span><span class="tag">SQL</span><span class="tag">Modélisation</span></div>
+        </div>
+      </template>
     </article>
-    <article class="proj reveal">
-      <span class="proj-ghost" aria-hidden="true">06</span>
-      <div class="proj-left">
-        <p class="proj-num">Projet 06 — Mission IT</p>
-        <h3 class="proj-title">Mission<br>IT</h3>
-      </div>
-      <div class="proj-right">
-        <div class="proj-gallery">
-          <figure class="proj-screen" data-src="assets/img/powershell-ping.webp" data-caption="PowerShell — tests de connectivité réseau">
-            <img src="assets/img/powershell-ping.webp" alt="PowerShell — ping tests" loading="lazy" width="842" height="656">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
-          <figure class="proj-screen" data-src="assets/img/cisco-ping.webp" data-caption="Cisco PT — diagnostic de connectivité">
-            <img src="assets/img/cisco-ping.webp" alt="Cisco PT — ping" loading="lazy" width="710" height="504">
-            <div class="proj-screen-zoom"><span>Agrandir</span></div>
-          </figure>
+    <article class="proj-card reveal" tabindex="0">
+      <div class="proj-card-inner">
+        <span class="proj-card-ghost" aria-hidden="true">06</span>
+        <p class="proj-card-num">Projet 06 — Mission IT</p>
+        <div class="proj-card-thumb">
+          <img src="assets/img/powershell-ping.webp" alt="PowerShell — ping tests" loading="lazy" width="842" height="656" decoding="async">
         </div>
-        <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Assurer le support IT et maintenir une infrastructure réseau opérationnelle dans un environnement professionnel réel. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Diagnostic réseau, configuration switches &amp; équipements, déploiement de postes Windows, virtualisation VMware, support utilisateur N1/N2, rédaction documentation technique. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> Infrastructure maintenue sans interruption. Postes déployés et configurés. Documentation transmise à l'équipe.</p>
-        <div class="tags">
-          <span class="tag">Réseau</span><span class="tag">Support</span>
-          <span class="tag">Configuration</span><span class="tag">PowerShell</span><span class="tag">Documentation</span>
+        <div class="proj-card-meta">
+          <h3 class="proj-title">Mission IT</h3>
         </div>
-        <a href="https://github.com/patrickmekongo19-droid" target="_blank" rel="noopener" class="proj-link" style="margin-top:8px">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          Profil GitHub — README détaillé
-        </a>
+        <div class="proj-card-bottom">
+          <div class="tags"><span class="tag">Réseau</span><span class="tag">Support</span><span class="tag">PowerShell</span><span class="tag">Documentation</span></div>
+          <button class="proj-open-btn" aria-label="Voir le projet Mission IT"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
+        </div>
       </div>
+      <template class="proj-modal-tpl">
+        <div class="pm-header">
+          <p class="proj-num">Projet 06 — Mission IT</p>
+          <h2 class="proj-title">Mission IT</h2>
+        </div>
+        <div class="pm-body">
+          <div class="proj-gallery">
+            <figure class="proj-screen" data-src="assets/img/powershell-ping.webp" data-caption="PowerShell — tests de connectivité réseau">
+              <img src="assets/img/powershell-ping.webp" alt="PowerShell — ping tests" loading="lazy" width="842" height="656" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+            <figure class="proj-screen" data-src="assets/img/cisco-ping.webp" data-caption="Cisco PT — diagnostic de connectivité">
+              <img src="assets/img/cisco-ping.webp" alt="Cisco PT — ping" loading="lazy" width="710" height="504" decoding="async">
+              <div class="proj-screen-zoom"><span>Agrandir</span></div>
+            </figure>
+          </div>
+          <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Assurer le support IT et maintenir une infrastructure réseau opérationnelle dans un environnement professionnel réel. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Diagnostic réseau, configuration switches &amp; équipements, déploiement de postes Windows, virtualisation VMware, support utilisateur N1/N2, rédaction documentation technique. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> Infrastructure maintenue sans interruption. Postes déployés et configurés. Documentation transmise à l&apos;équipe.</p>
+          <div class="tags"><span class="tag">Réseau</span><span class="tag">Support</span><span class="tag">Configuration</span><span class="tag">PowerShell</span><span class="tag">Documentation</span></div>
+          <a href="https://github.com/patrickmekongo19-droid" target="_blank" rel="noopener" class="proj-link" style="margin-top:8px"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> Profil GitHub — README détaillé</a>
+        </div>
+      </template>
     </article>
   </div>
 </section>
@@ -2856,6 +2970,52 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     }
     window.addEventListener('scroll',updateDots,{passive:true});
     updateDots();
+  })();
+
+  /* ── Project modal ── */
+  (function(){
+    var modal=document.getElementById('proj-modal');
+    var pmContent=document.getElementById('pm-content');
+    var pmCloseBtn=document.getElementById('pm-close-btn');
+    if(!modal||!pmContent||!pmCloseBtn)return;
+
+    function openModal(card){
+      var tpl=card.querySelector('.proj-modal-tpl');
+      if(!tpl)return;
+      pmContent.innerHTML='';
+      pmContent.appendChild(document.importNode(tpl.content,true));
+      modal.classList.add('open');
+      document.body.style.overflow='hidden';
+      modal.scrollTop=0;
+      pmContent.querySelectorAll('.proj-screen[data-src]').forEach(function(s){
+        s.addEventListener('click',function(){openLb(s.dataset.src);});
+      });
+      setTimeout(function(){pmCloseBtn.focus();},50);
+    }
+
+    function closeModal(){
+      modal.classList.remove('open');
+      document.body.style.overflow='';
+      pmContent.querySelectorAll('video').forEach(function(v){v.pause();});
+      setTimeout(function(){pmContent.innerHTML='';},400);
+    }
+
+    document.querySelectorAll('.proj-card').forEach(function(card){
+      card.addEventListener('click',function(e){
+        if(e.target.closest('.proj-open-btn')||e.target===card||e.target.closest('.proj-card-inner')){
+          openModal(card);
+        }
+      });
+      card.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '){e.preventDefault();openModal(card);}
+      });
+    });
+
+    pmCloseBtn.addEventListener('click',closeModal);
+    modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();
+    });
   })();
 
   (function(){
