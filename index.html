@@ -385,8 +385,12 @@
     #about{background:var(--navy)}
     .about-inner{margin-top:80px;display:grid;grid-template-columns:1fr 1.4fr;gap:100px}
     .about-attrs{display:flex;flex-direction:column}
+    .about-photo{margin-bottom:36px;position:relative;overflow:hidden}
+    .about-photo img{width:100%;max-width:300px;aspect-ratio:3/4;object-fit:cover;object-position:center top;display:block;border:1px solid var(--border);filter:grayscale(15%) brightness(.9);transition:filter .5s,transform .6s}
+    .about-photo:hover img{filter:grayscale(0%) brightness(1);transform:scale(1.02)}
+    .about-photo-label{margin-top:12px;font-family:var(--fm);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
     .attr{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--border)}
-    .attr:first-child{border-top:1px solid var(--border)}
+    .about-photo+.attr{border-top:1px solid var(--border)}
     .attr-k{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
     .attr-v{font-family:var(--fd);font-weight:700;font-size:.9rem;letter-spacing:.06em;text-transform:uppercase;text-align:right}
     .about-text{font-size:.97rem;line-height:1.95;color:var(--light)}
@@ -1620,6 +1624,10 @@
   </div>
   <div class="about-inner">
     <div class="about-attrs reveal d1">
+      <div class="about-photo">
+        <img src="assets/img/inspi.webp" alt="Patrick Mekongo" loading="lazy" width="320" height="427" decoding="async">
+        <p class="about-photo-label">Patrick Mekongo</p>
+      </div>
       <div class="attr"><span class="attr-k">École</span><span class="attr-v">Ingetis Paris</span></div>
       <div class="attr"><span class="attr-k">Formation</span><span class="attr-v">BTS SIO SISR</span></div>
       <div class="attr"><span class="attr-k">Spécialité</span><span class="attr-v">Réseaux &amp; Systèmes</span></div>
