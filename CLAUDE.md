@@ -66,6 +66,28 @@ Flux : `index.html` → POST → `save.php` → BDD → redirect `cv.php?id=`
 - **Identifiants** : `root` / `mysql`
 - **Accès local** : `http://localhost/cv-generator/`
 
+**Fichiers** : `index.html` (formulaire) · `save.php` (prepared statements) · `cv.php` (affichage) · `list.php` (liste DESC) · `style.css`
+
+**Phases réalisées** :
+- [x] CRUD complet (créer, lister, afficher)
+- [x] Prepared statements dans save.php (protection SQLi)
+- [x] Design cohérent indigo `#4f46e5`
+
+**À faire** :
+- [ ] Corriger XSS dans cv.php (ajouter `htmlspecialchars` sur les données affichées)
+- [ ] Supprimer un CV (bouton delete + `DELETE` SQL)
+- [ ] Export PDF
+- [ ] Supprimer `test.php`
+
+## Dernière session
+
+**2026-04-09**
+- Reprise du projet CViste, état des lieux complet (6 fichiers identifiés)
+- Identification d'une faille XSS dans `cv.php` (données affichées sans `htmlspecialchars`)
+- Mise en place du CLAUDE.md avec mise à jour automatique en fin de session
+
+**Prochaine étape** : corriger le XSS dans `cv.php`, puis ajouter la suppression de CV
+
 ## Assets portfolio
 
 ```
