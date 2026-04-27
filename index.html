@@ -209,7 +209,7 @@
     .proj-gallery .proj-screen{margin-bottom:0}
     .proj-gallery-single{margin-bottom:28px}
     .proj-video{width:100%;aspect-ratio:16/9;border:1px solid var(--border);margin-bottom:28px;overflow:hidden;position:relative;box-shadow:0 8px 32px rgba(0,0,0,.5)}
-    .proj-video iframe{width:100%;height:100%;border:none;display:block}
+    .proj-video iframe,.proj-video video{width:100%;height:100%;border:none;display:block}
     .proj-video-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
     .proj-desc{font-size:.95rem;line-height:1.85;color:var(--dim);margin-bottom:28px}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
@@ -1008,7 +1008,9 @@
         </div>
         <p class="proj-video-label">Démonstration — test en conditions réelles</p>
         <div class="proj-video">
-          <iframe src="https://drive.google.com/file/d/1CW2z7RcgiaGgIkQFgG551du34uY814J0/preview" title="Démonstration Générateur de CV — Patrick Mekongo" allow="autoplay" allowfullscreen loading="lazy"></iframe>
+          <video controls muted preload="metadata" playsinline style="width:100%;height:100%;display:block;background:#000">
+            <source src="assets/video/cv-generator-demo-web.mp4" type="video/mp4">
+          </video>
         </div>
         <p class="proj-desc"><strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Problème —</strong> Créer un CV propre nécessite Word ou un outil payant, sans maîtrise des données saisies. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Approche —</strong> Application web PHP + MySQL avec formulaire en ligne, requêtes préparées anti-injection SQL, affichage dynamique du CV généré et architecture CRUD complète en auto-hébergement AMPPS. <strong style="color:var(--gold);font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase">Résultat —</strong> CV généré en 3 minutes. Données protégées par prepared statements. Architecture exportable et documentée.</p>
         <div class="tags">
