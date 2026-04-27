@@ -593,6 +593,15 @@
     #term-row{display:flex;align-items:center;margin-top:10px}
     .t-pr{color:#30d158;font-size:.76rem;white-space:nowrap;flex-shrink:0}
     #term-in{background:none;border:none;outline:none;color:#30d158;font-family:var(--fm);font-size:.76rem;flex:1;caret-color:#30d158}
+    /* ── NAV DOTS LATÉRAUX ── */
+    #nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:900;padding:8px 4px}
+    .nd{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:background .35s,transform .35s,width .35s;position:relative;border:none;padding:0;flex-shrink:0}
+    .nd.active{background:var(--gold);transform:scale(1.35)}
+    .nd:hover{background:rgba(200,169,109,.6);transform:scale(1.2)}
+    .nd::before{content:attr(data-label);position:absolute;right:calc(100% + 14px);top:50%;transform:translateY(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);white-space:nowrap;background:rgba(10,10,10,.9);border:1px solid var(--border);padding:4px 10px;opacity:0;pointer-events:none;transition:opacity .25s;border-radius:2px}
+    .nd:hover::before,.nd.active::before{opacity:1}
+    @media(max-width:960px){#nav-dots{display:none}}
+
     /* ── HERO QUICK NAV ── */
     .hero-quicknav{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
     .hero-qn{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:8px 14px;text-decoration:none;transition:border-color .3s,color .3s,transform .3s cubic-bezier(.4,0,.2,1);flex-shrink:0}
@@ -668,6 +677,9 @@
 
 <div id="cd"></div>
 <div id="cr"></div>
+
+<!-- NAV DOTS -->
+<nav id="nav-dots" aria-label="Navigation par sections"></nav>
 
 <!-- LIGHTBOX -->
 <div id="lightbox" role="dialog" aria-modal="true">
@@ -2799,6 +2811,52 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
     document.querySelectorAll('.hp').forEach(function(el){el.style.display='none';});
   }
+
+  /* ── NAV DOTS ── */
+  (function(){
+    var dotsNav=document.getElementById('nav-dots');
+    if(!dotsNav)return;
+    var sections=[
+      {id:'hero',label:'Intro'},
+      {id:'pratique',label:'Pratique'},
+      {id:'competences',label:'Stack'},
+      {id:'projets',label:'Projets'},
+      {id:'cherche',label:'Stage'},
+      {id:'parcours',label:'Parcours'},
+      {id:'experiences',label:'Expériences'},
+      {id:'autres-exp',label:'Autres exp.'},
+      {id:'supervision',label:'Supervision'},
+      {id:'cv-dl',label:'CV'},
+      {id:'about',label:'À propos'},
+      {id:'contact',label:'Contact'}
+    ];
+    sections.forEach(function(s){
+      var el=document.getElementById(s.id);
+      if(!el)return;
+      var btn=document.createElement('button');
+      btn.className='nd';
+      btn.setAttribute('data-label',s.label);
+      btn.setAttribute('aria-label','Aller à : '+s.label);
+      btn.setAttribute('data-sec',s.id);
+      btn.addEventListener('click',function(){
+        el.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+      dotsNav.appendChild(btn);
+    });
+    var dots=Array.from(dotsNav.querySelectorAll('.nd'));
+    var secEls=sections.map(function(s){return document.getElementById(s.id);}).filter(Boolean);
+    function updateDots(){
+      var mid=window.scrollY+window.innerHeight*.4;
+      var active=secEls.reduce(function(acc,el){
+        return el&&el.offsetTop<=mid?el:acc;
+      },secEls[0]);
+      dots.forEach(function(d){
+        d.classList.toggle('active',d.dataset.sec===(active&&active.id));
+      });
+    }
+    window.addEventListener('scroll',updateDots,{passive:true});
+    updateDots();
+  })();
 
   (function(){
     var btn=document.getElementById('theme-toggle');
