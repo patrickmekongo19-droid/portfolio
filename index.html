@@ -2341,6 +2341,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
       <button class="inspi-chip">/projets</button>
       <button class="inspi-chip">/stage</button>
       <button class="inspi-chip">/contact</button>
+      <button class="inspi-chip">/cv</button>
     </div>
     <div id="inspi-input-row">
       <input id="inspi-input" type="text" placeholder="Posez votre question..." aria-label="Votre question" />
@@ -2458,6 +2459,9 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     if(/linux|debian|ubuntu|serveur|bash/.test(v))return'Administration Linux Debian/Ubuntu : DHCP, DNS, SSH, scripting bash, gestion de paquets, sécurisation serveur.';
     if(/saas|cviste|intelligence artificielle|claude api/.test(v))return'CViste : SaaS en développement — génération de CV par IA (Claude API), analyse ATS, export PDF. Stack : Next.js · TypeScript · Supabase · Stripe.';
     if(/bts|ingetis|formation|école|étud/.test(v))return'Patrick est en BTS SIO SISR 1ère année à Ingetis Paris. Bac L mention Bien (2024). Bilingue français/anglais.';
+    if(/vmware|virtualisation|vm\b/.test(v))return'Lab virtualisation : 3 VMs sous VMware Workstation — Windows 11 (TPM/BitLocker), Debian 12, réseau statique configuré, connectivité inter-VM vérifiée.';
+    if(/python|script|automat/.test(v))return'Patrick utilise Python pour les scripts d\'automatisation : traitement batch, Pillow pour les images, subprocess, json. Voir les projets.';
+    if(/merci|thanks|cool|super|nickel|parfait/.test(v))return'Avec plaisir ! N\'hésitez pas si vous avez d\'autres questions.';
     if(/bonjour|salut|hello|hi/.test(v))return"Bonjour ! Je suis Inspi, l'assistant IT de Patrick. Tapez /help pour voir mes commandes.";
     return'Je ne suis pas sûr de comprendre. Essayez /help pour mes commandes, ou contactez Patrick : patrickmekongo19@gmail.com';
   }
