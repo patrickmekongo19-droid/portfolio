@@ -593,6 +593,14 @@
     #term-row{display:flex;align-items:center;margin-top:10px}
     .t-pr{color:#30d158;font-size:.76rem;white-space:nowrap;flex-shrink:0}
     #term-in{background:none;border:none;outline:none;color:#30d158;font-family:var(--fm);font-size:.76rem;flex:1;caret-color:#30d158}
+    /* ── HERO QUICK NAV ── */
+    .hero-quicknav{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+    .hero-qn{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:8px 14px;text-decoration:none;transition:border-color .3s,color .3s,transform .3s cubic-bezier(.4,0,.2,1);flex-shrink:0}
+    .hero-qn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+    .hero-qn svg{width:9px;height:9px;flex-shrink:0;transition:transform .3s}
+    .hero-qn:hover svg{transform:translate(2px,-2px)}
+    @media(max-width:600px){.hero-quicknav{gap:7px}.hero-qn{font-size:.52rem;padding:7px 10px}}
+
     #term-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.35);pointer-events:none;white-space:nowrap}
 
     /* ── GRAIN TEXTURE ── */
@@ -728,6 +736,24 @@
         <p class="hero-tag">TECHNICIEN IT — EN RECHERCHE DE STAGE</p>
         <p class="hero-sub">Réseaux, systèmes, virtualisation &amp; support — prêt à contribuer en entreprise.</p>
         <span class="hero-avail">Disponible &nbsp;·&nbsp; 29 juin — 30 juillet 2026</span>
+        <nav class="hero-quicknav" aria-label="Accès rapide">
+          <a href="#projets" class="hero-qn mag-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            Projets
+          </a>
+          <a href="#competences" class="hero-qn mag-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            Stack
+          </a>
+          <a href="#cv-dl" class="hero-qn mag-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            CV
+          </a>
+          <a href="#contact" class="hero-qn mag-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            Contact
+          </a>
+        </nav>
       </div>
       <div class="hero-scroll" aria-hidden="true">
         <div class="s-track"></div>Défiler
