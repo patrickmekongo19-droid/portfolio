@@ -2739,12 +2739,14 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
       hint=document.getElementById('term-hint');
   var PR='patrick@portfolio:~$ ';
   var CMDS={
-    help:'Commandes disponibles :\n  neofetch          — profil système stylé\n  whoami            — présentation\n  skills            — stack technique complète\n  contact           — coordonnées\n  sudo hire patrick — message fun\n  clear             — effacer le terminal\n  exit              — fermer',
+    help:'Commandes disponibles :\n  neofetch          — profil système stylé\n  whoami            — présentation\n  skills            — stack technique complète\n  ls                — liste des projets et fichiers\n  ping              — tester la connectivité\n  contact           — coordonnées\n  sudo hire patrick — accès recruteur\n  clear             — effacer le terminal\n  exit              — fermer\n\n  ↑ / ↓            — historique des commandes',
     whoami:'Patrick Mekongo\nTechnicien IT — Réseaux, Systèmes & Développement Web\nBTS SIO SISR — Ingetis Paris (2024-2026)\nCertification CNIL — Data Protection\nDisponible en stage : 29 juin – 30 juillet 2026',
     neofetch:'\n        ██████╗ ███╗   ███╗\n        ██╔══██╗████╗ ████║      patrick@portfolio\n        ██████╔╝██╔████╔██║      ─────────────────────────────────\n        ██╔═══╝ ██║╚██╔╝██║      Formation  : BTS SIO SISR @ Ingetis Paris\n        ██║     ██║ ╚═╝ ██║      OS         : Windows 11 / Debian 12 (VM)\n        ╚═╝     ╚═╝     ╚═╝      Shell      : bash · Git Bash\n                                 Stack      : Next.js · TypeScript · PHP · SQL\n                                 Tools      : PRTG · Nagios · Centreon · Zabbix\n                                 Certif     : CNIL Data Protection\n                                 Stage      : 29 juin – 30 juillet 2026\n                                 Email      : patrickmekongo19@gmail.com',
     skills:'Stack technique :\n\n  Réseaux   TCP/IP · VLAN · Trunk 802.1q · DHCP · DNS\n  Systèmes  Windows Server · Debian · VMware · Active Directory\n  Supervis  PRTG · Nagios · Centreon · Zabbix\n  Dev       Next.js · React · TypeScript · PHP · MySQL · HTML · CSS\n  SaaS      Supabase · Stripe · Clerk · Claude AI (Anthropic)\n  Langages  JavaScript · TypeScript · Python · SQL\n  Outils    Git · GitHub · VS Code · Cisco Packet Tracer',
     contact:'Coordonnées :\n\n  Email     patrickmekongo19@gmail.com\n  LinkedIn  linkedin.com/in/patrick-koa-mekongo-767476353\n  GitHub    github.com/patrickmekongo19-droid\n  Portfolio patrickmekongo19-droid.github.io/portfolio/',
-    'sudo hire patrick':'[sudo] password for recruteur : ••••••••\nauthenticating...\n\n✓  Permission accordée.\n\n██╗  ██╗██╗██████╗ ███████╗██████╗ \n██║  ██║██║██╔══██╗██╔════╝██╔══██╗\n███████║██║██████╔╝█████╗  ██║  ██║\n██╔══██║██║██╔══██╗██╔══╝  ██║  ██║\n██║  ██║██║██║  ██║███████╗██████╔╝\n\n→  patrickmekongo19@gmail.com'
+    'sudo hire patrick':'[sudo] password for recruteur : ••••••••\nauthenticating...\n\n✓  Permission accordée.\n\n██╗  ██╗██╗██████╗ ███████╗██████╗ \n██║  ██║██║██╔══██╗██╔════╝██╔══██╗\n███████║██║██████╔╝█████╗  ██║  ██║\n██╔══██║██║██╔══██╗██╔══╝  ██║  ██║\n██║  ██║██║██║  ██║███████╗██████╔╝\n\n→  patrickmekongo19@gmail.com',
+    ping:'PING patrickmekongo19@gmail.com (93.184.216.34) 56 bytes\n64 bytes from patrick: icmp_seq=1 ttl=64 time=1.2 ms\n64 bytes from patrick: icmp_seq=2 ttl=64 time=0.9 ms\n64 bytes from patrick: icmp_seq=3 ttl=64 time=1.1 ms\n\n--- ping résultat ---\n3 packets transmitted, 3 received, 0% packet loss\nPatrick est en ligne. Disponible du 29 juin au 30 juillet.',
+    ls:'total 12\ndrwxr-xr-x  projets/\n  ├── cv-generator     [PHP/MySQL · Publié]\n  ├── cviste-saas      [Next.js · En cours]\n  ├── lab-virtualisation [VMware · Documenté]\n  ├── infra-cisco      [Packet Tracer · Simulé]\n  └── conception-bdd   [Merise · 3NF]\ndrwxr-xr-x  skills/\n  └── (voir commande skills)\n-rw-r--r--  cv.pdf\n-rw-r--r--  stage.cfg  → 29 juin – 30 juillet 2026'
   };
   function addLine(txt,cls){
     var d=document.createElement('div');
@@ -2787,8 +2789,19 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   });
   xBtn.addEventListener('click',closeT);
   ov.addEventListener('click',function(e){if(e.target===ov)closeT();});
+  var hist=[],hIdx=-1;
   inp.addEventListener('keydown',function(e){
-    if(e.key==='Enter'){var v=inp.value;inp.value='';run(v);}
+    if(e.key==='Enter'){
+      var v=inp.value;inp.value='';hIdx=-1;
+      if(v.trim()){hist.unshift(v);}
+      run(v);
+    }else if(e.key==='ArrowUp'){
+      e.preventDefault();
+      if(hIdx<hist.length-1){hIdx++;inp.value=hist[hIdx];}
+    }else if(e.key==='ArrowDown'){
+      e.preventDefault();
+      if(hIdx>0){hIdx--;inp.value=hist[hIdx];}else{hIdx=-1;inp.value='';}
+    }
   });
 })();
 </script>
