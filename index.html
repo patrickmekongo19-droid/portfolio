@@ -71,7 +71,7 @@
       --border:rgba(0,0,0,.1);--muted:#555;--dim:#333;--light:#222;
       --blue-dim:rgba(79,126,247,.08);--gold-dim:rgba(200,169,109,.12);--green-dim:rgba(52,211,153,.08);
     }
-    html[data-theme="light"] nav{mix-blend-mode:normal}
+    html[data-theme="light"] #nav{mix-blend-mode:normal}
     html[data-theme="light"] #cd{mix-blend-mode:normal;background:var(--gold)}
     html[data-theme="light"] #cr{border-color:rgba(200,169,109,.5)}
     html[data-theme="light"] body{transition:background .35s,color .35s}
@@ -91,16 +91,16 @@
     #back-top:hover svg{color:var(--gold);transform:translateY(-2px)}
 
     
-    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;transition:transform .5s cubic-bezier(.77,0,.175,1),background .4s,padding .4s;mix-blend-mode:difference}
-    nav.scrolled{mix-blend-mode:normal;background:rgba(10,10,10,.96);backdrop-filter:blur(18px);padding:16px 56px;border-bottom:1px solid var(--border)}
-    nav.hidden{transform:translateY(-110%)}
+    #nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;transition:transform .5s cubic-bezier(.77,0,.175,1),background .4s,padding .4s;mix-blend-mode:difference}
+    #nav.scrolled{mix-blend-mode:normal;background:rgba(10,10,10,.96);backdrop-filter:blur(18px);padding:16px 56px;border-bottom:1px solid var(--border)}
+    #nav.hidden{transform:translateY(-110%)}
     .nav-logo{font-family:var(--fd);font-weight:900;font-size:1.1rem;letter-spacing:.18em;color:var(--white);text-decoration:none;transition:color .3s}
-    nav.scrolled .nav-logo{color:var(--gold)}
+    #nav.scrolled .nav-logo{color:var(--gold)}
     .nav-links{list-style:none;display:flex;gap:24px;flex-wrap:wrap}
     .nav-links a{font-family:var(--fm);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--white);text-decoration:none;position:relative}
     .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .35s}
     .nav-links a:hover::after{width:100%}
-    nav.scrolled .nav-links a{color:var(--light)}
+    #nav.scrolled .nav-links a{color:var(--light)}
 
     
     #hero{min-height:100vh;padding:0 56px 96px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;background:var(--black)}
@@ -504,8 +504,8 @@
     
     @media(max-width:960px){
       .nav-burger{display:flex}
-      nav,footer{padding:20px 24px}
-      nav.scrolled{padding:14px 24px}
+      #nav,footer{padding:20px 24px}
+      #nav.scrolled{padding:14px 24px}
       .nav-links{display:none}
       .sec{padding:96px 24px}
       #hero{padding:0 24px 72px}
