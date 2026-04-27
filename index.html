@@ -594,6 +594,21 @@
     .t-pr{color:#30d158;font-size:.76rem;white-space:nowrap;flex-shrink:0}
     #term-in{background:none;border:none;outline:none;color:#30d158;font-family:var(--fm);font-size:.76rem;flex:1;caret-color:#30d158}
     #term-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.35);pointer-events:none;white-space:nowrap}
+
+    /* ── GRAIN TEXTURE ── */
+    body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");background-size:180px 180px}
+
+    /* ── SPOTLIGHT SK-CARDS ── */
+    .sk-card{--sx:50%;--sy:50%}
+    .sk-card:hover{background:radial-gradient(circle at var(--sx) var(--sy),rgba(200,169,109,.2),transparent 70%),var(--gold-dim)!important}
+
+    /* ── AURORA HERO ── */
+    #hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 30% 90%,rgba(200,169,109,.045),transparent),radial-gradient(ellipse 50% 40% at 80% 10%,rgba(79,126,247,.04),transparent);background-size:200% 200%;animation:auroraShift 22s ease infinite}
+    @keyframes auroraShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+    /* ── BORDER BEAM — TL-TAGS & AUTRES-SKILLS ── */
+    .tl-tag,.autre-skill{position:relative;overflow:hidden}
+    .tl-tag::after,.autre-skill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(200,169,109,.3),transparent);transform:translateX(-200%);animation:tagShimmer 4.5s ease 2s infinite;pointer-events:none}
   </style>
   <script type="application/ld+json">
   [
@@ -702,7 +717,7 @@
   <div class="hero-ghost" id="hero-ghost" aria-hidden="true">IT</div>
   <div class="hero-side" aria-hidden="true">Technicien IT &nbsp;·&nbsp; 2026</div>
   <div>
-    <p class="hero-eye">Portfolio — Recherche de stage</p>
+    <p class="hero-eye grad-kw">Portfolio — Recherche de stage</p>
     <h1 class="hero-name" aria-label="Patrick Mekongo">
       <span class="hl">PATRICK</span>
       <span class="hl">MEKONGO</span>
@@ -2738,7 +2753,21 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
     });
   })();
 
-  
+  /* ── SPOTLIGHT SK-CARDS ── */
+  (function(){
+    document.querySelectorAll('.sk-card').forEach(function(card){
+      card.addEventListener('mousemove',function(e){
+        var r=card.getBoundingClientRect();
+        card.style.setProperty('--sx',((e.clientX-r.left)/r.width*100)+'%');
+        card.style.setProperty('--sy',((e.clientY-r.top)/r.height*100)+'%');
+      });
+      card.addEventListener('mouseleave',function(){
+        card.style.setProperty('--sx','50%');
+        card.style.setProperty('--sy','50%');
+      });
+    });
+  })();
+
   if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
     document.querySelectorAll('.hp').forEach(function(el){el.style.display='none';});
   }
