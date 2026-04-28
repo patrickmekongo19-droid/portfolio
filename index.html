@@ -630,7 +630,7 @@
     .hero-qn:hover svg{transform:translate(2px,-2px)}
     @media(max-width:600px){.hero-quicknav{gap:7px}.hero-qn{font-size:.52rem;padding:7px 10px}}
 
-    #term-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.35);pointer-events:none;white-space:nowrap}
+    #term-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.55);pointer-events:none;white-space:nowrap}
 
     /* ── PROJECT CARDS GRID ── */
     .proj-wrap{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
@@ -758,10 +758,10 @@
 </div>
 
 <!-- LIGHTBOX -->
-<div id="lightbox" role="dialog" aria-modal="true">
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse d'image">
   <button class="lb-close" id="lb-close" aria-label="Fermer la galerie">ESC</button>
   <button class="lb-prev" id="lb-prev" aria-label="Image precedente">&#8592;</button>
-  <img id="lb-img" src="" alt="Image agrandie">
+  <img id="lb-img" src="" alt="Image agrandie" width="1920" height="1080">
   <button class="lb-next" id="lb-next" aria-label="Image suivante">&#8594;</button>
   <p class="lb-caption" id="lb-caption"></p>
 </div>
@@ -2126,9 +2126,12 @@ function closeArtLb(){
   artLbCaption.textContent='';
   document.body.style.overflow='';
 }
-document.getElementById('art-lb-close').addEventListener('click',closeArtLb);
-artLightbox.addEventListener('click',e=>{if(e.target===artLightbox)closeArtLb();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classList.contains('open'))closeArtLb();});
+if(artLightbox){
+  const artLbClose=document.getElementById('art-lb-close');
+  if(artLbClose)artLbClose.addEventListener('click',closeArtLb);
+  artLightbox.addEventListener('click',e=>{if(e.target===artLightbox)closeArtLb();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classList.contains('open'))closeArtLb();});
+}
 
 </script>
 
@@ -3064,7 +3067,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
   window.addEventListener('scroll',upd,{passive:true});
 })();
 
-(function(){
+document.addEventListener('DOMContentLoaded',function(){(function(){
   var ov=document.getElementById('term-ov'),
       out=document.getElementById('term-out'),
       inp=document.getElementById('term-in'),
@@ -3136,7 +3139,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&artLightbox.classLi
       if(hIdx>0){hIdx--;inp.value=hist[hIdx];}else{hIdx=-1;inp.value='';}
     }
   });
-})();
+})();});
 </script>
 
 <!-- TERMINAL -->
