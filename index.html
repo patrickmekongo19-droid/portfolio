@@ -2198,13 +2198,18 @@ if(artLightbox){
 #inspi-chat-box {
   display: none;
   width: 320px;
-  background: rgba(10,10,10,0.9);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background: rgba(6,6,8,0.78);
+  backdrop-filter: blur(32px) saturate(1.4);
+  -webkit-backdrop-filter: blur(32px) saturate(1.4);
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(200,169,109,0.2);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04);
+  border: 1px solid rgba(200,169,109,0.22);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 0 1px rgba(200,169,109,0.06);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+#inspi-chat-box:hover {
+  border-color: rgba(200,169,109,0.38);
+  box-shadow: 0 16px 56px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.08), 0 0 24px rgba(200,169,109,0.06);
 }
 
 #inspi-chat-box.visible {
@@ -2684,7 +2689,7 @@ if(artLightbox){
   function getResponse(val){
     const v=val.toLowerCase().trim();
     if(v==='sudo hire patrick')return'Accès root accordé. Patrick Mekongo rejoint votre équipe le 29 juin 2026. Bienvenue dans le futur.';
-    if(v==='/help')return'Commandes disponibles :\n/skills — Stack technique\n/projets — Réalisations\n/stage — Infos stage\n/contact — Me contacter\n/cv — Télécharger le CV';
+    if(v==='/help')return'Commandes slash :\n/skills — Stack technique\n/projets — Réalisations\n/stage — Infos stage\n/contact — Me contacter\n/cv — CV à télécharger\n/whoami — Présentation\n/drop — App mobile Paris\n/neofetch — Profil système\n/easter — Easter eggs cachés';
     if(v==='/skills'||/skill|compétence|stack|technolog/.test(v))return'Stack de Patrick : Cisco IOS · Linux Debian/Ubuntu · Windows Server · PRTG · Nagios · Python · JS/TS · React · Next.js · Supabase · PHP/MySQL. Voir la section Stack.';
     if(v==='/projets'||/projet|réalisation/.test(v))return'5 projets : CViste (SaaS IA), Générateur de CV (PHP/MySQL), Supervision réseau, Dashboard monitoring. Voir la section Projets.';
     if(v==='/stage'||/stage|disponible|alternance|embauche|recru/.test(v))return'Stage disponible du 29 juin au 30 juillet 2026. Formation BTS SIO SISR (Ingetis Paris). Contactez Patrick via le formulaire en bas de page.';
@@ -2696,6 +2701,10 @@ if(artLightbox){
     if(/bts|ingetis|formation|école|étud/.test(v))return'Patrick est en BTS SIO SISR 1ère année à Ingetis Paris. Bac L mention Bien (2024). Bilingue français/anglais.';
     if(/vmware|virtualisation|vm\b/.test(v))return'Lab virtualisation : 3 VMs sous VMware Workstation — Windows 11 (TPM/BitLocker), Debian 12, réseau statique configuré, connectivité inter-VM vérifiée.';
     if(/python|script|automat/.test(v))return'Patrick utilise Python pour les scripts d\'automatisation : traitement batch, Pillow pour les images, subprocess, json. Voir les projets.';
+    if(v==='/whoami')return'Patrick Mekongo\nTechnicien IT — Réseaux · Systèmes · Dev\nBTS SIO SISR — Ingetis Paris (2024–2026)\nCertification CNIL — Data Protection\nDisponible en stage : 29 juin – 30 juillet 2026';
+    if(v==='/drop')return'Drop — application mobile Paris événements.\nConception en cours : géolocalisation, bons plans, sorties culturelles.\nBientôt disponible sur iOS & Android.';
+    if(v==='/neofetch')return'patrick@portfolio\n──────────────────────────\nOS     : Windows 11 / Debian 12\nShell  : bash · Git Bash\nStack  : Next.js · TS · PHP · SQL\nTools  : PRTG · Nagios · VMware\nStage  : 29 juin – 30 juillet 2026';
+    if(v==='/easter')return'Easter eggs cachés :\n  sudo hire patrick — accès recruteur\n  Konami code ↑↑↓↓←→←→BA — cheat mode\n  Terminal Ctrl+T → matrix, coffee, git log\n  /drop — projet secret mobile';
     if(/merci|thanks|cool|super|nickel|parfait/.test(v))return'Avec plaisir ! N\'hésitez pas si vous avez d\'autres questions.';
     if(/bonjour|salut|hello|hi/.test(v))return"Bonjour ! Je suis Inspi, l'assistant IT de Patrick. Tapez /help pour voir mes commandes.";
     return'Je ne suis pas sûr de comprendre. Essayez /help pour mes commandes, ou contactez Patrick : patrickmekongo19@gmail.com';
@@ -2774,6 +2783,14 @@ if(artLightbox){
   }
 
   const actions=[doSip,doSip,doSip,doSpin,doWave,doThrow];
+
+  /* Konami code easter egg */
+  const KONAMI=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let kIdx=0;
+  document.addEventListener('keydown',function(e){
+    if(e.key===KONAMI[kIdx]){kIdx++;if(kIdx===KONAMI.length){kIdx=0;chatBox.classList.add('visible');addMsg('CHEAT CODE ACTIVÉ. Accès recruteur accordé. Patrick disponible dès le 29 juin 2026.',false);}}else{kIdx=0;}
+  });
+
   resetAll();
   document.getElementById('inspi-d1').style.animation='inspi-dot1 1.4s ease-in-out infinite';
   document.getElementById('inspi-d2').style.animation='inspi-dot2 1.4s ease-in-out infinite';
