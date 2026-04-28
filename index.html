@@ -628,7 +628,7 @@
     #term-body{padding:16px;min-height:320px;max-height:480px;overflow-y:auto}
     #term-out{display:flex;flex-direction:column;gap:1px}
     .tl{font-size:.76rem;line-height:1.65;white-space:pre;word-break:break-all;color:#30d158}
-    .tl.c{color:#6e7681}.tl.e{color:#f85149}
+    .tl.c{color:#6e7681}.tl.e{color:#f85149}.tl.y{color:#c8a96d}.tl.b{color:#4f7ef7}.tl.m{color:#484f58}
     #term-row{display:flex;align-items:center;margin-top:10px}
     .t-pr{color:#30d158;font-size:.76rem;white-space:nowrap;flex-shrink:0}
     #term-in{background:none;border:none;outline:none;color:#30d158;font-family:var(--fm);font-size:.76rem;flex:1;caret-color:#30d158}
@@ -3116,17 +3116,24 @@ document.addEventListener('DOMContentLoaded',function(){(function(){
       inp=document.getElementById('term-in'),
       xBtn=document.getElementById('term-x'),
       hint=document.getElementById('term-hint');
+  if(!ov||!xBtn||!inp)return;
   var PR='patrick@portfolio:~$ ';
+  var pageLoad=Date.now();
+
   var CMDS={
-    help:'Commandes disponibles :\n  neofetch          — profil système stylé\n  whoami            — présentation\n  skills            — stack technique complète\n  ls                — liste des projets et fichiers\n  ping              — tester la connectivité\n  contact           — coordonnées\n  sudo hire patrick — accès recruteur\n  clear             — effacer le terminal\n  exit              — fermer\n\n  ↑ / ↓            — historique des commandes',
-    whoami:'Patrick Mekongo\nTechnicien IT — Réseaux, Systèmes & Développement Web\nBTS SIO SISR — Ingetis Paris (2024-2026)\nCertification CNIL — Data Protection\nDisponible en stage : 29 juin – 30 juillet 2026',
-    neofetch:'\n        ██████╗ ███╗   ███╗\n        ██╔══██╗████╗ ████║      patrick@portfolio\n        ██████╔╝██╔████╔██║      ─────────────────────────────────\n        ██╔═══╝ ██║╚██╔╝██║      Formation  : BTS SIO SISR @ Ingetis Paris\n        ██║     ██║ ╚═╝ ██║      OS         : Windows 11 / Debian 12 (VM)\n        ╚═╝     ╚═╝     ╚═╝      Shell      : bash · Git Bash\n                                 Stack      : Next.js · TypeScript · PHP · SQL\n                                 Tools      : PRTG · Nagios · Centreon · Zabbix\n                                 Certif     : CNIL Data Protection\n                                 Stage      : 29 juin – 30 juillet 2026\n                                 Email      : patrickmekongo19@gmail.com',
-    skills:'Stack technique :\n\n  Réseaux   TCP/IP · VLAN · Trunk 802.1q · DHCP · DNS\n  Systèmes  Windows Server · Debian · VMware · Active Directory\n  Supervis  PRTG · Nagios · Centreon · Zabbix\n  Dev       Next.js · React · TypeScript · PHP · MySQL · HTML · CSS\n  SaaS      Supabase · Stripe · Clerk · Claude AI (Anthropic)\n  Langages  JavaScript · TypeScript · Python · SQL\n  Outils    Git · GitHub · VS Code · Cisco Packet Tracer',
-    contact:'Coordonnées :\n\n  Email     patrickmekongo19@gmail.com\n  LinkedIn  linkedin.com/in/patrick-koa-mekongo-767476353\n  GitHub    github.com/patrickmekongo19-droid\n  Portfolio patrickmekongo19-droid.github.io/portfolio/',
-    'sudo hire patrick':'[sudo] password for recruteur : ••••••••\nauthenticating...\n\n✓  Permission accordée.\n\n██╗  ██╗██╗██████╗ ███████╗██████╗ \n██║  ██║██║██╔══██╗██╔════╝██╔══██╗\n███████║██║██████╔╝█████╗  ██║  ██║\n██╔══██║██║██╔══██╗██╔══╝  ██║  ██║\n██║  ██║██║██║  ██║███████╗██████╔╝\n\n→  patrickmekongo19@gmail.com',
-    ping:'PING patrickmekongo19@gmail.com (93.184.216.34) 56 bytes\n64 bytes from patrick: icmp_seq=1 ttl=64 time=1.2 ms\n64 bytes from patrick: icmp_seq=2 ttl=64 time=0.9 ms\n64 bytes from patrick: icmp_seq=3 ttl=64 time=1.1 ms\n\n--- ping résultat ---\n3 packets transmitted, 3 received, 0% packet loss\nPatrick est en ligne. Disponible du 29 juin au 30 juillet.',
-    ls:'total 12\ndrwxr-xr-x  projets/\n  ├── cv-generator     [PHP/MySQL · Publié]\n  ├── cviste-saas      [Next.js · En cours]\n  ├── lab-virtualisation [VMware · Documenté]\n  ├── infra-cisco      [Packet Tracer · Simulé]\n  └── conception-bdd   [Merise · 3NF]\ndrwxr-xr-x  skills/\n  └── (voir commande skills)\n-rw-r--r--  cv.pdf\n-rw-r--r--  stage.cfg  → 29 juin – 30 juillet 2026'
+    help:{c:'',t:'Commandes disponibles :\n  whoami            — présentation\n  neofetch          — profil système\n  skills            — stack technique\n  ls                — projets & fichiers\n  ping              — tester la connexion\n  contact           — coordonnées\n  date              — date & heure\n  uptime            — durée de session\n  git log           — historique de vie\n  coffee            — pause café\n  matrix            — wake up, Neo\n  man patrick       — RTFM\n  sudo hire patrick — accès recruteur\n  clear / exit'},
+    whoami:{c:'',t:'Patrick Mekongo\nTechnicien IT — Réseaux, Systèmes & Développement\nBTS SIO SISR — Ingetis Paris (2024–2026)\nCertification CNIL — Data Protection\n\nDisponible en stage : 29 juin – 30 juillet 2026'},
+    neofetch:{c:'y',t:'\n        ██████╗ ███╗   ███╗\n        ██╔══██╗████╗ ████║      patrick@portfolio\n        ██████╔╝██╔████╔██║      ────────────────────────────────\n        ██╔═══╝ ██║╚██╔╝██║      Formation  : BTS SIO SISR · Ingetis Paris\n        ██║     ██║ ╚═╝ ██║      OS         : Windows 11 / Debian 12 (VM)\n        ╚═╝     ╚═╝     ╚═╝      Shell      : bash · Git Bash\n                                 Stack      : Next.js · TS · PHP · SQL\n                                 Tools      : PRTG · Nagios · VMware\n                                 Certif     : CNIL Data Protection\n                                 Stage      : 29 juin – 30 juillet 2026\n                                 Email      : patrickmekongo19@gmail.com'},
+    skills:{c:'b',t:'Stack technique :\n\n  Réseaux   TCP/IP · VLAN · Trunk 802.1q · DHCP · DNS\n  Systèmes  Windows Server · Debian 12 · VMware · PowerShell\n  Supervis  PRTG · Nagios · Centreon · Zabbix\n  Dev       Next.js · React · TypeScript · PHP · MySQL\n  SaaS      Supabase · Stripe · Clerk · Claude AI\n  Outils    Git · GitHub · VS Code · Cisco Packet Tracer'},
+    contact:{c:'',t:'Coordonnées :\n\n  Email     patrickmekongo19@gmail.com\n  LinkedIn  linkedin.com/in/patrick-koa-mekongo-767476353\n  GitHub    github.com/patrickmekongo19-droid\n  Portfolio patrickmekongo19-droid.github.io/portfolio/'},
+    ping:{c:'',t:'PING patrickmekongo19@gmail.com 56 bytes\n64 bytes: icmp_seq=1 ttl=64 time=1.2 ms\n64 bytes: icmp_seq=2 ttl=64 time=0.9 ms\n64 bytes: icmp_seq=3 ttl=64 time=1.1 ms\n\n3 packets transmitted, 3 received, 0% packet loss\nPatrick est en ligne. Stage disponible dès le 29 juin.'},
+    ls:{c:'',t:'total 8\ndrwxr-xr-x  projets/\n  ├── 01-cv-generator      [PHP · MySQL · Publié]\n  ├── 02-cviste-saas       [Next.js · En cours]\n  ├── 03-lab-virtualisation [VMware · Documenté]\n  ├── 04-infra-cisco       [Packet Tracer · Simulé]\n  ├── 05-conception-bdd    [Merise · 3NF]\n  └── 06-mission-it        [Support · Réseau]\n-rw-r--r--  cv.pdf\n-rw-r--r--  stage.cfg  → 29 juin – 30 juillet 2026'},
+    'sudo hire patrick':{c:'y',t:'[sudo] password for recruteur : ••••••••\nauthenticating...\n\n✓  Accès accordé.\n\n██╗  ██╗██╗██████╗ ███████╗██████╗\n██║  ██║██║██╔══██╗██╔════╝██╔══██╗\n███████║██║██████╔╝█████╗  ██║  ██║\n██╔══██║██║██╔══██╗██╔══╝  ██║  ██║\n██║  ██║██║██║  ██║███████╗██████╔╝\n\n→  patrickmekongo19@gmail.com'},
+    coffee:{c:'y',t:'\n      ( (\n       ) )\n    ........\n    |      |]\n    \\      /\n     `----\'\n\nUne pause s\'impose. Le code est chaud, comme le café.\nPatrick — disponible 29 juin – 30 juillet 2026.'},
+    'man patrick':{c:'b',t:'PATRICK(1)            Manuel Utilisateur           PATRICK(1)\n\nNOM\n    patrick - technicien IT polyvalent\n\nSYNOPSIS\n    patrick [--réseau] [--systèmes] [--dev] [--stage]\n\nDESCRIPTION\n    patrick est un technicien IT spécialisé réseaux &\n    systèmes, capable de configurer des infrastructures\n    Cisco, administrer Windows Server et Debian, et\n    développer des applications web full stack.\n\nOPTIONS\n    --réseau      TCP/IP, VLAN, DHCP, Cisco PT\n    --systèmes    VMware, Windows Server, Debian\n    --supervis    PRTG, Nagios, Centreon, Zabbix\n    --dev         Next.js, TypeScript, PHP, MySQL\n    --stage       Disponible 29 juin – 30 juillet 2026\n\nBUGS\n    Aucun bug connu. Signaler à patrickmekongo19@gmail.com\n\nPATRICK(1)                   2026                    PATRICK(1)'},
+    'git log':{c:'',t:'commit a3f9d21  (HEAD -> main)\nAuthor: Patrick Mekongo\nDate:   Mon Apr 28 2026\n    feat: portfolio déployé, Lighthouse 97/100\n\ncommit 9b2e145\nDate:   Fri Apr 25 2026\n    feat: CViste SaaS — phases 1-4 complétées\n\ncommit 4c1a807\nDate:   Mon Sep 2 2024\n    chore: démarrage BTS SIO SISR @ Ingetis Paris\n\ncommit 0000001\nDate:   Sun Jan 1 2006\n    init: Patrick Mekongo — premier commit dans ce monde'}
   };
+
   function addLine(txt,cls){
     var d=document.createElement('div');
     d.className='tl'+(cls?' '+cls:'');
@@ -3134,23 +3141,50 @@ document.addEventListener('DOMContentLoaded',function(){(function(){
     out.appendChild(d);
     out.parentElement.scrollTop=out.parentElement.scrollHeight;
   }
+
+  function runMatrix(){
+    var chars='01アイウエオカキクケコ01001ABCDEFabcdef░▒▓';
+    var n=16;
+    for(var i=0;i<n;i++){(function(li){
+      setTimeout(function(){
+        var line='';
+        for(var j=0;j<60;j++)line+=chars[Math.floor(Math.random()*chars.length)];
+        addLine(line,'g');
+        if(li===n-1){setTimeout(function(){addLine('');addLine('[Wake up, Neo...]','y');addLine('[The Matrix has you.]','y');},220);}
+      },li*55);
+    })(i);}
+  }
+
+  var ALL_CMDS=Object.keys(CMDS).concat(['clear','exit','date','uptime','matrix']);
+
   function run(raw){
     var cmd=raw.trim().toLowerCase();
     addLine(PR+raw,'c');
     if(!cmd)return;
     if(cmd==='clear'){out.innerHTML='';return;}
     if(cmd==='exit'){closeT();return;}
-    var res=CMDS[cmd];
-    if(res){res.split('\n').forEach(function(l){addLine(l);});}
+    if(cmd==='matrix'){runMatrix();return;}
+    if(cmd==='date'){
+      addLine(new Date().toLocaleString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'}),'y');
+      return;
+    }
+    if(cmd==='uptime'){
+      var s=Math.floor((Date.now()-pageLoad)/1000);
+      addLine('Session active depuis '+Math.floor(s/60)+'m '+('0'+(s%60)).slice(-2)+'s','y');
+      return;
+    }
+    var entry=CMDS[cmd];
+    if(entry){entry.t.split('\n').forEach(function(l){addLine(l,entry.c||'');});}
     else{addLine("bash: "+raw+": commande introuvable — tapez 'help'",'e');}
   }
+
   function openT(){
     ov.classList.add('open');
     ov.setAttribute('aria-hidden','false');
     if(hint)hint.style.display='none';
     out.innerHTML='';
-    addLine('Bienvenue sur le terminal de Patrick Mekongo.');
-    addLine("Tapez 'help' pour voir les commandes disponibles.");
+    addLine('patrick@portfolio — bash','y');
+    addLine("Tapez 'help' pour les commandes, Tab pour compléter.",'m');
     addLine('');
     setTimeout(function(){inp.focus();},60);
   }
@@ -3160,19 +3194,22 @@ document.addEventListener('DOMContentLoaded',function(){(function(){
     if(hint)hint.style.display='';
   }
   document.addEventListener('keydown',function(e){
-    if((e.ctrlKey||e.metaKey)&&e.key==='t'){
-      e.preventDefault();
-      ov.classList.contains('open')?closeT():openT();
-    }
+    if((e.ctrlKey||e.metaKey)&&e.key==='t'){e.preventDefault();ov.classList.contains('open')?closeT():openT();}
     if(e.key==='Escape'&&ov.classList.contains('open'))closeT();
   });
   xBtn.addEventListener('click',closeT);
   ov.addEventListener('click',function(e){if(e.target===ov)closeT();});
   var hist=[],hIdx=-1;
   inp.addEventListener('keydown',function(e){
-    if(e.key==='Enter'){
+    if(e.key==='Tab'){
+      e.preventDefault();
+      var val=inp.value.toLowerCase();
+      if(!val)return;
+      var match=ALL_CMDS.find(function(c){return c.startsWith(val);});
+      if(match)inp.value=match;
+    }else if(e.key==='Enter'){
       var v=inp.value;inp.value='';hIdx=-1;
-      if(v.trim()){hist.unshift(v);}
+      if(v.trim())hist.unshift(v);
       run(v);
     }else if(e.key==='ArrowUp'){
       e.preventDefault();
