@@ -153,12 +153,19 @@
 
     
     #competences{background:var(--black)}
-    .skills-groups{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--border)}
-    .sk-group{padding:48px 32px;border-right:1px solid var(--border)}
-    .sk-group:last-child{border-right:none}
-    .sk-group-head{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-weight:900;font-size:clamp(18px,2vw,26px);letter-spacing:.08em;text-transform:uppercase;color:var(--light);margin-bottom:8px}
-    .sk-group-head svg{width:16px;height:16px;flex-shrink:0}
-    .sk-group-desc{font-family:var(--fm);font-size:.72rem;letter-spacing:.06em;color:var(--muted);line-height:1.5;margin-bottom:28px}
+    /* ── BENTO GRID ── */
+    .bento-grid{margin-top:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border)}
+    .bento-cell{background:var(--black);padding:36px 32px;position:relative;overflow:hidden;transition:background .3s}
+    .bento-cell:hover{background:rgba(200,169,109,.025)}
+    .bento-reseau{grid-column:span 2}
+    .bento-dev{grid-column:1/-1}
+    .bc-label{font-family:var(--fm);font-size:.55rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .bc-label svg{width:11px;height:11px;color:var(--gold);flex-shrink:0}
+    .bc-title{font-family:var(--fd);font-weight:900;font-size:clamp(22px,2.5vw,34px);letter-spacing:.05em;text-transform:uppercase;color:var(--white);margin-bottom:4px;line-height:.95}
+    .bc-sub{font-family:var(--fm);font-size:.63rem;letter-spacing:.06em;color:var(--muted);line-height:1.5;margin-bottom:22px}
+    .bc-ghost{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(64px,10vw,140px);color:rgba(255,255,255,.022);line-height:1;letter-spacing:-.04em;pointer-events:none;user-select:none;right:-8px;bottom:-16px}
+    .bc-accent{position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .4s cubic-bezier(.77,0,.175,1)}
+    .bento-cell:hover .bc-accent{height:100%}
     .sk-cards{display:flex;flex-wrap:wrap;gap:10px}
     .sk-card{display:flex;flex-direction:column;align-items:center;gap:7px;padding:14px 10px;border:1px solid var(--border);min-width:72px;flex:1;transition:border-color .3s,background .3s,transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s;will-change:transform}
     .sk-card:hover{border-color:var(--gold);background:var(--gold-dim);transform:translateY(-6px) perspective(600px) rotateX(6deg);box-shadow:0 16px 40px rgba(0,0,0,.65),0 4px 8px rgba(200,169,109,.1)}
@@ -517,9 +524,10 @@
       .sec{padding:96px 24px}
       #hero{padding:0 24px 72px}
       #reseau-schema,#cv-dl{padding:64px 24px}
-      .skills-groups{grid-template-columns:1fr 1fr}
-      .sk-group{border-right:none;border-bottom:1px solid var(--border);padding:36px 0}
-      .sk-group:nth-child(odd){border-right:1px solid var(--border);padding-right:24px}
+      .bento-grid{grid-template-columns:1fr 1fr}
+      .bento-reseau{grid-column:span 2}
+      .bento-dev{grid-column:span 2}
+      .bento-cell{padding:28px 20px}
       .proj{grid-template-columns:1fr;gap:28px}
       .proj:nth-child(even){direction:ltr}
       .proj-gallery{grid-template-columns:1fr}
@@ -536,8 +544,8 @@
       #back-top{bottom:76px;left:20px;width:40px;height:40px}
     }
     @media(max-width:600px){
-      .skills-groups{grid-template-columns:1fr}
-      .sk-group:nth-child(odd){border-right:none}
+      .bento-grid{grid-template-columns:1fr}
+      .bento-reseau,.bento-dev{grid-column:span 1}
       .timeline{padding-left:32px}
       .tl-dot{left:-36px}
       .hero-bot{flex-direction:column;align-items:flex-start;gap:20px}
@@ -694,9 +702,10 @@
     /* ── GRAIN TEXTURE ── */
     body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");background-size:180px 180px}
 
-    /* ── SPOTLIGHT SK-CARDS ── */
-    .sk-card{--sx:50%;--sy:50%}
+    /* ── SPOTLIGHT SK-CARDS + BENTO CELLS ── */
+    .sk-card,.bento-cell{--sx:50%;--sy:50%}
     .sk-card:hover{background:radial-gradient(circle at var(--sx) var(--sy),rgba(200,169,109,.2),transparent 70%),var(--gold-dim)!important}
+    .bento-cell:hover{background:radial-gradient(circle at var(--sx) var(--sy),rgba(200,169,109,.06),transparent 60%)!important}
 
     /* ── AURORA HERO ── */
     #hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 30% 90%,rgba(200,169,109,.045),transparent),radial-gradient(ellipse 50% 40% at 80% 10%,rgba(79,126,247,.04),transparent);background-size:200% 200%;animation:auroraShift 22s ease infinite}
@@ -921,13 +930,18 @@
     </div>
     <h2 class="sec-title">Stack<br>Technique</h2>
   </div>
-  <div class="skills-groups">
-    <div class="sk-group reveal d1">
-      <h3 class="sk-group-head">
+  <div class="bento-grid">
+
+    <!-- RÉSEAU — 2 colonnes larges -->
+    <div class="bento-cell bento-reseau reveal d1">
+      <div class="bc-accent" aria-hidden="true"></div>
+      <span class="bc-ghost" aria-hidden="true">NET</span>
+      <div class="bc-label">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
-        Réseau
-      </h3>
-      <p class="sk-group-desc">Conception, configuration &amp; dépannage d'infrastructures réseau</p>
+        Réseaux
+      </div>
+      <h3 class="bc-title">Infrastructure<br>Réseau</h3>
+      <p class="bc-sub">Conception, configuration &amp; dépannage d'infrastructures réseau</p>
       <div class="sk-cards">
         <div class="sk-card"><div class="sk-card-badge" style="background:#1BA0D7;color:#fff">PT</div><span class="sk-card-name">Cisco PT</span></div>
         <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a1a;color:#fff;border:1px solid #333">TCP/IP</div><span class="sk-card-name">TCP/IP</span></div>
@@ -936,12 +950,17 @@
         <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a1a;color:#aaa;border:1px solid #333;font-size:.7rem">IPv4</div><span class="sk-card-name">IPv4</span></div>
       </div>
     </div>
-    <div class="sk-group reveal d2">
-      <h3 class="sk-group-head">
+
+    <!-- SYSTÈMES — 1 colonne -->
+    <div class="bento-cell reveal d2">
+      <div class="bc-accent" aria-hidden="true"></div>
+      <span class="bc-ghost" aria-hidden="true">SYS</span>
+      <div class="bc-label">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
         Systèmes
-      </h3>
-      <p class="sk-group-desc">Administration OS, virtualisation &amp; automatisation</p>
+      </div>
+      <h3 class="bc-title">OS &amp;<br>Virt.</h3>
+      <p class="bc-sub">Administration OS, virtualisation &amp; automatisation</p>
       <div class="sk-cards">
         <div class="sk-card"><div class="sk-card-badge" style="background:#607D8B;color:#fff">VM</div><span class="sk-card-name">VMware</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" loading="lazy"><span class="sk-card-name">Win Server</span></div>
@@ -949,12 +968,35 @@
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg" alt="PowerShell" loading="lazy"><span class="sk-card-name">PowerShell</span></div>
       </div>
     </div>
-    <div class="sk-group reveal d3">
-      <h3 class="sk-group-head">
+
+    <!-- SUPERVISION — 1 colonne -->
+    <div class="bento-cell reveal d3">
+      <div class="bc-accent" aria-hidden="true"></div>
+      <span class="bc-ghost" aria-hidden="true">MON</span>
+      <div class="bc-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Supervision
+      </div>
+      <h3 class="bc-title">Monitoring<br>&amp; Alertes</h3>
+      <p class="bc-sub">Monitoring d'infrastructures, alertes &amp; dashboards</p>
+      <div class="sk-cards">
+        <div class="sk-card"><div class="sk-card-badge" style="background:#FF6D00;color:#fff">PRTG</div><span class="sk-card-name">PRTG</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#2E3192;color:#fff">NGS</div><span class="sk-card-name">Nagios</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#e05c2b;color:#fff">CTR</div><span class="sk-card-name">Centreon</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#CC0000;color:#fff">ZBX</div><span class="sk-card-name">Zabbix</span></div>
+      </div>
+    </div>
+
+    <!-- DÉVELOPPEMENT — pleine largeur -->
+    <div class="bento-cell bento-dev reveal d4">
+      <div class="bc-accent" aria-hidden="true"></div>
+      <span class="bc-ghost" aria-hidden="true">DEV</span>
+      <div class="bc-label">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         Développement
-      </h3>
-      <p class="sk-group-desc">Full stack web, SaaS &amp; bases de données</p>
+      </div>
+      <h3 class="bc-title">Full Stack &amp; SaaS</h3>
+      <p class="bc-sub">Web, bases de données, APIs &amp; outils</p>
       <div class="sk-cards">
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" loading="lazy" style="filter:invert(1)"><span class="sk-card-name">Next.js</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" loading="lazy"><span class="sk-card-name">React</span></div>
@@ -972,19 +1014,7 @@
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy"><span class="sk-card-name">VS Code</span></div>
       </div>
     </div>
-    <div class="sk-group reveal d4">
-      <h3 class="sk-group-head">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        Supervision
-      </h3>
-      <p class="sk-group-desc">Monitoring d'infrastructures, alertes &amp; dashboards</p>
-      <div class="sk-cards">
-        <div class="sk-card"><div class="sk-card-badge" style="background:#FF6D00;color:#fff">PRTG</div><span class="sk-card-name">PRTG</span></div>
-        <div class="sk-card"><div class="sk-card-badge" style="background:#2E3192;color:#fff">NGS</div><span class="sk-card-name">Nagios</span></div>
-        <div class="sk-card"><div class="sk-card-badge" style="background:#e05c2b;color:#fff">CTR</div><span class="sk-card-name">Centreon</span></div>
-        <div class="sk-card"><div class="sk-card-badge" style="background:#CC0000;color:#fff">ZBX</div><span class="sk-card-name">Zabbix</span></div>
-      </div>
-    </div>
+
   </div>
 </section>
 
@@ -2943,9 +2973,9 @@ if(artLightbox){
     });
   })();
 
-  /* ── SPOTLIGHT SK-CARDS ── */
+  /* ── SPOTLIGHT SK-CARDS + BENTO CELLS ── */
   (function(){
-    document.querySelectorAll('.sk-card').forEach(function(card){
+    document.querySelectorAll('.sk-card,.bento-cell').forEach(function(card){
       card.addEventListener('mousemove',function(e){
         var r=card.getBoundingClientRect();
         card.style.setProperty('--sx',((e.clientX-r.left)/r.width*100)+'%');
