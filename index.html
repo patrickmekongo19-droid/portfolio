@@ -61,10 +61,10 @@
     img{display:block;width:100%;height:100%;object-fit:cover}
 
     
-    #cd{position:fixed;top:-200px;left:-200px;width:6px;height:6px;background:var(--white);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s}
-    #cr{position:fixed;top:-200px;left:-200px;width:34px;height:34px;border:1px solid rgba(255,255,255,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
-    body.ch #cd{width:10px;height:10px}
-    body.ch #cr{width:54px;height:54px;border-color:rgba(200,169,109,.6)}
+    #cd{position:fixed;top:-200px;left:-200px;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,opacity .2s;box-shadow:0 0 6px rgba(200,169,109,.7)}
+    #cr{position:fixed;top:-200px;left:-200px;width:32px;height:32px;border:1px solid rgba(200,169,109,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .28s cubic-bezier(.4,0,.2,1),height .28s cubic-bezier(.4,0,.2,1),border-color .28s,opacity .2s}
+    body.ch #cd{width:8px;height:8px;background:var(--gold);box-shadow:0 0 12px rgba(200,169,109,.9)}
+    body.ch #cr{width:48px;height:48px;border-color:var(--gold);border-width:1.5px}
 
     html[data-theme="light"]{
       --black:#f2f2f0;--white:#111;--surface:#fff;--navy:#e8ecf5;
@@ -72,8 +72,8 @@
       --blue-dim:rgba(79,126,247,.08);--gold-dim:rgba(200,169,109,.12);--green-dim:rgba(52,211,153,.08);
     }
     html[data-theme="light"] #nav{mix-blend-mode:normal}
-    html[data-theme="light"] #cd{mix-blend-mode:normal;background:var(--gold)}
-    html[data-theme="light"] #cr{border-color:rgba(200,169,109,.5)}
+    html[data-theme="light"] #cd{background:var(--gold);box-shadow:0 0 8px rgba(200,169,109,.6)}
+    html[data-theme="light"] #cr{border-color:rgba(200,169,109,.6)}
     html[data-theme="light"] body{transition:background .35s,color .35s}
     html[data-theme="light"] .about-highlight{color:var(--white)}
     html[data-theme="light"] .sec-num{color:rgba(0,0,0,.06)!important}
