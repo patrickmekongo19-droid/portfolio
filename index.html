@@ -130,7 +130,7 @@
     .sec-divider{height:1px;background:linear-gradient(to right,transparent,var(--border) 20%,var(--border) 80%,transparent);margin:0}
 
     
-    .sec{position:relative;padding:72px 56px;border-top:1px solid var(--border)}
+    .sec{position:relative;padding:56px 56px;border-top:1px solid var(--border)}
     .sec-num{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(100px,20vw,300px);line-height:1;color:rgba(255,255,255,.023);letter-spacing:-.04em;pointer-events:none;user-select:none;right:0;top:60px;will-change:transform}
     .sec-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:14px;margin-bottom:20px}
     .sec-label svg{width:12px;height:12px;color:var(--muted);flex-shrink:0}
@@ -655,25 +655,38 @@
     #term-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.55);pointer-events:none;white-space:nowrap}
 
     /* ── PROJECT CARDS GRID ── */
-    .proj-wrap{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
-    .proj-card{background:var(--black);position:relative;cursor:pointer;overflow:hidden;transition:background .3s}
-    .proj-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width .4s cubic-bezier(.77,0,.175,1);z-index:2}
+    .proj-wrap{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
+    .proj-card{background:var(--black);position:relative;cursor:pointer;overflow:hidden;transition:transform .4s cubic-bezier(.4,0,.2,1),box-shadow .4s cubic-bezier(.4,0,.2,1)}
+    .proj-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width .4s cubic-bezier(.77,0,.175,1);z-index:3}
+    .proj-card:hover,.proj-card:focus-within{transform:translateY(-8px);box-shadow:0 20px 48px rgba(200,169,109,.13),0 6px 20px rgba(0,0,0,.55);z-index:2}
     .proj-card:hover::before,.proj-card:focus-within::before{width:3px}
-    .proj-card:hover,.proj-card:focus-within{background:rgba(200,169,109,.025)}
-    .proj-card:hover .proj-title{color:var(--gold)}
-    .proj-card:hover .proj-card-thumb img{transform:scale(1.05);filter:brightness(.95)}
-    .proj-card-inner{padding:28px;display:flex;flex-direction:column;gap:16px;height:100%}
-    .proj-card-num{font-family:var(--fm);font-size:.55rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase}
-    .proj-card-thumb{aspect-ratio:16/9;overflow:hidden;border:1px solid var(--border);margin-bottom:4px}
-    .proj-card-thumb img{width:100%;height:100%;object-fit:cover;filter:brightness(.82);transition:transform .5s,filter .4s}
-    .proj-card-ghost{font-family:var(--fd);font-weight:900;font-size:clamp(48px,5vw,72px);color:rgba(255,255,255,.03);line-height:1;letter-spacing:-.04em;pointer-events:none;user-select:none;margin-bottom:-8px}
-    .proj-card-bottom{margin-top:auto;display:flex;flex-direction:column;gap:12px}
-    .proj-open-btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);background:none;border:1px solid rgba(200,169,109,.3);padding:9px 16px;cursor:pointer;transition:background .3s,border-color .3s,transform .3s;width:fit-content}
-    .proj-open-btn:hover{background:var(--gold-dim);border-color:var(--gold);transform:translateX(3px)}
-    .proj-open-btn svg{width:11px;height:11px;flex-shrink:0;transition:transform .3s}
-    .proj-open-btn:hover svg{transform:translate(3px,-3px)}
+    .pc-thumb{position:relative;aspect-ratio:16/9;overflow:hidden}
+    .pc-thumb img{width:100%;height:100%;object-fit:cover;filter:brightness(.78);transition:transform .5s cubic-bezier(.4,0,.2,1),filter .4s}
+    .proj-card:hover .pc-thumb img,.proj-card:focus-within .pc-thumb img{transform:scale(1.06);filter:brightness(.52)}
+    .pc-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 15%,rgba(8,8,10,.97) 100%);opacity:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;z-index:2;transition:opacity .4s cubic-bezier(.4,0,.2,1)}
+    .proj-card:hover .pc-overlay,.proj-card:focus-within .pc-overlay{opacity:1}
+    .pc-overlay-desc{font-size:.7rem;color:rgba(255,255,255,.75);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transform:translateY(6px);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+    .proj-card:hover .pc-overlay-desc,.proj-card:focus-within .pc-overlay-desc{transform:translateY(0)}
+    .pc-body{padding:20px 22px 18px;display:flex;flex-direction:column;gap:10px;position:relative}
+    .pc-top{display:flex;align-items:center;justify-content:space-between}
+    .pc-num{font-family:var(--fm);font-size:.52rem;letter-spacing:.28em;color:var(--muted);text-transform:uppercase}
+    .pc-badge{font-family:var(--fm);font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;padding:3px 8px;border:1px solid;line-height:1.6}
+    .pc-badge.online{color:var(--green);border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.06)}
+    .pc-badge.dev{color:var(--gold);border-color:rgba(200,169,109,.3);background:rgba(200,169,109,.06)}
+    .pc-badge.academic{color:var(--blue);border-color:rgba(79,126,247,.3);background:rgba(79,126,247,.06)}
+    .pc-title{font-family:var(--fd);font-weight:900;font-size:clamp(17px,1.9vw,24px);letter-spacing:.04em;text-transform:uppercase;color:var(--white);line-height:1;transition:color .3s}
+    .proj-card:hover .pc-title,.proj-card:focus-within .pc-title{color:var(--gold)}
+    .pc-tags{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+    .pc-tag-more{font-family:var(--fm);font-size:.48rem;letter-spacing:.15em;color:var(--muted);padding:2px 6px;border:1px solid var(--border)}
+    .pc-footer{margin-top:2px;display:flex;align-items:center;justify-content:space-between}
+    .pc-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.53rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);background:none;border:1px solid rgba(200,169,109,.28);padding:7px 14px;cursor:pointer;transition:background .3s,border-color .3s,gap .25s}
+    .pc-btn:hover{background:var(--gold-dim);border-color:var(--gold);gap:11px}
+    .pc-btn svg{width:10px;height:10px;flex-shrink:0;transition:transform .3s}
+    .pc-btn:hover svg{transform:translate(3px,-3px)}
+    .pc-stack-ct{font-family:var(--fm);font-size:.48rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase}
+    .pc-ghost{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(56px,6vw,88px);color:rgba(255,255,255,.025);line-height:1;letter-spacing:-.05em;pointer-events:none;user-select:none;right:10px;bottom:6px;z-index:0}
     @media(max-width:960px){.proj-wrap{grid-template-columns:1fr 1fr}}
-    @media(max-width:600px){.proj-wrap{grid-template-columns:1fr}.proj-card-inner{padding:20px}}
+    @media(max-width:600px){.proj-wrap{grid-template-columns:1fr}.pc-body{padding:16px 18px 14px}}
 
     /* ── PROJECT MODAL ── */
     #proj-modal{position:fixed;inset:0;background:rgba(5,5,8,.96);z-index:9400;display:flex;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;overflow-y:auto;backdrop-filter:blur(8px);padding:60px 24px 60px}
@@ -1034,20 +1047,17 @@
   </div>
   <div class="proj-wrap">
     <article class="proj-card reveal" tabindex="0">
-      <div class="proj-card-inner">
-        <span class="proj-card-ghost" aria-hidden="true">01</span>
-        <p class="proj-card-num">Projet 01 — Développement web</p>
-        <div class="proj-card-thumb">
-          <img src="assets/img/cv-app-ui.webp" alt="Générateur de CV" loading="lazy" width="1907" height="977" decoding="async">
-        </div>
-        <div class="proj-card-meta">
-          <h3 class="proj-title">Générateur de CV</h3>
-        </div>
-        <div class="proj-card-bottom">
-          <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">MySQLi</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
-          <button class="proj-open-btn" aria-label="Voir le projet Générateur de CV"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
-        </div>
+      <div class="pc-thumb">
+        <img src="assets/img/cv-app-ui.webp" alt="Générateur de CV" loading="lazy" width="1907" height="977" decoding="async">
+        <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">Application PHP/MySQL CRUD avec formulaire, requêtes préparées anti-SQLi et génération de CV en 3 minutes.</p></div>
       </div>
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-num">01 — Développement web</span><span class="pc-badge academic">Académique</span></div>
+        <h3 class="pc-title">Générateur de CV</h3>
+        <div class="pc-tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">HTML</span><span class="pc-tag-more">+2</span></div>
+        <div class="pc-footer"><button class="pc-btn" aria-label="Voir le projet Générateur de CV">Voir le projet<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button><span class="pc-stack-ct">5 techs</span></div>
+      </div>
+      <span class="pc-ghost" aria-hidden="true">01</span>
       <template class="proj-modal-tpl">
         <div class="pm-header">
           <p class="proj-num">Projet 01 — Développement web</p>
@@ -1077,20 +1087,17 @@
       </template>
     </article>
     <article class="proj-card reveal" tabindex="0">
-      <div class="proj-card-inner">
-        <span class="proj-card-ghost" aria-hidden="true">02</span>
-        <p class="proj-card-num">Projet 02 — SaaS / Full Stack</p>
-        <div class="proj-card-thumb">
-          <img src="assets/img/cviste-home.webp" alt="CViste — Landing page" loading="lazy" width="1038" height="702" decoding="async">
-        </div>
-        <div class="proj-card-meta">
-          <h3 class="proj-title">CViste — Générateur IA</h3>
-        </div>
-        <div class="proj-card-bottom">
-          <div class="tags"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Claude AI</span></div>
-          <button class="proj-open-btn" aria-label="Voir le projet CViste — Générateur IA"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
-        </div>
+      <div class="pc-thumb">
+        <img src="assets/img/cviste-home.webp" alt="CViste — Landing page" loading="lazy" width="1038" height="702" decoding="async">
+        <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">SaaS IA — 15 templates, export PDF/DOCX, génération multilingue FR/EN/ES et réécriture sectorielle via Claude AI.</p></div>
       </div>
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-num">02 — SaaS / Full Stack</span><span class="pc-badge dev">En dev</span></div>
+        <h3 class="pc-title">CViste — Générateur IA</h3>
+        <div class="pc-tags"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="pc-tag-more">+4</span></div>
+        <div class="pc-footer"><button class="pc-btn" aria-label="Voir le projet CViste — Générateur IA">Voir le projet<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button><span class="pc-stack-ct">7 techs</span></div>
+      </div>
+      <span class="pc-ghost" aria-hidden="true">02</span>
       <template class="proj-modal-tpl">
         <div class="pm-header">
           <p class="proj-num">Projet 02 — SaaS / Full Stack</p>
@@ -1117,20 +1124,17 @@
       </template>
     </article>
     <article class="proj-card reveal" tabindex="0">
-      <div class="proj-card-inner">
-        <span class="proj-card-ghost" aria-hidden="true">03</span>
-        <p class="proj-card-num">Projet 03 — Systèmes</p>
-        <div class="proj-card-thumb">
-          <img src="assets/img/vmware-vms.webp" alt="VMware — liste des VMs" loading="lazy" width="768" height="434" decoding="async">
-        </div>
-        <div class="proj-card-meta">
-          <h3 class="proj-title">Lab Virtualisation</h3>
-        </div>
-        <div class="proj-card-bottom">
-          <div class="tags"><span class="tag">VMware</span><span class="tag">Windows 11</span><span class="tag">Debian 12</span><span class="tag">PowerShell</span></div>
-          <button class="proj-open-btn" aria-label="Voir le projet Lab Virtualisation"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
-        </div>
+      <div class="pc-thumb">
+        <img src="assets/img/vmware-vms.webp" alt="VMware — liste des VMs" loading="lazy" width="768" height="434" decoding="async">
+        <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">3 VMs en réseau isolé — Windows 11, Debian 12, snapshots, partitionnement et connectivité inter-VM vérifiée.</p></div>
       </div>
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-num">03 — Systèmes</span><span class="pc-badge academic">Académique</span></div>
+        <h3 class="pc-title">Lab Virtualisation</h3>
+        <div class="pc-tags"><span class="tag">VMware</span><span class="tag">Debian 12</span><span class="tag">PowerShell</span><span class="pc-tag-more">+1</span></div>
+        <div class="pc-footer"><button class="pc-btn" aria-label="Voir le projet Lab Virtualisation">Voir le projet<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button><span class="pc-stack-ct">4 techs</span></div>
+      </div>
+      <span class="pc-ghost" aria-hidden="true">03</span>
       <template class="proj-modal-tpl">
         <div class="pm-header">
           <p class="proj-num">Projet 03 — Systèmes</p>
@@ -1153,20 +1157,17 @@
       </template>
     </article>
     <article class="proj-card reveal" tabindex="0">
-      <div class="proj-card-inner">
-        <span class="proj-card-ghost" aria-hidden="true">04</span>
-        <p class="proj-card-num">Projet 04 — Réseaux</p>
-        <div class="proj-card-thumb">
-          <img src="assets/img/cisco-vlan-topo.webp" alt="Cisco PT — VLAN" loading="lazy" width="1919" height="1079" decoding="async">
-        </div>
-        <div class="proj-card-meta">
-          <h3 class="proj-title">Infrastructure Réseau</h3>
-        </div>
-        <div class="proj-card-bottom">
-          <div class="tags"><span class="tag">Cisco PT</span><span class="tag">VLAN</span><span class="tag">DHCP</span><span class="tag">TCP/IP</span></div>
-          <button class="proj-open-btn" aria-label="Voir le projet Infrastructure Réseau"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
-        </div>
+      <div class="pc-thumb">
+        <img src="assets/img/cisco-vlan-topo.webp" alt="Cisco PT — VLAN" loading="lazy" width="1919" height="1079" decoding="async">
+        <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">VLAN 10/20, trunks 802.1q, DHCP Windows Server — simulation Cisco PT prête à déployer sur équipements physiques.</p></div>
       </div>
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-num">04 — Réseaux</span><span class="pc-badge academic">Académique</span></div>
+        <h3 class="pc-title">Infrastructure Réseau</h3>
+        <div class="pc-tags"><span class="tag">Cisco PT</span><span class="tag">VLAN</span><span class="tag">DHCP</span><span class="pc-tag-more">+1</span></div>
+        <div class="pc-footer"><button class="pc-btn" aria-label="Voir le projet Infrastructure Réseau">Voir le projet<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button><span class="pc-stack-ct">4 techs</span></div>
+      </div>
+      <span class="pc-ghost" aria-hidden="true">04</span>
       <template class="proj-modal-tpl">
         <div class="pm-header">
           <p class="proj-num">Projet 04 — Réseaux</p>
@@ -1185,20 +1186,17 @@
       </template>
     </article>
     <article class="proj-card reveal" tabindex="0">
-      <div class="proj-card-inner">
-        <span class="proj-card-ghost" aria-hidden="true">05</span>
-        <p class="proj-card-num">Projet 05 — Modélisation</p>
-        <div class="proj-card-thumb">
-          <img src="assets/img/bdd-mcd-archeo.webp" alt="MCD — base archéologique" loading="lazy" width="1099" height="749" decoding="async">
-        </div>
-        <div class="proj-card-meta">
-          <h3 class="proj-title">Conception BDD</h3>
-        </div>
-        <div class="proj-card-bottom">
-          <div class="tags"><span class="tag">Merise</span><span class="tag">MCD</span><span class="tag">MPD</span><span class="tag">SQL</span></div>
-          <button class="proj-open-btn" aria-label="Voir le projet Conception BDD"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
-        </div>
+      <div class="pc-thumb">
+        <img src="assets/img/bdd-mcd-archeo.webp" alt="MCD — base archéologique" loading="lazy" width="1099" height="749" decoding="async">
+        <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">Méthode Merise — 2 bases 3NF (archéologie + bibliothèque), MCD et MPD complets prêts pour l'implémentation SQL.</p></div>
       </div>
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-num">05 — Modélisation</span><span class="pc-badge academic">Académique</span></div>
+        <h3 class="pc-title">Conception BDD</h3>
+        <div class="pc-tags"><span class="tag">Merise</span><span class="tag">MCD</span><span class="tag">SQL</span><span class="pc-tag-more">+1</span></div>
+        <div class="pc-footer"><button class="pc-btn" aria-label="Voir le projet Conception BDD">Voir le projet<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button><span class="pc-stack-ct">4 techs</span></div>
+      </div>
+      <span class="pc-ghost" aria-hidden="true">05</span>
       <template class="proj-modal-tpl">
         <div class="pm-header">
           <p class="proj-num">Projet 05 — Modélisation</p>
@@ -1221,20 +1219,17 @@
       </template>
     </article>
     <article class="proj-card reveal" tabindex="0">
-      <div class="proj-card-inner">
-        <span class="proj-card-ghost" aria-hidden="true">06</span>
-        <p class="proj-card-num">Projet 06 — Mission IT</p>
-        <div class="proj-card-thumb">
-          <img src="assets/img/powershell-ping.webp" alt="PowerShell — ping tests" loading="lazy" width="842" height="656" decoding="async">
-        </div>
-        <div class="proj-card-meta">
-          <h3 class="proj-title">Mission IT</h3>
-        </div>
-        <div class="proj-card-bottom">
-          <div class="tags"><span class="tag">Réseau</span><span class="tag">Support</span><span class="tag">PowerShell</span><span class="tag">Documentation</span></div>
-          <button class="proj-open-btn" aria-label="Voir le projet Mission IT"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg> Voir le projet</button>
-        </div>
+      <div class="pc-thumb">
+        <img src="assets/img/powershell-ping.webp" alt="PowerShell — ping tests" loading="lazy" width="842" height="656" decoding="async">
+        <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">Support N1/N2, config switches, déploiement Windows, virtualisation VMware — environnement professionnel réel.</p></div>
       </div>
+      <div class="pc-body">
+        <div class="pc-top"><span class="pc-num">06 — Mission IT</span><span class="pc-badge online">En ligne</span></div>
+        <h3 class="pc-title">Mission IT</h3>
+        <div class="pc-tags"><span class="tag">Réseau</span><span class="tag">Support</span><span class="tag">PowerShell</span><span class="pc-tag-more">+1</span></div>
+        <div class="pc-footer"><button class="pc-btn" aria-label="Voir le projet Mission IT">Voir le projet<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button><span class="pc-stack-ct">4 techs</span></div>
+      </div>
+      <span class="pc-ghost" aria-hidden="true">06</span>
       <template class="proj-modal-tpl">
         <div class="pm-header">
           <p class="proj-num">Projet 06 — Mission IT</p>
@@ -3084,7 +3079,7 @@ if(artLightbox){
 
     document.querySelectorAll('.proj-card').forEach(function(card){
       card.addEventListener('click',function(e){
-        if(e.target.closest('.proj-open-btn')||e.target===card||e.target.closest('.proj-card-inner')){
+        if(e.target.closest('.pc-btn')||e.target===card||e.target.closest('.pc-body')||e.target.closest('.pc-thumb')){
           openModal(card);
         }
       });
