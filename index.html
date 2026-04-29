@@ -435,8 +435,8 @@
     .cf-input:focus,.cf-textarea:focus{border-color:rgba(200,169,109,.45);background:rgba(200,169,109,.03)}
     .cf-input::placeholder,.cf-textarea::placeholder{color:var(--muted)}
     .cf-textarea{height:120px;resize:vertical}
-    .cf-submit{display:inline-flex;align-items:center;justify-content:center;gap:12px;font-family:var(--fd);font-weight:800;font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:none;border:1.5px solid var(--gold);padding:15px 36px;cursor:pointer;transition:background .3s,color .3s,box-shadow .3s;width:100%}
-    .cf-submit:hover{background:var(--gold);color:var(--black);box-shadow:0 8px 32px rgba(200,169,109,.25)}
+    .cf-submit{display:inline-flex;align-items:center;justify-content:center;gap:12px;font-family:var(--fd);font-weight:800;font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);background:none;border:1.5px solid var(--gold);padding:15px 36px;cursor:pointer;transition:background .3s,color .3s,box-shadow .3s,transform .3s;width:100%}
+    .cf-submit:hover{background:var(--gold);color:var(--black);box-shadow:0 0 28px rgba(200,169,109,.4),0 8px 32px rgba(200,169,109,.2);transform:translateY(-2px)}
     .cf-submit svg{width:15px;height:15px}
     .cf-feedback{font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);display:none;text-align:center;padding:8px 0}
 
@@ -651,9 +651,9 @@
     /* ── HERO QUICK NAV ── */
     .hero-quicknav{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
     .hero-qn{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:8px 14px;text-decoration:none;transition:border-color .3s,color .3s,transform .3s cubic-bezier(.4,0,.2,1);flex-shrink:0}
-    .hero-qn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+    .hero-qn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 24px rgba(200,169,109,.12)}
     .hero-qn svg{width:9px;height:9px;flex-shrink:0;transition:transform .3s}
-    .hero-qn:hover svg{transform:translate(2px,-2px)}
+    .hero-qn:hover svg{transform:translate(3px,-3px) scale(1.1)}
     @media(max-width:600px){.hero-quicknav{gap:7px}.hero-qn{font-size:.52rem;padding:7px 10px}}
 
     #term-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.55);pointer-events:none;white-space:nowrap}
@@ -1801,15 +1801,24 @@ window.addEventListener('scroll',()=>{
 btop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
 const heroGhost=document.getElementById('hero-ghost');
-window.addEventListener('scroll',()=>{
-  const y=window.scrollY;
-  if(heroGhost)heroGhost.style.transform=`translateY(calc(-52% + ${y*.25}px))`;
-  document.querySelectorAll('.sec-num').forEach(el=>{
-    const rect=el.closest('.sec').getBoundingClientRect();
-    const off=(window.innerHeight/2-rect.top)*.08;
-    el.style.transform=`translateY(${off}px)`;
-  });
-},{passive:true});
+if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+  let _ticking=false;
+  window.addEventListener('scroll',()=>{
+    if(!_ticking){
+      requestAnimationFrame(()=>{
+        const y=window.scrollY;
+        if(heroGhost)heroGhost.style.transform=`translateY(calc(-52% + ${y*.25}px))`;
+        document.querySelectorAll('.sec-num').forEach(el=>{
+          const rect=el.closest('.sec').getBoundingClientRect();
+          const off=(window.innerHeight/2-rect.top)*.08;
+          el.style.transform=`translateY(${off}px)`;
+        });
+        _ticking=false;
+      });
+      _ticking=true;
+    }
+  },{passive:true});
+}
 
 (function(){
   const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -2980,7 +2989,7 @@ if(artLightbox){
 
   
   (function(){
-    var els=document.querySelectorAll('.cf-submit,.hero-avail,#back-top');
+    var els=document.querySelectorAll('.cf-submit,.hero-avail,#back-top,.hero-qn');
     els.forEach(function(el){
       el.classList.add('mag-btn');
       el.addEventListener('mousemove',function(e){
