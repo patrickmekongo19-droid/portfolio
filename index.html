@@ -56,7 +56,7 @@
       --fd:'Barlow Condensed',sans-serif;--fb:'Barlow',sans-serif;--fm:'DM Mono',monospace;
     }
     html{font-size:16px;scroll-behavior:smooth}
-    body{background:var(--black);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.6;overflow-x:hidden}
+    body{background:var(--black);color:var(--white);font-family:var(--fb);font-weight:300;line-height:1.6;overflow-x:hidden;transition:background .35s,color .35s}
     ::selection{background:var(--gold);color:var(--black)}
     img{display:block;width:100%;height:100%;object-fit:cover}
 
@@ -74,14 +74,17 @@
     html[data-theme="light"] #nav{mix-blend-mode:normal}
     html[data-theme="light"] #cd{background:var(--gold);box-shadow:0 0 8px rgba(200,169,109,.6)}
     html[data-theme="light"] #cr{border-color:rgba(200,169,109,.6)}
-    html[data-theme="light"] body{transition:background .35s,color .35s}
     html[data-theme="light"] .about-highlight{color:var(--white)}
     html[data-theme="light"] .sec-num{color:rgba(0,0,0,.06)!important}
     html[data-theme="light"] .proj-ghost{color:rgba(0,0,0,.04)!important}
+    html[data-theme="light"] .hero-ghost{color:rgba(0,0,0,.025)!important}
+    html[data-theme="light"] .bc-ghost{color:rgba(0,0,0,.025)!important}
 
-    #theme-toggle{background:none;border:1px solid var(--border);padding:6px 8px;cursor:pointer;color:var(--muted);display:flex;align-items:center;gap:5px;font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;transition:border-color .3s,color .3s;flex-shrink:0}
-    #theme-toggle:hover{border-color:var(--gold);color:var(--gold)}
-    #theme-toggle svg{width:13px;height:13px}
+    #theme-toggle{background:none;border:1px solid var(--border);padding:5px 10px 5px 8px;cursor:pointer;color:var(--muted);display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;transition:border-color .3s,color .3s,background .3s;flex-shrink:0}
+    #theme-toggle:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+    #theme-toggle svg{width:12px;height:12px}
+    .tt-spin #theme-icon{animation:tt-spin-anim .55s cubic-bezier(.34,1.56,.64,1) forwards}
+    @keyframes tt-spin-anim{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
     
     #back-top{position:fixed;bottom:92px;left:28px;z-index:2000;width:46px;height:46px;background:rgba(15,15,15,.95);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s,border-color .3s;transform:translateY(12px);backdrop-filter:blur(8px)}
@@ -807,6 +810,7 @@
   </ul>
   <button id="theme-toggle" aria-label="Passer en mode clair" title="Changer le thème">
     <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <span id="theme-lbl">Clair</span>
   </button>
   <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -3099,18 +3103,22 @@ if(artLightbox){
   (function(){
     var btn=document.getElementById('theme-toggle');
     var icon=document.getElementById('theme-icon');
+    var lbl=document.getElementById('theme-lbl');
     var MOON='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
     var SUN='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
     var saved=localStorage.getItem('pm-theme')||'dark';
     function apply(t){
       document.documentElement.dataset.theme=t;
       if(icon){icon.innerHTML=t==='dark'?SUN:MOON;}
+      if(lbl){lbl.textContent=t==='dark'?'Clair':'Sombre';}
       btn.setAttribute('aria-label',t==='dark'?'Passer en mode clair':'Passer en mode sombre');
     }
     apply(saved);
     btn.addEventListener('click',function(){
       var next=document.documentElement.dataset.theme==='dark'?'light':'dark';
       localStorage.setItem('pm-theme',next);
+      btn.classList.add('tt-spin');
+      setTimeout(function(){btn.classList.remove('tt-spin');},600);
       apply(next);
     });
   })();
