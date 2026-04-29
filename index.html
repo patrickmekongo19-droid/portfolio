@@ -592,9 +592,9 @@
     @keyframes rplGrow{to{transform:scale(5);opacity:0}}
 
     
-    .slt{display:inline-block;opacity:0;transform:translateY(55%);will-change:transform,opacity}
-    .slt.in{animation:sltIn .65s cubic-bezier(.4,0,.2,1) forwards}
-    @keyframes sltIn{to{opacity:1;transform:translateY(0)}}
+    .slt{display:inline-block;opacity:0;transform:translateY(40px);filter:blur(3px);will-change:transform,opacity,filter}
+    .slt.in{animation:sltIn .7s cubic-bezier(.4,0,.2,1) forwards}
+    @keyframes sltIn{to{opacity:1;transform:translateY(0);filter:blur(0)}}
 
     
     .sk-card{position:relative}
@@ -2955,14 +2955,15 @@ if(artLightbox){
         if(!title||title.dataset.split)return;
         title.dataset.split='1';
         var parts=title.innerHTML.split('<br>');
-        title.innerHTML=parts.map(function(part,pi){
+        var wi=0;
+        title.innerHTML=parts.map(function(part){
           var tmp=document.createElement('span');
           tmp.innerHTML=part;
           var txt=tmp.textContent||'';
-          return txt.split('').map(function(ch,ci){
-            var d=((pi*txt.length)+ci)*.04;
-            return '<span class="slt" style="animation-delay:'+d+'s">'+(ch===' '?'&nbsp;':ch)+'</span>';
-          }).join('');
+          return txt.trim().split(/\s+/).map(function(word){
+            var d=(wi++)*0.08;
+            return '<span class="slt" style="animation-delay:'+d+'s">'+word+'</span>';
+          }).join(' ');
         }).join('<br>');
         obs.unobserve(entry.target);
       });
@@ -2999,6 +3000,28 @@ if(artLightbox){
         el.style.transform='translate('+dx+'px,'+dy+'px)';
       });
       el.addEventListener('mouseleave',function(){el.style.transform='';});
+    });
+  })();
+
+  /* ── 3D TILT PROJ-CARDS ── */
+  (function(){
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    var wrapEl=document.querySelector('.proj-wrap');
+    if(!wrapEl)return;
+    wrapEl.style.perspective='1000px';
+    document.querySelectorAll('.proj-card').forEach(function(card){
+      card.addEventListener('mousemove',function(e){
+        var b=card.getBoundingClientRect();
+        var x=e.clientX-b.left,y=e.clientY-b.top;
+        var rx=((y/b.height)-.5)*-8;
+        var ry=((x/b.width)-.5)*8;
+        card.style.transform='translateY(-8px) rotateX('+rx+'deg) rotateY('+ry+'deg)';
+        card.style.boxShadow='0 20px 48px rgba(200,169,109,.16),0 6px 20px rgba(0,0,0,.6)';
+      });
+      card.addEventListener('mouseleave',function(){
+        card.style.transform='';
+        card.style.boxShadow='';
+      });
     });
   })();
 
