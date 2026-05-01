@@ -165,7 +165,11 @@
     .sec-divider{height:1px;background:linear-gradient(to right,transparent,var(--border) 20%,var(--border) 80%,transparent);margin:0}
 
     
-    .sec{position:relative;padding:56px 56px;border-top:1px solid var(--border)}
+    /* ── GLOBAL MICRO-INTERACTIONS ── */
+    *{-webkit-tap-highlight-color:transparent}
+    a,button{transition:all .2s cubic-bezier(.4,0,.2,1)}
+    img{border-radius:4px}
+    .sec{position:relative;padding:72px 56px;border-top:1px solid var(--border)}
     .sec-num{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(100px,20vw,300px);line-height:1;color:rgba(255,255,255,.023);letter-spacing:-.04em;pointer-events:none;user-select:none;right:0;top:60px;will-change:transform}
     .sec-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:14px;margin-bottom:20px}
     .sec-label svg{width:12px;height:12px;color:var(--muted);flex-shrink:0}
@@ -278,8 +282,8 @@
     .proj-video-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
     .proj-desc{font-size:.95rem;line-height:1.85;color:var(--dim);margin-bottom:28px}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
-    .tag{font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border:1px solid var(--muted);color:var(--muted);transition:border-color .3s,color .3s}
-    .tag:hover,.proj:hover .tag{border-color:var(--gold);color:var(--gold)}
+    .tag{font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(255,255,255,.15);color:var(--muted);transition:border-color .2s,color .2s;border-radius:4px}
+    .tag:hover,.proj:hover .tag{border-color:rgba(200,169,109,.5);color:var(--gold)}
     .proj-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
     .proj-link:hover,.proj:hover .proj-link{color:var(--gold);border-color:var(--gold)}
 
@@ -567,11 +571,12 @@
     
     @media(max-width:960px){
       .nav-burger{display:flex}
-      #nav,footer{padding:20px 24px}
-      #nav.scrolled{padding:14px 24px}
+      #nav,footer{padding:16px 24px}
+      #nav.scrolled{padding:12px 24px}
       .nav-links{display:none}
-      .sec{padding:96px 24px}
-      #hero{padding:0 24px 72px}
+      .nav-cta{display:none}
+      .sec{padding:64px 24px}
+      #hero{padding:0}
       #reseau-schema,#cv-dl{padding:64px 24px}
       .bento-grid{grid-template-columns:1fr 1fr}
       .bento-reseau{grid-column:span 2}
@@ -599,6 +604,17 @@
       .tl-dot{left:-36px}
       .hero-bot{flex-direction:column;align-items:flex-start;gap:20px}
       .art-grid,.heic-grid{grid-template-columns:1fr}
+      .sec{padding:48px 20px}
+      .hero-ctas{gap:8px}
+      .hero-cta-primary,.hero-cta-outline{padding:10px 18px;font-size:.82rem}
+    }
+    @media(max-width:375px){
+      .hero-name{font-size:clamp(48px,13vw,80px)}
+      .sec-title{font-size:clamp(28px,9vw,52px)}
+    }
+    @media(min-width:1440px){
+      .hero-split{max-width:1440px;padding:120px 100px 100px}
+      .sec{padding:80px 80px}
     }
 
     
@@ -700,8 +716,16 @@
 
     #term-hint{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,169,109,.55);pointer-events:none;white-space:nowrap}
 
+    /* ── PROJECT EXPLORER BAR ── */
+    .proj-explorer{margin-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:10px 16px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px 8px 0 0}
+    .proj-breadcrumb{font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:8px}
+    .proj-breadcrumb span{color:var(--gold)}
+    .proj-filters{display:flex;gap:4px;flex-wrap:wrap}
+    .pf-btn{font-family:var(--fm);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);background:transparent;border:1px solid transparent;padding:4px 12px;border-radius:999px;cursor:pointer;transition:color .2s,border-color .2s,background .2s}
+    .pf-btn:hover{color:var(--light);border-color:var(--border)}
+    .pf-btn.active{color:var(--gold);border-color:rgba(200,169,109,.4);background:rgba(200,169,109,.06)}
     /* ── PROJECT CARDS GRID ── */
-    .proj-wrap{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
+    .proj-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border:1px solid var(--border);border-top:none}
     .proj-card{background:var(--black);position:relative;cursor:pointer;overflow:hidden;transition:transform .4s cubic-bezier(.4,0,.2,1),box-shadow .4s cubic-bezier(.4,0,.2,1)}
     .proj-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width .4s cubic-bezier(.77,0,.175,1);z-index:3}
     .proj-card:hover,.proj-card:focus-within{transform:translateY(-8px);box-shadow:0 20px 48px rgba(200,169,109,.13),0 6px 20px rgba(0,0,0,.55);z-index:2}
@@ -731,13 +755,19 @@
     .pc-btn:hover svg{transform:translate(3px,-3px)}
     .pc-stack-ct{font-family:var(--fm);font-size:.48rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase}
     .pc-ghost{position:absolute;font-family:var(--fd);font-weight:900;font-size:clamp(56px,6vw,88px);color:rgba(255,255,255,.025);line-height:1;letter-spacing:-.05em;pointer-events:none;user-select:none;right:10px;bottom:6px;z-index:0}
+    /* corner fold */
+    .pc-fold{position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 24px 24px 0;border-color:transparent var(--black) transparent transparent;z-index:4;transition:border-width .2s}
+    .proj-card:hover .pc-fold{border-width:0 32px 32px 0}
+    /* card hidden by filter */
+    .proj-card[data-hidden]{opacity:0;pointer-events:none;position:absolute;visibility:hidden}
     @media(max-width:960px){.proj-wrap{grid-template-columns:1fr 1fr}}
     @media(max-width:600px){.proj-wrap{grid-template-columns:1fr}.pc-body{padding:16px 18px 14px}}
 
     /* ── PROJECT MODAL ── */
-    #proj-modal{position:fixed;inset:0;background:rgba(5,5,8,.96);z-index:9400;display:flex;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s;overflow-y:auto;backdrop-filter:blur(8px);padding:60px 24px 60px}
+    #proj-modal{position:fixed;inset:0;background:rgba(5,5,8,.96);z-index:9400;display:flex;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;backdrop-filter:blur(10px);padding:60px 24px 60px}
     #proj-modal.open{opacity:1;pointer-events:all}
-    .pm-wrap{width:100%;max-width:940px;background:var(--surface);border:1px solid var(--border);position:relative;margin:auto;padding:52px 56px}
+    .pm-wrap{width:100%;max-width:940px;background:var(--surface);border:1px solid var(--border);position:relative;margin:auto;padding:52px 56px;transform:scale(.93) translateY(12px);transition:transform .35s cubic-bezier(.4,0,.2,1);border-radius:12px}
+    #proj-modal.open .pm-wrap{transform:scale(1) translateY(0)}
     .pm-close{position:sticky;top:16px;float:right;z-index:10;font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;background:rgba(10,10,10,.95);border:1px solid var(--border);color:var(--muted);padding:7px 14px;cursor:pointer;transition:border-color .3s,color .3s}
     .pm-close:hover{border-color:var(--gold);color:var(--gold)}
     .pm-header{margin-bottom:36px;padding-top:4px;clear:right}
@@ -997,11 +1027,11 @@
       <h3 class="bc-title">Infrastructure<br>Réseau</h3>
       <p class="bc-sub">Conception, configuration &amp; dépannage d'infrastructures réseau</p>
       <div class="sk-cards">
-        <div class="sk-card"><div class="sk-card-badge" style="background:#1BA0D7;color:#fff">PT</div><span class="sk-card-name">Cisco PT</span></div>
-        <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a1a;color:#fff;border:1px solid #333">TCP/IP</div><span class="sk-card-name">TCP/IP</span></div>
-        <div class="sk-card"><div class="sk-card-badge" style="background:#2563eb;color:#fff">VLAN</div><span class="sk-card-name">VLAN</span></div>
-        <div class="sk-card"><div class="sk-card-badge" style="background:#0f766e;color:#fff">DHCP</div><span class="sk-card-name">DHCP</span></div>
-        <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a1a;color:#aaa;border:1px solid #333;font-size:.7rem">IPv4</div><span class="sk-card-name">IPv4</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cisco/cisco-original.svg" alt="Cisco" loading="lazy"><span class="sk-card-name">Cisco PT</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a2e;color:#4f7ef7;border:1px solid rgba(79,126,247,.3);font-weight:600">TCP/IP</div><span class="sk-card-name">TCP/IP</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a2e;color:#4f7ef7;border:1px solid rgba(79,126,247,.3)">VLAN</div><span class="sk-card-name">VLAN</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a2e;color:#34d399;border:1px solid rgba(52,211,153,.3)">DHCP</div><span class="sk-card-name">DHCP</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#1a1a2e;color:#aaa;border:1px solid rgba(255,255,255,.12)">IPv4</div><span class="sk-card-name">IPv4</span></div>
       </div>
     </div>
 
@@ -1016,9 +1046,10 @@
       <h3 class="bc-title">OS &amp;<br>Virt.</h3>
       <p class="bc-sub">Administration OS, virtualisation &amp; automatisation</p>
       <div class="sk-cards">
-        <div class="sk-card"><div class="sk-card-badge" style="background:#607D8B;color:#fff">VM</div><span class="sk-card-name">VMware</span></div>
-        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" loading="lazy"><span class="sk-card-name">Win Server</span></div>
+        <div class="sk-card"><div class="sk-card-badge" style="background:#607D8B;color:#fff;font-size:.6rem;font-weight:700">VM</div><span class="sk-card-name">VMware</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows11/windows11-original.svg" alt="Windows" loading="lazy"><span class="sk-card-name">Win Server</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" alt="Debian" loading="lazy"><span class="sk-card-name">Debian 12</span></div>
+        <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg" alt="Linux" loading="lazy"><span class="sk-card-name">Linux</span></div>
         <div class="sk-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg" alt="PowerShell" loading="lazy"><span class="sk-card-name">PowerShell</span></div>
       </div>
     </div>
@@ -1082,8 +1113,18 @@
     </div>
     <h2 class="sec-title">Réalisations</h2>
   </div>
-  <div class="proj-wrap">
-    <article class="proj-card reveal d1" tabindex="0">
+  <div class="proj-explorer">
+    <div class="proj-breadcrumb">Projets <span>/</span> <span>Tous (6)</span></div>
+    <div class="proj-filters" role="group" aria-label="Filtrer les projets">
+      <button class="pf-btn active" data-filter="all">Tous</button>
+      <button class="pf-btn" data-filter="web">Web Dev</button>
+      <button class="pf-btn" data-filter="sys">Réseaux / Sys</button>
+      <button class="pf-btn" data-filter="saas">IA / SaaS</button>
+    </div>
+  </div>
+  <div class="proj-wrap" id="proj-grid">
+    <article class="proj-card reveal d1" tabindex="0" data-cat="web">
+      <div class="pc-fold" aria-hidden="true"></div>
       <div class="pc-thumb">
         <img src="assets/img/cv-app-ui.webp" alt="Générateur de CV" loading="lazy" width="1907" height="977" decoding="async">
         <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">Application PHP/MySQL CRUD avec formulaire, requêtes préparées anti-SQLi et génération de CV en 3 minutes.</p></div>
@@ -1123,7 +1164,8 @@
         </div>
       </template>
     </article>
-    <article class="proj-card reveal d2" tabindex="0">
+    <article class="proj-card reveal d2" tabindex="0" data-cat="saas">
+      <div class="pc-fold" aria-hidden="true"></div>
       <div class="pc-thumb">
         <img src="assets/img/cviste-home.webp" alt="CViste — Landing page" loading="lazy" width="1038" height="702" decoding="async">
         <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">SaaS IA — 15 templates, export PDF/DOCX, génération multilingue FR/EN/ES et réécriture sectorielle via Claude AI.</p></div>
@@ -1160,7 +1202,8 @@
         </div>
       </template>
     </article>
-    <article class="proj-card reveal d3" tabindex="0">
+    <article class="proj-card reveal d3" tabindex="0" data-cat="sys">
+      <div class="pc-fold" aria-hidden="true"></div>
       <div class="pc-thumb">
         <img src="assets/img/vmware-vms.webp" alt="VMware — liste des VMs" loading="lazy" width="768" height="434" decoding="async">
         <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">3 VMs en réseau isolé — Windows 11, Debian 12, snapshots, partitionnement et connectivité inter-VM vérifiée.</p></div>
@@ -1193,7 +1236,8 @@
         </div>
       </template>
     </article>
-    <article class="proj-card reveal d4" tabindex="0">
+    <article class="proj-card reveal d4" tabindex="0" data-cat="sys">
+      <div class="pc-fold" aria-hidden="true"></div>
       <div class="pc-thumb">
         <img src="assets/img/cisco-vlan-topo.webp" alt="Cisco PT — VLAN" loading="lazy" width="1919" height="1079" decoding="async">
         <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">VLAN 10/20, trunks 802.1q, DHCP Windows Server — simulation Cisco PT prête à déployer sur équipements physiques.</p></div>
@@ -1222,7 +1266,8 @@
         </div>
       </template>
     </article>
-    <article class="proj-card reveal d5" tabindex="0">
+    <article class="proj-card reveal d5" tabindex="0" data-cat="web">
+      <div class="pc-fold" aria-hidden="true"></div>
       <div class="pc-thumb">
         <img src="assets/img/bdd-mcd-archeo.webp" alt="MCD — base archéologique" loading="lazy" width="1099" height="749" decoding="async">
         <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">Méthode Merise — 2 bases 3NF (archéologie + bibliothèque), MCD et MPD complets prêts pour l'implémentation SQL.</p></div>
@@ -1255,7 +1300,8 @@
         </div>
       </template>
     </article>
-    <article class="proj-card reveal d6" tabindex="0">
+    <article class="proj-card reveal d6" tabindex="0" data-cat="sys">
+      <div class="pc-fold" aria-hidden="true"></div>
       <div class="pc-thumb">
         <img src="assets/img/powershell-ping.webp" alt="PowerShell — ping tests" loading="lazy" width="842" height="656" decoding="async">
         <div class="pc-overlay" aria-hidden="true"><p class="pc-overlay-desc">Support N1/N2, config switches, déploiement Windows, virtualisation VMware — environnement professionnel réel.</p></div>
@@ -3173,6 +3219,28 @@ if(artLightbox){
     modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
     document.addEventListener('keydown',function(e){
       if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();
+    });
+  })();
+
+  /* ── Project filter ── */
+  (function(){
+    var btns=document.querySelectorAll('.pf-btn');
+    var cards=document.querySelectorAll('.proj-card[data-cat]');
+    var breadCount=document.querySelector('.proj-breadcrumb span:last-child');
+    if(!btns.length)return;
+    btns.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var f=btn.dataset.filter;
+        btns.forEach(function(b){b.classList.remove('active');});
+        btn.classList.add('active');
+        var shown=0;
+        cards.forEach(function(c){
+          var match=f==='all'||c.dataset.cat===f;
+          if(match){c.removeAttribute('data-hidden');shown++;}
+          else{c.setAttribute('data-hidden','');}
+        });
+        if(breadCount)breadCount.textContent=f==='all'?'Tous ('+shown+')':btn.textContent.trim()+' ('+shown+')';
+      });
     });
   })();
 
